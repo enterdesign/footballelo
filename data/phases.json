@@ -69,5 +69,12 @@
    "k": 16,
    "color": "#60a5fa"
   }
+ },
+ "ekstraklasa": {
+  "league": {
+   "label": "LG",
+   "k": 16,
+   "color": "#60a5fa"
+  }
  }
 }

@@ -87,7 +87,8 @@ def main():
             canon = known.get(t, t)                       # names merged by hand keep pointing at their club
             entry = teams.setdefault(canon, {"country": "Poland", "aliases": []})
             new = (shown_all[t] | {t}) - {canon}
-            new = {a for a in new if known.get(a, canon) == canon}      # never steal an alias from another club
+            new = {a for a in new if known.setdefault(a, canon) == canon}   # first club to claim a name keeps it
+            known.setdefault(canon, canon)
             entry["aliases"] = sorted(set(entry["aliases"]) | new)
         TEAMS.write_text(json.dumps(dict(sorted(teams.items())), ensure_ascii=False, indent=1), encoding="utf-8")
         lines.append(f"teams file: {len(teams)} clubs")

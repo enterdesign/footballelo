@@ -1,12 +1,14 @@
 # Football ELO
 
-ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →) and the English
-top flight (First Division from 1888/89, Premier League from 1992/93).
+ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →), the English
+top flight (First Division from 1888/89, Premier League from 1992/93) and the Polish top flight
+(Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →).
 Static site on GitHub Pages; data refreshed weekly by GitHub Actions.
 
 ```
-data/matches/{ucl,wc,pl}.json   matches exactly as imported (source names)
-data/teams_{ucl,wc,pl}.json     canonical team -> aliases (renames, successor states)
+data/matches/{ucl,wc,pl,ekstraklasa}.json   matches exactly as imported (source names)
+data/teams_{ucl,wc,pl,ekstraklasa}.json     canonical team -> aliases (renames, successor states)
+data/sync.json                  time of the last weekly data check (shown on the home page)
 data/phases.json             K-factor per phase
 data/overrides.json          manual fixes: {"add": [...], "remove": [...]}
 scripts/                     sync (import), build (ELO -> site/data), parsers, engine
@@ -24,6 +26,10 @@ site/                        the website (site/data/ is generated)
 - Premier League before 1992/93: [engsoccerdata](https://github.com/jalapic/engsoccerdata) `england.csv`, tier 1
   (frozen archive; for 1992/93–2024/25 it matches openfootball exactly, except 2022/23 which it lacks).
 - Champions League 1992/93–2010/11: the original hand-entered data (frozen).
+- Polish top flight 1927–: English Wikipedia season articles (results cross tables, CC BY-SA), read by
+  `scripts/wikipedia_pl.py`; the two latest seasons are refreshed weekly, and a season is never replaced by a
+  copy with fewer matches. Seasons played in groups (1933, 1952, 1962) and the 1939 season cut short by the war
+  have fewer matches than a full round robin by design.
 - Running season (UCL, Premier League): football-data.org when `FOOTBALL_DATA_KEY` is set.
 
 ## Editing team history

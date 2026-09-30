@@ -6,7 +6,9 @@ const COMPS = {
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930"},
   pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated weekly",
-        group: () => "", groupLabel: () => "England", first: "1888/89"},
+        group: () => "", groupLabel: () => "England", sub: "England", first: "1888/89"},
+  ekstraklasa: {file: "data/ekstraklasa.json", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated weekly",
+        group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927"},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
 const $ = id => document.getElementById(id);
@@ -113,7 +115,7 @@ function ranking() {
     if (q) list = list.filter(i => [D.teams[i].name, ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
     $("rows").innerHTML = list.map(i => { const t = D.teams[i], dl = v.delta[i], e = v.elo[i], r = rank.get(i);
       return `<div class="row" data-t="${i}"><span class="pos${r <= 3 ? " top" : ""}">${r}</span>${icon(t)}
-        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(route.comp === "pl" ? "England" : C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
+        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.sub || C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo" style="color:${eloColor(e)}">${e}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
   };
@@ -197,7 +199,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       <li>Updated weekly from <a href="https://github.com/openfootball" style="color:var(--accent)">openfootball</a></li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent)">teams file</a></li></ul></div></div>`;
