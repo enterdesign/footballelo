@@ -10,7 +10,8 @@
   "code": "GRE",
   "country": "Greece",
   "aliases": [
-   "AEK Athen"
+   "AEK Athen",
+   "PAE AEK"
   ]
  },
  "AIK Stockholm": {
@@ -283,6 +284,13 @@
    "Club Brugge KV"
   ]
  },
+ "Como": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Como 1907"
+  ]
+ },
  "Copenhagen": {
   "code": "DEN",
   "country": "Denmark",
@@ -351,7 +359,9 @@
  "Fenerbahçe": {
   "code": "TUR",
   "country": "Turkey",
-  "aliases": []
+  "aliases": [
+   "Fenerbahçe SK"
+  ]
  },
  "Ferencváros": {
   "code": "HUN",
@@ -484,6 +494,13 @@
   "country": "Russia",
   "aliases": [
    "FK Krasnodar"
+  ]
+ },
+ "LASK": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": [
+   "LASK Linz"
   ]
  },
  "Lazio": {
@@ -773,7 +790,9 @@
  "Real Betis": {
   "code": "ESP",
   "country": "Spain",
-  "aliases": []
+  "aliases": [
+   "Real Betis Balompié"
+  ]
  },
  "Real Madrid": {
   "code": "ESP",
@@ -821,6 +840,13 @@
   "code": "RUS",
   "country": "Russia",
   "aliases": []
+ },
+ "Sabah": {
+  "code": "AZE",
+  "country": "Azerbaijan",
+  "aliases": [
+   "Sabah FK"
+  ]
  },
  "Schalke 04": {
   "code": "GER",
@@ -958,6 +984,13 @@
   "country": "Spain",
   "aliases": [
    "Valencia CF"
+  ]
+ },
+ "Viking": {
+  "code": "NOR",
+  "country": "Norway",
+  "aliases": [
+   "Viking FK"
   ]
  },
  "Viktoria Plzeň": {
