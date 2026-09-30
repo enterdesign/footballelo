@@ -1,45 +1,54 @@
 {
  "Albania": {
+  "iso": "al",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Algeria": {
+  "iso": "dz",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Angola": {
+  "iso": "ao",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Argentina": {
+  "iso": "ar",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Australia": {
+  "iso": "au",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Austria": {
+  "iso": "at",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Belgium": {
+  "iso": "be",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Bolivia": {
+  "iso": "bo",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Bosnia and Herzegovina": {
+  "iso": "ba",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -49,26 +58,31 @@
   ]
  },
  "Brazil": {
+  "iso": "br",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Bulgaria": {
+  "iso": "bg",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Cameroon": {
+  "iso": "cm",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Canada": {
+  "iso": "ca",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Cape Verde": {
+  "iso": "cv",
   "aliases": [
    "Cabo Verde"
   ],
@@ -76,41 +90,49 @@
   "label": "Africa"
  },
  "Chile": {
+  "iso": "cl",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "China": {
+  "iso": "cn",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Colombia": {
+  "iso": "co",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Costa Rica": {
+  "iso": "cr",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Croatia": {
+  "iso": "hr",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Cuba": {
+  "iso": "cu",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Curaçao": {
+  "iso": "cw",
   "aliases": [],
   "region": "CONCACAF",
   "label": "N/C America & Caribbean"
  },
  "Czechia": {
+  "iso": "cz",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -120,6 +142,7 @@
   ]
  },
  "DR Congo": {
+  "iso": "cd",
   "region": "CAF",
   "label": "Africa",
   "aliases": [
@@ -127,41 +150,49 @@
   ]
  },
  "Denmark": {
+  "iso": "dk",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "East Germany": {
+  "iso": "dd",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Ecuador": {
+  "iso": "ec",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Egypt": {
+  "iso": "eg",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "El Salvador": {
+  "iso": "sv",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "England": {
+  "iso": "gb-eng",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "France": {
+  "iso": "fr",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Germany": {
+  "iso": "de",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -169,36 +200,43 @@
   ]
  },
  "Ghana": {
+  "iso": "gh",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Greece": {
+  "iso": "gr",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Haiti": {
+  "iso": "ht",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Honduras": {
+  "iso": "hn",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Hungary": {
+  "iso": "hu",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Iceland": {
+  "iso": "is",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Indonesia": {
+  "iso": "id",
   "region": "AFC",
   "label": "Asia",
   "aliases": [
@@ -206,26 +244,31 @@
   ]
  },
  "Iran": {
+  "iso": "ir",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Iraq": {
+  "iso": "iq",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Israel": {
+  "iso": "il",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Italy": {
+  "iso": "it",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Ivory Coast": {
+  "iso": "ci",
   "region": "CAF",
   "label": "Africa",
   "aliases": [
@@ -233,96 +276,115 @@
   ]
  },
  "Jamaica": {
+  "iso": "jm",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Japan": {
+  "iso": "jp",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Jordan": {
+  "iso": "jo",
   "aliases": [],
   "region": "AFC",
   "label": "Asia"
  },
  "Kuwait": {
+  "iso": "kw",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Mexico": {
+  "iso": "mx",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Morocco": {
+  "iso": "ma",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Netherlands": {
+  "iso": "nl",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "New Zealand": {
+  "iso": "nz",
   "region": "OFC",
   "label": "Oceania",
   "aliases": []
  },
  "Nigeria": {
+  "iso": "ng",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "North Korea": {
+  "iso": "kp",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Northern Ireland": {
+  "iso": "gb-nir",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Norway": {
+  "iso": "no",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Panama": {
+  "iso": "pa",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": []
  },
  "Paraguay": {
+  "iso": "py",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Peru": {
+  "iso": "pe",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Poland": {
+  "iso": "pl",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Portugal": {
+  "iso": "pt",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Qatar": {
+  "iso": "qa",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Republic of Ireland": {
+  "iso": "ie",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -331,11 +393,13 @@
   ]
  },
  "Romania": {
+  "iso": "ro",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Russia": {
+  "iso": "ru",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -344,21 +408,25 @@
   ]
  },
  "Saudi Arabia": {
+  "iso": "sa",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Scotland": {
+  "iso": "gb-sct",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Senegal": {
+  "iso": "sn",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Serbia": {
+  "iso": "rs",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -369,46 +437,55 @@
   ]
  },
  "Slovakia": {
+  "iso": "sk",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Slovenia": {
+  "iso": "si",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "South Africa": {
+  "iso": "za",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "South Korea": {
+  "iso": "kr",
   "region": "AFC",
   "label": "Asia",
   "aliases": []
  },
  "Spain": {
+  "iso": "es",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Sweden": {
+  "iso": "se",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Switzerland": {
+  "iso": "ch",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "Togo": {
+  "iso": "tg",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Trinidad and Tobago": {
+  "iso": "tt",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": [
@@ -417,11 +494,13 @@
   ]
  },
  "Tunisia": {
+  "iso": "tn",
   "region": "CAF",
   "label": "Africa",
   "aliases": []
  },
  "Turkey": {
+  "iso": "tr",
   "region": "UEFA",
   "label": "Europe",
   "aliases": [
@@ -429,11 +508,13 @@
   ]
  },
  "Ukraine": {
+  "iso": "ua",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []
  },
  "United Arab Emirates": {
+  "iso": "ae",
   "region": "AFC",
   "label": "Asia",
   "aliases": [
@@ -441,6 +522,7 @@
   ]
  },
  "United States": {
+  "iso": "us",
   "region": "CONCACAF",
   "label": "N/C America & Caribbean",
   "aliases": [
@@ -448,21 +530,25 @@
   ]
  },
  "Uruguay": {
+  "iso": "uy",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Uzbekistan": {
+  "iso": "uz",
   "aliases": [],
   "region": "AFC",
   "label": "Asia"
  },
  "Venezuela": {
+  "iso": "ve",
   "region": "CONMEBOL",
   "label": "South America",
   "aliases": []
  },
  "Wales": {
+  "iso": "gb-wls",
   "region": "UEFA",
   "label": "Europe",
   "aliases": []

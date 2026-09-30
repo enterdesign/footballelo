@@ -38,3 +38,13 @@ python -m unittest discover -s tests
 
 ## Setup (once)
 Repo → Settings → Pages → Source: **GitHub Actions**.
+
+## Flags and logos
+- National teams: `"iso"` in `data/teams_wc.json` (flagcdn.com code, e.g. `gb-eng`).
+- Clubs: `"logo"` (image URL) in `data/teams_ucl.json`. Run the **Fetch club logos** workflow to fill
+  missing ones from TheSportsDB; existing values are never overwritten, so any wrong logo can be fixed by hand.
+
+## Current season fallback
+openfootball can lag behind by weeks. If it has no matches for the running Champions League season,
+`scripts/sync.py` takes them from football-data.org. Add a free API key as the repository secret
+`FOOTBALL_DATA_KEY` (Settings → Secrets and variables → Actions) to enable it.
