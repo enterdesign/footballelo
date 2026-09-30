@@ -9,6 +9,7 @@ usage: logos.py [--key KEY]     (default key "3" is TheSportsDB's public test ke
 """
 import argparse
 import json
+import re
 import time
 import unicodedata
 import urllib.parse
@@ -35,25 +36,38 @@ def search(key, q):
     return []
 
 
-WIKI = ("https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrlimit=3&prop=pageimages"
-        "&piprop=original&format=json&gsrsearch={q}")
+WIKI_API = "https://en.wikipedia.org/w/api.php?format=json&"
+CREST = re.compile(r"(logo|crest|badge|emblem|coat[ _]of|shield)", re.I)
+NOT_CREST = re.compile(r"(flag[ _]of|commons-logo|wikiproject|wikimedia|wiktionary|ambox|question|icon|kit|stadium)", re.I)
+
+
+def wiki(**params):
+    url = WIKI_API + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.load(r)
 
 
 def wiki_logo(name):
-    """Fallback: lead image (the crest) of the Wikipedia article found for "<name> football club"."""
-    url = WIKI.format(q=urllib.parse.quote(f"{name} football club"))
+    """Fallback: the crest file listed on the Wikipedia article of "<name> football club".
+    (Most crests are non-free files, which the lead-image API hides, so the file list is read.)"""
+    words = [w for w in (norm(t) for t in name.split()) if len(w) >= 3]
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
-        with urllib.request.urlopen(req, timeout=30) as r:
-            pages = sorted((json.load(r).get("query") or {}).get("pages", {}).values(), key=lambda p: p.get("index", 9))
+        hits = wiki(action="query", list="search", srsearch=f"{name} football club", srlimit=3)["query"]["search"]
+        title = next((h["title"] for h in hits if any(w in norm(h["title"]) for w in words)
+                      and not re.search(r"season|stadium", h["title"], re.I)), None)
+        if not title:
+            return None
+        pages = wiki(action="query", titles=title, prop="images", imlimit=60)["query"]["pages"]
+        files = [i["title"] for p in pages.values() for i in p.get("images", [])]
+        good = [f for f in files if CREST.search(f) and not NOT_CREST.search(f) and f.lower().endswith((".svg", ".png"))]
+        if not good:
+            return None
+        info = wiki(action="query", titles=good[0], prop="imageinfo", iiprop="url")["query"]["pages"]
+        url = next(iter(info.values())).get("imageinfo", [{}])[0].get("url")
+        return url.split("?")[0] if url else None
     except Exception:
         return None
-    words = [w for w in (norm(t) for t in name.split()) if len(w) >= 3]
-    for p in pages:
-        src = (p.get("original") or {}).get("source")
-        if src and any(w in norm(p["title"]) for w in words) and src.lower().endswith((".png", ".svg", ".jpg", ".jpeg")):
-            return src
-    return None
 
 
 def pick(results, country):
