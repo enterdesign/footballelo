@@ -41,8 +41,8 @@ function prepare(d) {
 
 const flagUrl = t => t.iso ? `https://flagcdn.com/w40/${t.iso}.png` : "";
 const icon = t => { const u = route.comp === "wc" ? flagUrl(t) : t.logo || ""; return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`; };
-const eloColor = e => e >= 1750 ? "#fbbf24" : e >= 1700 ? "#f97316" : e >= 1650 ? "#60a5fa" : e >= 1600 ? "#4ade80" : "#f87171";
-const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="color:${p.color};border-color:${p.color}55">${p.label}</span>`; };
+const eloColor = e => e >= 1750 ? "#b45309" : e >= 1700 ? "#c2410c" : e >= 1650 ? "#1d4ed8" : e >= 1600 ? "#15803d" : "#dc2626";
+const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--text)">${p.label}</span>`; };
 
 // ── routing ───────────────────────────────────────────────────────
 function parseHash() {
@@ -135,8 +135,8 @@ function drawChart(canvas, series) {
   if (typeof Chart === "undefined") { canvas.replaceWith(Object.assign(document.createElement("p"), {className: "sub", textContent: "Chart library failed to load."})); return; }
   chart = new Chart(canvas, {type: "line", data: {labels: D.periods, datasets: series.map(s => ({label: s.label, data: D.periods.map(p => s.map[p] ?? null),
     borderColor: s.color, backgroundColor: s.color, spanGaps: true, tension: .25, pointRadius: 2, borderWidth: 2}))},
-    options: {interaction: {mode: "index", intersect: false}, scales: {x: {ticks: {color: "#4a5568", maxTicksLimit: 12}, grid: {color: "#1a1c2e"}}, y: {ticks: {color: "#4a5568"}, grid: {color: "#1a1c2e"}}},
-      plugins: {legend: {labels: {color: "#94a3b8"}}}}});
+    options: {interaction: {mode: "index", intersect: false}, scales: {x: {ticks: {color: "#6b7488", maxTicksLimit: 12}, grid: {color: "#e2e5ee"}}, y: {ticks: {color: "#6b7488"}, grid: {color: "#e2e5ee"}}},
+      plugins: {legend: {labels: {color: "#4a5468"}}}}});
 }
 const periodElo = i => { const m = {}; D.tl[i].forEach(e => m[e.per] = e.after); return m; };
 const periodStats = i => { const s = new Map(); D.tl[i].forEach(e => { const x = s.get(e.per) || {start: e.before, n: 0}; x.end = e.after; x.n++; s.set(e.per, x); }); return s; };
@@ -152,7 +152,7 @@ function stats() {
   const t = D.teams[cur];
   $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
-  drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#f59e0b"}]);
+  drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#d97706"}]);
 }
 function compare() {
   const a = D.teams.findIndex(t => t.name === route.team.split("~")[0]), b = D.teams.findIndex(t => t.name === route.team.split("~")[1]);
@@ -165,7 +165,7 @@ function compare() {
   $("out").innerHTML = `<div class="card"><canvas id="ch" height="110"></canvas></div>
     <div class="card"><h3>Head to head</h3><p>${esc(D.teams[a].name)} ${w}W · ${h2h.length - w - l}D · ${l}L vs ${esc(D.teams[b].name)} (${h2h.length} matches)</p></div>
     ${h2h.length ? `<div class="card">${h2h.slice().reverse().map(e => matchRow(D.matches[e.i])).join("")}</div>` : ""}`;
-  drawChart($("ch"), [{label: D.teams[a].name, map: periodElo(a), color: "#f59e0b"}, {label: D.teams[b].name, map: periodElo(b), color: "#60a5fa"}]);
+  drawChart($("ch"), [{label: D.teams[a].name, map: periodElo(a), color: "#d97706"}, {label: D.teams[b].name, map: periodElo(b), color: "#2563eb"}]);
 }
 
 // ── about ─────────────────────────────────────────────────────────
