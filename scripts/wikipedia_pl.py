@@ -20,7 +20,7 @@ RAW = "https://en.wikipedia.org/w/index.php?title={title}&action=raw"
 UA = {"User-Agent": "footballelo/1.0 (https://github.com/enterdesign/footballelo; personal ELO project)"}
 CATEGORY = "Category:Ekstraklasa seasons"
 TITLE = re.compile(r"^(\d{4})(?:[–-](\d{2,4}))? Ekstraklasa$")
-CALL = "{{#invoke:sports results"
+CALL_RE = re.compile(r"\{\{\s*#invoke:\s*sports results", re.I)
 SCORE = re.compile(r"(\d+)\s*[–\-−]\s*(\d+)")
 
 
@@ -65,9 +65,10 @@ def blocks(wikitext):
     """Bodies of all `{{#invoke:sports results|main ...}}` calls (nested templates respected)."""
     i = 0
     while True:
-        i = wikitext.find(CALL, i)
-        if i < 0:
+        m = CALL_RE.search(wikitext, i)               # module name case differs between articles
+        if not m:
             return
+        i = m.start()
         depth, j = 0, i
         while j < len(wikitext):
             if wikitext.startswith("{{", j):
@@ -80,7 +81,7 @@ def blocks(wikitext):
                     break
             else:
                 j += 1
-        yield wikitext[i + len(CALL): j - 2]
+        yield wikitext[m.end(): j - 2]
         i = j
 
 

@@ -46,6 +46,11 @@ class Parse(unittest.TestCase):
         self.assertEqual(wp.club("[[Union Touring Łódź|Klub Turystów Łódź]]"), ("Union Touring Łódź", "Klub Turystów Łódź"))
         self.assertEqual(wp.club("[[Legia Warsaw]]"), ("Legia Warsaw", "Legia Warsaw"))
 
+    def test_module_name_case_and_spacing(self):
+        text = "{{#invoke:Sports results|main\n|team1=A|team2=B\n|name_A=[[Legia Warsaw]]\n|name_B=[[Ruch Chorzów]]\n|match_A_B=3–1\n}}"
+        self.assertEqual(len(wp.parse_season(text, "2013/14")), 1)
+        self.assertEqual(len(wp.parse_season(text.replace("#invoke:Sports", "#invoke: sports"), "2013/14")), 1)
+
     def test_two_blocks_and_scores(self):
         ms = wp.parse_season(SAMPLE, "1927")
         by = {(m["teamA"], m["teamB"]): (m["goalsA"], m["goalsB"]) for m in ms}

@@ -12,7 +12,7 @@ import time
 from collections import Counter
 from pathlib import Path
 
-from common import DATA
+from common import DATA, alias_map
 import wikipedia_pl as wp
 
 MATCHES = DATA / "matches/ekstraklasa.json"
@@ -82,9 +82,13 @@ def main():
         for _, _, shown in result:
             for t, s in shown.items():
                 shown_all.setdefault(t, set()).update(s)
+        known = alias_map(teams)
         for t in sorted(shown_all):
-            entry = teams.setdefault(t, {"country": "Poland", "aliases": []})
-            entry["aliases"] = sorted(set(entry["aliases"]) | (shown_all[t] - {t}))
+            canon = known.get(t, t)                       # names merged by hand keep pointing at their club
+            entry = teams.setdefault(canon, {"country": "Poland", "aliases": []})
+            new = (shown_all[t] | {t}) - {canon}
+            new = {a for a in new if known.get(a, canon) == canon}      # never steal an alias from another club
+            entry["aliases"] = sorted(set(entry["aliases"]) | new)
         TEAMS.write_text(json.dumps(dict(sorted(teams.items())), ensure_ascii=False, indent=1), encoding="utf-8")
         lines.append(f"teams file: {len(teams)} clubs")
     text = "\n".join(lines)
