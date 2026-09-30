@@ -61,11 +61,6 @@
   "country": "Poland",
   "aliases": []
  },
- "Energetyk ROW Rybnik": {
-  "country": "Poland",
-  "aliases": [],
-  "logo": "https://upload.wikimedia.org/wikipedia/en/8/84/ROW_1964_Rybnik_Logo.png"
- },
  "GKS Bełchatów": {
   "country": "Poland",
   "aliases": [],
@@ -156,11 +151,6 @@
    "Unia Racibórz"
   ],
   "logo": "https://upload.wikimedia.org/wikipedia/en/5/5c/Unia_Racib%C3%B3rz_Logo.png"
- },
- "KS ROW 1964 Rybnik": {
-  "country": "Poland",
-  "aliases": [],
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/g617y31782968667.png"
  },
  "KS Warszawianka": {
   "country": "Poland",
@@ -287,6 +277,14 @@
   "country": "Poland",
   "aliases": [],
   "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/RKS_Radomsko_crest.png"
+ },
+ "ROW Rybnik": {
+  "country": "Poland",
+  "aliases": [
+   "Energetyk ROW Rybnik",
+   "KS ROW 1964 Rybnik"
+  ],
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/g617y31782968667.png"
  },
  "Radomiak Radom": {
   "country": "Poland",
