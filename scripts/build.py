@@ -88,6 +88,7 @@ def main():
     outdir = ROOT / "site" / "data"
     outdir.mkdir(parents=True, exist_ok=True)
     failed = False
+    info = {}
     for key in COMPS:
         out, bad = build(key)
         if bad:
@@ -98,9 +99,14 @@ def main():
             continue
         (outdir / f"{key}.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         print(f"[{key}] {len(out['matches'])} matches, {len(out['teams'])} teams")
+        info[key] = {"matches": len(out["matches"]), "last": out["matches"][-1][0],
+                     "last_matches": sum(1 for m in out["matches"] if m[0] == out["matches"][-1][0])}
     if failed:
         sys.exit(2)
-    (outdir / "meta.json").write_text(json.dumps({"built": datetime.now(timezone.utc).isoformat(timespec="minutes")}))
+    sync = DATA / "sync.json"
+    meta = {"built": datetime.now(timezone.utc).isoformat(timespec="minutes"),
+            "synced": load(sync)["synced"] if sync.exists() else None, "comps": info}
+    (outdir / "meta.json").write_text(json.dumps(meta))
 
 
 if __name__ == "__main__":

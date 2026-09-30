@@ -1,17 +1,18 @@
 "use strict";
 const REPO = "https://github.com/enterdesign/footballelo";
 const COMPS = {
-  ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons",
+  ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated weekly",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930"},
-  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons",
+  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated weekly",
         group: () => "", groupLabel: () => "England", first: "1888/89"},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const cache = {};
+const fmtTime = iso => new Date(iso).toLocaleString("en-GB", {day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"});
 let D, C, T, route = {comp: "", tab: "ranking", team: ""};
 
 async function load(key) {
@@ -19,7 +20,7 @@ async function load(key) {
     // data files are cached by the browser/CDN: version them with the build time so a fresh
     // deploy is never paired with stale data
     if (!window.buildId) {
-      try { window.buildId = (await (await fetch("data/meta.json", {cache: "no-store"})).json()).built; } catch (e) { window.buildId = Date.now(); }
+      try { window.meta = await (await fetch("data/meta.json", {cache: "no-store"})).json(); window.buildId = window.meta.built; } catch (e) { window.buildId = Date.now(); }
     }
     const r = await fetch(`${COMPS[key].file}?v=${encodeURIComponent(window.buildId)}`);
     if (!r.ok) throw new Error(r.status);
@@ -64,7 +65,7 @@ async function render() {
   C = COMPS[route.comp];
   $("comp-bg").style.backgroundImage = `url('${C.img}')`;
   $("eyebrow").textContent = C.eyebrow;
-  $("subtitle").textContent = `${D.periods[0]} – ${D.last} · updated ${(D.meta || "")}`.replace(/ · updated $/, "");
+  $("subtitle").textContent = `${D.periods[0]} – ${D.last}` + (window.meta && window.meta.synced ? ` · data checked ${fmtTime(window.meta.synced)}` : "");
   $("stats").innerHTML = [[D.periods.length, C.period], [D.matches.length.toLocaleString("en"), "Matches"], [D.teams.length, C.noun]]
     .map(([v, l]) => `<div><div class="stat-val">${v}</div><div class="stat-label">${l}</div></div>`).join("");
   $("tabs").innerHTML = TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${t}</a>`).join("");
@@ -76,8 +77,13 @@ async function renderHome() {
   $("home-cards").innerHTML = (await Promise.all(Object.keys(COMPS).map(async k => {
     const d = await load(k), c = COMPS[k];
     return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.short || c.eyebrow}</div>
-      <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div></a>`;
+      <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div>
+      <div class="subtitle" style="margin-top:4px">data through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
   }))).join("");
+  const m = window.meta || {};
+  $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every Monday;
+    the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}) updates when a new tournament is played.<br>
+    Last data check: <b>${m.synced ? fmtTime(m.synced) : "n/a"}</b> · site built: <b>${m.built ? fmtTime(m.built) : "n/a"}</b>`;
 }
 window.addEventListener("hashchange", render);
 window.addEventListener("scroll", () => document.querySelectorAll(".hero-bg").forEach(el => { el.style.transform = `translateY(${Math.round(scrollY * .35)}px)`; }));

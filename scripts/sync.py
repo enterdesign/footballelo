@@ -15,7 +15,7 @@ import json
 import os
 import subprocess
 import tempfile
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from common import DATA
@@ -90,6 +90,8 @@ def main():
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
     dump(DATA / "matches/pl.json", pl)
+    # heartbeat: shown on the home page, and the weekly commit keeps the schedule alive
+    dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
     print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)} matches")
 
 
