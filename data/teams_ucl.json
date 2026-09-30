@@ -346,11 +346,6 @@
   ],
   "logo": "https://crests.football-data.org/1876.png"
  },
- "Croatia Zagreb": {
-  "code": "CRO",
-  "country": "Croatia",
-  "aliases": []
- },
  "Debrecen": {
   "code": "HUN",
   "country": "Hungary",
@@ -369,9 +364,11 @@
   "code": "CRO",
   "country": "Croatia",
   "aliases": [
+   "Croatia Zagreb",
    "GNK Dinamo Zagreb"
   ],
-  "logo": "https://crests.football-data.org/755.png"
+  "logo": "https://crests.football-data.org/755.png",
+  "note": "Played as Croatia Zagreb 1993–2000"
  },
  "Dynamo Kyiv": {
   "code": "UKR",
