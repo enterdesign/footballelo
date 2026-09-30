@@ -5,6 +5,8 @@ const COMPS = {
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930"},
+  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons",
+        group: (t, i) => D.tl[i].some(e => e.per === D.last) ? "CURRENT" : "FORMER", groupLabel: (t, i) => t.note || "England", first: "1888/89"},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
 const $ = id => document.getElementById(id);
@@ -68,7 +70,7 @@ async function renderHome() {
   document.title = "Football ELO Rankings";
   $("home-cards").innerHTML = (await Promise.all(Object.keys(COMPS).map(async k => {
     const d = await load(k), c = COMPS[k];
-    return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.eyebrow}</div>
+    return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.short || c.eyebrow}</div>
       <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div></a>`;
   }))).join("");
 }
@@ -78,7 +80,7 @@ window.addEventListener("scroll", () => document.querySelectorAll(".hero-bg").fo
 // ── ranking ───────────────────────────────────────────────────────
 function ranking() {
   const groups = new Map();
-  D.teams.forEach(t => groups.set(C.group(t), C.groupLabel(t)));
+  D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
   const state = {g: "", q: ""};
   $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="Search…" autocomplete="off"></div>
     <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" title="Rating change during ${esc(D.last)}">Δ ${esc(D.last)}</span><span class="r mcount">Games</span></div><div id="rows"></div>`;
@@ -88,11 +90,11 @@ function ranking() {
     $("chips").innerHTML = chipList
       .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
     const q = state.q.toLowerCase();
-    $("rows").innerHTML = D.teams.map((t, i) => [t, i]).filter(([t]) => (!state.g || C.group(t) === state.g) &&
+    $("rows").innerHTML = D.teams.map((t, i) => [t, i]).filter(([t]) => (!state.g || C.group(t, i) === state.g) &&
       (!q || [t.name, ...(t.aliases || [])].some(n => n.toLowerCase().includes(q))))
       .map(([t, i]) => { const dl = D.delta[i];
         return `<div class="row" data-t="${i}"><span class="pos${i < 3 ? " top" : ""}">${i + 1}</span>${icon(t)}
-        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.groupLabel(t))}${t.note ? " · " + esc(t.note) : ""}</div></div>
+        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(route.comp === "pl" ? "England" : C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo" style="color:${eloColor(t.elo)}">${t.elo}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${t.matches}</span></div>`; }).join("");
   };
@@ -176,7 +178,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      <li>Two-legged ties: each leg is rated separately.</li></ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       <li>Updated weekly from <a href="https://github.com/openfootball" style="color:var(--accent)">openfootball</a></li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent)">teams file</a></li></ul></div></div>`;

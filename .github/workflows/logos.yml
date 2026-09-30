@@ -26,6 +26,7 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data
             git commit -m "Add club logos"
+            git pull --rebase origin main
             git push
             gh workflow run update.yml
           fi

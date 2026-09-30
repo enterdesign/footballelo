@@ -1,11 +1,12 @@
 # Football ELO
 
-ELO rankings for the UEFA Champions League (1992/93 →) and the FIFA World Cup (1930 →).
+ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →) and the English
+top flight (First Division from 1888/89, Premier League from 1992/93).
 Static site on GitHub Pages; data refreshed weekly by GitHub Actions.
 
 ```
-data/matches/{ucl,wc}.json   matches exactly as imported (source names)
-data/teams_{ucl,wc}.json     canonical team -> aliases (renames, successor states)
+data/matches/{ucl,wc,pl}.json   matches exactly as imported (source names)
+data/teams_{ucl,wc,pl}.json     canonical team -> aliases (renames, successor states)
 data/phases.json             K-factor per phase
 data/overrides.json          manual fixes: {"add": [...], "remove": [...]}
 scripts/                     sync (import), build (ELO -> site/data), parsers, engine
@@ -16,6 +17,14 @@ site/                        the website (site/data/ is generated)
 - Start 1600; K per phase (`data/phases.json`); `R += K·(S−E)`.
 - Extra time counts by its score; a match decided on penalties is a win for the shoot-out winner.
 - Qualifying rounds are not rated. The Champions League knockout play-off round is rated as R16.
+- Premier League: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
+
+## Data sources
+- World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (weekly).
+- Premier League before 1992/93: [engsoccerdata](https://github.com/jalapic/engsoccerdata) `england.csv`, tier 1
+  (frozen archive; for 1992/93–2024/25 it matches openfootball exactly, except 2022/23 which it lacks).
+- Champions League 1992/93–2010/11: the original hand-entered data (frozen).
+- Running season (UCL, Premier League): football-data.org when `FOOTBALL_DATA_KEY` is set.
 
 ## Editing team history
 Edit `data/teams_*.json` on GitHub. Names under `aliases` are rated as the canonical team,
