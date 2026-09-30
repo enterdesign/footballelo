@@ -12,6 +12,7 @@ import json
 import re
 import time
 import unicodedata
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -42,10 +43,18 @@ NOT_CREST = re.compile(r"(flag[ _]of|commons-logo|wikiproject|wikimedia|wiktiona
 
 
 def wiki(**params):
+    """Wikipedia API call: spaced out and retried, because bursts get rate limited."""
     url = WIKI_API + urllib.parse.urlencode(params)
-    req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    for attempt in range(5):
+        time.sleep(0.6)
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                raise
+            time.sleep(8 * (attempt + 1))
 
 
 def wiki_logo(name):
@@ -58,7 +67,7 @@ def wiki_logo(name):
                       and not re.search(r"season|stadium", h["title"], re.I)), None)
         if not title:
             return None
-        pages = wiki(action="query", titles=title, prop="images", imlimit=60)["query"]["pages"]
+        pages = wiki(action="query", titles=title, prop="images", imlimit=500)["query"]["pages"]
         files = [i["title"] for p in pages.values() for i in p.get("images", [])]
         good = [f for f in files if CREST.search(f) and not NOT_CREST.search(f) and f.lower().endswith((".svg", ".png"))]
         if not good:
