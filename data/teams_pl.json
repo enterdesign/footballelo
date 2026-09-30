@@ -1,0 +1,363 @@
+{
+ "AFC Bournemouth": {
+  "aliases": [
+   "Bournemouth"
+  ],
+  "country": "England"
+ },
+ "Accrington": {
+  "aliases": [
+   "Accrington F.C."
+  ],
+  "country": "England"
+ },
+ "Arsenal": {
+  "aliases": [
+   "Arsenal FC"
+  ],
+  "country": "England"
+ },
+ "Aston Villa": {
+  "aliases": [
+   "Aston Villa FC"
+  ],
+  "country": "England"
+ },
+ "Barnsley": {
+  "aliases": [
+   "Barnsley FC"
+  ],
+  "country": "England"
+ },
+ "Birmingham City": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Blackburn Rovers": {
+  "aliases": [
+   "Blackburn Rovers FC"
+  ],
+  "country": "England"
+ },
+ "Blackpool": {
+  "aliases": [
+   "Blackpool FC"
+  ],
+  "country": "England"
+ },
+ "Bolton Wanderers": {
+  "aliases": [
+   "Bolton Wanderers FC"
+  ],
+  "country": "England"
+ },
+ "Bradford City": {
+  "aliases": [
+   "Bradford"
+  ],
+  "country": "England"
+ },
+ "Bradford Park Avenue": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Brentford": {
+  "aliases": [
+   "Brentford FC"
+  ],
+  "country": "England"
+ },
+ "Brighton & Hove Albion": {
+  "aliases": [
+   "Brighton & Hove Albion FC"
+  ],
+  "country": "England"
+ },
+ "Bristol City": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Burnley": {
+  "aliases": [
+   "Burnley FC"
+  ],
+  "country": "England"
+ },
+ "Bury": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Cardiff City": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Carlisle United": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Charlton Athletic": {
+  "aliases": [
+   "Charlton Athletic FC"
+  ],
+  "country": "England"
+ },
+ "Chelsea": {
+  "aliases": [
+   "Chelsea FC"
+  ],
+  "country": "England"
+ },
+ "Coventry City": {
+  "aliases": [
+   "Coventry",
+   "Coventry City FC"
+  ],
+  "country": "England"
+ },
+ "Crystal Palace": {
+  "aliases": [
+   "Crystal Palace FC"
+  ],
+  "country": "England"
+ },
+ "Darwen": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Derby County": {
+  "aliases": [
+   "Derby",
+   "Derby County FC"
+  ],
+  "country": "England"
+ },
+ "Everton": {
+  "aliases": [
+   "Everton FC"
+  ],
+  "country": "England"
+ },
+ "Fulham": {
+  "aliases": [
+   "Fulham FC"
+  ],
+  "country": "England"
+ },
+ "Glossop North End": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Grimsby Town": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Huddersfield Town": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Hull City": {
+  "aliases": [
+   "Hull City AFC"
+  ],
+  "country": "England"
+ },
+ "Ipswich Town": {
+  "aliases": [
+   "Ipswich Town FC"
+  ],
+  "country": "England"
+ },
+ "Leeds United": {
+  "aliases": [
+   "Leeds",
+   "Leeds United FC"
+  ],
+  "country": "England"
+ },
+ "Leicester City": {
+  "aliases": [
+   "Leicester",
+   "Leicester City FC"
+  ],
+  "country": "England"
+ },
+ "Leyton Orient": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Liverpool": {
+  "aliases": [
+   "Liverpool FC"
+  ],
+  "country": "England"
+ },
+ "Luton Town": {
+  "aliases": [
+   "Luton Town FC"
+  ],
+  "country": "England"
+ },
+ "Manchester City": {
+  "aliases": [
+   "Manchester City FC"
+  ],
+  "country": "England"
+ },
+ "Manchester United": {
+  "aliases": [
+   "Manchester United FC"
+  ],
+  "country": "England"
+ },
+ "Middlesbrough": {
+  "aliases": [
+   "Middlesbrough FC"
+  ],
+  "country": "England"
+ },
+ "Millwall": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Newcastle United": {
+  "aliases": [
+   "Newcastle United FC",
+   "Newcastle Utd"
+  ],
+  "country": "England"
+ },
+ "Northampton Town": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Norwich City": {
+  "aliases": [
+   "Norwich City FC"
+  ],
+  "country": "England"
+ },
+ "Nottingham Forest": {
+  "aliases": [
+   "Nottingham Forest FC"
+  ],
+  "country": "England"
+ },
+ "Notts County": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Oldham Athletic": {
+  "aliases": [
+   "Oldham Athletic AFC"
+  ],
+  "country": "England"
+ },
+ "Oxford United": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Portsmouth": {
+  "aliases": [
+   "Portsmouth FC"
+  ],
+  "country": "England"
+ },
+ "Preston North End": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Queens Park Rangers": {
+  "aliases": [
+   "Queens Park Rangers FC"
+  ],
+  "country": "England"
+ },
+ "Reading": {
+  "aliases": [
+   "Reading FC"
+  ],
+  "country": "England"
+ },
+ "Sheffield United": {
+  "aliases": [
+   "Sheffield United FC"
+  ],
+  "country": "England"
+ },
+ "Sheffield Wednesday": {
+  "aliases": [
+   "Sheffield Wed",
+   "Sheffield Wednesday FC"
+  ],
+  "country": "England"
+ },
+ "Southampton": {
+  "aliases": [
+   "Southampton FC"
+  ],
+  "country": "England"
+ },
+ "Stoke City": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Sunderland": {
+  "aliases": [
+   "Sunderland AFC"
+  ],
+  "country": "England"
+ },
+ "Swansea City": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Swindon Town": {
+  "aliases": [
+   "Swindon Town FC"
+  ],
+  "country": "England"
+ },
+ "Tottenham Hotspur": {
+  "aliases": [
+   "Tottenham",
+   "Tottenham Hotspur FC"
+  ],
+  "country": "England"
+ },
+ "Watford": {
+  "aliases": [
+   "Watford FC"
+  ],
+  "country": "England"
+ },
+ "West Bromwich Albion": {
+  "aliases": [
+   "West Bromwich Albion FC"
+  ],
+  "country": "England"
+ },
+ "West Ham United": {
+  "aliases": [
+   "West Ham",
+   "West Ham United FC"
+  ],
+  "country": "England"
+ },
+ "Wigan Athletic": {
+  "aliases": [],
+  "country": "England"
+ },
+ "Wimbledon": {
+  "aliases": [
+   "Wimbledon FC"
+  ],
+  "country": "England",
+  "note": "Became MK Dons in 2004 (AFC Wimbledon is a separate club)"
+ },
+ "Wolverhampton Wanderers": {
+  "aliases": [
+   "Wolverhampton Wanderers FC"
+  ],
+  "country": "England"
+ }
+}

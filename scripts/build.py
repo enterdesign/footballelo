@@ -14,6 +14,7 @@ import elo
 COMPS = {
     "ucl": {"teams": "teams_ucl.json", "period": "season", "title": "UEFA Champions League"},
     "wc": {"teams": "teams_wc.json", "period": "year", "title": "FIFA World Cup"},
+    "pl": {"teams": "teams_pl.json", "period": "season", "title": "Premier League (First Division 1888–1992)"},
 }
 
 
