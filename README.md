@@ -19,7 +19,9 @@ site/                        the website (site/data/ is generated)
 - Start 1600; K per phase (`data/phases.json`); `R += K·(S−E)`.
 - Extra time counts by its score; a match decided on penalties is a win for the shoot-out winner.
 - Qualifying rounds are not rated. The Champions League knockout play-off round is rated as R16.
-- Premier League: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
+- Premier League and Ekstraklasa: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
+- Era buttons (Premier League: pre-1992 / 1992-; Ekstraklasa: pre-war / post-war) are filters over the years, not separate
+  rankings: one continuous rating per club, shown as it stood at the end of the era; games and Δ count that era only.
 
 ## Data sources
 - World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (daily).
