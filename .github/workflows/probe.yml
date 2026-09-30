@@ -2,6 +2,9 @@ name: Probe football-data.org
 
 on:
   workflow_dispatch:
+  push:
+    branches: [claude/adoring-knuth-4bh23x]
+    paths: [".github/workflows/probe.yml"]
 
 jobs:
   probe:
