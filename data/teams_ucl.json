@@ -4,7 +4,8 @@
   "country": "Italy",
   "aliases": [
    "Milan"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/98.png"
  },
  "AEK Athens": {
   "code": "GRE",
@@ -12,7 +13,8 @@
   "aliases": [
    "AEK Athen",
    "PAE AEK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1899.png"
  },
  "AIK Stockholm": {
   "code": "SWE",
@@ -31,7 +33,8 @@
   "country": "Italy",
   "aliases": [
    "Roma"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/100.png"
  },
  "AZ Alkmaar": {
   "code": "NED",
@@ -48,7 +51,8 @@
   "country": "Netherlands",
   "aliases": [
    "AFC Ajax"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/678.png"
  },
  "Anderlecht": {
   "code": "BEL",
@@ -74,7 +78,8 @@
   "country": "England",
   "aliases": [
    "Arsenal FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/57.png"
  },
  "Artmedia": {
   "code": "SVK",
@@ -86,26 +91,30 @@
   "country": "England",
   "aliases": [
    "Aston Villa FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/58.png"
  },
  "Atalanta": {
   "code": "ITA",
   "country": "Italy",
   "aliases": [
    "Atalanta BC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/102.png"
  },
  "Athletic Club": {
   "code": "ESP",
   "country": "Spain",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://crests.football-data.org/77.png"
  },
  "Atlético Madrid": {
   "code": "ESP",
   "country": "Spain",
   "aliases": [
    "Club Atlético de Madrid"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/78.png"
  },
  "Austria Salzburg": {
   "code": "AUT",
@@ -132,7 +141,8 @@
   "country": "Spain",
   "aliases": [
    "FC Barcelona"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/81.png"
  },
  "Basel": {
   "code": "SUI",
@@ -147,7 +157,8 @@
   "aliases": [
    "Bayer 04 Leverkusen",
    "Leverkusen"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/3.png"
  },
  "Bayern Munich": {
   "code": "GER",
@@ -155,7 +166,8 @@
   "aliases": [
    "Bayern München",
    "FC Bayern München"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/5.png"
  },
  "Başakşehir": {
   "code": "TUR",
@@ -170,7 +182,8 @@
   "aliases": [
    "SL Benfica",
    "Sport Lisboa e Benfica"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1903.png"
  },
  "Beşiktaş": {
   "code": "TUR",
@@ -192,14 +205,16 @@
   "country": "Norway",
   "aliases": [
    "FK Bodø/Glimt"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/5721.png"
  },
  "Bologna": {
   "code": "ITA",
   "country": "Italy",
   "aliases": [
    "Bologna FC 1909"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/103.png"
  },
  "Bordeaux": {
   "code": "FRA",
@@ -211,7 +226,8 @@
   "country": "Germany",
   "aliases": [
    "Dortmund"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/4.png"
  },
  "Borussia Mönchengladbach": {
   "code": "GER",
@@ -234,7 +250,8 @@
   "country": "France",
   "aliases": [
    "Stade Brestois 29"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/512.png"
  },
  "Brøndby": {
   "code": "DEN",
@@ -268,28 +285,32 @@
   "country": "Scotland",
   "aliases": [
    "Celtic FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/732.png"
  },
  "Chelsea": {
   "code": "ENG",
   "country": "England",
   "aliases": [
    "Chelsea FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/61.png"
  },
  "Club Brugge": {
   "code": "BEL",
   "country": "Belgium",
   "aliases": [
    "Club Brugge KV"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/851.png"
  },
  "Como": {
   "code": "ITA",
   "country": "Italy",
   "aliases": [
    "Como 1907"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/7397.png"
  },
  "Copenhagen": {
   "code": "DEN",
@@ -297,7 +318,8 @@
   "aliases": [
    "FC Copenhagen",
    "FC København"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1876.png"
  },
  "Croatia Zagreb": {
   "code": "CRO",
@@ -321,7 +343,8 @@
   "country": "Croatia",
   "aliases": [
    "GNK Dinamo Zagreb"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/755.png"
  },
  "Dynamo Kyiv": {
   "code": "UKR",
@@ -333,7 +356,8 @@
  "Eintracht Frankfurt": {
   "code": "GER",
   "country": "Germany",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://crests.football-data.org/19.png"
  },
  "FC Astana": {
   "code": "KAZ",
@@ -347,7 +371,8 @@
   "country": "Kazakhstan",
   "aliases": [
    "FK Kairat"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/10601.png"
  },
  "FC Sheriff Tiraspol": {
   "code": "MDA",
@@ -361,7 +386,8 @@
   "country": "Turkey",
   "aliases": [
    "Fenerbahçe SK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/613.png"
  },
  "Ferencváros": {
   "code": "HUN",
@@ -375,7 +401,8 @@
   "country": "Netherlands",
   "aliases": [
    "Feyenoord Rotterdam"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/675.png"
  },
  "Fiorentina": {
   "code": "ITA",
@@ -387,7 +414,8 @@
   "country": "Turkey",
   "aliases": [
    "Galatasaray SK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/610.png"
  },
  "Genk": {
   "code": "BEL",
@@ -408,7 +436,8 @@
   "country": "Spain",
   "aliases": [
    "Girona FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/298.png"
  },
  "Grasshopper": {
   "code": "SUI",
@@ -470,14 +499,16 @@
   "aliases": [
    "FC Internazionale Milano",
    "Inter"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/108.png"
  },
  "Juventus": {
   "code": "ITA",
   "country": "Italy",
   "aliases": [
    "Juventus FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/109.png"
  },
  "Kaiserslautern": {
   "code": "GER",
@@ -501,7 +532,8 @@
   "country": "Austria",
   "aliases": [
    "LASK Linz"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/2016.png"
  },
  "Lazio": {
   "code": "ITA",
@@ -533,7 +565,8 @@
   "country": "France",
   "aliases": [
    "Racing Club de Lens"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/546.png"
  },
  "Levski Sofia": {
   "code": "BUL",
@@ -550,14 +583,16 @@
   "country": "France",
   "aliases": [
    "Lille OSC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/521.png"
  },
  "Liverpool": {
   "code": "ENG",
   "country": "England",
   "aliases": [
    "Liverpool FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/64.png"
  },
  "Lokomotiv Moscow": {
   "code": "RUS",
@@ -608,7 +643,8 @@
   "country": "England",
   "aliases": [
    "Manchester City FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/65.png"
  },
  "Manchester United": {
   "code": "ENG",
@@ -616,7 +652,8 @@
   "aliases": [
    "Manchester United FC",
    "Manchester Utd"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/66.png"
  },
  "Marseille": {
   "code": "FRA",
@@ -624,7 +661,8 @@
   "aliases": [
    "Olympique Marseille",
    "Olympique de Marseille"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/516.png"
  },
  "Midtjylland": {
   "code": "DEN",
@@ -644,7 +682,8 @@
   "aliases": [
    "AS Monaco",
    "AS Monaco FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/548.png"
  },
  "Montpellier": {
   "code": "FRA",
@@ -680,14 +719,16 @@
   "country": "Italy",
   "aliases": [
    "SSC Napoli"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/113.png"
  },
  "Newcastle United": {
   "code": "ENG",
   "country": "England",
   "aliases": [
    "Newcastle United FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/67.png"
  },
  "Nordsjælland": {
   "code": "DEN",
@@ -702,7 +743,8 @@
   "aliases": [
    "Olympiakos Piraeus",
    "PAE Olympiakos SFP"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/654.png"
  },
  "Oțelul Galați": {
   "code": "ROU",
@@ -716,7 +758,8 @@
   "country": "Netherlands",
   "aliases": [
    "PSV"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/674.png"
  },
  "Pafos": {
   "code": "CYP",
@@ -724,7 +767,8 @@
   "aliases": [
    "Pafos FC",
    "Paphos FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/11034.png"
  },
  "Panathinaikos": {
   "code": "GRE",
@@ -736,7 +780,8 @@
   "country": "France",
   "aliases": [
    "Paris Saint-Germain FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/524.png"
  },
  "Parma": {
   "code": "ITA",
@@ -753,7 +798,8 @@
   "country": "Portugal",
   "aliases": [
    "FC Porto"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/503.png"
  },
  "Qarabağ": {
   "code": "AZE",
@@ -761,19 +807,22 @@
   "aliases": [
    "Qarabağ Ağdam FK",
    "Qarabağ FK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/611.png"
  },
  "RB Leipzig": {
   "code": "GER",
   "country": "Germany",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://crests.football-data.org/721.png"
  },
  "RB Salzburg": {
   "code": "AUT",
   "country": "Austria",
   "aliases": [
    "FC Red Bull Salzburg"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1877.png"
  },
  "Rangers": {
   "code": "SCO",
@@ -792,14 +841,16 @@
   "country": "Spain",
   "aliases": [
    "Real Betis Balompié"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/90.png"
  },
  "Real Madrid": {
   "code": "ESP",
   "country": "Spain",
   "aliases": [
    "Real Madrid CF"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/86.png"
  },
  "Real Sociedad": {
   "code": "ESP",
@@ -815,7 +866,8 @@
    "Crvena Zvezda",
    "FK Crvena Zvezda",
    "Red Star"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/7283.png"
  },
  "Rennes": {
   "code": "FRA",
@@ -846,7 +898,8 @@
   "country": "Azerbaijan",
   "aliases": [
    "Sabah FK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/10233.png"
  },
  "Schalke 04": {
   "code": "GER",
@@ -867,7 +920,8 @@
   "country": "Ukraine",
   "aliases": [
    "FK Shakhtar Donetsk"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1887.png"
  },
  "Slavia Prague": {
   "code": "CZE",
@@ -875,21 +929,24 @@
   "aliases": [
    "SK Slavia Praha",
    "Slavia Praha"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/930.png"
  },
  "Slovan Bratislava": {
   "code": "SVK",
   "country": "Slovakia",
   "aliases": [
    "ŠK Slovan Bratislava"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/7509.png"
  },
  "Sparta Prague": {
   "code": "CZE",
   "country": "Czechia",
   "aliases": [
    "AC Sparta Praha"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/907.png"
  },
  "Spartak Moscow": {
   "code": "RUS",
@@ -903,7 +960,8 @@
   "country": "Portugal",
   "aliases": [
    "Sporting Clube de Portugal"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/498.png"
  },
  "Standard Liège": {
   "code": "BEL",
@@ -923,14 +981,16 @@
   "country": "Austria",
   "aliases": [
    "SK Sturm Graz"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/2021.png"
  },
  "Stuttgart": {
   "code": "GER",
   "country": "Germany",
   "aliases": [
    "VfB Stuttgart"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/10.png"
  },
  "Thun": {
   "code": "SUI",
@@ -942,7 +1002,8 @@
   "country": "England",
   "aliases": [
    "Tottenham Hotspur FC"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/73.png"
  },
  "Trabzonspor": {
   "code": "TUR",
@@ -972,7 +1033,8 @@
   "aliases": [
    "Royale Union Saint-Gilloise",
    "Union SG"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/3929.png"
  },
  "Unirea Urziceni": {
   "code": "ROU",
@@ -991,7 +1053,8 @@
   "country": "Norway",
   "aliases": [
    "Viking FK"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/5720.png"
  },
  "Viktoria Plzeň": {
   "code": "CZE",
@@ -1003,7 +1066,8 @@
   "country": "Spain",
   "aliases": [
    "Villarreal CF"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/94.png"
  },
  "Werder Bremen": {
   "code": "GER",
@@ -1032,7 +1096,8 @@
   "country": "Switzerland",
   "aliases": [
    "BSC Young Boys"
-  ]
+  ],
+  "logo": "https://crests.football-data.org/1871.png"
  },
  "Zenit St. Petersburg": {
   "code": "RUS",
