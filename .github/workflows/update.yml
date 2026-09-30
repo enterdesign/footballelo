@@ -1,0 +1,83 @@
+name: Update & deploy
+
+on:
+  schedule:
+    - cron: "17 5 * * 1"        # every Monday 05:17 UTC
+  workflow_dispatch:            # manual "Run workflow" button
+  push:
+    branches: [main]
+    paths: ["data/**", "site/**", "scripts/**", ".github/workflows/update.yml"]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Tests
+        run: python -m unittest discover -s tests
+
+      - name: Fetch new matches
+        if: github.event_name != 'push'
+        run: python scripts/sync.py
+
+      - name: Build site data
+        id: build
+        run: |
+          set +e
+          python scripts/build.py 2>&1 | tee build.log
+          echo "status=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Open issue for unknown team names
+        if: steps.build.outputs.status == '2'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          { echo "The weekly update found team names that are not in \`data/teams_*.json\`."
+            echo "Add each one as an alias of an existing team (or as a new team) and the next run will pick it up."
+            echo; echo '```'; cat build.log; echo '```'; } > issue.md
+          gh issue create --title "Unknown team names in weekly update" --body-file issue.md
+          exit 1
+
+      - name: Fail on other build errors
+        if: steps.build.outputs.status != '0' && steps.build.outputs.status != '2'
+        run: exit 1
+
+      - name: Commit new matches
+        if: github.event_name != 'push'
+        run: |
+          if [ -n "$(git status --porcelain data)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data
+            git commit -m "Weekly update: new matches"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
