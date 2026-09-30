@@ -92,7 +92,7 @@ function ranking() {
       (!q || [t.name, ...(t.aliases || [])].some(n => n.toLowerCase().includes(q))))
       .map(([t, i]) => { const dl = D.delta[i];
         return `<div class="row" data-t="${i}"><span class="pos${i < 3 ? " top" : ""}">${i + 1}</span>${icon(t)}
-        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.groupLabel(t))}${(t.aliases || []).length && route.comp === "wc" ? " · incl. " + esc(t.aliases.slice(0, 3).join(", ")) : ""}</div></div>
+        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.groupLabel(t))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo" style="color:${eloColor(t.elo)}">${t.elo}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${t.matches}</span></div>`; }).join("");
   };
@@ -150,7 +150,7 @@ function stats() {
   $("st").onchange = () => { location.hash = `#${route.comp}/stats/${$("st").value === "" ? "" : encodeURIComponent(D.teams[$("st").value].name)}`; };
   if (cur < 0) { $("out").innerHTML = `<div class="empty">SELECT A TEAM TO VIEW ELO PROGRESSION</div>`; return; }
   const t = D.teams[cur];
-  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${(t.aliases || []).length ? `<p class="sub" style="margin-top:8px">Includes history of: ${esc(t.aliases.join(", "))}</p>` : ""}</div>
+  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
   drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#f59e0b"}]);
 }
