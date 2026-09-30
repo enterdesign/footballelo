@@ -14,8 +14,28 @@ import elo
 COMPS = {
     "ucl": {"teams": "teams_ucl.json", "period": "season", "title": "UEFA Champions League"},
     "wc": {"teams": "teams_wc.json", "period": "year", "title": "FIFA World Cup"},
-    "pl": {"teams": "teams_pl.json", "period": "season", "title": "Premier League (First Division 1888–1992)"},
+    "pl": {"teams": "teams_pl.json", "period": "season", "title": "Premier League (First Division 1888–1992)",
+           # separate leaderboards: ratings restarted at 1600 at the beginning of each era
+           "eras": [{"id": "pre", "label": "PRE-PREMIER LEAGUE ERA", "to": "1991/92"},
+                    {"id": "pl", "label": "PREMIER LEAGUE ERA", "from": "1992/93"}]},
 }
+
+
+def era_ranking(matches, phases, teams, order, period, era):
+    """Ratings computed only from the matches of one era, indexed like `order`."""
+    sub = [m for m in matches
+           if str(m[period]) >= era.get("from", "") and str(m[period]) <= era.get("to", "￿")]
+    ratings, count, hist = elo.run(sub, phases, seed=teams)
+    last = str(sub[-1][period])
+    cur, first_before = {}, {}
+    for m, (ea, eb) in zip(sub, hist):
+        for t, e in ((m["teamA"], ea), (m["teamB"], eb)):
+            if str(m[period]) == last and t not in first_before:
+                first_before[t] = cur.get(t, elo.INITIAL)
+            cur[t] = e
+    return {"id": era["id"], "label": era["label"], "first": str(sub[0][period]), "last": last,
+            "elo": [ratings[t] for t in order], "matches": [count.get(t, 0) for t in order],
+            "delta": [cur[t] - first_before[t] if t in first_before else 0 for t in order]}
 
 
 def apply_overrides(matches, ov, period):
@@ -59,6 +79,8 @@ def build(key):
                      m.get("penA"), m.get("penB"), h[0], h[1]]
                     for m, h in zip(matches, hist)],
     }
+    if cfg.get("eras"):
+        out["eras"] = [era_ranking(matches, phases, teams, order, period, e) for e in cfg["eras"]]
     return out, []
 
 
