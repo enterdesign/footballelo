@@ -1,0 +1,1016 @@
+{
+ "AC Milan": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Milan"
+  ]
+ },
+ "AEK Athens": {
+  "code": "GRE",
+  "country": "Greece",
+  "aliases": [
+   "AEK Athen"
+  ]
+ },
+ "AIK Stockholm": {
+  "code": "SWE",
+  "country": "Sweden",
+  "aliases": []
+ },
+ "APOEL FC": {
+  "code": "CYP",
+  "country": "Cyprus",
+  "aliases": [
+   "APOEL Nikosia"
+  ]
+ },
+ "AS Roma": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Roma"
+  ]
+ },
+ "AZ Alkmaar": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": []
+ },
+ "Aalborg": {
+  "code": "DEN",
+  "country": "Denmark",
+  "aliases": []
+ },
+ "Ajax": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": [
+   "AFC Ajax"
+  ]
+ },
+ "Anderlecht": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "RSC Anderlecht"
+  ]
+ },
+ "Anorthosis": {
+  "code": "CYP",
+  "country": "Cyprus",
+  "aliases": []
+ },
+ "Antwerp": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "Royal Antwerp FC"
+  ]
+ },
+ "Arsenal": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Arsenal FC"
+  ]
+ },
+ "Artmedia": {
+  "code": "SVK",
+  "country": "Slovakia",
+  "aliases": []
+ },
+ "Aston Villa": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Aston Villa FC"
+  ]
+ },
+ "Atalanta": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Atalanta BC"
+  ]
+ },
+ "Athletic Club": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": []
+ },
+ "Atlético Madrid": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Club Atlético de Madrid"
+  ]
+ },
+ "Austria Salzburg": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": []
+ },
+ "Austria Wien": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": []
+ },
+ "Auxerre": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": []
+ },
+ "BATE Borisov": {
+  "code": "BLR",
+  "country": "Belarus",
+  "aliases": []
+ },
+ "Barcelona": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "FC Barcelona"
+  ]
+ },
+ "Basel": {
+  "code": "SUI",
+  "country": "Switzerland",
+  "aliases": [
+   "FC Basel 1893"
+  ]
+ },
+ "Bayer Leverkusen": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "Bayer 04 Leverkusen",
+   "Leverkusen"
+  ]
+ },
+ "Bayern Munich": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "Bayern München",
+   "FC Bayern München"
+  ]
+ },
+ "Başakşehir": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": [
+   "İstanbul Başakşehir"
+  ]
+ },
+ "Benfica": {
+  "code": "POR",
+  "country": "Portugal",
+  "aliases": [
+   "SL Benfica",
+   "Sport Lisboa e Benfica"
+  ]
+ },
+ "Beşiktaş": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": []
+ },
+ "Blackburn Rovers": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": []
+ },
+ "Boavista": {
+  "code": "POR",
+  "country": "Portugal",
+  "aliases": []
+ },
+ "Bodø/Glimt": {
+  "code": "NOR",
+  "country": "Norway",
+  "aliases": [
+   "FK Bodø/Glimt"
+  ]
+ },
+ "Bologna": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Bologna FC 1909"
+  ]
+ },
+ "Bordeaux": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": []
+ },
+ "Borussia Dortmund": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "Dortmund"
+  ]
+ },
+ "Borussia Mönchengladbach": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "Bor. Mönchengladbach",
+   "Gladbach"
+  ]
+ },
+ "Braga": {
+  "code": "POR",
+  "country": "Portugal",
+  "aliases": [
+   "Sporting Braga",
+   "Sporting Clube de Braga"
+  ]
+ },
+ "Brest": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Stade Brestois 29"
+  ]
+ },
+ "Brøndby": {
+  "code": "DEN",
+  "country": "Denmark",
+  "aliases": []
+ },
+ "Bursaspor": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": []
+ },
+ "CFR Cluj": {
+  "code": "ROU",
+  "country": "Romania",
+  "aliases": []
+ },
+ "CSKA Moscow": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "CSKA Moskva"
+  ]
+ },
+ "Celta Vigo": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": []
+ },
+ "Celtic": {
+  "code": "SCO",
+  "country": "Scotland",
+  "aliases": [
+   "Celtic FC"
+  ]
+ },
+ "Chelsea": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Chelsea FC"
+  ]
+ },
+ "Club Brugge": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "Club Brugge KV"
+  ]
+ },
+ "Copenhagen": {
+  "code": "DEN",
+  "country": "Denmark",
+  "aliases": [
+   "FC Copenhagen",
+   "FC København"
+  ]
+ },
+ "Croatia Zagreb": {
+  "code": "CRO",
+  "country": "Croatia",
+  "aliases": []
+ },
+ "Debrecen": {
+  "code": "HUN",
+  "country": "Hungary",
+  "aliases": []
+ },
+ "Deportivo La Coruña": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Dep La Coruña"
+  ]
+ },
+ "Dinamo Zagreb": {
+  "code": "CRO",
+  "country": "Croatia",
+  "aliases": [
+   "GNK Dinamo Zagreb"
+  ]
+ },
+ "Dynamo Kyiv": {
+  "code": "UKR",
+  "country": "Ukraine",
+  "aliases": [
+   "Dinamo Kiev"
+  ]
+ },
+ "Eintracht Frankfurt": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": []
+ },
+ "FC Astana": {
+  "code": "KAZ",
+  "country": "Kazakhstan",
+  "aliases": [
+   "FK Astana"
+  ]
+ },
+ "FC Kairat": {
+  "code": "KAZ",
+  "country": "Kazakhstan",
+  "aliases": [
+   "FK Kairat"
+  ]
+ },
+ "FC Sheriff Tiraspol": {
+  "code": "MDA",
+  "country": "Moldova",
+  "aliases": [
+   "FC Sheriff"
+  ]
+ },
+ "Fenerbahçe": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": []
+ },
+ "Ferencváros": {
+  "code": "HUN",
+  "country": "Hungary",
+  "aliases": [
+   "Ferencvárosi TC"
+  ]
+ },
+ "Feyenoord": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": [
+   "Feyenoord Rotterdam"
+  ]
+ },
+ "Fiorentina": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": []
+ },
+ "Galatasaray": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": [
+   "Galatasaray SK"
+  ]
+ },
+ "Genk": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "KRC Genk"
+  ]
+ },
+ "Gent": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "KAA Gent"
+  ]
+ },
+ "Girona": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Girona FC"
+  ]
+ },
+ "Grasshopper": {
+  "code": "SUI",
+  "country": "Switzerland",
+  "aliases": []
+ },
+ "Göteborg": {
+  "code": "SWE",
+  "country": "Sweden",
+  "aliases": []
+ },
+ "HJK Helsinki": {
+  "code": "FIN",
+  "country": "Finland",
+  "aliases": []
+ },
+ "Hajduk Split": {
+  "code": "CRO",
+  "country": "Croatia",
+  "aliases": []
+ },
+ "Hamburger SV": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": []
+ },
+ "Hapoel Tel Aviv": {
+  "code": "ISR",
+  "country": "Israel",
+  "aliases": []
+ },
+ "Heerenveen": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": []
+ },
+ "Helsingborg": {
+  "code": "SWE",
+  "country": "Sweden",
+  "aliases": []
+ },
+ "Hertha Berlin": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "Hertha BSC"
+  ]
+ },
+ "Hoffenheim": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "1899 Hoffenheim"
+  ]
+ },
+ "Inter Milan": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "FC Internazionale Milano",
+   "Inter"
+  ]
+ },
+ "Juventus": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Juventus FC"
+  ]
+ },
+ "Kaiserslautern": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": []
+ },
+ "Košice": {
+  "code": "SVK",
+  "country": "Slovakia",
+  "aliases": []
+ },
+ "Krasnodar": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "FK Krasnodar"
+  ]
+ },
+ "Lazio": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "Lazio Roma",
+   "SS Lazio"
+  ]
+ },
+ "Leeds United": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": []
+ },
+ "Legia Warsaw": {
+  "code": "POL",
+  "country": "Poland",
+  "aliases": [
+   "Legia Warszawa"
+  ]
+ },
+ "Leicester City": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": []
+ },
+ "Lens": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Racing Club de Lens"
+  ]
+ },
+ "Levski Sofia": {
+  "code": "BUL",
+  "country": "Bulgaria",
+  "aliases": []
+ },
+ "Lierse": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": []
+ },
+ "Lille": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Lille OSC"
+  ]
+ },
+ "Liverpool": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Liverpool FC"
+  ]
+ },
+ "Lokomotiv Moscow": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "Loko Moscow",
+   "Lokomotiv Moskva"
+  ]
+ },
+ "Ludogorets Razgrad": {
+  "code": "BUL",
+  "country": "Bulgaria",
+  "aliases": [
+   "PFC Ludogorets Razgrad"
+  ]
+ },
+ "Lyon": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Olympique Lyonnais"
+  ]
+ },
+ "Maccabi Haifa": {
+  "code": "ISR",
+  "country": "Israel",
+  "aliases": []
+ },
+ "Maccabi Tel Aviv": {
+  "code": "ISR",
+  "country": "Israel",
+  "aliases": []
+ },
+ "Mallorca": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": []
+ },
+ "Malmö": {
+  "code": "SWE",
+  "country": "Sweden",
+  "aliases": [
+   "Malmö FF"
+  ]
+ },
+ "Manchester City": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Manchester City FC"
+  ]
+ },
+ "Manchester United": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Manchester United FC",
+   "Manchester Utd"
+  ]
+ },
+ "Marseille": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Olympique Marseille",
+   "Olympique de Marseille"
+  ]
+ },
+ "Midtjylland": {
+  "code": "DEN",
+  "country": "Denmark",
+  "aliases": [
+   "FC Midtjylland"
+  ]
+ },
+ "Molde": {
+  "code": "NOR",
+  "country": "Norway",
+  "aliases": []
+ },
+ "Monaco": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "AS Monaco",
+   "AS Monaco FC"
+  ]
+ },
+ "Montpellier": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Montpellier HSC"
+  ]
+ },
+ "Málaga": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Málaga CF"
+  ]
+ },
+ "MŠK Žilina": {
+  "code": "SVK",
+  "country": "Slovakia",
+  "aliases": []
+ },
+ "NK Maribor": {
+  "code": "SVN",
+  "country": "Slovenia",
+  "aliases": []
+ },
+ "Nantes": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": []
+ },
+ "Napoli": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": [
+   "SSC Napoli"
+  ]
+ },
+ "Newcastle United": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Newcastle United FC"
+  ]
+ },
+ "Nordsjælland": {
+  "code": "DEN",
+  "country": "Denmark",
+  "aliases": [
+   "FC Nordsjælland"
+  ]
+ },
+ "Olympiacos": {
+  "code": "GRE",
+  "country": "Greece",
+  "aliases": [
+   "Olympiakos Piraeus",
+   "PAE Olympiakos SFP"
+  ]
+ },
+ "Oțelul Galați": {
+  "code": "ROU",
+  "country": "Romania",
+  "aliases": [
+   "Oţelul Galaţi"
+  ]
+ },
+ "PSV Eindhoven": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": [
+   "PSV"
+  ]
+ },
+ "Pafos": {
+  "code": "CYP",
+  "country": "Cyprus",
+  "aliases": [
+   "Pafos FC",
+   "Paphos FC"
+  ]
+ },
+ "Panathinaikos": {
+  "code": "GRE",
+  "country": "Greece",
+  "aliases": []
+ },
+ "Paris Saint-Germain": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Paris Saint-Germain FC"
+  ]
+ },
+ "Parma": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": []
+ },
+ "Partizan": {
+  "code": "SRB",
+  "country": "Serbia",
+  "aliases": []
+ },
+ "Porto": {
+  "code": "POR",
+  "country": "Portugal",
+  "aliases": [
+   "FC Porto"
+  ]
+ },
+ "Qarabağ": {
+  "code": "AZE",
+  "country": "Azerbaijan",
+  "aliases": [
+   "Qarabağ Ağdam FK",
+   "Qarabağ FK"
+  ]
+ },
+ "RB Leipzig": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": []
+ },
+ "RB Salzburg": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": [
+   "FC Red Bull Salzburg"
+  ]
+ },
+ "Rangers": {
+  "code": "SCO",
+  "country": "Scotland",
+  "aliases": [
+   "Rangers FC"
+  ]
+ },
+ "Rapid Wien": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": []
+ },
+ "Real Betis": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": []
+ },
+ "Real Madrid": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Real Madrid CF"
+  ]
+ },
+ "Real Sociedad": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Real Sociedad de Fútbol"
+  ]
+ },
+ "Red Star Belgrade": {
+  "code": "SRB",
+  "country": "Serbia",
+  "aliases": [
+   "Crvena Zvezda",
+   "FK Crvena Zvezda",
+   "Red Star"
+  ]
+ },
+ "Rennes": {
+  "code": "FRA",
+  "country": "France",
+  "aliases": [
+   "Stade Rennais"
+  ]
+ },
+ "Rosenborg": {
+  "code": "NOR",
+  "country": "Norway",
+  "aliases": []
+ },
+ "Rostov": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "FK Rostov"
+  ]
+ },
+ "Rubin Kazan": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": []
+ },
+ "Schalke 04": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "FC Schalke 04"
+  ]
+ },
+ "Sevilla": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Sevilla FC"
+  ]
+ },
+ "Shakhtar Donetsk": {
+  "code": "UKR",
+  "country": "Ukraine",
+  "aliases": [
+   "FK Shakhtar Donetsk"
+  ]
+ },
+ "Slavia Prague": {
+  "code": "CZE",
+  "country": "Czechia",
+  "aliases": [
+   "SK Slavia Praha",
+   "Slavia Praha"
+  ]
+ },
+ "Slovan Bratislava": {
+  "code": "SVK",
+  "country": "Slovakia",
+  "aliases": [
+   "ŠK Slovan Bratislava"
+  ]
+ },
+ "Sparta Prague": {
+  "code": "CZE",
+  "country": "Czechia",
+  "aliases": [
+   "AC Sparta Praha"
+  ]
+ },
+ "Spartak Moscow": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "Spartak Moskva"
+  ]
+ },
+ "Sporting CP": {
+  "code": "POR",
+  "country": "Portugal",
+  "aliases": [
+   "Sporting Clube de Portugal"
+  ]
+ },
+ "Standard Liège": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": []
+ },
+ "Steaua București": {
+  "code": "ROU",
+  "country": "Romania",
+  "aliases": [
+   "FC Steaua Bucureşti",
+   "Steaua"
+  ]
+ },
+ "Sturm Graz": {
+  "code": "AUT",
+  "country": "Austria",
+  "aliases": [
+   "SK Sturm Graz"
+  ]
+ },
+ "Stuttgart": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "VfB Stuttgart"
+  ]
+ },
+ "Thun": {
+  "code": "SUI",
+  "country": "Switzerland",
+  "aliases": []
+ },
+ "Tottenham Hotspur": {
+  "code": "ENG",
+  "country": "England",
+  "aliases": [
+   "Tottenham Hotspur FC"
+  ]
+ },
+ "Trabzonspor": {
+  "code": "TUR",
+  "country": "Turkey",
+  "aliases": []
+ },
+ "Twente": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": []
+ },
+ "Udinese": {
+  "code": "ITA",
+  "country": "Italy",
+  "aliases": []
+ },
+ "Union Berlin": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "1. FC Union Berlin"
+  ]
+ },
+ "Union Saint-Gilloise": {
+  "code": "BEL",
+  "country": "Belgium",
+  "aliases": [
+   "Royale Union Saint-Gilloise",
+   "Union SG"
+  ]
+ },
+ "Unirea Urziceni": {
+  "code": "ROU",
+  "country": "Romania",
+  "aliases": []
+ },
+ "Valencia": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Valencia CF"
+  ]
+ },
+ "Viktoria Plzeň": {
+  "code": "CZE",
+  "country": "Czechia",
+  "aliases": []
+ },
+ "Villarreal": {
+  "code": "ESP",
+  "country": "Spain",
+  "aliases": [
+   "Villarreal CF"
+  ]
+ },
+ "Werder Bremen": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": []
+ },
+ "Widzew Łódź": {
+  "code": "POL",
+  "country": "Poland",
+  "aliases": []
+ },
+ "Willem II": {
+  "code": "NED",
+  "country": "Netherlands",
+  "aliases": []
+ },
+ "Wolfsburg": {
+  "code": "GER",
+  "country": "Germany",
+  "aliases": [
+   "VfL Wolfsburg"
+  ]
+ },
+ "Young Boys": {
+  "code": "SUI",
+  "country": "Switzerland",
+  "aliases": [
+   "BSC Young Boys"
+  ]
+ },
+ "Zenit St. Petersburg": {
+  "code": "RUS",
+  "country": "Russia",
+  "aliases": [
+   "Zenit"
+  ]
+ },
+ "Zürich": {
+  "code": "SUI",
+  "country": "Switzerland",
+  "aliases": []
+ }
+}
