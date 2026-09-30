@@ -16,7 +16,12 @@ let D, C, T, route = {comp: "", tab: "ranking", team: ""};
 
 async function load(key) {
   if (!cache[key]) {
-    const r = await fetch(COMPS[key].file);
+    // data files are cached by the browser/CDN: version them with the build time so a fresh
+    // deploy is never paired with stale data
+    if (!window.buildId) {
+      try { window.buildId = (await (await fetch("data/meta.json", {cache: "no-store"})).json()).built; } catch (e) { window.buildId = Date.now(); }
+    }
+    const r = await fetch(`${COMPS[key].file}?v=${encodeURIComponent(window.buildId)}`);
     if (!r.ok) throw new Error(r.status);
     cache[key] = prepare(await r.json());
   }
@@ -88,7 +93,7 @@ function ranking() {
   const draw = () => {
     const era = eras && eras.find(x => x.id === state.g);
     const v = era || {elo: D.teams.map(t => t.elo), matches: D.teams.map(t => t.matches), delta: D.delta, last: D.last};
-    const chipList = eras ? [["", "ALL"], ...eras.map(e => [e.id, e.label])] : [["", "ALL"], ...[...groups].sort().map(([k]) => [k, k])];
+    const chipList = eras ? [["", "ALL"], ...eras.map(e => [e.id, e.label])] : [["", "ALL"], ...[...groups].filter(([k]) => k).sort().map(([k]) => [k, k])];
     const cw = Math.max(...chipList.map(([, l]) => l.length)) * 8 + 24;
     $("chips").innerHTML = chipList
       .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
