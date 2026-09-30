@@ -15,7 +15,7 @@ COMPS = {
     "ucl": {"teams": "teams_ucl.json", "period": "season", "title": "UEFA Champions League"},
     "wc": {"teams": "teams_wc.json", "period": "year", "title": "FIFA World Cup"},
     "pl": {"teams": "teams_pl.json", "period": "season", "title": "Premier League (First Division 1888–1992)",
-           # separate leaderboards: ratings restarted at 1600 at the beginning of each era
+           # era chips are filters over the years (one continuous rating per club)
            "eras": [{"id": "pre", "label": "Pre-Premier League era", "to": "1991/92"},
                     {"id": "pl", "label": "Premier League era", "from": "1992/93"}]},
     "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)",
@@ -25,20 +25,26 @@ COMPS = {
 }
 
 
-def era_ranking(matches, phases, teams, order, period, era):
-    """Ratings computed only from the matches of one era, indexed like `order`."""
-    sub = [m for m in matches
-           if str(m[period]) >= era.get("from", "") and str(m[period]) <= era.get("to", "￿")]
-    ratings, count, hist = elo.run(sub, phases, seed=teams)
-    last = str(sub[-1][period])
-    cur, first_before = {}, {}
-    for m, (ea, eb) in zip(sub, hist):
+def era_ranking(matches, hist, order, period, era):
+    """An era is only a filter over the years: the leaderboard shows the clubs that played in that era,
+    with their ONE continuous rating as it stood at the end of the era (so a club that played before
+    and after a break carries its rating over). Games and delta refer to the era, indexed like `order`."""
+    lo, hi = era.get("from", ""), era.get("to", "\uffff")
+    inside = [str(m[period]) for m in matches if lo <= str(m[period]) <= hi]
+    last = inside[-1]
+    cur, count, first_before = {}, {}, {}
+    for m, (ea, eb) in zip(matches, hist):
+        p = str(m[period])
+        if p > hi:
+            break
         for t, e in ((m["teamA"], ea), (m["teamB"], eb)):
-            if str(m[period]) == last and t not in first_before:
-                first_before[t] = cur.get(t, elo.INITIAL)
+            if p >= lo:
+                count[t] = count.get(t, 0) + 1
+                if p == last and t not in first_before:
+                    first_before[t] = cur.get(t, elo.INITIAL)     # rating before the era's last season
             cur[t] = e
-    return {"id": era["id"], "label": era["label"], "first": str(sub[0][period]), "last": last,
-            "elo": [ratings[t] for t in order], "matches": [count.get(t, 0) for t in order],
+    return {"id": era["id"], "label": era["label"], "first": inside[0], "last": last,
+            "elo": [cur.get(t, elo.INITIAL) for t in order], "matches": [count.get(t, 0) for t in order],
             "delta": [cur[t] - first_before[t] if t in first_before else 0 for t in order]}
 
 
@@ -84,7 +90,7 @@ def build(key):
                     for m, h in zip(matches, hist)],
     }
     if cfg.get("eras"):
-        out["eras"] = [era_ranking(matches, phases, teams, order, period, e) for e in cfg["eras"]]
+        out["eras"] = [era_ranking(matches, hist, order, period, e) for e in cfg["eras"]]
         if cfg.get("default_era"):
             out["default_era"] = cfg["default_era"]
     return out, []
