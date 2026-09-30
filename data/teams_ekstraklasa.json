@@ -57,7 +57,9 @@
  },
  "Energetyk ROW Rybnik": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "ROW Rybnik"
+  ]
  },
  "GKS Bełchatów": {
   "country": "Poland",
@@ -138,7 +140,9 @@
  },
  "KS ROW 1964 Rybnik": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "ROW Rybnik"
+  ]
  },
  "KS Warszawianka": {
   "country": "Poland",

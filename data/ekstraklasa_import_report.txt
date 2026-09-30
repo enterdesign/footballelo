@@ -70,16 +70,16 @@
 2003/04  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
 2004/05  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
 2005/06  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
-2006/07  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2007/08  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2008/09  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2009/10  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2010/11  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2011/12  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2012/13  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2013/14  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2014/15  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
-2015/16  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2006/07  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2007/08  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2008/09  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2009/10  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2010/11  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2011/12  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2012/13  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2013/14  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2014/15  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2015/16  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
 2016/17  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
 2017/18  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
 2018/19  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
@@ -91,6 +91,6 @@
 2024/25  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
 2025/26  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
 2026/27  teams=18 matches=  78 expected(2x round robin)= 306 CHECK  max games per pair=1
-total 16836 matches; seasons without a parsable results table: ['2006/07', '2007/08', '2008/09', '2009/10', '2010/11', '2011/12', '2012/13', '2013/14', '2014/15', '2015/16']
+total 19404 matches; seasons without a parsable results table: none
 seasons missing from the category (no article): 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947
-teams file: 95 clubs
+teams file: 87 clubs
