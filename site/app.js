@@ -56,9 +56,9 @@ const monogram = name => {
   const s = w.length > 1 ? w.slice(0, 3).map(x => x[0]).join("") : (w[0] || name).slice(0, 3);
   return s.toUpperCase();
 };
-const icon = t => {
+const icon = (t, size = "") => {
   const u = route.comp === "wc" ? flagUrl(t) : t.logo || "", m = monogram(t.name);
-  return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
+  return `<span class="ico${size ? " " + size : ""}">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
 };
 const eloColor = () => "var(--ink)";
 const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
@@ -156,8 +156,9 @@ function score(m) {
 function matchRow(m) {
   const [per, ph, a, ga, b, gb, dec, pa, pb, ea, eb] = m;
   const wa = ga > gb || (ga === gb && pa > pb), wb = gb > ga || (ga === gb && pb > pa);
-  return `<div class="match"><span class="pill ph">${tagHtml(ph)}</span><span class="a${wa ? " win" : ""}">${esc(D.teams[a].name)}</span>
-    <span class="sc">${score(m)}</span><span class="${wb ? "win" : ""}">${esc(D.teams[b].name)}</span><span class="d">${esc(per)} · ${ea}/${eb}</span></div>`;
+  // crests sit at the outer ends of the two name columns, so the layout is symmetric whatever the name length
+  return `<div class="match"><span class="pill ph">${tagHtml(ph)}</span>${icon(D.teams[a], "sm")}<span class="a${wa ? " win" : ""}">${esc(D.teams[a].name)}</span>
+    <span class="sc">${score(m)}</span><span class="b${wb ? " win" : ""}">${esc(D.teams[b].name)}</span>${icon(D.teams[b], "sm")}<span class="d">${esc(per)} · ${ea}/${eb}</span></div>`;
 }
 
 // ── stats / compare ───────────────────────────────────────────────
