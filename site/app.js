@@ -50,7 +50,16 @@ function prepare(d) {
 }
 
 const flagUrl = t => t.iso ? `https://flagcdn.com/w40/${t.iso}.png` : "";
-const icon = t => { const u = route.comp === "wc" ? flagUrl(t) : t.logo || ""; return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`; };
+// Initials shown in the frame when a club has no crest (or the image fails to load).
+const monogram = name => {
+  const w = name.replace(/[().,\/]/g, " ").split(/\s+/).filter(x => x && !/^(FC|AFC|SC|KS|GKS|SK|CF|of|de|the|1\.)$/i.test(x));
+  const s = w.length > 1 ? w.slice(0, 3).map(x => x[0]).join("") : (w[0] || name).slice(0, 3);
+  return s.toUpperCase();
+};
+const icon = t => {
+  const u = route.comp === "wc" ? flagUrl(t) : t.logo || "", m = monogram(t.name);
+  return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
+};
 const eloColor = () => "var(--ink)";
 const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
 
