@@ -1,0 +1,15 @@
+name: Probe logo lookup (one-off)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/adoring-knuth-4bh23x]
+    paths: [".github/workflows/probe.yml", "scripts/probe_logo.py"]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/probe_logo.py
+        working-directory: scripts
