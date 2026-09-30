@@ -5,7 +5,9 @@
  },
  "22 pp Siedlce": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "WKS 22 pp Siedlce"
+  ]
  },
  "AKS Chorzów": {
   "country": "Poland",
@@ -55,15 +57,7 @@
  },
  "Energetyk ROW Rybnik": {
   "country": "Poland",
-  "aliases": [
-   "ROW Rybnik"
-  ]
- },
- "FKS Stal Mielec": {
-  "country": "Poland",
-  "aliases": [
-   "Stal Mielec"
-  ]
+  "aliases": []
  },
  "GKS Bełchatów": {
   "country": "Poland",
@@ -80,6 +74,7 @@
  "GKS Tychy": {
   "country": "Poland",
   "aliases": [
+   "Sokół Pniewy/Tychy",
    "Sokół Tychy"
   ]
  },
@@ -141,17 +136,9 @@
    "Unia Racibórz"
   ]
  },
- "KS Cracovia": {
-  "country": "Poland",
-  "aliases": [
-   "Cracovia"
-  ]
- },
  "KS ROW 1964 Rybnik": {
   "country": "Poland",
-  "aliases": [
-   "ROW Rybnik"
-  ]
+  "aliases": []
  },
  "KS Warszawianka": {
   "country": "Poland",
@@ -165,21 +152,21 @@
    "KSZO Ostrowiec"
   ]
  },
- "Klub Turystów Łódź": {
-  "country": "Poland",
-  "aliases": []
- },
  "Korona Kielce": {
   "country": "Poland",
   "aliases": []
  },
  "Lech Poznań": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "note": "Amica Wronki (merged into Lech in 2006) is listed separately"
  },
  "Lechia Gdańsk": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "Olimpia/Lechia Gdańsk"
+  ],
+  "note": "Includes the 1995–96 Olimpia/Lechia merger (Olimpia Poznań is listed separately)"
  },
  "Lechia Lwów": {
   "country": "Poland",
@@ -216,18 +203,6 @@
   "aliases": []
  },
  "Olimpia Poznań": {
-  "country": "Poland",
-  "aliases": []
- },
- "Olimpia/Lechia Gdańsk": {
-  "country": "Poland",
-  "aliases": []
- },
- "Orlen Płock": {
-  "country": "Poland",
-  "aliases": []
- },
- "Petrochemia Płock": {
   "country": "Poland",
   "aliases": []
  },
@@ -301,15 +276,11 @@
   "country": "Poland",
   "aliases": []
  },
- "Sokół Tychy": {
-  "country": "Poland",
-  "aliases": [
-   "Sokół Pniewy/Tychy"
-  ]
- },
  "Stal Mielec": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "FKS Stal Mielec"
+  ]
  },
  "Stal Rzeszów": {
   "country": "Poland",
@@ -345,12 +316,6 @@
    "Klub Turystów Łódź"
   ]
  },
- "WKS 22 pp Siedlce": {
-  "country": "Poland",
-  "aliases": [
-   "22 pp Siedlce"
-  ]
- },
  "Warta Poznań": {
   "country": "Poland",
   "aliases": []
@@ -373,7 +338,11 @@
  },
  "Wisła Płock": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [
+   "Orlen Płock",
+   "Petrochemia Płock"
+  ],
+  "note": "Formerly Petrochemia Płock and Orlen Płock"
  },
  "Zagłębie Lubin": {
   "country": "Poland",
