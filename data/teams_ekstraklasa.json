@@ -1,0 +1,418 @@
+{
+ "1. FC Kattowitz": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "22 pp Siedlce": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "AKS Chorzów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Amica Wronki": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Arka Gdynia": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Arkonia Szczecin": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Bałtyk Gdynia": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Bruk-Bet Termalica Nieciecza": {
+  "country": "Poland",
+  "aliases": [
+   "Nieciecza"
+  ]
+ },
+ "Cracovia": {
+  "country": "Poland",
+  "aliases": [
+   "KS Cracovia"
+  ]
+ },
+ "Czarni Lwów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Dyskobolia Grodzisk Wielkopolski": {
+  "country": "Poland",
+  "aliases": [
+   "Dyskobolia"
+  ]
+ },
+ "Dąb Katowice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Energetyk ROW Rybnik": {
+  "country": "Poland",
+  "aliases": [
+   "ROW Rybnik"
+  ]
+ },
+ "FKS Stal Mielec": {
+  "country": "Poland",
+  "aliases": [
+   "Stal Mielec"
+  ]
+ },
+ "GKS Bełchatów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "GKS Jastrzębie": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "GKS Katowice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "GKS Tychy": {
+  "country": "Poland",
+  "aliases": [
+   "Sokół Tychy"
+  ]
+ },
+ "Garbarnia Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Gwardia Warsaw": {
+  "country": "Poland",
+  "aliases": [
+   "Gwardia Warszawa"
+  ]
+ },
+ "Górnik Polkowice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Górnik Radlin": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Górnik Wałbrzych": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Górnik Zabrze": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Górnik Łęczna": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Hasmonea Lwów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Hutnik Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Igloopol Dębica": {
+  "country": "Poland",
+  "aliases": [
+   "Pegrotour Dębica"
+  ]
+ },
+ "Jagiellonia Białystok": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Jutrzenka Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "KP Unia Racibórz": {
+  "country": "Poland",
+  "aliases": [
+   "Unia Racibórz"
+  ]
+ },
+ "KS Cracovia": {
+  "country": "Poland",
+  "aliases": [
+   "Cracovia"
+  ]
+ },
+ "KS ROW 1964 Rybnik": {
+  "country": "Poland",
+  "aliases": [
+   "ROW Rybnik"
+  ]
+ },
+ "KS Warszawianka": {
+  "country": "Poland",
+  "aliases": [
+   "Warszawianka"
+  ]
+ },
+ "KSZO Ostrowiec Świętokrzyski": {
+  "country": "Poland",
+  "aliases": [
+   "KSZO Ostrowiec"
+  ]
+ },
+ "Klub Turystów Łódź": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Korona Kielce": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Lech Poznań": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Lechia Gdańsk": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Lechia Lwów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Legia Warsaw": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Miedź Legnica": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Miliarder Pniewy": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Motor Lublin": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "OKS 1945 Olsztyn": {
+  "country": "Poland",
+  "aliases": [
+   "Stomil Olsztyn"
+  ]
+ },
+ "Odra Opole": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Odra Wodzisław": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Olimpia Poznań": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Olimpia/Lechia Gdańsk": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Orlen Płock": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Petrochemia Płock": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Piast Gliwice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Podbeskidzie Bielsko-Biała": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Podgórze Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Pogoń Lwów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Pogoń Szczecin": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Polonia Bydgoszcz": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Polonia Bytom": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Polonia Warsaw": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Puszcza Niepołomice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "RKS Radomsko": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Radomiak Radom": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Raków Częstochowa": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Ruch Chorzów": {
+  "country": "Poland",
+  "aliases": [
+   "Ruch Hajduki Wielkie"
+  ]
+ },
+ "Ruch Radzionków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Rymer Rybnik": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Sandecja Nowy Sącz": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Siarka Tarnobrzeg": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Sokół Tychy": {
+  "country": "Poland",
+  "aliases": [
+   "Sokół Pniewy/Tychy"
+  ]
+ },
+ "Stal Mielec": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Stal Rzeszów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Stal Stalowa Wola": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Strzelec Siedlce": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Szczakowianka Jaworzno": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Szombierki Bytom": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "TKS Toruń": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Tarnovia Tarnów": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Union Touring Łódź": {
+  "country": "Poland",
+  "aliases": [
+   "Klub Turystów Łódź"
+  ]
+ },
+ "WKS 22 pp Siedlce": {
+  "country": "Poland",
+  "aliases": [
+   "22 pp Siedlce"
+  ]
+ },
+ "Warta Poznań": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Wawel Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Widzew Łódź": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Wieczysta Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Wisła Kraków": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Wisła Płock": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Zagłębie Lubin": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Zagłębie Sosnowiec": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Zagłębie Wałbrzych": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Zawisza Bydgoszcz": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "ŁKS Łódź": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "ŁTSG Łódź": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Śląsk Wrocław": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Śląsk Świętochłowice": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Śmigły Wilno": {
+  "country": "Poland",
+  "aliases": []
+ },
+ "Świt Nowy Dwór Mazowiecki": {
+  "country": "Poland",
+  "aliases": []
+ }
+}

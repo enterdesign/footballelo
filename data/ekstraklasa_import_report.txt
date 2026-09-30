@@ -1,0 +1,96 @@
+1927     teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1928     teams=15 matches= 210 expected(2x round robin)= 210 ok  max games per pair=2
+1929     teams=13 matches= 156 expected(2x round robin)= 156 ok  max games per pair=2
+1930     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1931     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1932     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1933     teams=12 matches= 120 expected(2x round robin)= 132 CHECK  max games per pair=4
+1934     teams=12 matches= 131 expected(2x round robin)= 132 CHECK  max games per pair=2
+1935     teams=11 matches= 110 expected(2x round robin)= 110 ok  max games per pair=2
+1936     teams=10 matches=  90 expected(2x round robin)=  90 ok  max games per pair=2
+1937     teams= 9 matches=  72 expected(2x round robin)=  72 ok  max games per pair=2
+1938     teams=10 matches=  90 expected(2x round robin)=  90 ok  max games per pair=2
+1939     teams=10 matches=  62 expected(2x round robin)=  90 CHECK  max games per pair=2
+1948     teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1949     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1950     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1951     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1952     teams=12 matches=  60 expected(2x round robin)= 132 CHECK  max games per pair=2
+1953     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1954     teams=11 matches= 110 expected(2x round robin)= 110 ok  max games per pair=2
+1955     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1956     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1957     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1958     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1959     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1960     teams=12 matches= 132 expected(2x round robin)= 132 ok  max games per pair=2
+1961     teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1962     teams=14 matches=  84 expected(2x round robin)= 182 CHECK  max games per pair=2
+1962/63  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1963/64  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1964/65  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1965/66  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1966/67  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1967/68  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1968/69  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1969/70  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1970/71  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1971/72  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1972/73  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+1973/74  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1974/75  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1975/76  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1976/77  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1977/78  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1978/79  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1979/80  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1980/81  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1981/82  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1982/83  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1983/84  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1984/85  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1985/86  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1986/87  teams=16 matches= 237 expected(2x round robin)= 240 CHECK  max games per pair=2
+1987/88  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1988/89  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1989/90  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1990/91  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1991/92  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1992/93  teams=18 matches= 304 expected(2x round robin)= 306 CHECK  max games per pair=2
+1993/94  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1994/95  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1995/96  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1996/97  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1997/98  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+1998/99  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+1999/00  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2000/01  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2001/02  teams=16 matches= 224 expected(2x round robin)= 240 CHECK  max games per pair=4
+2002/03  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2003/04  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+2004/05  teams=14 matches= 182 expected(2x round robin)= 182 ok  max games per pair=2
+2005/06  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2006/07  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2007/08  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2008/09  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2009/10  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2010/11  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2011/12  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2012/13  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2013/14  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2014/15  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2015/16  teams= 0 matches=   0 expected(2x round robin)=   0 ok  max games per pair=0
+2016/17  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2017/18  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2018/19  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2019/20  teams=16 matches= 296 expected(2x round robin)= 240 split?  max games per pair=3
+2020/21  teams=16 matches= 240 expected(2x round robin)= 240 ok  max games per pair=2
+2021/22  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+2022/23  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+2023/24  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+2024/25  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+2025/26  teams=18 matches= 306 expected(2x round robin)= 306 ok  max games per pair=2
+2026/27  teams=18 matches=  78 expected(2x round robin)= 306 CHECK  max games per pair=1
+total 16836 matches; seasons without a parsable results table: ['2006/07', '2007/08', '2008/09', '2009/10', '2010/11', '2011/12', '2012/13', '2013/14', '2014/15', '2015/16']
+seasons missing from the category (no article): 1940, 1941, 1942, 1943, 1944, 1945, 1946, 1947
+teams file: 95 clubs
