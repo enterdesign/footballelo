@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [claude/adoring-knuth-4bh23x]
-    paths: [".github/workflows/probe.yml"]
+    paths: [".github/workflows/probe.yml", "scripts/probe_football_data.py"]
 
 jobs:
   probe:
