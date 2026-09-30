@@ -16,7 +16,8 @@
  },
  "Amica Wronki": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/86/Amica_Wronki_2007_Logo.png"
  },
  "Arka Gdynia": {
   "country": "Poland",
@@ -53,7 +54,8 @@
   "country": "Poland",
   "aliases": [
    "Dyskobolia"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/1/1c/Dyskobolia_Grodzisk_Logo.png"
  },
  "Dąb Katowice": {
   "country": "Poland",
@@ -61,7 +63,8 @@
  },
  "Energetyk ROW Rybnik": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/84/ROW_1964_Rybnik_Logo.png"
  },
  "GKS Bełchatów": {
   "country": "Poland",
@@ -88,13 +91,15 @@
  },
  "Garbarnia Kraków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/RKS_Garbarnia_Krak%C3%B3w_%28ancien_logo%29.svg"
  },
  "Gwardia Warsaw": {
   "country": "Poland",
   "aliases": [
    "Gwardia Warszawa"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/6e/Gwardia_Warszawa_Logo.png"
  },
  "Górnik Polkowice": {
   "country": "Poland",
@@ -103,7 +108,8 @@
  },
  "Górnik Radlin": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/7d/G%C3%B3rnik_Radlin_Logo.png"
  },
  "Górnik Wałbrzych": {
   "country": "Poland",
@@ -132,7 +138,8 @@
   "country": "Poland",
   "aliases": [
    "Pegrotour Dębica"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/77/Igloopol_D%C4%99bica_club_badge.png"
  },
  "Jagiellonia Białystok": {
   "country": "Poland",
@@ -147,7 +154,8 @@
   "country": "Poland",
   "aliases": [
    "Unia Racibórz"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/5c/Unia_Racib%C3%B3rz_Logo.png"
  },
  "KS ROW 1964 Rybnik": {
   "country": "Poland",
@@ -202,7 +210,8 @@
  },
  "Miliarder Pniewy": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/62/Sok%C3%B3%C5%82_Pniewy_crest.png"
  },
  "Motor Lublin": {
   "country": "Poland",
@@ -227,7 +236,8 @@
  },
  "Olimpia Poznań": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/aa/Olimpia_Pozna%C5%84_logo.png"
  },
  "Piast Gliwice": {
   "country": "Poland",
@@ -236,11 +246,13 @@
  },
  "Podbeskidzie Bielsko-Biała": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/4e/TSP_logo_poprawione.svg"
  },
  "Podgórze Kraków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b5/POL_Warszawa_COA.svg"
  },
  "Pogoń Lwów": {
   "country": "Poland",
@@ -253,11 +265,13 @@
  },
  "Polonia Bydgoszcz": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Speedway_logo.svg"
  },
  "Polonia Bytom": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/2c/Polonia_Bytom_crest.png"
  },
  "Polonia Warsaw": {
   "country": "Poland",
@@ -271,7 +285,8 @@
  },
  "RKS Radomsko": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/RKS_Radomsko_crest.png"
  },
  "Radomiak Radom": {
   "country": "Poland",
@@ -292,11 +307,13 @@
  },
  "Ruch Radzionków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/b/bc/Ruch_Radzionk%C3%B3w_badge.png"
  },
  "Rymer Rybnik": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/84/ROW_1964_Rybnik_Logo.png"
  },
  "Sandecja Nowy Sącz": {
   "country": "Poland",
@@ -335,7 +352,8 @@
  },
  "Szombierki Bytom": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/4d/Szombierki_Bytom_badge.png"
  },
  "TKS Toruń": {
   "country": "Poland",
@@ -343,7 +361,8 @@
  },
  "Tarnovia Tarnów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/c/c5/Tarnovia_Tarn%C3%B3w_crest.svg"
  },
  "Union Touring Łódź": {
   "country": "Poland",
@@ -358,7 +377,8 @@
  },
  "Wawel Kraków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/f/f9/Wawel_Krak%C3%B3w_crest.png"
  },
  "Widzew Łódź": {
   "country": "Poland",
@@ -419,11 +439,13 @@
  },
  "Śląsk Świętochłowice": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Speedway_logo.svg"
  },
  "Śmigły Wilno": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/a4/%C5%9Amig%C5%82y_Wilno_crest.png"
  },
  "Świt Nowy Dwór Mazowiecki": {
   "country": "Poland",

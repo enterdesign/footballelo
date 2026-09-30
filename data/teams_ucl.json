@@ -19,14 +19,16 @@
  "AIK Stockholm": {
   "code": "SWE",
   "country": "Sweden",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/81/AIK_Fotboll_%28shield%29.svg"
  },
  "APOEL FC": {
   "code": "CYP",
   "country": "Cyprus",
   "aliases": [
    "APOEL Nikosia"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg"
  },
  "AS Roma": {
   "code": "ITA",
@@ -67,7 +69,8 @@
  "Anorthosis": {
   "code": "CYP",
   "country": "Cyprus",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/50/Anorthosis_FC_logo.svg"
  },
  "Antwerp": {
   "code": "BEL",
@@ -479,7 +482,8 @@
  "Göteborg": {
   "code": "SWE",
   "country": "Sweden",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/a6/IFK_Goteborg_logo.svg"
  },
  "HJK Helsinki": {
   "code": "FIN",
@@ -496,12 +500,14 @@
  "Hamburger SV": {
   "code": "GER",
   "country": "Germany",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
  },
  "Hapoel Tel Aviv": {
   "code": "ISR",
   "country": "Israel",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/55/Hapoel_Tel_Aviv_F.C._logo.svg"
  },
  "Heerenveen": {
   "code": "NED",
@@ -1193,7 +1199,8 @@
   "country": "Russia",
   "aliases": [
    "Zenit"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/e/eb/FC_Zenit_Saint_Petersburg_crest.svg"
  },
  "Zürich": {
   "code": "SUI",
