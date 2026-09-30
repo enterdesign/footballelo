@@ -6,7 +6,7 @@ const COMPS = {
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930"},
   pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons",
-        group: (t, i) => D.tl[i].some(e => e.per === D.last) ? "CURRENT" : "FORMER", groupLabel: (t, i) => t.note || "England", first: "1888/89"},
+        group: () => "", groupLabel: () => "England", first: "1888/89"},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
 const $ = id => document.getElementById(id);
@@ -79,24 +79,32 @@ window.addEventListener("scroll", () => document.querySelectorAll(".hero-bg").fo
 
 // ── ranking ───────────────────────────────────────────────────────
 function ranking() {
+  const eras = D.eras || null;                 // e.g. Premier League: separate leaderboards per era
   const groups = new Map();
-  D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
+  if (!eras) D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
   const state = {g: "", q: ""};
   $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="Search…" autocomplete="off"></div>
-    <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" title="Rating change during ${esc(D.last)}">Δ ${esc(D.last)}</span><span class="r mcount">Games</span></div><div id="rows"></div>`;
+    <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" id="dhead"></span><span class="r mcount">Games</span></div><div id="rows"></div>`;
   const draw = () => {
-    const chipList = [["", "ALL"], ...[...groups].sort().map(([k]) => [k, k])];
+    const era = eras && eras.find(x => x.id === state.g);
+    const v = era || {elo: D.teams.map(t => t.elo), matches: D.teams.map(t => t.matches), delta: D.delta, last: D.last};
+    const chipList = eras ? [["", "ALL"], ...eras.map(e => [e.id, e.label])] : [["", "ALL"], ...[...groups].sort().map(([k]) => [k, k])];
     const cw = Math.max(...chipList.map(([, l]) => l.length)) * 8 + 24;
     $("chips").innerHTML = chipList
       .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
+    $("dhead").textContent = `Δ ${v.last}`;
+    $("dhead").title = `Rating change during ${v.last}`;
+    let list = D.teams.map((t, i) => i);
+    if (era) list = list.filter(i => v.matches[i] > 0).sort((a, b) => v.elo[b] - v.elo[a] || a - b);
+    const rank = new Map(list.map((i, r) => [i, r + 1]));            // position within the current leaderboard
+    if (!eras && state.g) list = list.filter(i => C.group(D.teams[i], i) === state.g);
     const q = state.q.toLowerCase();
-    $("rows").innerHTML = D.teams.map((t, i) => [t, i]).filter(([t]) => (!state.g || C.group(t, i) === state.g) &&
-      (!q || [t.name, ...(t.aliases || [])].some(n => n.toLowerCase().includes(q))))
-      .map(([t, i]) => { const dl = D.delta[i];
-        return `<div class="row" data-t="${i}"><span class="pos${i < 3 ? " top" : ""}">${i + 1}</span>${icon(t)}
+    if (q) list = list.filter(i => [D.teams[i].name, ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
+    $("rows").innerHTML = list.map(i => { const t = D.teams[i], dl = v.delta[i], e = v.elo[i], r = rank.get(i);
+      return `<div class="row" data-t="${i}"><span class="pos${r <= 3 ? " top" : ""}">${r}</span>${icon(t)}
         <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(route.comp === "pl" ? "England" : C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
-        <span class="elo" style="color:${eloColor(t.elo)}">${t.elo}</span>
-        <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${t.matches}</span></div>`; }).join("");
+        <span class="elo" style="color:${eloColor(e)}">${e}</span>
+        <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
   };
   $("chips").onclick = e => { if (e.target.dataset.g !== undefined) { state.g = e.target.dataset.g; draw(); } };
   $("rows").onclick = e => { const r = e.target.closest(".row"); if (r) location.hash = `#${route.comp}/stats/${encodeURIComponent(D.teams[r.dataset.t].name)}`; };
