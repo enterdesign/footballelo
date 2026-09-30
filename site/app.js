@@ -50,7 +50,16 @@ function prepare(d) {
 }
 
 const flagUrl = t => t.iso ? `https://flagcdn.com/w40/${t.iso}.png` : "";
-const icon = t => { const u = route.comp === "wc" ? flagUrl(t) : t.logo || ""; return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`; };
+// Initials shown in the frame when a club has no crest (or the image fails to load).
+const monogram = name => {
+  const w = name.replace(/[().,\/]/g, " ").split(/\s+/).filter(x => x && !/^(FC|AFC|SC|KS|GKS|SK|CF|of|de|the|1\.)$/i.test(x));
+  const s = w.length > 1 ? w.slice(0, 3).map(x => x[0]).join("") : (w[0] || name).slice(0, 3);
+  return s.toUpperCase();
+};
+const icon = t => {
+  const u = route.comp === "wc" ? flagUrl(t) : t.logo || "", m = monogram(t.name);
+  return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
+};
 const eloColor = () => "var(--ink)";
 const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
 
@@ -200,7 +209,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       <li>Updated daily from <a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and Wikipedia</li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent);text-decoration:underline">teams file</a></li></ul></div></div>`;
