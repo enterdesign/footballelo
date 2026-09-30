@@ -35,6 +35,27 @@ def search(key, q):
     return []
 
 
+WIKI = ("https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrlimit=3&prop=pageimages"
+        "&piprop=original&format=json&gsrsearch={q}")
+
+
+def wiki_logo(name):
+    """Fallback: lead image (the crest) of the Wikipedia article found for "<name> football club"."""
+    url = WIKI.format(q=urllib.parse.quote(f"{name} football club"))
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            pages = sorted((json.load(r).get("query") or {}).get("pages", {}).values(), key=lambda p: p.get("index", 9))
+    except Exception:
+        return None
+    words = [w for w in (norm(t) for t in name.split()) if len(w) >= 3]
+    for p in pages:
+        src = (p.get("original") or {}).get("source")
+        if src and any(w in norm(p["title"]) for w in words) and src.lower().endswith((".png", ".svg", ".jpg", ".jpeg")):
+            return src
+    return None
+
+
 def pick(results, country):
     same = [t for t in results if norm(t.get("strCountry") or "")[:5] == norm(country)[:5]]
     if same:
@@ -46,7 +67,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--key", default="3")
     args = ap.parse_args()
-    for fname in ("teams_ucl.json", "teams_pl.json"):
+    for fname in ("teams_ucl.json", "teams_pl.json", "teams_ekstraklasa.json"):
         path = DATA / fname
         teams = json.loads(path.read_text(encoding="utf-8"))
         missing = []
@@ -60,6 +81,9 @@ def main():
                 if hit:
                     break
             badge = (hit or {}).get("strBadge") or (hit or {}).get("strTeamBadge")
+            if not badge:
+                badge = wiki_logo(name)
+                time.sleep(1)
             if badge:
                 info["logo"] = badge
             else:

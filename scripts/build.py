@@ -18,6 +18,9 @@ COMPS = {
            # separate leaderboards: ratings restarted at 1600 at the beginning of each era
            "eras": [{"id": "pre", "label": "PRE-PREMIER LEAGUE ERA", "to": "1991/92"},
                     {"id": "pl", "label": "PREMIER LEAGUE ERA", "from": "1992/93"}]},
+    "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)",
+                    "eras": [{"id": "pre", "label": "I LIGA ERA (1927–2008)", "to": "2007/08"},
+                             {"id": "ek", "label": "EKSTRAKLASA ERA (2008–)", "from": "2008/09"}]},
 }
 
 
@@ -88,6 +91,7 @@ def main():
     outdir = ROOT / "site" / "data"
     outdir.mkdir(parents=True, exist_ok=True)
     failed = False
+    info = {}
     for key in COMPS:
         out, bad = build(key)
         if bad:
@@ -98,9 +102,14 @@ def main():
             continue
         (outdir / f"{key}.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         print(f"[{key}] {len(out['matches'])} matches, {len(out['teams'])} teams")
+        info[key] = {"matches": len(out["matches"]), "last": out["matches"][-1][0],
+                     "last_matches": sum(1 for m in out["matches"] if m[0] == out["matches"][-1][0])}
     if failed:
         sys.exit(2)
-    (outdir / "meta.json").write_text(json.dumps({"built": datetime.now(timezone.utc).isoformat(timespec="minutes")}))
+    sync = DATA / "sync.json"
+    meta = {"built": datetime.now(timezone.utc).isoformat(timespec="minutes"),
+            "synced": load(sync)["synced"] if sync.exists() else None, "comps": info}
+    (outdir / "meta.json").write_text(json.dumps(meta))
 
 
 if __name__ == "__main__":

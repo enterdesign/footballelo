@@ -15,13 +15,15 @@ import json
 import os
 import subprocess
 import tempfile
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 from common import DATA
 import england
 import footballdata
+import import_ekstraklasa
 import openfootball
+import wikipedia_pl
 
 UCL_FIRST = "2011/12"
 
@@ -62,6 +64,27 @@ def with_current_season(old, matches, comp, stages):
     return [m for m in matches if m["season"] != season] + fresh
 
 
+def refresh_ekstraklasa(recent=2):
+    """Latest seasons of the Polish league from Wikipedia. A season is only replaced when the fresh
+    copy has at least as many matches as the stored one (a half-edited article never shrinks it)."""
+    old = load_old("ekstraklasa")
+    try:
+        titles = wikipedia_pl.season_titles()
+        result = import_ekstraklasa.import_seasons(list(titles)[-recent:], titles)
+    except Exception as e:
+        print(f"Wikipedia (Ekstraklasa) failed ({e}); keeping stored data")
+        return old
+    matches = list(old)
+    for label, ms, _ in result:
+        stored = [m for m in old if m["season"] == label]
+        if len(ms) >= len(stored):
+            matches = [m for m in matches if m["season"] != label] + ms
+        else:
+            print(f"Ekstraklasa {label}: fresh copy has fewer matches ({len(ms)} < {len(stored)}); kept stored")
+    matches.sort(key=lambda m: m["season"])
+    return matches
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--worldcup")
@@ -87,10 +110,15 @@ def main():
     pl = [m for m in old if m["season"] < england.FIRST_PL] + pl_new
     pl = with_current_season(old, pl, "PL", footballdata.PL_STAGES)
 
+    ekstraklasa = refresh_ekstraklasa()
+    dump(DATA / "matches/ekstraklasa.json", ekstraklasa)
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
     dump(DATA / "matches/pl.json", pl)
-    print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)} matches")
+    # heartbeat: shown on the home page, and the weekly commit keeps the schedule alive
+    dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
+    print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, "
+          f"ekstraklasa: {len(ekstraklasa)} matches")
 
 
 if __name__ == "__main__":

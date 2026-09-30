@@ -1,17 +1,20 @@
 "use strict";
 const REPO = "https://github.com/enterdesign/footballelo";
 const COMPS = {
-  ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons",
+  ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated weekly",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930"},
-  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons",
-        group: () => "", groupLabel: () => "England", first: "1888/89"},
+  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated weekly",
+        group: () => "", groupLabel: () => "England", sub: "England", first: "1888/89"},
+  ekstraklasa: {file: "data/ekstraklasa.json", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated weekly",
+        group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927"},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const cache = {};
+const fmtTime = iso => new Date(iso).toLocaleString("en-GB", {day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"});
 let D, C, T, route = {comp: "", tab: "ranking", team: ""};
 
 async function load(key) {
@@ -19,7 +22,7 @@ async function load(key) {
     // data files are cached by the browser/CDN: version them with the build time so a fresh
     // deploy is never paired with stale data
     if (!window.buildId) {
-      try { window.buildId = (await (await fetch("data/meta.json", {cache: "no-store"})).json()).built; } catch (e) { window.buildId = Date.now(); }
+      try { window.meta = await (await fetch("data/meta.json", {cache: "no-store"})).json(); window.buildId = window.meta.built; } catch (e) { window.buildId = Date.now(); }
     }
     const r = await fetch(`${COMPS[key].file}?v=${encodeURIComponent(window.buildId)}`);
     if (!r.ok) throw new Error(r.status);
@@ -64,7 +67,7 @@ async function render() {
   C = COMPS[route.comp];
   $("comp-bg").style.backgroundImage = `url('${C.img}')`;
   $("eyebrow").textContent = C.eyebrow;
-  $("subtitle").textContent = `${D.periods[0]} – ${D.last} · updated ${(D.meta || "")}`.replace(/ · updated $/, "");
+  $("subtitle").textContent = `${D.periods[0]} – ${D.last}` + (window.meta && window.meta.synced ? ` · data checked ${fmtTime(window.meta.synced)}` : "");
   $("stats").innerHTML = [[D.periods.length, C.period], [D.matches.length.toLocaleString("en"), "Matches"], [D.teams.length, C.noun]]
     .map(([v, l]) => `<div><div class="stat-val">${v}</div><div class="stat-label">${l}</div></div>`).join("");
   $("tabs").innerHTML = TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${t}</a>`).join("");
@@ -76,8 +79,13 @@ async function renderHome() {
   $("home-cards").innerHTML = (await Promise.all(Object.keys(COMPS).map(async k => {
     const d = await load(k), c = COMPS[k];
     return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.short || c.eyebrow}</div>
-      <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div></a>`;
+      <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div>
+      <div class="subtitle" style="margin-top:4px">data through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
   }))).join("");
+  const m = window.meta || {};
+  $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every Monday;
+    the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}) updates when a new tournament is played.<br>
+    Last data check: <b>${m.synced ? fmtTime(m.synced) : "n/a"}</b> · site built: <b>${m.built ? fmtTime(m.built) : "n/a"}</b>`;
 }
 window.addEventListener("hashchange", render);
 window.addEventListener("scroll", () => document.querySelectorAll(".hero-bg").forEach(el => { el.style.transform = `translateY(${Math.round(scrollY * .35)}px)`; }));
@@ -107,7 +115,7 @@ function ranking() {
     if (q) list = list.filter(i => [D.teams[i].name, ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
     $("rows").innerHTML = list.map(i => { const t = D.teams[i], dl = v.delta[i], e = v.elo[i], r = rank.get(i);
       return `<div class="row" data-t="${i}"><span class="pos${r <= 3 ? " top" : ""}">${r}</span>${icon(t)}
-        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(route.comp === "pl" ? "England" : C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
+        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.sub || C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo" style="color:${eloColor(e)}">${e}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
   };
@@ -191,7 +199,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       <li>Updated weekly from <a href="https://github.com/openfootball" style="color:var(--accent)">openfootball</a></li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent)">teams file</a></li></ul></div></div>`;

@@ -63,6 +63,7 @@ table.seasons th:first-child,table.seasons td:first-child{text-align:left}
 .home-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,13,.2),rgba(7,8,13,.92))}
 .home-card>*{position:relative}.home-card{color:#fff}.home-card .subtitle{color:#e2e8f0}.home-card:hover{border-color:var(--accent)}
 .home-card h2{font:38px 'Bebas Neue',sans-serif;letter-spacing:2px}
+.status{max-width:960px;margin:-30px auto 0;padding:14px 16px 40px;font:11px/1.8 'DM Mono',monospace;color:var(--mute)}.status b{color:var(--dim);font-weight:500}
 footer{max-width:960px;margin:0 auto;padding:0 16px 40px;text-align:right}
 #admin-dots{font:16px 'DM Mono',monospace;color:transparent;letter-spacing:4px}
 #admin-dots:hover{color:var(--mute)}
