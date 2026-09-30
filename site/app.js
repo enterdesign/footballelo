@@ -51,8 +51,8 @@ function prepare(d) {
 
 const flagUrl = t => t.iso ? `https://flagcdn.com/w40/${t.iso}.png` : "";
 const icon = t => { const u = route.comp === "wc" ? flagUrl(t) : t.logo || ""; return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`; };
-const eloColor = e => e >= 1750 ? "#b45309" : e >= 1700 ? "#c2410c" : e >= 1650 ? "#1d4ed8" : e >= 1600 ? "#15803d" : "#dc2626";
-const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--text)">${p.label}</span>`; };
+const eloColor = () => "var(--ink)";
+const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
 
 // ── routing ───────────────────────────────────────────────────────
 function parseHash() {
@@ -95,13 +95,13 @@ function ranking() {
   const eras = D.eras || null;                 // e.g. Premier League: separate leaderboards per era
   const groups = new Map();
   if (!eras) D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
-  const state = {g: "", q: ""};
+  const state = {g: D.default_era || "", q: ""};
   $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="Search…" autocomplete="off"></div>
     <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" id="dhead"></span><span class="r mcount">Games</span></div><div id="rows"></div>`;
   const draw = () => {
     const era = eras && eras.find(x => x.id === state.g);
     const v = era || {elo: D.teams.map(t => t.elo), matches: D.teams.map(t => t.matches), delta: D.delta, last: D.last};
-    const chipList = eras ? [["", "ALL"], ...eras.map(e => [e.id, e.label])] : [["", "ALL"], ...[...groups].filter(([k]) => k).sort().map(([k]) => [k, k])];
+    const chipList = eras ? [["", "All"], ...eras.map(e => [e.id, e.label])] : [["", "All"], ...[...groups].filter(([k]) => k).sort().map(([k]) => [k, k])];
     const cw = Math.max(...chipList.map(([, l]) => l.length)) * 8 + 24;
     $("chips").innerHTML = chipList
       .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
@@ -156,10 +156,11 @@ let chart;
 function drawChart(canvas, series) {
   if (chart) chart.destroy();
   if (typeof Chart === "undefined") { canvas.replaceWith(Object.assign(document.createElement("p"), {className: "sub", textContent: "Chart library failed to load."})); return; }
+  Chart.defaults.font.family = "Barlow, system-ui, sans-serif";
   chart = new Chart(canvas, {type: "line", data: {labels: D.periods, datasets: series.map(s => ({label: s.label, data: D.periods.map(p => s.map[p] ?? null),
     borderColor: s.color, backgroundColor: s.color, spanGaps: true, tension: .25, pointRadius: 2, borderWidth: 2}))},
-    options: {interaction: {mode: "index", intersect: false}, scales: {x: {ticks: {color: "#6b7488", maxTicksLimit: 12}, grid: {color: "#e2e5ee"}}, y: {ticks: {color: "#6b7488"}, grid: {color: "#e2e5ee"}}},
-      plugins: {legend: {labels: {color: "#4a5468"}}}}});
+    options: {interaction: {mode: "index", intersect: false}, scales: {x: {ticks: {color: "#6b675e", maxTicksLimit: 12}, grid: {color: "#e3ded0"}}, y: {ticks: {color: "#6b675e"}, grid: {color: "#e3ded0"}}},
+      plugins: {legend: {labels: {color: "#4d4a43"}}}}});
 }
 const periodElo = i => { const m = {}; D.tl[i].forEach(e => m[e.per] = e.after); return m; };
 const periodStats = i => { const s = new Map(); D.tl[i].forEach(e => { const x = s.get(e.per) || {start: e.before, n: 0}; x.end = e.after; x.n++; s.set(e.per, x); }); return s; };
@@ -175,7 +176,7 @@ function stats() {
   const t = D.teams[cur];
   $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
-  drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#d97706"}]);
+  drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#b3261e"}]);
 }
 function compare() {
   const a = D.teams.findIndex(t => t.name === route.team.split("~")[0]), b = D.teams.findIndex(t => t.name === route.team.split("~")[1]);
@@ -188,7 +189,7 @@ function compare() {
   $("out").innerHTML = `<div class="card"><canvas id="ch" height="110"></canvas></div>
     <div class="card"><h3>Head to head</h3><p>${esc(D.teams[a].name)} ${w}W · ${h2h.length - w - l}D · ${l}L vs ${esc(D.teams[b].name)} (${h2h.length} matches)</p></div>
     ${h2h.length ? `<div class="card">${h2h.slice().reverse().map(e => matchRow(D.matches[e.i])).join("")}</div>` : ""}`;
-  drawChart($("ch"), [{label: D.teams[a].name, map: periodElo(a), color: "#d97706"}, {label: D.teams[b].name, map: periodElo(b), color: "#2563eb"}]);
+  drawChart($("ch"), [{label: D.teams[a].name, map: periodElo(a), color: "#b3261e"}, {label: D.teams[b].name, map: periodElo(b), color: "#1f4e79"}]);
 }
 
 // ── about ─────────────────────────────────────────────────────────
@@ -201,7 +202,7 @@ function about() {
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
       ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
-      <li>Updated daily from <a href="https://github.com/openfootball" style="color:var(--accent)">openfootball</a>, football-data.org and Wikipedia</li>
-      <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent)">teams file</a></li></ul></div></div>`;
+      <li>Updated daily from <a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and Wikipedia</li>
+      <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp === "wc" ? "wc" : "ucl"}.json" style="color:var(--accent);text-decoration:underline">teams file</a></li></ul></div></div>`;
 }
 render();

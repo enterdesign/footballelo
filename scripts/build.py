@@ -16,9 +16,12 @@ COMPS = {
     "wc": {"teams": "teams_wc.json", "period": "year", "title": "FIFA World Cup"},
     "pl": {"teams": "teams_pl.json", "period": "season", "title": "Premier League (First Division 1888–1992)",
            # separate leaderboards: ratings restarted at 1600 at the beginning of each era
-           "eras": [{"id": "pre", "label": "PRE-PREMIER LEAGUE ERA", "to": "1991/92"},
-                    {"id": "pl", "label": "PREMIER LEAGUE ERA", "from": "1992/93"}]},
-    "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)"},
+           "eras": [{"id": "pre", "label": "Pre-Premier League era", "to": "1991/92"},
+                    {"id": "pl", "label": "Premier League era", "from": "1992/93"}]},
+    "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)",
+                    "eras": [{"id": "pre", "label": "Pre-war (1927–1939)", "to": "1939"},
+                             {"id": "post", "label": "Post-war (1948–)", "from": "1948"}],
+                    "default_era": "post"},
 }
 
 
@@ -82,6 +85,8 @@ def build(key):
     }
     if cfg.get("eras"):
         out["eras"] = [era_ranking(matches, phases, teams, order, period, e) for e in cfg["eras"]]
+        if cfg.get("default_era"):
+            out["default_era"] = cfg["default_era"]
     return out, []
 
 

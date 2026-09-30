@@ -3,78 +3,78 @@
   "group": {
    "label": "GR",
    "k": 8,
-   "color": "#4ade80"
+   "color": "#6f9a78"
   },
   "r16": {
    "label": "R16",
    "k": 16,
-   "color": "#60a5fa"
+   "color": "#4a78a8"
   },
   "qf": {
    "label": "QF",
    "k": 16,
-   "color": "#a78bfa"
+   "color": "#7a6aa8"
   },
   "sf": {
    "label": "SF",
    "k": 24,
-   "color": "#f97316"
+   "color": "#c2703d"
   },
   "final": {
    "label": "FIN",
    "k": 32,
-   "color": "#fbbf24"
+   "color": "#b3261e"
   }
  },
  "wc": {
   "group": {
    "label": "GR",
    "k": 8,
-   "color": "#4ade80"
+   "color": "#6f9a78"
   },
   "r32": {
    "label": "R32",
    "k": 16,
-   "color": "#06b6d4"
+   "color": "#4f8ea3"
   },
   "r16": {
    "label": "R16",
    "k": 16,
-   "color": "#60a5fa"
+   "color": "#4a78a8"
   },
   "qf": {
    "label": "QF",
    "k": 16,
-   "color": "#a78bfa"
+   "color": "#7a6aa8"
   },
   "sf": {
    "label": "SF",
    "k": 24,
-   "color": "#f97316"
+   "color": "#c2703d"
   },
   "3rd": {
    "label": "3rd",
    "k": 24,
-   "color": "#94a3b8"
+   "color": "#8a8578"
   },
   "final": {
    "label": "FIN",
    "k": 32,
-   "color": "#f59e0b"
+   "color": "#b3261e"
   }
  },
  "pl": {
   "league": {
    "label": "LG",
    "k": 16,
-   "color": "#60a5fa"
+   "color": "#4a78a8"
   }
  },
  "ekstraklasa": {
   "league": {
    "label": "LG",
    "k": 16,
-   "color": "#60a5fa"
+   "color": "#4a78a8"
   }
  }
 }
