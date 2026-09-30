@@ -30,22 +30,25 @@ def dump(path, obj):
     Path(path).write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
-def current_season_fallback(old, ucl_new):
-    """openfootball is sometimes weeks behind: if it has no matches for the running
-    season, take them from football-data.org (needs env FOOTBALL_DATA_KEY)."""
+def with_current_season(old, ucl):
+    """The running Champions League season comes from football-data.org (live, needs
+    env FOOTBALL_DATA_KEY); openfootball is often weeks behind. Its free plan only
+    covers the last few seasons, so older ones stay as imported from openfootball."""
     today = date.today()
     year = today.year if today.month >= 7 else today.year - 1
     season = f"{year}/{str(year + 1)[2:]}"
     key = os.environ.get("FOOTBALL_DATA_KEY")
-    if any(m["season"] == season for m in ucl_new) or not key:
-        return []
+    if not key:
+        return ucl
     try:
         fresh = footballdata.convert(footballdata.fetch(year, key), season)
     except Exception as e:                      # keep what we already have
         print(f"football-data.org failed ({e}); keeping existing {season} matches")
-        return [m for m in old if m["season"] == season]
+        if not any(m["season"] == season for m in ucl):
+            ucl += [m for m in old if m["season"] == season]
+        return ucl
     print(f"{season}: {len(fresh)} matches from football-data.org")
-    return fresh
+    return [m for m in ucl if m["season"] != season] + fresh
 
 
 def main():
@@ -63,7 +66,7 @@ def main():
         m.pop("codeB", None)
     old = json.loads((DATA / "matches/ucl.json").read_text(encoding="utf-8"))
     ucl = [m for m in old if m["season"] < UCL_FIRST] + ucl_new
-    ucl += current_season_fallback(old, ucl_new)
+    ucl = with_current_season(old, ucl)
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
     print(f"world cup: {len(wc)} matches, champions league: {len(ucl)} matches")
