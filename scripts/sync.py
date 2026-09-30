@@ -115,7 +115,7 @@ def main():
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
     dump(DATA / "matches/pl.json", pl)
-    # heartbeat: shown on the home page, and the weekly commit keeps the schedule alive
+    # heartbeat: shown on the home page, and the daily commit keeps the schedule alive
     dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
     print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, "
           f"ekstraklasa: {len(ekstraklasa)} matches")

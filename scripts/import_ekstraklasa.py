@@ -4,7 +4,7 @@
 usage: import_ekstraklasa.py [--recent N] [--init-teams] [--report FILE]
   --recent N     only (re)fetch the last N seasons (default: all seasons)
   --init-teams   create data/teams_ekstraklasa.json entries for names not yet known
-                 (first import only; afterwards unknown names stop the weekly build instead)
+                 (first import only; afterwards unknown names stop the daily build instead)
 """
 import argparse
 import json

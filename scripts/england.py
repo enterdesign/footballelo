@@ -2,7 +2,7 @@
 
 Sources
   * engsoccerdata (england.csv, tier 1)  -> seasons before 1992/93 (frozen archive)
-  * openfootball/england                 -> 1992/93 onwards (refreshed weekly)
+  * openfootball/england                 -> 1992/93 onwards (refreshed daily)
 All matches are rated with the single phase "league".
 """
 import csv

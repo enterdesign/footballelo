@@ -18,9 +18,7 @@ COMPS = {
            # separate leaderboards: ratings restarted at 1600 at the beginning of each era
            "eras": [{"id": "pre", "label": "PRE-PREMIER LEAGUE ERA", "to": "1991/92"},
                     {"id": "pl", "label": "PREMIER LEAGUE ERA", "from": "1992/93"}]},
-    "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)",
-                    "eras": [{"id": "pre", "label": "I LIGA ERA (1927–2008)", "to": "2007/08"},
-                             {"id": "ek", "label": "EKSTRAKLASA ERA (2008–)", "from": "2008/09"}]},
+    "ekstraklasa": {"teams": "teams_ekstraklasa.json", "period": "season", "title": "Ekstraklasa (I liga 1927–2008)"},
 }
 
 

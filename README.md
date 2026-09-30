@@ -3,12 +3,12 @@
 ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →), the English
 top flight (First Division from 1888/89, Premier League from 1992/93) and the Polish top flight
 (Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →).
-Static site on GitHub Pages; data refreshed weekly by GitHub Actions.
+Static site on GitHub Pages; data refreshed daily by GitHub Actions.
 
 ```
 data/matches/{ucl,wc,pl,ekstraklasa}.json   matches exactly as imported (source names)
 data/teams_{ucl,wc,pl,ekstraklasa}.json     canonical team -> aliases (renames, successor states)
-data/sync.json                  time of the last weekly data check (shown on the home page)
+data/sync.json                  time of the last daily data check (shown on the home page)
 data/phases.json             K-factor per phase
 data/overrides.json          manual fixes: {"add": [...], "remove": [...]}
 scripts/                     sync (import), build (ELO -> site/data), parsers, engine
@@ -22,12 +22,12 @@ site/                        the website (site/data/ is generated)
 - Premier League: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
 
 ## Data sources
-- World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (weekly).
+- World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (daily).
 - Premier League before 1992/93: [engsoccerdata](https://github.com/jalapic/engsoccerdata) `england.csv`, tier 1
   (frozen archive; for 1992/93–2024/25 it matches openfootball exactly, except 2022/23 which it lacks).
 - Champions League 1992/93–2010/11: the original hand-entered data (frozen).
 - Polish top flight 1927–: English Wikipedia season articles (results cross tables, CC BY-SA), read by
-  `scripts/wikipedia_pl.py`; the two latest seasons are refreshed weekly, and a season is never replaced by a
+  `scripts/wikipedia_pl.py`; the two latest seasons are refreshed daily, and a season is never replaced by a
   copy with fewer matches. Seasons played in groups (1933, 1952, 1962) and the 1939 season cut short by the war
   have fewer matches than a full round robin by design.
 - Running season (UCL, Premier League): football-data.org when `FOOTBALL_DATA_KEY` is set.
@@ -36,7 +36,7 @@ site/                        the website (site/data/ is generated)
 Edit `data/teams_*.json` on GitHub. Names under `aliases` are rated as the canonical team,
 e.g. `"Serbia": {"aliases": ["Yugoslavia", "Serbia and Montenegro"]}`.
 Ratings are recomputed from scratch on every build, so nothing else has to change.
-Unknown names from the weekly import are never guessed: the run stops and opens an issue listing them.
+Unknown names from the daily import are never guessed: the run stops and opens an issue listing them.
 
 ## Manual match fixes
 `data/overrides.json` → `add` takes match objects like
