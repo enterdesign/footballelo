@@ -39,6 +39,8 @@ function prepare(d) {
   return d;
 }
 
+const flagUrl = t => t.iso ? `https://flagcdn.com/w40/${t.iso}.png` : "";
+const icon = t => { const u = route.comp === "wc" ? flagUrl(t) : t.logo || ""; return `<span class="ico">${u ? `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`; };
 const eloColor = e => e >= 1750 ? "#fbbf24" : e >= 1700 ? "#f97316" : e >= 1650 ? "#60a5fa" : e >= 1600 ? "#4ade80" : "#f87171";
 const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="color:${p.color};border-color:${p.color}55">${p.label}</span>`; };
 
@@ -79,15 +81,17 @@ function ranking() {
   D.teams.forEach(t => groups.set(C.group(t), C.groupLabel(t)));
   const state = {g: "", q: ""};
   $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="Search…" autocomplete="off"></div>
-    <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span>${C.noun.slice(0, -1)}</span><span style="text-align:right">ELO</span><span style="text-align:right">Δ ${esc(D.last)}</span><span style="text-align:right" class="mcount">Games</span></div><div id="rows"></div>`;
+    <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" title="Rating change during ${esc(D.last)}">Δ ${esc(D.last)}</span><span class="r mcount">Games</span></div><div id="rows"></div>`;
   const draw = () => {
-    $("chips").innerHTML = [["", "ALL"], ...[...groups].sort().map(([k]) => [k, k])]
-      .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
+    const chipList = [["", "ALL"], ...[...groups].sort().map(([k]) => [k, k])];
+    const cw = Math.max(...chipList.map(([, l]) => l.length)) * 8 + 24;
+    $("chips").innerHTML = chipList
+      .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
     const q = state.q.toLowerCase();
     $("rows").innerHTML = D.teams.map((t, i) => [t, i]).filter(([t]) => (!state.g || C.group(t) === state.g) &&
       (!q || [t.name, ...(t.aliases || [])].some(n => n.toLowerCase().includes(q))))
       .map(([t, i]) => { const dl = D.delta[i];
-        return `<div class="row" data-t="${i}"><span class="pos${i < 3 ? " top" : ""}">${i + 1}</span>
+        return `<div class="row" data-t="${i}"><span class="pos${i < 3 ? " top" : ""}">${i + 1}</span>${icon(t)}
         <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.groupLabel(t))}${(t.aliases || []).length && route.comp === "wc" ? " · incl. " + esc(t.aliases.slice(0, 3).join(", ")) : ""}</div></div>
         <span class="elo" style="color:${eloColor(t.elo)}">${t.elo}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${t.matches}</span></div>`; }).join("");
@@ -146,7 +150,7 @@ function stats() {
   $("st").onchange = () => { location.hash = `#${route.comp}/stats/${$("st").value === "" ? "" : encodeURIComponent(D.teams[$("st").value].name)}`; };
   if (cur < 0) { $("out").innerHTML = `<div class="empty">SELECT A TEAM TO VIEW ELO PROGRESSION</div>`; return; }
   const t = D.teams[cur];
-  $("out").innerHTML = `<div class="card"><h3>${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${(t.aliases || []).length ? `<p class="sub" style="margin-top:8px">Includes history of: ${esc(t.aliases.join(", "))}</p>` : ""}</div>
+  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${(t.aliases || []).length ? `<p class="sub" style="margin-top:8px">Includes history of: ${esc(t.aliases.join(", "))}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
   drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#f59e0b"}]);
 }

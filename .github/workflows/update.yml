@@ -32,6 +32,8 @@ jobs:
 
       - name: Fetch new matches
         if: github.event_name != 'push'
+        env:
+          FOOTBALL_DATA_KEY: ${{ secrets.FOOTBALL_DATA_KEY }}
         run: python scripts/sync.py
 
       - name: Build site data
