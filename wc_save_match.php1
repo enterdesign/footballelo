@@ -1,0 +1,57 @@
+<?php
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
+
+define('ADMIN_PASSWORD', 'ucl2025');
+define('MATCHES_FILE', __DIR__ . '/matches.json');
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    echo json_encode(['error' => 'Method not allowed']);
+    exit;
+}
+
+$input = json_decode(file_get_contents('php://input'), true);
+if (!$input) { http_response_code(400); echo json_encode(['error' => 'Invalid JSON']); exit; }
+
+if (empty($input['password']) || $input['password'] !== ADMIN_PASSWORD) {
+    http_response_code(401); echo json_encode(['error' => 'Invalid password']); exit;
+}
+
+if (!empty($input['action']) && $input['action'] === 'delete') {
+    $idx = intval($input['index'] ?? -1);
+    $matches = json_decode(file_get_contents(MATCHES_FILE), true);
+    if ($idx < 0 || $idx >= count($matches)) { http_response_code(400); echo json_encode(['error' => 'Invalid index']); exit; }
+    array_splice($matches, $idx, 1);
+    file_put_contents(MATCHES_FILE, json_encode($matches, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    echo json_encode(['success' => true, 'total' => count($matches)]);
+    exit;
+}
+
+$required = ['year', 'phase', 'teamA', 'goalsA', 'teamB', 'goalsB'];
+foreach ($required as $field) {
+    if (!isset($input[$field]) || $input[$field] === '') {
+        http_response_code(400); echo json_encode(['error' => "Missing: $field"]); exit;
+    }
+}
+
+$validPhases = ['group', 'r16', 'qf', 'sf', '3rd', 'final'];
+if (!in_array($input['phase'], $validPhases)) {
+    http_response_code(400); echo json_encode(['error' => 'Invalid phase']); exit;
+}
+
+$match = [
+    'year'   => intval($input['year']),
+    'phase'  => $input['phase'],
+    'teamA'  => trim($input['teamA']),
+    'goalsA' => intval($input['goalsA']),
+    'teamB'  => trim($input['teamB']),
+    'goalsB' => intval($input['goalsB']),
+];
+
+$matches = json_decode(file_get_contents(MATCHES_FILE), true) ?? [];
+$matches[] = $match;
+file_put_contents(MATCHES_FILE, json_encode($matches, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+echo json_encode(['success' => true, 'total' => count($matches), 'match' => $match]);
