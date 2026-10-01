@@ -16,6 +16,9 @@ scripts/                     sync (import), build (ELO -> site/data), parsers, e
 site/                        the website (site/data/ is generated)
 ```
 
+**Something broken?** See [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) (in Polish): unknown team names, no new matches,
+red runs, manual match fixes, format changes - each with examples.
+
 ## Rules
 - Start 1600; K per phase (`data/phases.json`); `R += K·(S−E)`.
 - Extra time counts by its score; a match decided on penalties is a win for the shoot-out winner.
@@ -71,6 +74,10 @@ python scripts/build.py    # writes site/data/*.json
 python -m http.server -d site
 python -m unittest discover -s tests
 ```
+
+## Monitoring
+The daily run opens an issue when a source breaks: *Unknown team names in daily update* (a name has to be added to `data/teams_*.json`) and
+*No new matches from some sources* (`scripts/freshness.py`: a running competition has had no new matches for 3 weeks, which would otherwise be silent).
 
 ## Setup (once)
 Repo → Settings → Pages → Source: **GitHub Actions**.

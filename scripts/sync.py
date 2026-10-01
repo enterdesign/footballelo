@@ -149,8 +149,19 @@ def refresh_uefa():
                 matches = [m for m in matches if m["season"] != season] + fresh
             elif fresh:
                 print(f"{comp} {season}: fresh copy has fewer matches ({len(fresh)} < {len(stored)}); kept stored")
+            elif stored:
+                print(f"{comp} {season}: no matches parsed (stored {len(stored)}); kept stored")
         out[comp] = sorted(matches, key=lambda m: (m["season"], m["date"]))
     return out
+
+
+def feed_changes(counts):
+    """{competition: {"n": matches, "changed": date the number last changed}} - read by freshness.py."""
+    path = DATA / "sync.json"
+    old = json.loads(path.read_text(encoding="utf-8")).get("feeds", {}) if path.exists() else {}
+    today = date.today().isoformat()
+    return {k: {"n": n, "changed": old[k]["changed"] if k in old and old[k]["n"] == n else today}
+            for k, n in counts.items()}
 
 
 def main():
@@ -190,7 +201,11 @@ def main():
     dump(DATA / "matches/ucl.json", ucl)
     dump(DATA / "matches/pl.json", pl)
     # heartbeat: shown on the home page, and the daily commit keeps the schedule alive
-    dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
+    counts = {"ucl": len(ucl), "wc": len(wc), "pl": len(pl), "ekstraklasa": len(ekstraklasa), "nl": len(nl),
+              "euro": len(intl["euro"]), "copa": len(intl["copa"]),
+              "el": len(load_old("el")), "conf": len(load_old("conf"))}
+    dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes"),
+                              "feeds": feed_changes(counts)})
     print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, "
           f"ekstraklasa: {len(ekstraklasa)}, nations league: {len(nl)}, euro: {len(intl['euro'])}, copa: {len(intl['copa'])} matches")
 
