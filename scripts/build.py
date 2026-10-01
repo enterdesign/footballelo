@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 from common import DATA, ROOT, alias_map, load, unknown_names
 import elo
 import nationsleague
+import tournaments
 
 COMPS = {
     "ucl": {"teams": "teams_ucl.json", "period": "season", "title": "UEFA Champions League"},
@@ -23,7 +24,11 @@ COMPS = {
                     "eras": [{"id": "pre", "label": "Pre-war (1927–1939)", "to": "1939"},
                              {"id": "post", "label": "Post-war (1948–)", "from": "1948"}],
                     "default_era": "post"},
+    "el": {"teams": "teams_el.json", "period": "season", "title": "UEFA Europa League"},
+    "conf": {"teams": "teams_conf.json", "period": "season", "title": "UEFA Conference League"},
     "nl": {"teams": "teams_nl.json", "period": "season", "title": "UEFA Nations League"},
+    "euro": {"teams": "teams_euro.json", "period": "year", "title": "UEFA European Championship"},
+    "copa": {"teams": "teams_copa.json", "period": "year", "title": "Copa América (1993 →)"},
 }
 
 
@@ -78,6 +83,8 @@ def build(key):
     division = {}
     if key == "nl":                     # raw results -> editions, division phases
         matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"), lambda t: amap.get(t, t))
+    elif key in ("euro", "copa"):       # dated results -> editions, stages
+        matches = tournaments.prepare(key, matches)
     matches = apply_overrides(matches, load(DATA / "overrides.json").get(key, {}), period)
     bad = unknown_names(matches, amap)
     if bad:

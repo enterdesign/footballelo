@@ -10,8 +10,14 @@ import nationsleague as nl
 from common import DATA
 
 
-def prepared():
+def history():
+    """Completed editions only: the stored file also holds the running one."""
     raw = json.loads((DATA / "matches" / "nl.json").read_text(encoding="utf-8"))
+    return [m for m in raw if m["date"] < "2026-01-01"]
+
+
+def prepared():
+    raw = history()
     return nl.prepare(raw, json.loads((DATA / "nl_leagues.json").read_text(encoding="utf-8")))
 
 
@@ -40,7 +46,7 @@ class NationsLeague(unittest.TestCase):
         ms, _ = prepared()
         extra = [{"date": "2026-09-04", "teamA": "Portugal", "goalsA": 2, "teamB": "Spain", "goalsB": 1},
                  {"date": "2026-09-04", "teamA": "Iceland", "goalsA": 0, "teamB": "Wales", "goalsB": 0}]
-        raw = json.loads((DATA / "matches" / "nl.json").read_text(encoding="utf-8")) + extra
+        raw = history() + extra
         out, _ = nl.prepare(raw, json.loads((DATA / "nl_leagues.json").read_text(encoding="utf-8")))
         new = [m for m in out if m["season"] == "2026/27"]
         self.assertEqual([m["phase"] for m in new], ["A", "B"])

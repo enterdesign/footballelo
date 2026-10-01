@@ -7,7 +7,9 @@ usage: sync.py [--worldcup DIR] [--ucl DIR] [--england DIR]   (default: shallow-
 * Champions League: seasons from 2011/12 replaced from openfootball, older ones kept.
 * Premier League: seasons from 1992/93 replaced from openfootball; the First Division
   archive (1888/89-1991/92, from engsoccerdata) is kept.
-* Nations League: replaced wholesale from the open international_results dataset (see nationsleague.py).
+* Europa League and Conference League: the running season(s) from Wikipedia (uefa_wikipedia.py).
+* Nations League, European Championship, Copa América: replaced wholesale from the open international_results
+  dataset (see nationsleague.py, tournaments.py).
 * Running season of the Champions League and Premier League: football-data.org when
   FOOTBALL_DATA_KEY is set (it is live; openfootball is often weeks behind).
 """
@@ -25,6 +27,8 @@ import footballdata
 import import_ekstraklasa
 import nationsleague
 import nl_wikipedia
+import tournaments
+import uefa_wikipedia
 import openfootball
 import wikipedia_pl
 
@@ -88,19 +92,25 @@ def refresh_ekstraklasa(recent=2):
     return matches
 
 
-def refresh_nl():
-    """Nations League: the open dataset (history, shoot-out winners) plus the running edition from Wikipedia,
-    which is days ahead of the dataset. A wiki match is dropped as soon as the dataset has it
-    (same teams, dates within 20 days). Stored data is kept when a download fails or looks truncated."""
-    old = load_old("nl")
+def refresh_internationals():
+    """Nations League, European Championship and Copa América from the open results dataset (one download).
+    The running Nations League edition is topped up from Wikipedia, which is days ahead of the dataset:
+    a wiki match is dropped as soon as the dataset has it (same teams, dates within 20 days).
+    Stored data is kept when a download fails or looks truncated."""
+    kinds = {"nl": nationsleague.TOURNAMENT, "euro": tournaments.EURO, "copa": tournaments.COPA}
+    old = {k: load_old(k) for k in kinds}
     try:
-        fresh = nationsleague.parse(nationsleague.fetch(nationsleague.RESULTS), nationsleague.fetch(nationsleague.SHOOTOUTS))
+        results, shootouts = nationsleague.fetch(nationsleague.RESULTS), nationsleague.fetch(nationsleague.SHOOTOUTS)
     except Exception as e:
-        print(f"international_results failed ({e}); keeping stored Nations League data")
+        print(f"international_results failed ({e}); keeping stored international data")
         return old
-    if len(fresh) < len(old):
-        print(f"Nations League: fresh copy has fewer matches ({len(fresh)} < {len(old)}); kept stored")
-        return old
+    out = {}
+    for k, name in kinds.items():
+        fresh = nationsleague.parse(results, shootouts, name)
+        if len(fresh) < len(old[k]):
+            print(f"{name}: fresh copy has fewer matches ({len(fresh)} < {len(old[k])}); kept stored")
+            fresh = old[k]
+        out[k] = fresh
     amap = alias_map(json.loads((DATA / "teams_nl.json").read_text(encoding="utf-8")))
     canon = lambda t: amap.get(t, t)
     try:
@@ -109,12 +119,38 @@ def refresh_nl():
         print(f"Wikipedia (Nations League) failed ({e}); using the dataset only")
         wiki = []
     have = {}
-    for m in fresh:
+    for m in out["nl"]:
         have.setdefault((canon(m["teamA"]), canon(m["teamB"])), []).append(m["date"])
     extra = [m for m in wiki if not any(abs(nationsleague.days(m["date"], d)) <= 20
                                         for d in have.get((canon(m["teamA"]), canon(m["teamB"])), []))]
-    print(f"Nations League: {len(fresh)} from the dataset, {len(extra)} more from Wikipedia")
-    return sorted(fresh + extra, key=lambda m: m["date"])
+    print(f"Nations League: {len(out['nl'])} from the dataset, {len(extra)} more from Wikipedia")
+    out["nl"] = sorted(out["nl"] + extra, key=lambda m: m["date"])
+    return out
+
+
+def refresh_uefa():
+    """Europa League and Conference League: the running season(s) from Wikipedia. A season is only replaced when
+    the fresh copy has at least as many matches as the stored one (a half-edited article never shrinks it)."""
+    out = {}
+    for comp in ("el", "conf"):
+        old = load_old(comp)
+        matches = list(old)
+        for year in uefa_wikipedia.season_years(date.today()):
+            if year < uefa_wikipedia.FIRST[comp]:
+                continue
+            season = uefa_wikipedia.label(year)
+            try:
+                fresh, _ = uefa_wikipedia.fetch_season(comp, year)
+            except Exception as e:
+                print(f"Wikipedia ({comp} {season}) failed ({e}); keeping stored data")
+                continue
+            stored = [m for m in old if m["season"] == season]
+            if fresh and len(fresh) >= len(stored):
+                matches = [m for m in matches if m["season"] != season] + fresh
+            elif fresh:
+                print(f"{comp} {season}: fresh copy has fewer matches ({len(fresh)} < {len(stored)}); kept stored")
+        out[comp] = sorted(matches, key=lambda m: (m["season"], m["date"]))
+    return out
 
 
 def main():
@@ -143,8 +179,12 @@ def main():
     pl = with_current_season(old, pl, "PL", footballdata.PL_STAGES)
 
     ekstraklasa = refresh_ekstraklasa()
-    nl = refresh_nl()
-    dump(DATA / "matches/nl.json", nl)
+    intl = refresh_internationals()
+    for k, v in intl.items():
+        dump(DATA / f"matches/{k}.json", v)
+    nl = intl["nl"]
+    for k, v in refresh_uefa().items():
+        dump(DATA / f"matches/{k}.json", v)
     dump(DATA / "matches/ekstraklasa.json", ekstraklasa)
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
@@ -152,7 +192,7 @@ def main():
     # heartbeat: shown on the home page, and the daily commit keeps the schedule alive
     dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
     print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, "
-          f"ekstraklasa: {len(ekstraklasa)}, nations league: {len(nl)} matches")
+          f"ekstraklasa: {len(ekstraklasa)}, nations league: {len(nl)}, euro: {len(intl['euro'])}, copa: {len(intl['copa'])} matches")
 
 
 if __name__ == "__main__":
