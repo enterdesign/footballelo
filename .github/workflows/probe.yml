@@ -10,13 +10,17 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd scripts && python3 - <<'PY'
-          import re, nl_wikipedia as w
-          for t in ["2026–27 UEFA Nations League A", "2024–25 UEFA Nations League A"]:
-              p = w.page_html(t)
-              print(t, None if p is None else len(p))
-              if p:
-                  i = p.find('footballbox')
-                  print(i, p.count('footballbox'))
-                  print(p[i-20:i+2200])
-                  print(len(w.parse_boxes(p)))
+          import json, collections
+          import sync, nl_wikipedia, build, common
+          ms = nl_wikipedia.fetch_running()
+          print("wiki matches:", len(ms))
+          for m in ms[:3] + ms[-3:]: print(m)
+          nl = sync.refresh_nl()
+          print("total:", len(nl), nl[-1])
+          sync.dump(common.DATA / "matches/nl.json", nl)
+          out, bad = build.build("nl")
+          print("unknown:", bad)
+          if out:
+              c = collections.Counter(m[1] for m in out["matches"] if m[0] == "2026/27"); print("2026/27 phases:", dict(c))
+              for t in out["teams"][:8]: print(t["name"], t["elo"], t["matches"], t.get("division"))
           PY

@@ -12,7 +12,7 @@ import urllib.request
 from datetime import date
 
 API = "https://en.wikipedia.org/w/api.php?action=parse&prop=text&format=json&formatversion=2&redirects=1&page="
-BOX = re.compile(r'<div class="footballbox"[^>]*>(.*?)(?=<div class="footballbox"|<h[1-6][ >]|$)', re.S)
+BOX = re.compile(r'<div [^>]*class="footballbox"[^>]*>(.*?)(?=<div [^>]*class="footballbox"|<h[1-6][ >]|$)', re.S)
 SCORE = re.compile(r"(\d+)\s*[–-]\s*(\d+)")
 DAY = re.compile(r"\d{4}-\d{2}-\d{2}")
 
@@ -41,9 +41,9 @@ def parse_boxes(page):
         score = SCORE.search(text(cell(block, "fscore")))
         if not day or not score:
             continue
-        links = re.findall(r"<a [^>]*>([^<]+)</a>", cell(block, "fhome"))
+        links = re.findall(r"<a [^>]*>([^<]+)</a>", cell(block, "fhome"))     # flag links hold only an image
         links2 = re.findall(r"<a [^>]*>([^<]+)</a>", cell(block, "faway"))
-        a, b = (links[-1] if links else text(cell(block, "fhome"))), (links2[0] if links2 else text(cell(block, "faway")))
+        a, b = (links[0] if links else text(cell(block, "fhome"))), (links2[0] if links2 else text(cell(block, "faway")))
         m = {"date": day.group(0), "teamA": html.unescape(a).strip(), "goalsA": int(score.group(1)),
              "teamB": html.unescape(b).strip(), "goalsB": int(score.group(2))}
         pen = re.search(r"Penalties.*?(\d+)\s*[–-]\s*(\d+)", text(block))
