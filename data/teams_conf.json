@@ -284,14 +284,6 @@
   "code": "SWE",
   "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Djurgardens_IF_logo.svg"
  },
- "Dnipro-1": {
-  "aliases": [
-   "Dnipro-1 Regiment",
-   "SC Dnipro-1"
-  ],
-  "country": "Ukraine",
-  "code": "UKR"
- },
  "Drita": {
   "aliases": [
    "FC Drita"
@@ -1056,5 +1048,15 @@
   "country": "Lithuania",
   "code": "LTU",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/4x8gap1579201999.png"
+ },
+ "Dnipro Dnipropetrovsk": {
+  "country": "Ukraine",
+  "code": "UKR",
+  "aliases": [
+   "Dnipro-1",
+   "Dnipro-1 Regiment",
+   "SC Dnipro-1"
+  ],
+  "note": "Includes FC Dnipro (Dnipropetrovsk, until 2016) and its successor SC Dnipro-1"
  }
 }

@@ -69,14 +69,6 @@
   "country": "Netherlands",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"
  },
- "AaB": {
-  "aliases": [
-   "AaB Fodbold"
-  ],
-  "country": "Denmark",
-  "code": "DEN",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vtwqwt1473535469.png"
- },
  "Académica": {
   "aliases": [
    "Académica de Coimbra (football)"
@@ -196,12 +188,6 @@
   "code": "ITA",
   "country": "Italy",
   "logo": "https://crests.football-data.org/102.png"
- },
- "Athletic Bilbao": {
-  "aliases": [],
-  "country": "Spain",
-  "code": "ESP",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/68w7fe1639408210.png"
  },
  "Atlético Madrid": {
   "aliases": [],
@@ -496,7 +482,8 @@
   ],
   "country": "Ukraine",
   "code": "UKR",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/typwxs1447696311.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/typwxs1447696311.png",
+  "note": "Includes FC Dnipro (Dnipropetrovsk, until 2016) and its successor SC Dnipro-1"
  },
  "Dundalk": {
   "aliases": [
@@ -1950,5 +1937,22 @@
   "country": "Sweden",
   "code": "SWE",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/6pvzqm1592144722.png"
+ },
+ "Athletic Club": {
+  "country": "Spain",
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/68w7fe1639408210.png",
+  "aliases": [
+   "Athletic Bilbao"
+  ]
+ },
+ "Aalborg": {
+  "country": "Denmark",
+  "code": "DEN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vtwqwt1473535469.png",
+  "aliases": [
+   "AaB",
+   "AaB Fodbold"
+  ]
  }
 }

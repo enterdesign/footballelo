@@ -64,6 +64,17 @@ Plik do edycji jest w nawiasie: `data/teams_<rozgrywki>.json` (`ucl`, `el`, `con
 **d) Błąd „alias 'X' is claimed by both 'A' and 'B'”** – ta sama nazwa jest wpisana w dwóch klubach. Usuń ją z jednego z nich
 (albo połącz oba kluby w jeden wpis, jeśli to naprawdę ten sam klub).
 
+**e) Ten sam klub widać na stronie dwa razy** (np. „Seville” i „Sevilla”, „Rostov” i „Rostov-on-Don”) – nazwa wpadła do bazy pod dwoma
+wpisami. W pliku, w którym są oba, usuń wpis z gorszą nazwą i dopisz ją do `aliases` tego dobrego:
+
+```json
+"Sevilla": {"aliases": ["Sevilla FC", "Seville"], "country": "Spain", "code": "ESP"}
+```
+
+Jeśli kluby są w różnych plikach (np. `teams_ucl.json` ma „Aalborg”, a `teams_el.json` „AaB”), ujednolić nazwę w obu –
+wspólny ranking UEFA łączy kluby po nazwie i kraju, więc nazwy muszą być takie same (pisownia z Ligi Mistrzów ma pierwszeństwo).
+Gdy to naprawdę dwa różne kluby, a nie dwie pisownie (np. Cercle Brugge i Club Brugge), nic nie łącz.
+
 Po commicie przebieg uruchomi się sam. Issue możesz zamknąć.
 
 > Wspólny ranking UEFA (`uefa`) nie ma własnego pliku: łączy `teams_ucl`, `teams_el` i `teams_conf` automatycznie po nazwie i kraju.
