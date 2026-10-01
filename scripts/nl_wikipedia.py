@@ -7,6 +7,8 @@ every match is a "footballbox" with date, the two teams and the score. Unplayed 
 import html
 import json
 import re
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import date
@@ -18,10 +20,19 @@ DAY = re.compile(r"\d{4}-\d{2}-\d{2}")
 
 
 def page_html(title):
-    req = urllib.request.Request(API + urllib.parse.quote(title), headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        d = json.load(r)
-    return None if "error" in d else d["parse"]["text"]
+    """Rendered HTML of an article, None if it does not exist. Spaced out and retried (bursts get rate limited)."""
+    url = API + urllib.parse.quote(title)
+    for attempt in range(5):
+        time.sleep(1)
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                d = json.load(r)
+            return None if "error" in d else d["parse"]["text"]
+        except urllib.error.HTTPError as e:
+            if e.code not in (429, 500, 502, 503, 504) or attempt == 4:
+                raise
+            time.sleep(8 * (attempt + 1))
 
 
 def text(fragment):
@@ -67,7 +78,8 @@ def fetch_running(today=None):
         for t in titles(y):
             try:
                 page = page_html(t)
-            except Exception:
+            except Exception as e:
+                print(f"  Wikipedia page '{t}' failed: {e}")
                 continue
             if page:
                 out += parse_boxes(page)
