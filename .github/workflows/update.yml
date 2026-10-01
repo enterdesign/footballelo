@@ -43,13 +43,28 @@ jobs:
           python scripts/build.py 2>&1 | tee build.log
           echo "status=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
 
+      - name: Check that the sources still deliver matches
+        if: github.event_name != 'push' && steps.build.outputs.status == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          status=0
+          python scripts/freshness.py > freshness.log || status=$?
+          cat freshness.log
+          if [ "$status" = "3" ] && [ -z "$(gh issue list --state open --search 'No new matches from some sources in:title' --json number --jq '.[].number')" ]; then
+            { echo "A running competition has had no new matches for more than three weeks, so a source may have changed its format or stopped updating:"
+              echo; echo '```'; cat freshness.log; echo '```'
+              echo; echo "What to check: docs/TROUBLESHOOTING.md (in Polish), section 'No new matches'. The site keeps showing the last good data meanwhile."; } > fresh.md
+            gh issue create --title "No new matches from some sources" --body-file fresh.md
+          fi
+
       - name: Open issue for unknown team names
         if: steps.build.outputs.status == '2'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           { echo "The daily update found team names that are not in \`data/teams_*.json\`."
-            echo "Add each one as an alias of an existing team (or as a new team) and the next run will pick it up."
+            echo "Add each one as an alias of an existing team (or as a new team) and the next run will pick it up. Examples: docs/TROUBLESHOOTING.md (in Polish), section 'Unknown team names'."
             echo; echo '```'; cat build.log; echo '```'; } > issue.md
           gh issue create --title "Unknown team names in daily update" --body-file issue.md
           exit 1
