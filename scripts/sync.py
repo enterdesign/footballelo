@@ -19,11 +19,12 @@ import tempfile
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from common import DATA
+from common import DATA, alias_map
 import england
 import footballdata
 import import_ekstraklasa
 import nationsleague
+import nl_wikipedia
 import openfootball
 import wikipedia_pl
 
@@ -88,7 +89,9 @@ def refresh_ekstraklasa(recent=2):
 
 
 def refresh_nl():
-    """Nations League results (+ shoot-out winners). Kept as stored when the download fails or looks truncated."""
+    """Nations League: the open dataset (history, shoot-out winners) plus the running edition from Wikipedia,
+    which is days ahead of the dataset. A wiki match is dropped as soon as the dataset has it
+    (same teams, dates within 20 days). Stored data is kept when a download fails or looks truncated."""
     old = load_old("nl")
     try:
         fresh = nationsleague.parse(nationsleague.fetch(nationsleague.RESULTS), nationsleague.fetch(nationsleague.SHOOTOUTS))
@@ -98,7 +101,20 @@ def refresh_nl():
     if len(fresh) < len(old):
         print(f"Nations League: fresh copy has fewer matches ({len(fresh)} < {len(old)}); kept stored")
         return old
-    return fresh
+    amap = alias_map(json.loads((DATA / "teams_nl.json").read_text(encoding="utf-8")))
+    canon = lambda t: amap.get(t, t)
+    try:
+        wiki = nl_wikipedia.fetch_running()
+    except Exception as e:
+        print(f"Wikipedia (Nations League) failed ({e}); using the dataset only")
+        wiki = []
+    have = {}
+    for m in fresh:
+        have.setdefault((canon(m["teamA"]), canon(m["teamB"])), []).append(m["date"])
+    extra = [m for m in wiki if not any(abs(nationsleague.days(m["date"], d)) <= 20
+                                        for d in have.get((canon(m["teamA"]), canon(m["teamB"])), []))]
+    print(f"Nations League: {len(fresh)} from the dataset, {len(extra)} more from Wikipedia")
+    return sorted(fresh + extra, key=lambda m: m["date"])
 
 
 def main():

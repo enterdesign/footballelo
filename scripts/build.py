@@ -77,7 +77,7 @@ def build(key):
     matches = load(DATA / "matches" / f"{key}.json")
     division = {}
     if key == "nl":                     # raw results -> editions, division phases
-        matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"))
+        matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"), lambda t: amap.get(t, t))
     matches = apply_overrides(matches, load(DATA / "overrides.json").get(key, {}), period)
     bad = unknown_names(matches, amap)
     if bad:

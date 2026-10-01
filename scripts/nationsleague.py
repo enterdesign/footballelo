@@ -119,10 +119,13 @@ def infer_divisions(groups, prev, counts):
     return out
 
 
-def prepare(raw, cfg):
+def prepare(raw, cfg, canon=lambda t: t):
     """Raw matches -> rated matches with "season" and "phase".
+    `canon` maps source names to canonical ones (sources spell some teams differently).
     Returns (matches, latest) where latest = {team: division in its most recent edition}."""
-    editions = cfg["editions"]
+    raw = [{**m, "teamA": canon(m["teamA"]), "teamB": canon(m["teamB"])} for m in raw]
+    editions = {lab: {**e, **({"divisions": {d: [canon(t) for t in ts] for d, ts in e["divisions"].items()}} if e.get("divisions") else {})}
+                for lab, e in cfg["editions"].items()}
     out, latest, prev, counts = [], {}, None, None
     for lab, ms in split_editions(raw, editions):
         spec = editions.get(lab, {})
