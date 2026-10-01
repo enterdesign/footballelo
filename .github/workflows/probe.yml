@@ -24,3 +24,4 @@ jobs:
               c = collections.Counter(m[1] for m in out["matches"] if m[0] == "2026/27"); print("2026/27 phases:", dict(c))
               for t in out["teams"][:8]: print(t["name"], t["elo"], t["matches"], t.get("division"))
           PY
+# rerun
