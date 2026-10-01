@@ -9,6 +9,8 @@ INITIAL = 1600
 
 def result(m):
     """Score for team A: 1, 0.5 or 0."""
+    if m.get("penWin"):                      # shoot-out winner known, score not
+        return 1.0 if m["penWin"] == "A" else 0.0
     if m.get("penA") is not None and m["penA"] != m.get("penB"):
         return 1.0 if m["penA"] > m["penB"] else 0.0
     if m["goalsA"] == m["goalsB"]:

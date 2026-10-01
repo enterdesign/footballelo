@@ -76,5 +76,62 @@
    "k": 16,
    "color": "#4a78a8"
   }
+ },
+ "nl": {
+  "A": {
+   "label": "LA",
+   "k": 24,
+   "color": "#4a78a8"
+  },
+  "B": {
+   "label": "LB",
+   "k": 12,
+   "color": "#6f9a78"
+  },
+  "C": {
+   "label": "LC",
+   "k": 8,
+   "color": "#8a8578"
+  },
+  "D": {
+   "label": "LD",
+   "k": 4,
+   "color": "#a8a08a"
+  },
+  "poAB": {
+   "label": "PO",
+   "k": 12,
+   "color": "#4f8ea3"
+  },
+  "poBC": {
+   "label": "PO",
+   "k": 8,
+   "color": "#4f8ea3"
+  },
+  "poCD": {
+   "label": "PO",
+   "k": 4,
+   "color": "#4f8ea3"
+  },
+  "qf": {
+   "label": "QF",
+   "k": 24,
+   "color": "#7a6aa8"
+  },
+  "sf": {
+   "label": "SF",
+   "k": 32,
+   "color": "#c2703d"
+  },
+  "3rd": {
+   "label": "3rd",
+   "k": 32,
+   "color": "#8a8578"
+  },
+  "final": {
+   "label": "FIN",
+   "k": 32,
+   "color": "#b3261e"
+  }
  }
 }
