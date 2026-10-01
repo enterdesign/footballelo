@@ -7,15 +7,11 @@ jobs:
   p:
     runs-on: ubuntu-latest
     steps:
-      - env:
-          K: ${{ secrets.FOOTBALL_DATA_KEY }}
-        run: |
-          echo "== competitions"
-          curl -s -H "X-Auth-Token: $K" https://api.football-data.org/v4/competitions | python3 -c "
-          import sys,json
-          d=json.load(sys.stdin)
-          for c in d.get('competitions',[]): print(c['code'],c['name'],c.get('plan'))"
-          echo "== NL candidates"
-          for c in UNL NL UNL1 UEFANL; do echo $c; curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/$c/matches?season=2026" | head -c 300; echo; done
-          echo "== wikipedia"
-          curl -s -A "footballelo/1.0" "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=2026%E2%80%9327+UEFA+Nations+League&format=json&srlimit=3" | head -c 600
+      - run: |
+          get() { curl -s -A "footballelo/1.0" "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvslots=main&format=json&formatversion=2&titles=$1" | python3 -c "import sys,json;print(json.load(sys.stdin)['query']['pages'][0].get('revisions',[{}])[0].get('slots',{}).get('main',{}).get('content','MISSING'))"; }
+          for t in "2026%E2%80%9327_UEFA_Nations_League_A" "2026%E2%80%9327_UEFA_Nations_League_B" "2026%E2%80%9327_UEFA_Nations_League_D"; do
+            echo "=== $t"; get "$t" > w.txt; wc -c w.txt; grep -c -i "footballbox" w.txt; grep -n -i -m4 "footballbox\|#invoke" w.txt
+          done
+          get "2026%E2%80%9327_UEFA_Nations_League_A" | grep -n -i -A14 -m2 "footballbox"
+          echo "=== 2024-25 A"
+          get "2024%E2%80%9325_UEFA_Nations_League_A" | grep -n -i -A14 -m1 "footballbox"
