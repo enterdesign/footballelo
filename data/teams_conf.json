@@ -1,141 +1,1077 @@
 {
-"1. FC Heidenheim":{"aliases":[],"country":"Germany","code":"GER"},
-"1. FC Köln":{"aliases":[],"country":"Germany","code":"GER"},
-"AEK Athens":{"aliases":["A.E.K. (sports club)","AEK Athens F.C."],"code":"GRE","country":"Greece","logo":"https://crests.football-data.org/1899.png"},
-"AEK Larnaca":{"aliases":["AEK Larnaca FC"],"country":"Cyprus","code":"CYP"},
-"APOEL FC":{"aliases":["APOEL"],"code":"CYP","country":"Cyprus","logo":"https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg"},
-"AS Roma":{"aliases":["Roma"],"code":"ITA","country":"Italy","logo":"https://crests.football-data.org/100.png"},
-"AZ":{"aliases":[],"country":"Netherlands","code":"NED"},
-"AZ Alkmaar":{"aliases":[],"code":"NED","country":"Netherlands","logo":"https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"},
-"Aberdeen":{"aliases":["Aberdeen F.C."],"country":"Scotland","code":"SCO"},
-"Ajax":{"aliases":["AFC Ajax"],"code":"NED","country":"Netherlands","logo":"https://crests.football-data.org/678.png"},
-"Alashkert":{"aliases":["FC Alashkert"],"country":"Armenia","code":"ARM"},
-"Anderlecht":{"aliases":["R.S.C. Anderlecht","RSC Anderlecht"],"country":"Belgium","code":"BEL","logo":"https://r2.thesportsdb.com/images/media/team/badge/auindn1771129464.png"},
-"Anorthosis Famagusta":{"aliases":["Anorthosis Famagusta FC"],"country":"Cyprus","code":"CYP"},
-"Apollon Limassol":{"aliases":["Apollon Limassol FC"],"country":"Cyprus","code":"CYP"},
-"Aston Villa":{"aliases":["Aston Villa F.C."],"code":"ENG","country":"England","logo":"https://crests.football-data.org/58.png"},
-"Austria Wien":{"aliases":["FK Austria Wien"],"code":"AUT","country":"Austria","logo":"https://r2.thesportsdb.com/images/media/team/badge/lttz761781996257.png"},
-"BK Häcken":{"aliases":[],"country":"Sweden","code":"SWE"},
-"Ballkani":{"aliases":["FC Ballkani"],"country":"Kosovo","code":"KVX"},
-"Basel":{"aliases":["FC Basel"],"country":"Switzerland","code":"SUI","logo":"https://r2.thesportsdb.com/images/media/team/badge/xppxwr1473791183.png"},
-"Başakşehir":{"aliases":["İstanbul Başakşehir","İstanbul Başakşehir F.K."],"code":"TUR","country":"Turkey","logo":"https://r2.thesportsdb.com/images/media/team/badge/895mqt1685993958.png"},
-"Beşiktaş":{"aliases":["Beşiktaş J.K."],"code":"TUR","country":"Turkey","logo":"https://r2.thesportsdb.com/images/media/team/badge/svo05k1776827439.png"},
-"Bodø/Glimt":{"aliases":["FK Bodø/Glimt"],"code":"NOR","country":"Norway","logo":"https://crests.football-data.org/5721.png"},
-"Borac Banja Luka":{"aliases":["FK Borac Banja Luka"],"country":"Bosnia and Herzegovina","code":"BIH"},
-"Braga":{"aliases":["S.C. Braga"],"country":"Portugal","code":"POR"},
-"Breiðablik":{"aliases":["Breiðablik (men's football)"],"country":"Iceland","code":"ISL"},
-"CFR Cluj":{"aliases":[],"code":"ROU","country":"Romania","logo":"https://r2.thesportsdb.com/images/media/team/badge/81uzfv1507891573.png"},
-"CSKA Sofia":{"aliases":["PFC CSKA Sofia"],"country":"Bulgaria","code":"BUL"},
-"Celje":{"aliases":["NK Celje"],"country":"Slovenia","code":"SVN"},
-"Celtic":{"aliases":["Celtic F.C."],"code":"SCO","country":"Scotland","logo":"https://crests.football-data.org/732.png"},
-"Cercle Brugge":{"aliases":["Cercle Brugge K.S.V.","Cercle Brugge KSV"],"country":"Belgium","code":"BEL"},
-"Chelsea":{"aliases":["Chelsea F.C."],"code":"ENG","country":"England","logo":"https://crests.football-data.org/61.png"},
-"Club Brugge":{"aliases":["Club Brugge KV"],"country":"Belgium","code":"BEL"},
-"Copenhagen":{"aliases":["F.C. Copenhagen"],"code":"DEN","country":"Denmark","logo":"https://crests.football-data.org/1876.png"},
-"Crystal Palace":{"aliases":["Crystal Palace F.C."],"country":"England","code":"ENG"},
-"Dinamo Minsk":{"aliases":["FC Dinamo Minsk"],"country":"Belarus","code":"BLR"},
-"Dinamo Zagreb":{"aliases":["GNK Dinamo Zagreb"],"code":"CRO","country":"Croatia","logo":"https://crests.football-data.org/755.png"},
-"Djurgårdens IF":{"aliases":[],"country":"Sweden","code":"SWE"},
-"Djurgårdens IF Fotboll":{"aliases":["Djurgårdens IF Fotboll"],"country":"Sweden","code":"SWE"},
-"Dnipro-1":{"aliases":["Dnipro-1 Regiment","SC Dnipro-1"],"country":"Ukraine","code":"UKR"},
-"Drita":{"aliases":["FC Drita"],"country":"Kosovo","code":"KVX"},
-"Dynamo Kyiv":{"aliases":["FC Dynamo Kyiv"],"code":"UKR","country":"Ukraine","logo":"https://r2.thesportsdb.com/images/media/team/badge/ktbncx1781158762.png"},
-"Eintracht Frankfurt":{"aliases":[],"code":"GER","country":"Germany","logo":"https://crests.football-data.org/19.png"},
-"FC Astana":{"aliases":[],"code":"KAZ","country":"Kazakhstan","logo":"https://r2.thesportsdb.com/images/media/team/badge/p74kfi1772124582.png"},
-"FC Kairat":{"aliases":[],"code":"KAZ","country":"Kazakhstan","logo":"https://crests.football-data.org/10601.png"},
-"FC Sheriff Tiraspol":{"aliases":["Sheriff Tiraspol"],"code":"MDA","country":"Moldova","logo":"https://r2.thesportsdb.com/images/media/team/badge/6exmnv1781242046.png"},
-"FCSB":{"aliases":[],"country":"Romania","code":"ROU"},
-"Fenerbahçe":{"aliases":["Fenerbahçe S.K.","Fenerbahçe S.K. (football)"],"code":"TUR","country":"Turkey","logo":"https://crests.football-data.org/613.png"},
-"Ferencváros":{"aliases":["Ferencvárosi TC"],"code":"HUN","country":"Hungary","logo":"https://r2.thesportsdb.com/images/media/team/badge/wk17od1688115265.png"},
-"Feyenoord":{"aliases":[],"code":"NED","country":"Netherlands","logo":"https://crests.football-data.org/675.png"},
-"Fiorentina":{"aliases":["ACF Fiorentina"],"code":"ITA","country":"Italy","logo":"https://r2.thesportsdb.com/images/media/team/badge/hc8nhu1656098030.png"},
-"Flora":{"aliases":["FC Flora"],"country":"Estonia","code":"EST"},
-"Genk":{"aliases":["KRC Genk"],"country":"Belgium","code":"BEL"},
-"Gent":{"aliases":["KAA Gent"],"country":"Belgium","code":"BEL","logo":"https://r2.thesportsdb.com/images/media/team/badge/48e27o1750703124.png"},
-"HJK":{"aliases":["Helsingin Jalkapalloklubi"],"country":"Finland","code":"FIN"},
-"Hamrun Spartans":{"aliases":["Hamrun Spartans F.C."],"country":"Malta","code":"MLT"},
-"Hapoel Be'er Sheva":{"aliases":["Hapoel Be'er Sheva F.C."],"country":"Israel","code":"ISR"},
-"Heart of Midlothian":{"aliases":["Heart of Midlothian F.C."],"country":"Scotland","code":"SCO"},
-"Jablonec":{"aliases":["FK Jablonec"],"country":"Czechia","code":"CZE"},
-"Jagiellonia Białystok":{"aliases":[],"country":"Poland","code":"POL"},
-"KuPS":{"aliases":["Kuopion Palloseura"],"country":"Finland","code":"FIN"},
-"KÍ":{"aliases":["Klaksvíkar Ítróttarfelag"],"country":"Faroe Islands","code":"FRO"},
-"LASK":{"aliases":[],"code":"AUT","country":"Austria","logo":"https://crests.football-data.org/2016.png"},
-"Larne":{"aliases":["Larne F.C."],"country":"Northern Ireland","code":"NIR"},
-"Lausanne-Sport":{"aliases":["FC Lausanne-Sport"],"country":"Switzerland","code":"SUI"},
-"Lazio":{"aliases":["SS Lazio"],"code":"ITA","country":"Italy","logo":"https://r2.thesportsdb.com/images/media/team/badge/rwqyvs1448806608.png"},
-"Lech Poznań":{"aliases":[],"country":"Poland","code":"POL"},
-"Legia Warsaw":{"aliases":[],"code":"POL","country":"Poland","logo":"https://r2.thesportsdb.com/images/media/team/badge/c969ez1632775656.png"},
-"Leicester City":{"aliases":["Leicester City F.C."],"code":"ENG","country":"England","logo":"https://r2.thesportsdb.com/images/media/team/badge/xtxwtu1448813356.png"},
-"Lille":{"aliases":["Lille OSC"],"code":"FRA","country":"France","logo":"https://crests.football-data.org/521.png"},
-"Lincoln Red Imps":{"aliases":["Lincoln Red Imps F.C."],"country":"Gibraltar","code":"GIB"},
-"Ludogorets Razgrad":{"aliases":["PFC Ludogorets Razgrad"],"code":"BUL","country":"Bulgaria","logo":"https://r2.thesportsdb.com/images/media/team/badge/35cw6l1752946925.png"},
-"Lugano":{"aliases":["FC Lugano"],"country":"Switzerland","code":"SUI"},
-"Maccabi Haifa":{"aliases":["Maccabi Haifa F.C."],"code":"ISR","country":"Israel","logo":"https://r2.thesportsdb.com/images/media/team/badge/kh3psh1781805608.png"},
-"Maccabi Tel Aviv":{"aliases":["Maccabi Tel Aviv F.C."],"code":"ISR","country":"Israel","logo":"https://r2.thesportsdb.com/images/media/team/badge/oeer261781239315.png"},
-"Mainz 05":{"aliases":["1. FSV Mainz 05"],"country":"Germany","code":"GER"},
-"Marseille":{"aliases":["Olympique de Marseille"],"code":"FRA","country":"France","logo":"https://crests.football-data.org/516.png"},
-"Midtjylland":{"aliases":["Central Denmark Region","FC Midtjylland"],"code":"DEN","country":"Denmark","logo":"https://r2.thesportsdb.com/images/media/team/badge/lvkl8g1783533167.png"},
-"Mladá Boleslav":{"aliases":["FK Mladá Boleslav"],"country":"Czechia","code":"CZE"},
-"Molde":{"aliases":["Molde FK"],"code":"NOR","country":"Norway","logo":"https://r2.thesportsdb.com/images/media/team/badge/apziyg1534866527.png"},
-"Mura":{"aliases":["NŠ Mura"],"country":"Slovenia","code":"SVN"},
-"Nice":{"aliases":[],"country":"France","code":"FRA"},
-"Noah":{"aliases":["FC Noah"],"country":"Armenia","code":"ARM"},
-"Nordsjælland":{"aliases":["FC Nordsjælland"],"code":"DEN","country":"Denmark","logo":"https://r2.thesportsdb.com/images/media/team/badge/9biavu1628558288.png"},
-"OGC Nice":{"aliases":["OGC Nice"],"country":"France","code":"FRA"},
-"Olimpija Ljubljana":{"aliases":["NK Olimpija Ljubljana"],"country":"Slovenia","code":"SVN"},
-"Olympiacos":{"aliases":["Olympiacos CFP","Olympiacos F.C."],"code":"GRE","country":"Greece","logo":"https://crests.football-data.org/654.png"},
-"Omonia":{"aliases":["AC Omonia"],"country":"Cyprus","code":"CYP"},
-"Omonoia":{"aliases":["Omonoia"],"country":"Cyprus","code":"CYP"},
-"PAOK":{"aliases":["P.A.O.K.","PAOK FC"],"country":"Greece","code":"GRE"},
-"PSV Eindhoven":{"aliases":[],"code":"NED","country":"Netherlands","logo":"https://crests.football-data.org/674.png"},
-"Pafos":{"aliases":["Pafos FC","Paphos"],"code":"CYP","country":"Cyprus","logo":"https://crests.football-data.org/11034.png"},
-"Panathinaikos":{"aliases":["Panathinaikos A.O.","Panathinaikos F.C."],"code":"GRE","country":"Greece","logo":"https://r2.thesportsdb.com/images/media/team/badge/vtpwwt1448208397.png"},
-"Partizan":{"aliases":["FK Partizan"],"code":"SRB","country":"Serbia","logo":"https://r2.thesportsdb.com/images/media/team/badge/iwpdh11614284091.png"},
-"Petrocub Hîncești":{"aliases":["FC Petrocub Hîncești"],"country":"Moldova","code":"MDA"},
-"Pyunik":{"aliases":["FC Pyunik"],"country":"Armenia","code":"ARM"},
-"Qarabağ":{"aliases":["Karabakh","Qarabağ FK"],"code":"AZE","country":"Azerbaijan","logo":"https://crests.football-data.org/611.png"},
-"RFS":{"aliases":["FK RFS"],"country":"Latvia","code":"LVA"},
-"Raków Częstochowa":{"aliases":[],"country":"Poland","code":"POL"},
-"Randers":{"aliases":["Randers FC"],"country":"Denmark","code":"DEN"},
-"Rapid Wien":{"aliases":["SK Rapid Wien"],"code":"AUT","country":"Austria","logo":"https://r2.thesportsdb.com/images/media/team/badge/ebwdmz1782841141.png"},
-"Rayo Vallecano":{"aliases":[],"country":"Spain","code":"ESP"},
-"Real Betis":{"aliases":[],"code":"ESP","country":"Spain","logo":"https://crests.football-data.org/90.png"},
-"Rennes":{"aliases":["Stade Rennais FC"],"code":"FRA","country":"France","logo":"https://r2.thesportsdb.com/images/media/team/badge/ypturx1473504818.png"},
-"Rijeka":{"aliases":["HNK Rijeka"],"country":"Croatia","code":"CRO"},
-"Samsunspor":{"aliases":[],"country":"Turkey","code":"TUR"},
-"Servette":{"aliases":["Servette FC"],"country":"Switzerland","code":"SUI"},
-"Shakhtar Donetsk":{"aliases":["FC Shakhtar Donetsk"],"code":"UKR","country":"Ukraine","logo":"https://crests.football-data.org/1887.png"},
-"Shamrock Rovers":{"aliases":["Shamrock Rovers F.C."],"country":"Republic of Ireland","code":"IRL"},
-"Shelbourne":{"aliases":["Shelbourne F.C."],"country":"Republic of Ireland","code":"IRL"},
-"Shkëndija":{"aliases":["KF Shkëndija"],"country":"North Macedonia","code":"MKD"},
-"Sigma Olomouc":{"aliases":["SK Sigma Olomouc"],"country":"Czechia","code":"CZE"},
-"Silkeborg":{"aliases":["Silkeborg IF"],"country":"Denmark","code":"DEN"},
-"Sivasspor":{"aliases":[],"country":"Turkey","code":"TUR"},
-"Slavia Prague":{"aliases":["SK Slavia Prague"],"code":"CZE","country":"Czechia","logo":"https://crests.football-data.org/930.png"},
-"Slovan Bratislava":{"aliases":["ŠK Slovan Bratislava"],"code":"SVK","country":"Slovakia","logo":"https://crests.football-data.org/7509.png"},
-"Slovácko":{"aliases":["1. FC Slovácko"],"country":"Czechia","code":"CZE"},
-"Sparta Prague":{"aliases":["AC Sparta Prague"],"code":"CZE","country":"Czechia","logo":"https://crests.football-data.org/907.png"},
-"Spartak Trnava":{"aliases":["FC Spartak Trnava"],"country":"Slovakia","code":"SVK"},
-"St. Gallen":{"aliases":["FC St. Gallen"],"country":"Switzerland","code":"SUI"},
-"Strasbourg":{"aliases":["RC Strasbourg Alsace"],"country":"France","code":"FRA"},
-"Sturm Graz":{"aliases":["SK Sturm Graz"],"code":"AUT","country":"Austria","logo":"https://crests.football-data.org/2021.png"},
-"TSC":{"aliases":["FK TSC"],"country":"Serbia","code":"SRB"},
-"The New Saints":{"aliases":["The New Saints F.C."],"country":"Wales","code":"WAL"},
-"Tottenham Hotspur":{"aliases":["Tottenham Hotspur F.C."],"code":"ENG","country":"England","logo":"https://crests.football-data.org/73.png"},
-"Trabzonspor":{"aliases":[],"code":"TUR","country":"Turkey","logo":"https://r2.thesportsdb.com/images/media/team/badge/96s34o1776827629.png"},
-"Union Berlin":{"aliases":["1. FC Union Berlin"],"code":"GER","country":"Germany","logo":"https://r2.thesportsdb.com/images/media/team/badge/q0o5001599679795.png"},
-"Union Saint-Gilloise":{"aliases":["Royale Union Saint-Gilloise"],"country":"Belgium","code":"BEL"},
-"Universitatea Craiova":{"aliases":["CS Universitatea Craiova"],"country":"Romania","code":"ROU"},
-"Vaduz":{"aliases":["FC Vaduz"],"country":"Liechtenstein","code":"LIE"},
-"Viktoria Plzeň":{"aliases":["FC Viktoria Plzeň"],"code":"CZE","country":"Czechia","logo":"https://r2.thesportsdb.com/images/media/team/badge/at8i2h1679265942.png"},
-"Villarreal":{"aliases":["Vila-real","Villarreal CF"],"code":"ESP","country":"Spain","logo":"https://crests.football-data.org/94.png"},
-"Vitesse":{"aliases":["SBV Vitesse"],"country":"Netherlands","code":"NED"},
-"Vitória de Guimarães":{"aliases":["Vitória S.C."],"country":"Portugal","code":"POR"},
-"Víkingur Reykjavík":{"aliases":["Knattspyrnufélagið Víkingur"],"country":"Iceland","code":"ISL"},
-"West Ham United":{"aliases":["West Ham United F.C."],"country":"England","code":"ENG"},
-"Zorya Luhansk":{"aliases":["FC Zorya Luhansk"],"country":"Ukraine","code":"UKR"},
-"Zrinjski Mostar":{"aliases":["HŠK Zrinjski Mostar"],"country":"Bosnia and Herzegovina","code":"BIH"},
-"Čukarički":{"aliases":["FK Čukarički"],"country":"Serbia","code":"SRB"},
-"Žalgiris":{"aliases":["FK Žalgiris"],"country":"Lithuania","code":"LTU"}
+ "1. FC Heidenheim": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lbj7g01608236988.png"
+ },
+ "1. FC Köln": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/2j1sc91566049407.png"
+ },
+ "AEK Athens": {
+  "aliases": [
+   "A.E.K. (sports club)",
+   "AEK Athens F.C."
+  ],
+  "code": "GRE",
+  "country": "Greece",
+  "logo": "https://crests.football-data.org/1899.png"
+ },
+ "AEK Larnaca": {
+  "aliases": [
+   "AEK Larnaca FC"
+  ],
+  "country": "Cyprus",
+  "code": "CYP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/150a2b1544814418.png"
+ },
+ "APOEL FC": {
+  "aliases": [
+   "APOEL"
+  ],
+  "code": "CYP",
+  "country": "Cyprus",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/9/93/APOEL_%28logo_with_stars%29.svg"
+ },
+ "AS Roma": {
+  "aliases": [
+   "Roma"
+  ],
+  "code": "ITA",
+  "country": "Italy",
+  "logo": "https://crests.football-data.org/100.png"
+ },
+ "AZ": {
+  "aliases": [],
+  "country": "Netherlands",
+  "code": "NED",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lzqhed1673938793.png"
+ },
+ "AZ Alkmaar": {
+  "aliases": [],
+  "code": "NED",
+  "country": "Netherlands",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"
+ },
+ "Aberdeen": {
+  "aliases": [
+   "Aberdeen F.C."
+  ],
+  "country": "Scotland",
+  "code": "SCO",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/f9s6vg1781155578.png"
+ },
+ "Ajax": {
+  "aliases": [
+   "AFC Ajax"
+  ],
+  "code": "NED",
+  "country": "Netherlands",
+  "logo": "https://crests.football-data.org/678.png"
+ },
+ "Alashkert": {
+  "aliases": [
+   "FC Alashkert"
+  ],
+  "country": "Armenia",
+  "code": "ARM",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/gn2ndx1742401876.png"
+ },
+ "Anderlecht": {
+  "aliases": [
+   "R.S.C. Anderlecht",
+   "RSC Anderlecht"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/auindn1771129464.png"
+ },
+ "Anorthosis Famagusta": {
+  "aliases": [
+   "Anorthosis Famagusta FC"
+  ],
+  "country": "Cyprus",
+  "code": "CYP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/gwf24l1627657894.png"
+ },
+ "Apollon Limassol": {
+  "aliases": [
+   "Apollon Limassol FC"
+  ],
+  "country": "Cyprus",
+  "code": "CYP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/17nj4k1511608842.png"
+ },
+ "Aston Villa": {
+  "aliases": [
+   "Aston Villa F.C."
+  ],
+  "code": "ENG",
+  "country": "England",
+  "logo": "https://crests.football-data.org/58.png"
+ },
+ "Austria Wien": {
+  "aliases": [
+   "FK Austria Wien"
+  ],
+  "code": "AUT",
+  "country": "Austria",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lttz761781996257.png"
+ },
+ "BK Häcken": {
+  "aliases": [],
+  "country": "Sweden",
+  "code": "SWE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/4mltnh1628558366.png"
+ },
+ "Ballkani": {
+  "aliases": [
+   "FC Ballkani"
+  ],
+  "country": "Kosovo",
+  "code": "KVX",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/y7p62a1617290077.png"
+ },
+ "Basel": {
+  "aliases": [
+   "FC Basel"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/xppxwr1473791183.png"
+ },
+ "Başakşehir": {
+  "aliases": [
+   "İstanbul Başakşehir",
+   "İstanbul Başakşehir F.K."
+  ],
+  "code": "TUR",
+  "country": "Turkey",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/895mqt1685993958.png"
+ },
+ "Beşiktaş": {
+  "aliases": [
+   "Beşiktaş J.K."
+  ],
+  "code": "TUR",
+  "country": "Turkey",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/svo05k1776827439.png"
+ },
+ "Bodø/Glimt": {
+  "aliases": [
+   "FK Bodø/Glimt"
+  ],
+  "code": "NOR",
+  "country": "Norway",
+  "logo": "https://crests.football-data.org/5721.png"
+ },
+ "Borac Banja Luka": {
+  "aliases": [
+   "FK Borac Banja Luka"
+  ],
+  "country": "Bosnia and Herzegovina",
+  "code": "BIH",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/wj4g311579090126.png"
+ },
+ "Braga": {
+  "aliases": [
+   "S.C. Braga"
+  ],
+  "country": "Portugal",
+  "code": "POR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/skbiwo1785775946.png"
+ },
+ "Breiðablik": {
+  "aliases": [
+   "Breiðablik (men's football)"
+  ],
+  "country": "Iceland",
+  "code": "ISL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/fkbtng1512142899.png"
+ },
+ "CFR Cluj": {
+  "aliases": [],
+  "code": "ROU",
+  "country": "Romania",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/81uzfv1507891573.png"
+ },
+ "CSKA Sofia": {
+  "aliases": [
+   "PFC CSKA Sofia"
+  ],
+  "country": "Bulgaria",
+  "code": "BUL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/e9tykm1752947048.png"
+ },
+ "Celje": {
+  "aliases": [
+   "NK Celje"
+  ],
+  "country": "Slovenia",
+  "code": "SVN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/amvs371681106952.png"
+ },
+ "Celtic": {
+  "aliases": [
+   "Celtic F.C."
+  ],
+  "code": "SCO",
+  "country": "Scotland",
+  "logo": "https://crests.football-data.org/732.png"
+ },
+ "Cercle Brugge": {
+  "aliases": [
+   "Cercle Brugge K.S.V.",
+   "Cercle Brugge KSV"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/0v6uv41656017321.png"
+ },
+ "Chelsea": {
+  "aliases": [
+   "Chelsea F.C."
+  ],
+  "code": "ENG",
+  "country": "England",
+  "logo": "https://crests.football-data.org/61.png"
+ },
+ "Club Brugge": {
+  "aliases": [
+   "Club Brugge KV"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/mz8y0q1771129880.png"
+ },
+ "Copenhagen": {
+  "aliases": [
+   "F.C. Copenhagen"
+  ],
+  "code": "DEN",
+  "country": "Denmark",
+  "logo": "https://crests.football-data.org/1876.png"
+ },
+ "Crystal Palace": {
+  "aliases": [
+   "Crystal Palace F.C."
+  ],
+  "country": "England",
+  "code": "ENG",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ia6i3m1656014992.png"
+ },
+ "Dinamo Minsk": {
+  "aliases": [
+   "FC Dinamo Minsk"
+  ],
+  "country": "Belarus",
+  "code": "BLR",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/e/e3/Dinamo_Minsk_logo.svg"
+ },
+ "Dinamo Zagreb": {
+  "aliases": [
+   "GNK Dinamo Zagreb"
+  ],
+  "code": "CRO",
+  "country": "Croatia",
+  "logo": "https://crests.football-data.org/755.png"
+ },
+ "Djurgårdens IF": {
+  "aliases": [],
+  "country": "Sweden",
+  "code": "SWE",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Djurgardens_IF_logo.svg"
+ },
+ "Djurgårdens IF Fotboll": {
+  "aliases": [
+   "Djurgårdens IF Fotboll"
+  ],
+  "country": "Sweden",
+  "code": "SWE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yuuwru1425411493.png"
+ },
+ "Dnipro-1": {
+  "aliases": [
+   "Dnipro-1 Regiment",
+   "SC Dnipro-1"
+  ],
+  "country": "Ukraine",
+  "code": "UKR"
+ },
+ "Drita": {
+  "aliases": [
+   "FC Drita"
+  ],
+  "country": "Kosovo",
+  "code": "KVX",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/o1gp0h1596487425.png"
+ },
+ "Dynamo Kyiv": {
+  "aliases": [
+   "FC Dynamo Kyiv"
+  ],
+  "code": "UKR",
+  "country": "Ukraine",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ktbncx1781158762.png"
+ },
+ "Eintracht Frankfurt": {
+  "aliases": [],
+  "code": "GER",
+  "country": "Germany",
+  "logo": "https://crests.football-data.org/19.png"
+ },
+ "FC Astana": {
+  "aliases": [],
+  "code": "KAZ",
+  "country": "Kazakhstan",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/p74kfi1772124582.png"
+ },
+ "FC Kairat": {
+  "aliases": [],
+  "code": "KAZ",
+  "country": "Kazakhstan",
+  "logo": "https://crests.football-data.org/10601.png"
+ },
+ "FC Sheriff Tiraspol": {
+  "aliases": [
+   "Sheriff Tiraspol"
+  ],
+  "code": "MDA",
+  "country": "Moldova",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/6exmnv1781242046.png"
+ },
+ "FCSB": {
+  "aliases": [],
+  "country": "Romania",
+  "code": "ROU",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/123g021759420850.png"
+ },
+ "Fenerbahçe": {
+  "aliases": [
+   "Fenerbahçe S.K.",
+   "Fenerbahçe S.K. (football)"
+  ],
+  "code": "TUR",
+  "country": "Turkey",
+  "logo": "https://crests.football-data.org/613.png"
+ },
+ "Ferencváros": {
+  "aliases": [
+   "Ferencvárosi TC"
+  ],
+  "code": "HUN",
+  "country": "Hungary",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/wk17od1688115265.png"
+ },
+ "Feyenoord": {
+  "aliases": [],
+  "code": "NED",
+  "country": "Netherlands",
+  "logo": "https://crests.football-data.org/675.png"
+ },
+ "Fiorentina": {
+  "aliases": [
+   "ACF Fiorentina"
+  ],
+  "code": "ITA",
+  "country": "Italy",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/hc8nhu1656098030.png"
+ },
+ "Flora": {
+  "aliases": [
+   "FC Flora"
+  ],
+  "country": "Estonia",
+  "code": "EST",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sb4klq1767995100.png"
+ },
+ "Genk": {
+  "aliases": [
+   "KRC Genk"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ijp86h1788968480.png"
+ },
+ "Gent": {
+  "aliases": [
+   "KAA Gent"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/48e27o1750703124.png"
+ },
+ "HJK": {
+  "aliases": [
+   "Helsingin Jalkapalloklubi"
+  ],
+  "country": "Finland",
+  "code": "FIN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/l0at7p1739030681.png"
+ },
+ "Hamrun Spartans": {
+  "aliases": [
+   "Hamrun Spartans F.C."
+  ],
+  "country": "Malta",
+  "code": "MLT",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/mmqcjl1579535584.png"
+ },
+ "Hapoel Be'er Sheva": {
+  "aliases": [
+   "Hapoel Be'er Sheva F.C."
+  ],
+  "country": "Israel",
+  "code": "ISR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ar5zft1781239007.png"
+ },
+ "Heart of Midlothian": {
+  "aliases": [
+   "Heart of Midlothian F.C."
+  ],
+  "country": "Scotland",
+  "code": "SCO",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/twqvyt1447597939.png"
+ },
+ "Jablonec": {
+  "aliases": [
+   "FK Jablonec"
+  ],
+  "country": "Czechia",
+  "code": "CZE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/f3yrh31787655742.png"
+ },
+ "Jagiellonia Białystok": {
+  "aliases": [],
+  "country": "Poland",
+  "code": "POL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ucze1y1601404699.png"
+ },
+ "KuPS": {
+  "aliases": [
+   "Kuopion Palloseura"
+  ],
+  "country": "Finland",
+  "code": "FIN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/qmrrop1717396470.png"
+ },
+ "KÍ": {
+  "aliases": [
+   "Klaksvíkar Ítróttarfelag"
+  ],
+  "country": "Faroe Islands",
+  "code": "FRO",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/q620301645328792.png"
+ },
+ "LASK": {
+  "aliases": [],
+  "code": "AUT",
+  "country": "Austria",
+  "logo": "https://crests.football-data.org/2016.png"
+ },
+ "Larne": {
+  "aliases": [
+   "Larne F.C."
+  ],
+  "country": "Northern Ireland",
+  "code": "NIR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/pg8k1v1615586095.png"
+ },
+ "Lausanne-Sport": {
+  "aliases": [
+   "FC Lausanne-Sport"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0d/FC_Lausanne-Sport_logo.svg"
+ },
+ "Lazio": {
+  "aliases": [
+   "SS Lazio"
+  ],
+  "code": "ITA",
+  "country": "Italy",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rwqyvs1448806608.png"
+ },
+ "Lech Poznań": {
+  "aliases": [],
+  "country": "Poland",
+  "code": "POL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/8zfxyx1685597440.png"
+ },
+ "Legia Warsaw": {
+  "aliases": [],
+  "code": "POL",
+  "country": "Poland",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/c969ez1632775656.png"
+ },
+ "Leicester City": {
+  "aliases": [
+   "Leicester City F.C."
+  ],
+  "code": "ENG",
+  "country": "England",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/xtxwtu1448813356.png"
+ },
+ "Lille": {
+  "aliases": [
+   "Lille OSC"
+  ],
+  "code": "FRA",
+  "country": "France",
+  "logo": "https://crests.football-data.org/521.png"
+ },
+ "Lincoln Red Imps": {
+  "aliases": [
+   "Lincoln Red Imps F.C."
+  ],
+  "country": "Gibraltar",
+  "code": "GIB",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/w1d87s1594393899.png"
+ },
+ "Ludogorets Razgrad": {
+  "aliases": [
+   "PFC Ludogorets Razgrad"
+  ],
+  "code": "BUL",
+  "country": "Bulgaria",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/35cw6l1752946925.png"
+ },
+ "Lugano": {
+  "aliases": [
+   "FC Lugano"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/2kh2if1567615581.png"
+ },
+ "Maccabi Haifa": {
+  "aliases": [
+   "Maccabi Haifa F.C."
+  ],
+  "code": "ISR",
+  "country": "Israel",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/kh3psh1781805608.png"
+ },
+ "Maccabi Tel Aviv": {
+  "aliases": [
+   "Maccabi Tel Aviv F.C."
+  ],
+  "code": "ISR",
+  "country": "Israel",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/oeer261781239315.png"
+ },
+ "Mainz 05": {
+  "aliases": [
+   "1. FSV Mainz 05"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/r50v8i1696012905.png"
+ },
+ "Marseille": {
+  "aliases": [
+   "Olympique de Marseille"
+  ],
+  "code": "FRA",
+  "country": "France",
+  "logo": "https://crests.football-data.org/516.png"
+ },
+ "Midtjylland": {
+  "aliases": [
+   "Central Denmark Region",
+   "FC Midtjylland"
+  ],
+  "code": "DEN",
+  "country": "Denmark",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lvkl8g1783533167.png"
+ },
+ "Mladá Boleslav": {
+  "aliases": [
+   "FK Mladá Boleslav"
+  ],
+  "country": "Czechia",
+  "code": "CZE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/o8x4y51578836726.png"
+ },
+ "Molde": {
+  "aliases": [
+   "Molde FK"
+  ],
+  "code": "NOR",
+  "country": "Norway",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/apziyg1534866527.png"
+ },
+ "Mura": {
+  "aliases": [
+   "NŠ Mura"
+  ],
+  "country": "Slovenia",
+  "code": "SVN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/u6as761681106836.png"
+ },
+ "Nice": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
+ },
+ "Noah": {
+  "aliases": [
+   "FC Noah"
+  ],
+  "country": "Armenia",
+  "code": "ARM",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/qylmss1720503567.png"
+ },
+ "Nordsjælland": {
+  "aliases": [
+   "FC Nordsjælland"
+  ],
+  "code": "DEN",
+  "country": "Denmark",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/9biavu1628558288.png"
+ },
+ "OGC Nice": {
+  "aliases": [
+   "OGC Nice"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
+ },
+ "Olimpija Ljubljana": {
+  "aliases": [
+   "NK Olimpija Ljubljana"
+  ],
+  "country": "Slovenia",
+  "code": "SVN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/zsigfn1534874586.png"
+ },
+ "Olympiacos": {
+  "aliases": [
+   "Olympiacos CFP",
+   "Olympiacos F.C."
+  ],
+  "code": "GRE",
+  "country": "Greece",
+  "logo": "https://crests.football-data.org/654.png"
+ },
+ "Omonia": {
+  "aliases": [
+   "AC Omonia"
+  ],
+  "country": "Cyprus",
+  "code": "CYP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1rijst1707410501.png"
+ },
+ "Omonoia": {
+  "aliases": [
+   "Omonoia"
+  ],
+  "country": "Cyprus",
+  "code": "CYP"
+ },
+ "PAOK": {
+  "aliases": [
+   "P.A.O.K.",
+   "PAOK FC"
+  ],
+  "country": "Greece",
+  "code": "GRE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/m15zsh1602774126.png"
+ },
+ "PSV Eindhoven": {
+  "aliases": [],
+  "code": "NED",
+  "country": "Netherlands",
+  "logo": "https://crests.football-data.org/674.png"
+ },
+ "Pafos": {
+  "aliases": [
+   "Pafos FC",
+   "Paphos"
+  ],
+  "code": "CYP",
+  "country": "Cyprus",
+  "logo": "https://crests.football-data.org/11034.png"
+ },
+ "Panathinaikos": {
+  "aliases": [
+   "Panathinaikos A.O.",
+   "Panathinaikos F.C."
+  ],
+  "code": "GRE",
+  "country": "Greece",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vtpwwt1448208397.png"
+ },
+ "Partizan": {
+  "aliases": [
+   "FK Partizan"
+  ],
+  "code": "SRB",
+  "country": "Serbia",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/iwpdh11614284091.png"
+ },
+ "Petrocub Hîncești": {
+  "aliases": [
+   "FC Petrocub Hîncești"
+  ],
+  "country": "Moldova",
+  "code": "MDA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/r2mzoe1781541722.png"
+ },
+ "Pyunik": {
+  "aliases": [
+   "FC Pyunik"
+  ],
+  "country": "Armenia",
+  "code": "ARM",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sq6ipu1658598945.png"
+ },
+ "Qarabağ": {
+  "aliases": [
+   "Karabakh",
+   "Qarabağ FK"
+  ],
+  "code": "AZE",
+  "country": "Azerbaijan",
+  "logo": "https://crests.football-data.org/611.png"
+ },
+ "RFS": {
+  "aliases": [
+   "FK RFS"
+  ],
+  "country": "Latvia",
+  "code": "LVA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/cep7qg1644854951.png"
+ },
+ "Raków Częstochowa": {
+  "aliases": [],
+  "country": "Poland",
+  "code": "POL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vy8paa1579458598.png"
+ },
+ "Randers": {
+  "aliases": [
+   "Randers FC"
+  ],
+  "country": "Denmark",
+  "code": "DEN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/w0kmhn1690407779.png"
+ },
+ "Rapid Wien": {
+  "aliases": [
+   "SK Rapid Wien"
+  ],
+  "code": "AUT",
+  "country": "Austria",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ebwdmz1782841141.png"
+ },
+ "Rayo Vallecano": {
+  "aliases": [],
+  "country": "Spain",
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/nzhu941655595465.png"
+ },
+ "Real Betis": {
+  "aliases": [],
+  "code": "ESP",
+  "country": "Spain",
+  "logo": "https://crests.football-data.org/90.png"
+ },
+ "Rennes": {
+  "aliases": [
+   "Stade Rennais FC"
+  ],
+  "code": "FRA",
+  "country": "France",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ypturx1473504818.png"
+ },
+ "Rijeka": {
+  "aliases": [
+   "HNK Rijeka"
+  ],
+  "country": "Croatia",
+  "code": "CRO",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/z8bxvi1603310975.png"
+ },
+ "Samsunspor": {
+  "aliases": [],
+  "country": "Turkey",
+  "code": "TUR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vz05y71679456608.png"
+ },
+ "Servette": {
+  "aliases": [
+   "Servette FC"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/440wv71692206330.png"
+ },
+ "Shakhtar Donetsk": {
+  "aliases": [
+   "FC Shakhtar Donetsk"
+  ],
+  "code": "UKR",
+  "country": "Ukraine",
+  "logo": "https://crests.football-data.org/1887.png"
+ },
+ "Shamrock Rovers": {
+  "aliases": [
+   "Shamrock Rovers F.C."
+  ],
+  "country": "Republic of Ireland",
+  "code": "IRL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/u1zowj1491504381.png"
+ },
+ "Shelbourne": {
+  "aliases": [
+   "Shelbourne F.C."
+  ],
+  "country": "Republic of Ireland",
+  "code": "IRL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/brh8t91579281545.png"
+ },
+ "Shkëndija": {
+  "aliases": [
+   "KF Shkëndija"
+  ],
+  "country": "North Macedonia",
+  "code": "MKD",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/4wv7i21717397649.png"
+ },
+ "Sigma Olomouc": {
+  "aliases": [
+   "SK Sigma Olomouc"
+  ],
+  "country": "Czechia",
+  "code": "CZE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/cbcg021578836711.png"
+ },
+ "Silkeborg": {
+  "aliases": [
+   "Silkeborg IF"
+  ],
+  "country": "Denmark",
+  "code": "DEN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tpxvvp1473535560.png"
+ },
+ "Sivasspor": {
+  "aliases": [],
+  "country": "Turkey",
+  "code": "TUR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/pnhe5i1681161798.png"
+ },
+ "Slavia Prague": {
+  "aliases": [
+   "SK Slavia Prague"
+  ],
+  "code": "CZE",
+  "country": "Czechia",
+  "logo": "https://crests.football-data.org/930.png"
+ },
+ "Slovan Bratislava": {
+  "aliases": [
+   "ŠK Slovan Bratislava"
+  ],
+  "code": "SVK",
+  "country": "Slovakia",
+  "logo": "https://crests.football-data.org/7509.png"
+ },
+ "Slovácko": {
+  "aliases": [
+   "1. FC Slovácko"
+  ],
+  "country": "Czechia",
+  "code": "CZE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/2fmeix1578836703.png"
+ },
+ "Sparta Prague": {
+  "aliases": [
+   "AC Sparta Prague"
+  ],
+  "code": "CZE",
+  "country": "Czechia",
+  "logo": "https://crests.football-data.org/907.png"
+ },
+ "Spartak Trnava": {
+  "aliases": [
+   "FC Spartak Trnava"
+  ],
+  "country": "Slovakia",
+  "code": "SVK",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/acn7n91679266730.png"
+ },
+ "St. Gallen": {
+  "aliases": [
+   "FC St. Gallen"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lsikmx1658414612.png"
+ },
+ "Strasbourg": {
+  "aliases": [
+   "RC Strasbourg Alsace"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/b8k77w1766625501.png"
+ },
+ "Sturm Graz": {
+  "aliases": [
+   "SK Sturm Graz"
+  ],
+  "code": "AUT",
+  "country": "Austria",
+  "logo": "https://crests.football-data.org/2021.png"
+ },
+ "TSC": {
+  "aliases": [
+   "FK TSC"
+  ],
+  "country": "Serbia",
+  "code": "SRB",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1bnnu81703173169.png"
+ },
+ "The New Saints": {
+  "aliases": [
+   "The New Saints F.C."
+  ],
+  "country": "Wales",
+  "code": "WAL",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/85/The_New_Saints_FC_logo.svg"
+ },
+ "Tottenham Hotspur": {
+  "aliases": [
+   "Tottenham Hotspur F.C."
+  ],
+  "code": "ENG",
+  "country": "England",
+  "logo": "https://crests.football-data.org/73.png"
+ },
+ "Trabzonspor": {
+  "aliases": [],
+  "code": "TUR",
+  "country": "Turkey",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/96s34o1776827629.png"
+ },
+ "Union Berlin": {
+  "aliases": [
+   "1. FC Union Berlin"
+  ],
+  "code": "GER",
+  "country": "Germany",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/q0o5001599679795.png"
+ },
+ "Union Saint-Gilloise": {
+  "aliases": [
+   "Royale Union Saint-Gilloise"
+  ],
+  "country": "Belgium",
+  "code": "BEL",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/1/11/Royale_Union_Saint-Gilloise_logo.svg"
+ },
+ "Universitatea Craiova": {
+  "aliases": [
+   "CS Universitatea Craiova"
+  ],
+  "country": "Romania",
+  "code": "ROU",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1jdz2y1579793710.png"
+ },
+ "Vaduz": {
+  "aliases": [
+   "FC Vaduz"
+  ],
+  "country": "Liechtenstein",
+  "code": "LIE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/d71e9w1532766585.png"
+ },
+ "Viktoria Plzeň": {
+  "aliases": [
+   "FC Viktoria Plzeň"
+  ],
+  "code": "CZE",
+  "country": "Czechia",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/at8i2h1679265942.png"
+ },
+ "Villarreal": {
+  "aliases": [
+   "Vila-real",
+   "Villarreal CF"
+  ],
+  "code": "ESP",
+  "country": "Spain",
+  "logo": "https://crests.football-data.org/94.png"
+ },
+ "Vitesse": {
+  "aliases": [
+   "SBV Vitesse"
+  ],
+  "country": "Netherlands",
+  "code": "NED",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/wrptxp1473534864.png"
+ },
+ "Vitória de Guimarães": {
+  "aliases": [
+   "Vitória S.C."
+  ],
+  "country": "Portugal",
+  "code": "POR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/af52z61628855707.png"
+ },
+ "Víkingur Reykjavík": {
+  "aliases": [
+   "Knattspyrnufélagið Víkingur"
+  ],
+  "country": "Iceland",
+  "code": "ISL",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/srhq2w1579111270.png"
+ },
+ "West Ham United": {
+  "aliases": [
+   "West Ham United F.C."
+  ],
+  "country": "England",
+  "code": "ENG",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yutyxs1467459956.png"
+ },
+ "Zorya Luhansk": {
+  "aliases": [
+   "FC Zorya Luhansk"
+  ],
+  "country": "Ukraine",
+  "code": "UKR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/pvppfe1785305666.png"
+ },
+ "Zrinjski Mostar": {
+  "aliases": [
+   "HŠK Zrinjski Mostar"
+  ],
+  "country": "Bosnia and Herzegovina",
+  "code": "BIH",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sursuu1436260214.png"
+ },
+ "Čukarički": {
+  "aliases": [
+   "FK Čukarički"
+  ],
+  "country": "Serbia",
+  "code": "SRB",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sk6owo1512571250.png"
+ },
+ "Žalgiris": {
+  "aliases": [
+   "FK Žalgiris"
+  ],
+  "country": "Lithuania",
+  "code": "LTU",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/4x8gap1579201999.png"
+ }
 }
