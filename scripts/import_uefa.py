@@ -30,7 +30,7 @@ CODES = {"Albania": "ALB", "Andorra": "AND", "Armenia": "ARM", "Austria": "AUT",
          "Wales": "WAL"}
 COUNTRY = {"the Czech Republic": "Czechia", "Czech Republic": "Czechia", "Ireland": "Republic of Ireland",
            "the Netherlands": "Netherlands", "the Faroe Islands": "Faroe Islands"}
-NOISE = re.compile(r"\b(fc|f c|afc|sc|cf|ac|as|sk|fk|nk|ks|bk|if|sv|us|ssc|rcd|ud|cd|club|football|futbol|de|calcio)\b")
+NOISE = re.compile(r"\b(fc|f c|afc|sc|cf|ac|as|sk|fk|nk|ks|bk|if|sv|us|ssc|rcd|ud|cd|club|football|futbol|de|calcio|hnk|hsk|kf|rc|sbv|bsc|gnk|ofk|sfc|tsc)\b")
 
 
 def nk(s):
@@ -92,6 +92,10 @@ def init_teams(comp, matches, info, existing):
             entry["country"], entry["code"] = c, CODES.get(c, c[:3].upper())
             if not c:
                 report.append(f"no country: {name} ({res})")
+        if hit and hit in teams:                                # another article of a club already created
+            teams[hit]["aliases"] = sorted({*teams[hit].get("aliases", []), *members, res, name} - {hit})
+            amap.update({a: hit for a in [*members, res, name]})
+            continue
         if name in teams or name in amap:                       # same display name, different club
             name = res
         teams[name] = entry
