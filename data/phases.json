@@ -192,5 +192,74 @@
    "k": 32,
    "color": "#b3261e"
   }
+ },
+ "el": {
+  "group": {
+   "label": "GR",
+   "k": 6,
+   "color": "#6f9a78"
+  },
+  "r32": {
+   "label": "R32",
+   "k": 12,
+   "color": "#4f8ea3"
+  },
+  "po": {
+   "label": "PO",
+   "k": 12,
+   "color": "#4f8ea3"
+  },
+  "r16": {
+   "label": "R16",
+   "k": 12,
+   "color": "#4a78a8"
+  },
+  "qf": {
+   "label": "QF",
+   "k": 12,
+   "color": "#7a6aa8"
+  },
+  "sf": {
+   "label": "SF",
+   "k": 18,
+   "color": "#c2703d"
+  },
+  "final": {
+   "label": "FIN",
+   "k": 24,
+   "color": "#b3261e"
+  }
+ },
+ "conf": {
+  "group": {
+   "label": "GR",
+   "k": 4,
+   "color": "#6f9a78"
+  },
+  "po": {
+   "label": "PO",
+   "k": 8,
+   "color": "#4f8ea3"
+  },
+  "r16": {
+   "label": "R16",
+   "k": 8,
+   "color": "#4a78a8"
+  },
+  "qf": {
+   "label": "QF",
+   "k": 8,
+   "color": "#7a6aa8"
+  },
+  "sf": {
+   "label": "SF",
+   "k": 12,
+   "color": "#c2703d"
+  },
+  "final": {
+   "label": "FIN",
+   "k": 16,
+   "color": "#b3261e"
+  }
  }
 }

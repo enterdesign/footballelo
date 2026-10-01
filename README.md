@@ -2,12 +2,12 @@
 
 ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →), the English
 top flight (First Division from 1888/89, Premier League from 1992/93) and the Polish top flight
-(Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →) the UEFA Nations League (2018/19 →), the European Championship (1960 →) and the Copa América (1993 →).
+(Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →) the UEFA Nations League (2018/19 →), the European Championship (1960 →) the Copa América (1993 →), the Europa League (2009/10 →) and the Conference League (2021/22 →).
 Static site on GitHub Pages; data refreshed daily by GitHub Actions.
 
 ```
-data/matches/{ucl,wc,pl,ekstraklasa,nl,euro,copa}.json   matches exactly as imported (source names)
-data/teams_{ucl,wc,pl,ekstraklasa,nl,euro,copa}.json  canonical team -> aliases (renames, successor states)
+data/matches/{ucl,wc,pl,ekstraklasa,nl,euro,copa,el,conf}.json   matches exactly as imported (source names)
+data/teams_{ucl,wc,pl,ekstraklasa,nl,euro,copa,el,conf}.json  canonical team -> aliases (renames, successor states)
 data/sync.json                  time of the last daily data check (shown on the home page)
 data/phases.json             K-factor per phase
 data/nl_leagues.json         Nations League editions (dates, 2018/19 divisions)
@@ -23,6 +23,8 @@ site/                        the website (site/data/ is generated)
 - Premier League and Ekstraklasa: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
 - Nations League: one common ranking for all divisions; K by division (A 24 · B 12 · C 8 · D 4), quarter-finals K 24,
   semi-finals / 3rd place / final K 32, promotion/relegation play-offs between two divisions use the K of the lower one.
+- Europa League: group/league phase 6, R32 and knockout play-offs 12, R16 and QF 12, SF 18, final 24;
+  Conference League: 4 / play-offs 8, R16 and QF 8 / SF 12 / final 16 (between the Champions League and each other: UCL > UEL > UECL).
 - European Championship and Copa América: World Cup K-factors (group 8, R16/QF 16, SF/3rd 24, final 32); Copa América only
   from 1993 (stable format since then). Stages are assigned by position from each era's known format (`scripts/tournaments.py`).
 - Era buttons (Premier League: pre-1992 / 1992-; Ekstraklasa: pre-war / post-war) are filters over the years, not separate
@@ -44,6 +46,8 @@ site/                        the website (site/data/ is generated)
   later editions are inferred from promotion/relegation. A brand new edition needs no edit (it is detected and inferred);
   only the pre-declared editions in `nl_leagues.json` carry dates.
 - European Championship and Copa América: the same `international_results` dataset (finals tournaments only).
+- Europa League and Conference League: English Wikipedia season articles (match boxes), read by `scripts/uefa_wikipedia.py`;
+  the running season is refreshed daily and a season is never replaced by a copy with fewer matches.
 - Running season (UCL, Premier League): football-data.org when `FOOTBALL_DATA_KEY` is set.
 
 ## Editing team history

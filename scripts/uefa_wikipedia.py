@@ -6,9 +6,11 @@ read (they are not rated). Teams are identified by the title of the article they
 stable across the display-name variants used from season to season.
 """
 import html
+import json
 import re
 import time
 import urllib.parse
+import urllib.request
 from collections import Counter
 
 import nl_wikipedia as nw
@@ -72,14 +74,14 @@ def parse_page(page, season, phase=None):
     """Matches of one article. `phase` fixes the stage (group / league phase page); otherwise it comes from headings."""
     out, info = [], {}
     pos = [(m.start(), m) for m in TOKEN.finditer(page)]
-    head = ""
+    current = None                      # stage of the nearest heading that names one ("Summary", "Matches" do not)
     for i, (start, m) in enumerate(pos):
         if m.group(1):
-            head = re.sub(r"<[^>]+>", "", m.group(2)).strip()
+            current = stage(re.sub(r"<[^>]+>", "", m.group(2)).strip()) or current
             continue
         end = pos[i + 1][0] if i + 1 < len(pos) else len(page)
         block = page[start:end]
-        ph = phase or stage(head)
+        ph = phase or current
         day = nw.DAY.search(block)
         score = nw.SCORE.search(nw.text(nw.cell(block, "fscore")))
         if not ph or not day or not score:
@@ -134,8 +136,6 @@ def resolve_redirects(titles_, delay=0.6):
         for attempt in range(5):
             time.sleep(delay)
             try:
-                import json
-                import urllib.request
                 req = urllib.request.Request(url, headers={"User-Agent": "footballelo/1.0 (personal ELO project)"})
                 with urllib.request.urlopen(req, timeout=60) as r:
                     d = json.load(r)["query"]

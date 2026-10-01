@@ -7,6 +7,7 @@ usage: sync.py [--worldcup DIR] [--ucl DIR] [--england DIR]   (default: shallow-
 * Champions League: seasons from 2011/12 replaced from openfootball, older ones kept.
 * Premier League: seasons from 1992/93 replaced from openfootball; the First Division
   archive (1888/89-1991/92, from engsoccerdata) is kept.
+* Europa League and Conference League: the running season(s) from Wikipedia (uefa_wikipedia.py).
 * Nations League, European Championship, Copa América: replaced wholesale from the open international_results
   dataset (see nationsleague.py, tournaments.py).
 * Running season of the Champions League and Premier League: football-data.org when
@@ -27,6 +28,7 @@ import import_ekstraklasa
 import nationsleague
 import nl_wikipedia
 import tournaments
+import uefa_wikipedia
 import openfootball
 import wikipedia_pl
 
@@ -126,6 +128,31 @@ def refresh_internationals():
     return out
 
 
+def refresh_uefa():
+    """Europa League and Conference League: the running season(s) from Wikipedia. A season is only replaced when
+    the fresh copy has at least as many matches as the stored one (a half-edited article never shrinks it)."""
+    out = {}
+    for comp in ("el", "conf"):
+        old = load_old(comp)
+        matches = list(old)
+        for year in uefa_wikipedia.season_years(date.today()):
+            if year < uefa_wikipedia.FIRST[comp]:
+                continue
+            season = uefa_wikipedia.label(year)
+            try:
+                fresh, _ = uefa_wikipedia.fetch_season(comp, year)
+            except Exception as e:
+                print(f"Wikipedia ({comp} {season}) failed ({e}); keeping stored data")
+                continue
+            stored = [m for m in old if m["season"] == season]
+            if fresh and len(fresh) >= len(stored):
+                matches = [m for m in matches if m["season"] != season] + fresh
+            elif fresh:
+                print(f"{comp} {season}: fresh copy has fewer matches ({len(fresh)} < {len(stored)}); kept stored")
+        out[comp] = sorted(matches, key=lambda m: (m["season"], m["date"]))
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--worldcup")
@@ -156,6 +183,8 @@ def main():
     for k, v in intl.items():
         dump(DATA / f"matches/{k}.json", v)
     nl = intl["nl"]
+    for k, v in refresh_uefa().items():
+        dump(DATA / f"matches/{k}.json", v)
     dump(DATA / "matches/ekstraklasa.json", ekstraklasa)
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)

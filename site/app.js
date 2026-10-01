@@ -1,9 +1,15 @@
 "use strict";
 const REPO = "https://github.com/enterdesign/footballelo";
 const INTL = `<a href="https://github.com/martj42/international_results" style="color:var(--accent);text-decoration:underline">international_results</a>`;
+const WIKI = `<a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a> (CC BY-SA)`;
 const COMPS = {
   ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
+  el:  {file: "data/el.json", img: "img/home.jpg", eyebrow: "UEFA Europa League (2009/10 →)", short: "Europa League", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: t => t.code, groupLabel: t => t.country, first: "2009/10", source: WIKI,
+        note: "Since the competition was renamed in 2009/10; the earlier UEFA Cup and Cup Winners' Cup are not included. Qualifying rounds are not rated."},
+  conf: {file: "data/conf.json", img: "img/home.jpg", eyebrow: "UEFA Conference League (2021/22 →)", short: "Conference League", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: t => t.code, groupLabel: t => t.country, first: "2021/22", source: WIKI, note: "Qualifying rounds are not rated."},
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930", flags: true},
   pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",

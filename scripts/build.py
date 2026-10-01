@@ -24,6 +24,8 @@ COMPS = {
                     "eras": [{"id": "pre", "label": "Pre-war (1927–1939)", "to": "1939"},
                              {"id": "post", "label": "Post-war (1948–)", "from": "1948"}],
                     "default_era": "post"},
+    "el": {"teams": "teams_el.json", "period": "season", "title": "UEFA Europa League"},
+    "conf": {"teams": "teams_conf.json", "period": "season", "title": "UEFA Conference League"},
     "nl": {"teams": "teams_nl.json", "period": "season", "title": "UEFA Nations League"},
     "euro": {"teams": "teams_euro.json", "period": "year", "title": "UEFA European Championship"},
     "copa": {"teams": "teams_copa.json", "period": "year", "title": "Copa América (1993 →)"},
