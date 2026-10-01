@@ -70,6 +70,7 @@ def wiki_logo(name):
         pages = wiki(action="query", titles=title, prop="images", imlimit=500)["query"]["pages"]
         files = [i["title"] for p in pages.values() for i in p.get("images", [])]
         good = [f for f in files if CREST.search(f) and not NOT_CREST.search(f) and f.lower().endswith((".svg", ".png"))]
+        good = [f for f in good if any(w in norm(f) for w in words)]      # the file must be named after the club (not "Speedway_logo")
         if not good:
             return None
         info = wiki(action="query", titles=good[0], prop="imageinfo", iiprop="url")["query"]["pages"]
