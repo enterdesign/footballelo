@@ -88,12 +88,15 @@ async function render() {
 }
 async function renderHome() {
   document.title = "Football ELO Rankings";
-  $("home-cards").innerHTML = (await Promise.all(Object.keys(COMPS).map(async k => {
+  const card = async k => {
     const d = await load(k), c = COMPS[k];
     return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.short || c.eyebrow}</div>
       <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div>
-      <div class="subtitle" style="margin-top:4px">data through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
-  }))).join("");
+      <div class="subtitle">through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
+  };
+  const section = async (title, keys) => `<h3 class="section">${title}</h3><div class="cards">${(await Promise.all(keys.map(card))).join("")}</div>`;
+  const keys = Object.keys(COMPS);
+  $("home-cards").innerHTML = await section("National teams", keys.filter(k => COMPS[k].flags)) + await section("Club teams", keys.filter(k => !COMPS[k].flags));
   const m = window.meta || {};
   $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every day;
     the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}) updates when a new tournament is played.<br>
