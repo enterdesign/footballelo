@@ -3,28 +3,23 @@ on:
   push:
     branches: [claude/adoring-knuth-4bh23x]
     paths: [".github/workflows/probe.yml"]
+permissions:
+  contents: write
 jobs:
   p:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          cd scripts && python3 - <<'PY'
-          import re, nl_wikipedia as w
-          titles = ["2018–19 UEFA Europa League", "2018–19 UEFA Europa League group stage", "2018–19 UEFA Europa League knockout phase",
-                    "2009–10 UEFA Europa League", "2009–10 UEFA Europa League group stage", "2009–10 UEFA Europa League knockout phase",
-                    "2025–26 UEFA Europa League league phase", "2025–26 UEFA Europa League knockout phase",
-                    "2021–22 UEFA Europa Conference League group stage", "2021–22 UEFA Europa Conference League knockout phase",
-                    "2025–26 UEFA Conference League league phase", "2025–26 UEFA Conference League knockout phase",
-                    "2025–26 UEFA Europa League", "2025–26 UEFA Conference League"]
-          for t in titles:
-              try: p = w.page_html(t)
-              except Exception as e: print(t, "ERR", e); continue
-              if not p: print(t, "MISSING"); continue
-              boxes = w.parse_boxes(p)
-              heads = re.findall(r'<h([2-4])[^>]*>(.*?)</h\1>', p, re.S)
-              hs = [re.sub(r'<[^>]+>', '', h[1]).strip() for h in heads]
-              print("==", t, "len", len(p), "footballbox", p.count('class="footballbox"'), "parsed", len(boxes))
-              print("   headings:", hs[:30])
-              if boxes: print("   sample:", boxes[0], boxes[-1])
-          PY
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Import Europa League and Conference League
+        run: python scripts/import_uefa.py --init-teams --report data/uefa_import_report.txt
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git commit -m "Import Europa League and Conference League from Wikipedia" || exit 0
+          git pull --rebase origin claude/adoring-knuth-4bh23x
+          git push origin HEAD:claude/adoring-knuth-4bh23x
