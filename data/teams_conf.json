@@ -44,14 +44,10 @@
   "country": "Italy",
   "logo": "https://crests.football-data.org/100.png"
  },
- "AZ": {
-  "aliases": [],
-  "country": "Netherlands",
-  "code": "NED",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lzqhed1673938793.png"
- },
  "AZ Alkmaar": {
-  "aliases": [],
+  "aliases": [
+   "AZ"
+  ],
   "code": "NED",
   "country": "Netherlands",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"
@@ -89,13 +85,14 @@
   "code": "BEL",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/auindn1771129464.png"
  },
- "Anorthosis Famagusta": {
-  "aliases": [
-   "Anorthosis Famagusta FC"
-  ],
+ "Anorthosis": {
   "country": "Cyprus",
   "code": "CYP",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/gwf24l1627657894.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/gwf24l1627657894.png",
+  "aliases": [
+   "Anorthosis Famagusta",
+   "Anorthosis Famagusta FC"
+  ]
  },
  "Apollon Limassol": {
   "aliases": [
@@ -280,18 +277,12 @@
   "logo": "https://crests.football-data.org/755.png"
  },
  "Djurgårdens IF": {
-  "aliases": [],
-  "country": "Sweden",
-  "code": "SWE",
-  "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Djurgardens_IF_logo.svg"
- },
- "Djurgårdens IF Fotboll": {
   "aliases": [
    "Djurgårdens IF Fotboll"
   ],
   "country": "Sweden",
   "code": "SWE",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yuuwru1425411493.png"
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Djurgardens_IF_logo.svg"
  },
  "Dnipro-1": {
   "aliases": [
@@ -342,12 +333,6 @@
   "code": "MDA",
   "country": "Moldova",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/6exmnv1781242046.png"
- },
- "FCSB": {
-  "aliases": [],
-  "country": "Romania",
-  "code": "ROU",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/123g021759420850.png"
  },
  "Fenerbahçe": {
   "aliases": [
@@ -404,13 +389,14 @@
   "code": "BEL",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/48e27o1750703124.png"
  },
- "HJK": {
-  "aliases": [
-   "Helsingin Jalkapalloklubi"
-  ],
+ "HJK Helsinki": {
   "country": "Finland",
   "code": "FIN",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/l0at7p1739030681.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/l0at7p1739030681.png",
+  "aliases": [
+   "HJK",
+   "Helsingin Jalkapalloklubi"
+  ]
  },
  "Hamrun Spartans": {
   "aliases": [
@@ -614,7 +600,9 @@
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/u6as761681106836.png"
  },
  "Nice": {
-  "aliases": [],
+  "aliases": [
+   "OGC Nice"
+  ],
   "country": "France",
   "code": "FRA",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
@@ -635,14 +623,6 @@
   "country": "Denmark",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/9biavu1628558288.png"
  },
- "OGC Nice": {
-  "aliases": [
-   "OGC Nice"
-  ],
-  "country": "France",
-  "code": "FRA",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
- },
  "Olimpija Ljubljana": {
   "aliases": [
    "NK Olimpija Ljubljana"
@@ -660,20 +640,15 @@
   "country": "Greece",
   "logo": "https://crests.football-data.org/654.png"
  },
- "Omonia": {
+ "Omonoia": {
   "aliases": [
-   "AC Omonia"
+   "AC Omonia",
+   "Omonia",
+   "Omonoia"
   ],
   "country": "Cyprus",
   "code": "CYP",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/1rijst1707410501.png"
- },
- "Omonoia": {
-  "aliases": [
-   "Omonoia"
-  ],
-  "country": "Cyprus",
-  "code": "CYP"
  },
  "PAOK": {
   "aliases": [
@@ -914,6 +889,14 @@
   "country": "Switzerland",
   "code": "SUI",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/lsikmx1658414612.png"
+ },
+ "Steaua București": {
+  "country": "Romania",
+  "code": "ROU",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/123g021759420850.png",
+  "aliases": [
+   "FCSB"
+  ]
  },
  "Strasbourg": {
   "aliases": [

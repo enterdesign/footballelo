@@ -36,13 +36,14 @@
   "code": "CYP",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/kijo451579035930.png"
  },
- "AIK": {
-  "aliases": [
-   "AIK Fotboll"
-  ],
+ "AIK Stockholm": {
   "country": "Sweden",
   "code": "SWE",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rwsrxq1420769503.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rwsrxq1420769503.png",
+  "aliases": [
+   "AIK",
+   "AIK Fotboll"
+  ]
  },
  "APOEL FC": {
   "aliases": [
@@ -60,14 +61,10 @@
   "country": "Italy",
   "logo": "https://crests.football-data.org/100.png"
  },
- "AZ": {
-  "aliases": [],
-  "country": "Netherlands",
-  "code": "NED",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lzqhed1673938793.png"
- },
  "AZ Alkmaar": {
-  "aliases": [],
+  "aliases": [
+   "AZ"
+  ],
   "code": "NED",
   "country": "Netherlands",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"
@@ -284,12 +281,6 @@
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/hj4kyc1781152436.png"
  },
  "Beşiktaş": {
-  "aliases": [],
-  "code": "TUR",
-  "country": "Turkey",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/svo05k1776827439.png"
- },
- "Beşiktaş J.K.": {
   "aliases": [
    "Beşiktaş J.K."
   ],
@@ -388,7 +379,9 @@
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/81uzfv1507891573.png"
  },
  "CSKA Moscow": {
-  "aliases": [],
+  "aliases": [
+   "PFC CSKA Moscow"
+  ],
   "code": "RUS",
   "country": "Russia",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/1hf19s1681319986.png"
@@ -723,13 +716,14 @@
   "code": "FRA",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/5iihrp1590259631.png"
  },
- "HJK": {
-  "aliases": [
-   "Helsingin Jalkapalloklubi"
-  ],
+ "HJK Helsinki": {
   "country": "Finland",
   "code": "FIN",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/l0at7p1739030681.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/l0at7p1739030681.png",
+  "aliases": [
+   "HJK",
+   "Helsingin Jalkapalloklubi"
+  ]
  },
  "Hajduk Split": {
   "aliases": [
@@ -775,11 +769,13 @@
   "country": "Netherlands",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/surtsx1473534841.png"
  },
- "Helsingborgs IF": {
-  "aliases": [],
+ "Helsingborg": {
   "country": "Sweden",
   "code": "SWE",
-  "logo": "https://upload.wikimedia.org/wikipedia/en/7/75/Helsingborgs_IF_logo.svg"
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/75/Helsingborgs_IF_logo.svg",
+  "aliases": [
+   "Helsingborgs IF"
+  ]
  },
  "Hertha Berlin": {
   "aliases": [
@@ -788,6 +784,15 @@
   "code": "GER",
   "country": "Germany",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/aszcmz1782623817.png"
+ },
+ "Hoffenheim": {
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/9hwvb21621593919.png",
+  "aliases": [
+   "TSG 1899 Hoffenheim",
+   "TSG Hoffenheim"
+  ]
  },
  "IF Elfsborg": {
   "aliases": [],
@@ -1145,7 +1150,9 @@
   "logo": "https://crests.football-data.org/67.png"
  },
  "Nice": {
-  "aliases": [],
+  "aliases": [
+   "OGC Nice"
+  ],
   "country": "France",
   "code": "FRA",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
@@ -1165,14 +1172,6 @@
   "country": "Greece",
   "code": "GRE",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/02xrl91602773672.png"
- },
- "OGC Nice": {
-  "aliases": [
-   "OGC Nice"
-  ],
-  "country": "France",
-  "code": "FRA",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
  },
  "Odense": {
   "aliases": [
@@ -1199,13 +1198,14 @@
   "country": "Greece",
   "logo": "https://crests.football-data.org/654.png"
  },
- "Omonia": {
-  "aliases": [
-   "AC Omonia"
-  ],
+ "Omonoia": {
   "country": "Cyprus",
   "code": "CYP",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1rijst1707410501.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1rijst1707410501.png",
+  "aliases": [
+   "AC Omonia",
+   "Omonia"
+  ]
  },
  "Osmanlıspor": {
   "aliases": [
@@ -1223,14 +1223,6 @@
   "country": "Greece",
   "code": "GRE",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/m15zsh1602774126.png"
- },
- "PFC CSKA Moscow": {
-  "aliases": [
-   "PFC CSKA Moscow"
-  ],
-  "code": "RUS",
-  "country": "Russia",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1hf19s1681319986.png"
  },
  "PSV Eindhoven": {
   "aliases": [],
@@ -1410,14 +1402,7 @@
  },
  "Rostov": {
   "aliases": [
-   "FC Rostov"
-  ],
-  "code": "RUS",
-  "country": "Russia",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yysryx1473452299.png"
- },
- "Rostov-on-Don": {
-  "aliases": [
+   "FC Rostov",
    "Rostov-on-Don"
   ],
   "code": "RUS",
@@ -1488,14 +1473,7 @@
  },
  "Sevilla": {
   "aliases": [
-   "Sevilla FC"
-  ],
-  "code": "ESP",
-  "country": "Spain",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vpsqqx1473502977.png"
- },
- "Seville": {
-  "aliases": [
+   "Sevilla FC",
    "Seville"
   ],
   "code": "ESP",
@@ -1680,14 +1658,6 @@
   "country": "Serbia",
   "code": "SRB",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/1bnnu81703173169.png"
- },
- "TSG Hoffenheim": {
-  "aliases": [
-   "TSG 1899 Hoffenheim"
-  ],
-  "country": "Germany",
-  "code": "GER",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/9hwvb21621593919.png"
  },
  "Thun": {
   "aliases": [
@@ -1941,13 +1911,14 @@
   "code": "SUI",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/9mxdoo1534784569.png"
  },
- "Zenit Saint Petersburg": {
-  "aliases": [
-   "FC Zenit Saint Petersburg"
-  ],
+ "Zenit St. Petersburg": {
   "country": "Russia",
   "code": "RUS",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/t20z2n1782186629.png"
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/t20z2n1782186629.png",
+  "aliases": [
+   "FC Zenit Saint Petersburg",
+   "Zenit Saint Petersburg"
+  ]
  },
  "Zorya Luhansk": {
   "aliases": [
