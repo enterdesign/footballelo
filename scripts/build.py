@@ -9,6 +9,7 @@ import sys
 from datetime import datetime, timezone
 
 from common import DATA, ROOT, alias_map, load, unknown_names
+import combined
 import elo
 import nationsleague
 import tournaments
@@ -26,6 +27,7 @@ COMPS = {
                     "default_era": "post"},
     "el": {"teams": "teams_el.json", "period": "season", "title": "UEFA Europa League"},
     "conf": {"teams": "teams_conf.json", "period": "season", "title": "UEFA Conference League"},
+    "uefa": {"teams": None, "period": "season", "title": "UEFA Club Competitions"},
     "nl": {"teams": "teams_nl.json", "period": "season", "title": "UEFA Nations League"},
     "euro": {"teams": "teams_euro.json", "period": "year", "title": "UEFA European Championship"},
     "copa": {"teams": "teams_copa.json", "period": "year", "title": "Copa América (1993 →)"},
@@ -75,20 +77,26 @@ def pens(m):
 
 def build(key):
     cfg = COMPS[key]
-    teams = load(DATA / cfg["teams"])
-    phases = load(DATA / "phases.json")[key]
-    amap = alias_map(teams)
     period = cfg["period"]
-    matches = load(DATA / "matches" / f"{key}.json")
     division = {}
-    if key == "nl":                     # raw results -> editions, division phases
-        matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"), lambda t: amap.get(t, t))
-    elif key in ("euro", "copa"):       # dated results -> editions, stages
-        matches = tournaments.prepare(key, matches)
-    matches = apply_overrides(matches, load(DATA / "overrides.json").get(key, {}), period)
-    bad = unknown_names(matches, amap)
-    if bad:
-        return None, bad
+    if key == "uefa":                   # Champions League + Europa League + Conference League, one rating per club
+        teams, phases, matches, bad = combined.prepare(apply_overrides)
+        if bad:
+            return None, bad
+        amap = {n: n for n in teams}
+    else:
+        teams = load(DATA / cfg["teams"])
+        phases = load(DATA / "phases.json")[key]
+        amap = alias_map(teams)
+        matches = load(DATA / "matches" / f"{key}.json")
+        if key == "nl":                 # raw results -> editions, division phases
+            matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"), lambda t: amap.get(t, t))
+        elif key in ("euro", "copa"):   # dated results -> editions, stages
+            matches = tournaments.prepare(key, matches)
+        matches = apply_overrides(matches, load(DATA / "overrides.json").get(key, {}), period)
+        bad = unknown_names(matches, amap)
+        if bad:
+            return None, bad
     matches.sort(key=lambda m: str(m[period]))          # stable: file order inside a period
     for m in matches:
         m["teamA"], m["teamB"] = amap[m["teamA"]], amap[m["teamB"]]

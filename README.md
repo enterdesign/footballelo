@@ -25,6 +25,9 @@ site/                        the website (site/data/ is generated)
   semi-finals / 3rd place / final K 32, promotion/relegation play-offs between two divisions use the K of the lower one.
 - Europa League: group/league phase 6, R32 and knockout play-offs 12, R16 and QF 12, SF 18, final 24;
   Conference League: 4 / play-offs 8, R16 and QF 8 / SF 12 / final 16 (between the Champions League and each other: UCL > UEL > UECL).
+- UEFA Club Competitions: one ranking over the Champions League, Europa League and Conference League; one rating per club,
+  each match rated with its own competition's K (phase keys `ucl_*`, `el_*`, `conf_*`), clubs merged by name and country
+  (`scripts/combined.py`); within a season ordered by stage, then competition.
 - European Championship and Copa América: World Cup K-factors (group 8, R16/QF 16, SF/3rd 24, final 32); Copa América only
   from 1993 (stable format since then). Stages are assigned by position from each era's known format (`scripts/tournaments.py`).
 - Era buttons (Premier League: pre-1992 / 1992-; Ekstraklasa: pre-war / post-war) are filters over the years, not separate

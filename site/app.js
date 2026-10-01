@@ -2,6 +2,7 @@
 const REPO = "https://github.com/enterdesign/footballelo";
 const INTL = `<a href="https://github.com/martj42/international_results" style="color:var(--accent);text-decoration:underline">international_results</a>`;
 const WIKI = `<a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a> (CC BY-SA)`;
+const WIKI_OPENFOOTBALL = `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and <a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a>`;
 const COMPS = {
   ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
@@ -10,6 +11,9 @@ const COMPS = {
         note: "Since the competition was renamed in 2009/10; the earlier UEFA Cup and Cup Winners' Cup are not included. Qualifying rounds are not rated."},
   conf: {file: "data/conf.json", img: "img/home.jpg", eyebrow: "UEFA Conference League (2021/22 →)", short: "Conference League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "2021/22", source: WIKI, note: "Qualifying rounds are not rated."},
+  uefa: {file: "data/uefa.json", img: "img/ucl.jpg", eyebrow: "UEFA Club Competitions", short: "UEFA Club Competitions", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: t => t.code, groupLabel: t => t.country, first: "1992/93", source: WIKI_OPENFOOTBALL,
+        note: "One rating per club across the Champions League (1992/93 →), Europa League (2009/10 →) and Conference League (2021/22 →). Every match is rated with the K-factor of its own competition and stage (see K-factors); within a season matches are ordered by stage, then competition."},
   wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930", flags: true},
   pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",

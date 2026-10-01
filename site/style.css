@@ -55,7 +55,7 @@ main{max-width:960px;margin:0 auto;padding:22px 16px 80px}
 .grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
 .formula{font:600 20px var(--display);color:var(--ink);margin-bottom:6px}
 /* matches */
-.match{display:grid;grid-template-columns:52px 30px minmax(0,1fr) 92px minmax(0,1fr) 30px 148px;gap:8px;padding:7px 6px;border-bottom:1px solid var(--rule);font-size:15px;align-items:center}
+.match{display:grid;grid-template-columns:70px 30px minmax(0,1fr) 92px minmax(0,1fr) 30px 148px;gap:8px;padding:7px 6px;border-bottom:1px solid var(--rule);font-size:15px;align-items:center}
 .match .a{text-align:right}.match .a,.match .b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.match .sc{font:600 17px var(--display);text-align:center}
 .match .d{font:400 13px var(--body);color:var(--mute);text-align:right;white-space:nowrap}
 .ico.sm{width:30px;height:24px;padding:2px}.ico.sm .mg{font-size:11px;letter-spacing:0}

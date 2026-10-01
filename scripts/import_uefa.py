@@ -14,7 +14,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from common import DATA, alias_map
+from common import DATA, alias_map, nk
 import uefa_wikipedia as uw
 
 CODES = {"Albania": "ALB", "Andorra": "AND", "Armenia": "ARM", "Austria": "AUT", "Azerbaijan": "AZE", "Belarus": "BLR",
@@ -30,17 +30,6 @@ CODES = {"Albania": "ALB", "Andorra": "AND", "Armenia": "ARM", "Austria": "AUT",
          "Wales": "WAL"}
 COUNTRY = {"the Czech Republic": "Czechia", "Czech Republic": "Czechia", "Ireland": "Republic of Ireland",
            "the Netherlands": "Netherlands", "the Faroe Islands": "Faroe Islands"}
-NOISE = re.compile(r"\b(fc|f c|afc|sc|cf|ac|as|sk|fk|nk|ks|bk|if|sv|us|ssc|rcd|ud|cd|club|football|futbol|de|calcio|hnk|hsk|kf|rc|sbv|bsc|gnk|ofk|sfc|tsc)\b")
-
-
-def nk(s):
-    """Loose key: lower case, accents/punctuation/club-form words removed."""
-    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
-    s = re.sub(r"\([^)]*\)", " ", s)
-    s = NOISE.sub(" ", re.sub(r"[^a-z0-9 ]", " ", s))
-    return re.sub(r"\s+", "", s)
-
-
 def fetch_all(comp, first=None):
     matches, info = [], {}
     today = date.today()
