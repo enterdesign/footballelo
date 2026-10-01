@@ -36,7 +36,8 @@ site/                        the website (site/data/ is generated)
   copy with fewer matches. Seasons played in groups (1933, 1952, 1962) and the 1939 season cut short by the war
   have fewer matches than a full round robin by design.
 - Nations League 2018/19 →: [international_results](https://github.com/martj42/international_results) (results and
-  shoot-out winners, daily). The dataset has no divisions or stages, so they are derived (`scripts/nationsleague.py`):
+  shoot-out winners, daily) plus the running edition from English Wikipedia (the dataset lags by weeks; a Wikipedia
+  match is dropped as soon as the dataset has it). The dataset has no divisions or stages, so they are derived (`scripts/nationsleague.py`):
   groups = sets of teams that play each other in the league phase; 2018/19 divisions are listed in `data/nl_leagues.json`,
   later editions are inferred from promotion/relegation. A brand new edition needs no edit (it is detected and inferred);
   only the pre-declared editions in `nl_leagues.json` carry dates.

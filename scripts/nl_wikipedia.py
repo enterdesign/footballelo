@@ -70,11 +70,11 @@ def titles(year):
 
 
 def fetch_running(today=None):
-    """Matches played so far in the running edition (and the previous one before its finals ended)."""
+    """Matches played so far in the running edition (plus the previous one in June/July, when its finals are played)."""
     today = today or date.today()
     year = today.year if today.month >= 6 else today.year - 1
     out = []
-    for y in (year - 1, year):
+    for y in ((year - 1, year) if today.month in (6, 7) else (year,)):
         for t in titles(y):
             try:
                 page = page_html(t)
