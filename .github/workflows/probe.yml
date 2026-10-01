@@ -10,11 +10,13 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd scripts && python3 - <<'PY'
-          import json, nl_wikipedia, nationsleague
-          from common import DATA, alias_map
-          ms = nl_wikipedia.fetch_running()
-          print(len(ms), "matches")
-          for m in ms[:6] + ms[-4:]: print(m)
-          amap = alias_map(json.loads((DATA/"teams_nl.json").read_text()))
-          print("unknown:", sorted({t for m in ms for t in (m["teamA"], m["teamB"]) if t not in amap}))
+          import re, nl_wikipedia as w
+          for t in ["2026–27 UEFA Nations League A", "2024–25 UEFA Nations League A"]:
+              p = w.page_html(t)
+              print(t, None if p is None else len(p))
+              if p:
+                  i = p.find('footballbox')
+                  print(i, p.count('footballbox'))
+                  print(p[i-20:i+2200])
+                  print(len(w.parse_boxes(p)))
           PY
