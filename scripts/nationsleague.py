@@ -28,12 +28,12 @@ def fetch(url):
         return r.read().decode("utf-8")
 
 
-def parse(results_csv, shootouts_csv):
-    """Raw matches in date order; a shoot-out winner is stored as "penWin": "A" | "B"."""
+def parse(results_csv, shootouts_csv, tournament=TOURNAMENT):
+    """Raw matches of one tournament in date order; a shoot-out winner is stored as "penWin": "A" | "B"."""
     won = {(r["date"], r["home_team"], r["away_team"]): r["winner"] for r in csv.DictReader(io.StringIO(shootouts_csv))}
     out = []
     for r in csv.DictReader(io.StringIO(results_csv)):
-        if r["tournament"] != TOURNAMENT or r["home_score"] in ("", "NA"):
+        if r["tournament"] != tournament or r["home_score"] in ("", "NA"):
             continue
         m = {"date": r["date"], "teamA": r["home_team"], "goalsA": int(r["home_score"]),
              "teamB": r["away_team"], "goalsB": int(r["away_score"])}

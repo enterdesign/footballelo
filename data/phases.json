@@ -133,5 +133,64 @@
    "k": 32,
    "color": "#b3261e"
   }
+ },
+ "euro": {
+  "group": {
+   "label": "GR",
+   "k": 8,
+   "color": "#6f9a78"
+  },
+  "r16": {
+   "label": "R16",
+   "k": 16,
+   "color": "#4a78a8"
+  },
+  "qf": {
+   "label": "QF",
+   "k": 16,
+   "color": "#7a6aa8"
+  },
+  "sf": {
+   "label": "SF",
+   "k": 24,
+   "color": "#c2703d"
+  },
+  "3rd": {
+   "label": "3rd",
+   "k": 24,
+   "color": "#8a8578"
+  },
+  "final": {
+   "label": "FIN",
+   "k": 32,
+   "color": "#b3261e"
+  }
+ },
+ "copa": {
+  "group": {
+   "label": "GR",
+   "k": 8,
+   "color": "#6f9a78"
+  },
+  "qf": {
+   "label": "QF",
+   "k": 16,
+   "color": "#7a6aa8"
+  },
+  "sf": {
+   "label": "SF",
+   "k": 24,
+   "color": "#c2703d"
+  },
+  "3rd": {
+   "label": "3rd",
+   "k": 24,
+   "color": "#8a8578"
+  },
+  "final": {
+   "label": "FIN",
+   "k": 32,
+   "color": "#b3261e"
+  }
  }
 }

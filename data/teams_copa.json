@@ -1,0 +1,22 @@
+{
+"Argentina":{"iso":"ar","region":"CONMEBOL","label":"South America","aliases":[]},
+"Bolivia":{"iso":"bo","region":"CONMEBOL","label":"South America","aliases":[]},
+"Brazil":{"iso":"br","region":"CONMEBOL","label":"South America","aliases":[]},
+"Canada":{"iso":"ca","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Chile":{"iso":"cl","region":"CONMEBOL","label":"South America","aliases":[]},
+"Colombia":{"iso":"co","region":"CONMEBOL","label":"South America","aliases":[]},
+"Costa Rica":{"iso":"cr","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Ecuador":{"iso":"ec","region":"CONMEBOL","label":"South America","aliases":[]},
+"Haiti":{"iso":"ht","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Honduras":{"iso":"hn","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Jamaica":{"iso":"jm","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Japan":{"iso":"jp","region":"AFC","label":"Asia","aliases":[]},
+"Mexico":{"iso":"mx","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Panama":{"iso":"pa","region":"CONCACAF","label":"N/C America & Caribbean","aliases":[]},
+"Paraguay":{"iso":"py","region":"CONMEBOL","label":"South America","aliases":[]},
+"Peru":{"iso":"pe","region":"CONMEBOL","label":"South America","aliases":[]},
+"Qatar":{"iso":"qa","region":"AFC","label":"Asia","aliases":[]},
+"United States":{"iso":"us","region":"CONCACAF","label":"N/C America & Caribbean","aliases":["USA"]},
+"Uruguay":{"iso":"uy","region":"CONMEBOL","label":"South America","aliases":[]},
+"Venezuela":{"iso":"ve","region":"CONMEBOL","label":"South America","aliases":[]}
+}
