@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build site/data/{ucl,wc}.json (ranking + per-match history) from data/.
+"""Build site/data/{ucl,wc,pl,ekstraklasa,nl}.json (ranking + per-match history) from data/.
 
 Exits with status 2 (and a readable report) if a team name has no entry in
 data/teams_*.json, so new names are never guessed.
@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 
 from common import DATA, ROOT, alias_map, load, unknown_names
 import elo
+import nationsleague
 
 COMPS = {
     "ucl": {"teams": "teams_ucl.json", "period": "season", "title": "UEFA Champions League"},
@@ -22,6 +23,7 @@ COMPS = {
                     "eras": [{"id": "pre", "label": "Pre-war (1927–1939)", "to": "1939"},
                              {"id": "post", "label": "Post-war (1948–)", "from": "1948"}],
                     "default_era": "post"},
+    "nl": {"teams": "teams_nl.json", "period": "season", "title": "UEFA Nations League"},
 }
 
 
@@ -59,6 +61,13 @@ def apply_overrides(matches, ov, period):
     return matches + ov.get("add", [])
 
 
+def pens(m):
+    """(penA, penB) for the output; a shoot-out whose score is unknown only records the winner (1-0 / 0-1, shown as "pens")."""
+    if m.get("penWin"):
+        return (1, 0) if m["penWin"] == "A" else (0, 1)
+    return m.get("penA"), m.get("penB")
+
+
 def build(key):
     cfg = COMPS[key]
     teams = load(DATA / cfg["teams"])
@@ -66,6 +75,9 @@ def build(key):
     amap = alias_map(teams)
     period = cfg["period"]
     matches = load(DATA / "matches" / f"{key}.json")
+    division = {}
+    if key == "nl":                     # raw results -> editions, division phases
+        matches, division = nationsleague.prepare(matches, load(DATA / "nl_leagues.json"))
     matches = apply_overrides(matches, load(DATA / "overrides.json").get(key, {}), period)
     bad = unknown_names(matches, amap)
     if bad:
@@ -75,18 +87,19 @@ def build(key):
         m["teamA"], m["teamB"] = amap[m["teamA"]], amap[m["teamB"]]
         if m["phase"] not in phases:
             raise SystemExit(f"{key}: unknown phase {m['phase']!r} in {m}")
+    division = {amap[t]: d for t, d in division.items() if t in amap}
     ratings, count, hist = elo.run(matches, phases, seed=teams)
     order = sorted(ratings, key=lambda t: (-ratings[t], t))
     idx = {t: i for i, t in enumerate(order)}
     out = {
         "title": cfg["title"],
         "phases": phases,
-        "teams": [{"name": t, **{k: v for k, v in teams[t].items()},
+        "teams": [{"name": t, **{k: v for k, v in teams[t].items()}, **({"division": division[t]} if t in division else {}),
                    "elo": ratings[t], "matches": count.get(t, 0)} for t in order],
         # [period, phase, teamA, goalsA, teamB, goalsB, decided, penA, penB, eloA_after, eloB_after]
         "matches": [[str(m[period]), m["phase"], idx[m["teamA"]], m["goalsA"], idx[m["teamB"]], m["goalsB"],
-                     "pen" if m.get("penA") is not None else "aet" if m.get("et") else "",
-                     m.get("penA"), m.get("penB"), h[0], h[1]]
+                     "pen" if m.get("penA") is not None else "pw" if m.get("penWin") else "aet" if m.get("et") else "",
+                     *pens(m), h[0], h[1]]
                     for m, h in zip(matches, hist)],
     }
     if cfg.get("eras"):

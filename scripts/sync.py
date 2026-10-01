@@ -7,6 +7,7 @@ usage: sync.py [--worldcup DIR] [--ucl DIR] [--england DIR]   (default: shallow-
 * Champions League: seasons from 2011/12 replaced from openfootball, older ones kept.
 * Premier League: seasons from 1992/93 replaced from openfootball; the First Division
   archive (1888/89-1991/92, from engsoccerdata) is kept.
+* Nations League: replaced wholesale from the open international_results dataset (see nationsleague.py).
 * Running season of the Champions League and Premier League: football-data.org when
   FOOTBALL_DATA_KEY is set (it is live; openfootball is often weeks behind).
 """
@@ -22,6 +23,7 @@ from common import DATA
 import england
 import footballdata
 import import_ekstraklasa
+import nationsleague
 import openfootball
 import wikipedia_pl
 
@@ -85,6 +87,20 @@ def refresh_ekstraklasa(recent=2):
     return matches
 
 
+def refresh_nl():
+    """Nations League results (+ shoot-out winners). Kept as stored when the download fails or looks truncated."""
+    old = load_old("nl")
+    try:
+        fresh = nationsleague.parse(nationsleague.fetch(nationsleague.RESULTS), nationsleague.fetch(nationsleague.SHOOTOUTS))
+    except Exception as e:
+        print(f"international_results failed ({e}); keeping stored Nations League data")
+        return old
+    if len(fresh) < len(old):
+        print(f"Nations League: fresh copy has fewer matches ({len(fresh)} < {len(old)}); kept stored")
+        return old
+    return fresh
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--worldcup")
@@ -111,6 +127,8 @@ def main():
     pl = with_current_season(old, pl, "PL", footballdata.PL_STAGES)
 
     ekstraklasa = refresh_ekstraklasa()
+    nl = refresh_nl()
+    dump(DATA / "matches/nl.json", nl)
     dump(DATA / "matches/ekstraklasa.json", ekstraklasa)
     dump(DATA / "matches/wc.json", wc)
     dump(DATA / "matches/ucl.json", ucl)
@@ -118,7 +136,7 @@ def main():
     # heartbeat: shown on the home page, and the daily commit keeps the schedule alive
     dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes")})
     print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, "
-          f"ekstraklasa: {len(ekstraklasa)} matches")
+          f"ekstraklasa: {len(ekstraklasa)}, nations league: {len(nl)} matches")
 
 
 if __name__ == "__main__":

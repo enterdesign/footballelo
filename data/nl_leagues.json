@@ -1,0 +1,91 @@
+{
+ "editions": {
+  "2018/19": {
+   "from": "2018-09-01",
+   "to": "2019-06-30",
+   "divisions": {
+    "A": [
+     "Belgium",
+     "Croatia",
+     "England",
+     "France",
+     "Germany",
+     "Iceland",
+     "Italy",
+     "Netherlands",
+     "Poland",
+     "Portugal",
+     "Spain",
+     "Switzerland"
+    ],
+    "B": [
+     "Austria",
+     "Bosnia and Herzegovina",
+     "Czech Republic",
+     "Denmark",
+     "Northern Ireland",
+     "Republic of Ireland",
+     "Russia",
+     "Slovakia",
+     "Sweden",
+     "Turkey",
+     "Ukraine",
+     "Wales"
+    ],
+    "C": [
+     "Albania",
+     "Bulgaria",
+     "Cyprus",
+     "Estonia",
+     "Finland",
+     "Greece",
+     "Hungary",
+     "Israel",
+     "Lithuania",
+     "Montenegro",
+     "Norway",
+     "Romania",
+     "Scotland",
+     "Serbia",
+     "Slovenia"
+    ],
+    "D": [
+     "Andorra",
+     "Armenia",
+     "Azerbaijan",
+     "Belarus",
+     "Faroe Islands",
+     "Georgia",
+     "Gibraltar",
+     "Kazakhstan",
+     "Kosovo",
+     "Latvia",
+     "Liechtenstein",
+     "Luxembourg",
+     "Malta",
+     "Moldova",
+     "North Macedonia",
+     "San Marino"
+    ]
+   }
+  },
+  "2020/21": {
+   "from": "2020-07-01",
+   "to": "2022-04-30",
+   "groups": {
+    "A": 4,
+    "B": 4,
+    "C": 4,
+    "D": 2
+   }
+  },
+  "2022/23": {
+   "from": "2022-05-01",
+   "to": "2024-04-30"
+  },
+  "2024/25": {
+   "from": "2024-08-01",
+   "to": "2025-12-31"
+  }
+ }
+}
