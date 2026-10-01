@@ -9,9 +9,10 @@ jobs:
     steps:
       - run: |
           get() { curl -s -A "footballelo/1.0" "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&rvslots=main&format=json&formatversion=2&titles=$1" | python3 -c "import sys,json;print(json.load(sys.stdin)['query']['pages'][0].get('revisions',[{}])[0].get('slots',{}).get('main',{}).get('content','MISSING'))"; }
-          for t in "2026%E2%80%9327_UEFA_Nations_League_A" "2026%E2%80%9327_UEFA_Nations_League_B" "2026%E2%80%9327_UEFA_Nations_League_D"; do
-            echo "=== $t"; get "$t" > w.txt; wc -c w.txt; grep -c -i "footballbox" w.txt; grep -n -i -m4 "footballbox\|#invoke" w.txt
-          done
-          get "2026%E2%80%9327_UEFA_Nations_League_A" | grep -n -i -A14 -m2 "footballbox"
-          echo "=== 2024-25 A"
-          get "2024%E2%80%9325_UEFA_Nations_League_A" | grep -n -i -A14 -m1 "footballbox"
+          get "2026%E2%80%9327_UEFA_Nations_League_A" > a.txt || true
+          get "2024%E2%80%9325_UEFA_Nations_League_A" > o.txt || true
+          wc -c a.txt o.txt
+          echo "== templates 2026"; grep -o -i "{{[A-Za-z#: ]*" a.txt | sort | uniq -c | sort -rn | head -15 || true
+          echo "== templates 2024"; grep -o -i "{{[A-Za-z#: ]*" o.txt | sort | uniq -c | sort -rn | head -15 || true
+          echo "== 2026 excerpt"; grep -n -i -m3 "matchday\|Football box\|#invoke" a.txt || true
+          sed -n '/Matches/,+40p' a.txt | head -60 || true
