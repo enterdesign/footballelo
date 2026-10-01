@@ -10,7 +10,7 @@ const COMPS = {
   ekstraklasa: {file: "data/ekstraklasa.json", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927"},
   nl:  {file: "data/nl.json", img: "img/home.jpg", eyebrow: "UEFA Nations League", noun: "Nations", period: "Editions", live: "updated daily",
-        group: t => t.division, groupLabel: t => `League ${t.division}`, first: "2018/19", flags: true,
+        group: t => t.division, groupLabel: t => `Division ${t.division}`, first: "2018/19", flags: true,
         source: `<a href="https://github.com/martj42/international_results" style="color:var(--accent);text-decoration:underline">international_results</a>`},
 };
 const TABS = ["ranking", "history", "stats", "compare", "about"];
@@ -64,7 +64,7 @@ const icon = (t, size = "") => {
   return `<span class="ico${size ? " " + size : ""}">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
 };
 const eloColor = () => "var(--ink)";
-const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag" style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
+const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag"${p.label === "PO" ? ' title="Promotion/relegation play-off between two divisions"' : ""} style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
 
 // ── routing ───────────────────────────────────────────────────────
 function parseHash() {
@@ -216,7 +216,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "nl" ? "<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of League A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one.</li><li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "nl" ? "<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of Division A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one. <b>PO</b> in the history marks these promotion/relegation play-offs.</li><li>The Nations League is played every two years (2018/19, 2020/21, 2022/23 …); the years in between have no edition.</li><li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       <li>Updated daily from ${C.source || `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and Wikipedia`}</li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp}.json" style="color:var(--accent);text-decoration:underline">teams file</a></li></ul></div></div>`;
