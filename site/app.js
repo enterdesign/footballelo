@@ -4,28 +4,28 @@ const INTL = `<a href="https://github.com/martj42/international_results" style="
 const WIKI = `<a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a> (CC BY-SA)`;
 const WIKI_OPENFOOTBALL = `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and <a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a>`;
 const COMPS = {
-  ucl: {file: "data/ucl.json", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated daily",
+  ucl: {file: "data/ucl.json", c1: "#0b1d4d", c2: "#2147a8", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
-  el:  {file: "data/el.json", img: "img/home.jpg", eyebrow: "UEFA Europa League (2009/10 →)", short: "Europa League", noun: "Clubs", period: "Seasons", live: "updated daily",
+  el:  {file: "data/el.json", c1: "#c2410c", c2: "#7c2d12", img: "img/home.jpg", eyebrow: "UEFA Europa League (2009/10 →)", short: "Europa League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "2009/10", source: WIKI,
         note: "Since the competition was renamed in 2009/10; the earlier UEFA Cup and Cup Winners' Cup are not included. Qualifying rounds are not rated."},
-  conf: {file: "data/conf.json", img: "img/home.jpg", eyebrow: "UEFA Conference League (2021/22 →)", short: "Conference League", noun: "Clubs", period: "Seasons", live: "updated daily",
+  conf: {file: "data/conf.json", c1: "#15803d", c2: "#14532d", img: "img/home.jpg", eyebrow: "UEFA Conference League (2021/22 →)", short: "Conference League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "2021/22", source: WIKI, note: "Qualifying rounds are not rated."},
-  uefa: {file: "data/uefa.json", img: "img/ucl.jpg", eyebrow: "UEFA Club Competitions", short: "UEFA Club Competitions", noun: "Clubs", period: "Seasons", live: "updated daily",
+  uefa: {file: "data/uefa.json", c1: "#1e293b", c2: "#475569", img: "img/ucl.jpg", eyebrow: "UEFA Club Competitions", short: "UEFA Club Competitions", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93", source: WIKI_OPENFOOTBALL,
         note: "One rating per club across the Champions League (1992/93 →), Europa League (2009/10 →) and Conference League (2021/22 →). Every match is rated with the K-factor of its own competition and stage (see K-factors); within a season matches are ordered by stage, then competition."},
-  wc:  {file: "data/wc.json", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
+  wc:  {file: "data/wc.json", c1: "#92400e", c2: "#ca8a04", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930", flags: true},
-  pl:  {file: "data/pl.json", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",
+  pl:  {file: "data/pl.json", c1: "#3d195b", c2: "#7c3aed", flag: "gb-eng", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: () => "", groupLabel: () => "England", sub: "England", first: "1888/89"},
-  ekstraklasa: {file: "data/ekstraklasa.json", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated daily",
+  ekstraklasa: {file: "data/ekstraklasa.json", c1: "#9f1239", c2: "#e11d48", flag: "pl", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927"},
-  euro: {file: "data/euro.json", img: "img/home.jpg", eyebrow: "UEFA European Championship", short: "European Championship", noun: "Nations", period: "Editions",
+  euro: {file: "data/euro.json", c1: "#1e3a8a", c2: "#2563eb", img: "img/home.jpg", eyebrow: "UEFA European Championship", short: "European Championship", noun: "Nations", period: "Editions",
         group: () => "", groupLabel: () => "Europe", sub: "Europe", first: "1960", flags: true, source: INTL},
-  copa: {file: "data/copa.json", img: "img/home.jpg", eyebrow: "Copa América (1993 →)", short: "Copa América", noun: "Nations", period: "Editions",
+  copa: {file: "data/copa.json", c1: "#0e7490", c2: "#facc15", img: "img/home.jpg", eyebrow: "Copa América (1993 →)", short: "Copa América", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1993", flags: true, source: INTL,
         note: "Only editions from 1993 are included: since then the tournament has a stable format (groups, quarter-finals, semi-finals, 3rd place, final). Earlier editions were round-robin leagues with changing formats and incomplete records."},
-  nl:  {file: "data/nl.json", img: "img/home.jpg", eyebrow: "UEFA Nations League", noun: "Nations", period: "Editions", live: "updated daily",
+  nl:  {file: "data/nl.json", c1: "#312e81", c2: "#4f46e5", img: "img/home.jpg", eyebrow: "UEFA Nations League", noun: "Nations", period: "Editions", live: "updated daily",
         group: t => t.division, groupLabel: t => `Division ${t.division}`, first: "2018/19", flags: true,
         source: INTL},
 };
@@ -104,9 +104,16 @@ async function render() {
 }
 async function renderHome() {
   document.title = "Football ELO Rankings";
+  // card artwork without trademarked competition logos: the flag of the country, the flags of the best nations,
+  // or the crests of the best clubs of that very ranking
+  const art = (d, c) => {
+    if (c.flag) return `<img class="bigflag" src="https://flagcdn.com/w320/${c.flag}.png" alt="">`;
+    const tiles = d.teams.map(t => c.flags ? (t.iso ? `https://flagcdn.com/w80/${t.iso}.png` : "") : t.logo || "").filter(Boolean).slice(0, 6);
+    return `<div class="mosaic">${tiles.map(u => `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">`).join("")}</div>`;
+  };
   const card = async k => {
     const d = await load(k), c = COMPS[k];
-    return `<a class="home-card" href="#${k}" style="background-image:url('${c.img}')"><div class="eyebrow">${c.short || c.eyebrow}</div>
+    return `<a class="home-card" href="#${k}" style="--c1:${c.c1};--c2:${c.c2}">${art(d, c)}<div class="eyebrow">${c.short || c.eyebrow}</div>
       <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div>
       <div class="subtitle">through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
   };
