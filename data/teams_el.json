@@ -69,6 +69,15 @@
   "country": "Netherlands",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/wtqwvv1473534757.png"
  },
+ "Aalborg": {
+  "country": "Denmark",
+  "code": "DEN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vtwqwt1473535469.png",
+  "aliases": [
+   "AaB",
+   "AaB Fodbold"
+  ]
+ },
  "Académica": {
   "aliases": [
    "Académica de Coimbra (football)"
@@ -188,6 +197,14 @@
   "code": "ITA",
   "country": "Italy",
   "logo": "https://crests.football-data.org/102.png"
+ },
+ "Athletic Club": {
+  "country": "Spain",
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/68w7fe1639408210.png",
+  "aliases": [
+   "Athletic Bilbao"
+  ]
  },
  "Atlético Madrid": {
   "aliases": [],
@@ -881,8 +898,10 @@
   "code": "POL",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/8zfxyx1685597440.png"
  },
- "Legia Warsaw": {
-  "aliases": [],
+ "Legia Warszawa": {
+  "aliases": [
+   "Legia Warsaw"
+  ],
   "code": "POL",
   "country": "Poland",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/c969ez1632775656.png"
@@ -1937,22 +1956,5 @@
   "country": "Sweden",
   "code": "SWE",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/6pvzqm1592144722.png"
- },
- "Athletic Club": {
-  "country": "Spain",
-  "code": "ESP",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/68w7fe1639408210.png",
-  "aliases": [
-   "Athletic Bilbao"
-  ]
- },
- "Aalborg": {
-  "country": "Denmark",
-  "code": "DEN",
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vtwqwt1473535469.png",
-  "aliases": [
-   "AaB",
-   "AaB Fodbold"
-  ]
  }
 }

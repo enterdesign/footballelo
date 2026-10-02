@@ -95,10 +95,10 @@
   "aliases": [],
   "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e3/RKS_Garbarnia_Krak%C3%B3w_%28ancien_logo%29.svg"
  },
- "Gwardia Warsaw": {
+ "Gwardia Warszawa": {
   "country": "Poland",
   "aliases": [
-   "Gwardia Warszawa"
+   "Gwardia Warsaw"
   ],
   "logo": "https://upload.wikimedia.org/wikipedia/en/6/6e/Gwardia_Warszawa_Logo.png"
  },
@@ -199,9 +199,11 @@
   "aliases": [],
   "logo": "https://encyklopedialks.pl/wp-content/uploads/2022/06/lechia-l.png"
  },
- "Legia Warsaw": {
+ "Legia Warszawa": {
   "country": "Poland",
-  "aliases": [],
+  "aliases": [
+   "Legia Warsaw"
+  ],
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/c969ez1632775656.png"
  },
  "Miedź Legnica": {
@@ -276,9 +278,11 @@
   "aliases": [],
   "logo": "https://upload.wikimedia.org/wikipedia/en/2/2c/Polonia_Bytom_crest.png"
  },
- "Polonia Warsaw": {
+ "Polonia Warszawa": {
   "country": "Poland",
-  "aliases": [],
+  "aliases": [
+   "Polonia Warsaw"
+  ],
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/ohxxeh1610395796.png"
  },
  "Puszcza Niepołomice": {
