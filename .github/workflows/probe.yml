@@ -1,0 +1,14 @@
+name: probe
+on:
+  push:
+    branches: [claude/adoring-knuth-4bh23x]
+    paths: [".github/workflows/probe.yml"]
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          B=https://enterdesign.github.io/footballelo
+          for u in "$B/sitemap.xml" "$B/google837b93e55ecd4b85.html" "$B/rankings/champions-league.html" "$B/"; do
+            echo "== $u"; curl -s -o /tmp/x -D - -A "Mozilla/5.0 (compatible; Googlebot/2.1)" "$u" | head -12; echo "-- body:"; head -c 300 /tmp/x; echo
+          done
