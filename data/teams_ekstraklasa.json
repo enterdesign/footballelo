@@ -1,7 +1,8 @@
 {
  "1. FC Kattowitz": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8f/1._FC_Kattowitz.png"
  },
  "22 pp Siedlce": {
   "country": "Poland",
@@ -12,7 +13,8 @@
  },
  "AKS Chorzów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS32x456VaP9uJ2hmF4kwaWG0FMZYwkQmaAZBOHEBaRkxz7O1UyU8f3Ymo&s=10"
  },
  "Amica Wronki": {
   "country": "Poland",
@@ -26,11 +28,13 @@
  },
  "Arkonia Szczecin": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/fr/b/bc/Arkonia_Szczecin_%28logo%29.svg"
  },
  "Bałtyk Gdynia": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/74/Baltyk_Gdynia.png"
  },
  "Bruk-Bet Termalica Nieciecza": {
   "country": "Poland",
@@ -110,7 +114,8 @@
  },
  "Górnik Wałbrzych": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/75/Herbksgwalbrzych.png"
  },
  "Górnik Zabrze": {
   "country": "Poland",
@@ -124,7 +129,8 @@
  },
  "Hasmonea Lwów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/9/90/%C5%BBKS_Hasmonea_-_Lw%C3%B3w_%2802%29.jpg"
  },
  "Hutnik Kraków": {
   "country": "Poland",
@@ -159,7 +165,8 @@
   "country": "Poland",
   "aliases": [
    "Warszawianka"
-  ]
+  ],
+  "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLnWfhgpa0d3nLUCfORwPvY-7_Juat2MDEDdrj6sHaSBBHONmIfaDmJsgt&s=10"
  },
  "KSZO Ostrowiec Świętokrzyski": {
   "country": "Poland",
@@ -189,7 +196,8 @@
  },
  "Lechia Lwów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://encyklopedialks.pl/wp-content/uploads/2022/06/lechia-l.png"
  },
  "Legia Warsaw": {
   "country": "Poland",
@@ -225,7 +233,8 @@
  },
  "Odra Wodzisław": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/e/e5/MKS_Odra_Wodzislaw.png"
  },
  "Olimpia Poznań": {
   "country": "Poland",
@@ -259,7 +268,8 @@
  },
  "Polonia Bydgoszcz": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://kppolonia.pl/wp-content/uploads/2021/02/3IY3w5P-1.png"
  },
  "Polonia Bytom": {
   "country": "Poland",
@@ -345,11 +355,14 @@
  },
  "Strzelec Siedlce": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/aa/Herb_Pogo%C5%84.cdr.svg",
+  "note": "Later Pogoń Siedlce"
  },
  "Szczakowianka Jaworzno": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/53/Szczakowianka_Jaworzno.png"
  },
  "Szombierki Bytom": {
   "country": "Poland",
@@ -358,7 +371,8 @@
  },
  "TKS Toruń": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Torunski_Klub_Sportowy_logo.svg"
  },
  "Tarnovia Tarnów": {
   "country": "Poland",
@@ -369,7 +383,8 @@
   "country": "Poland",
   "aliases": [
    "Klub Turystów Łódź"
-  ]
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/6/62/Union-lodz_logo.png"
  },
  "Warta Poznań": {
   "country": "Poland",
@@ -417,7 +432,8 @@
  },
  "Zagłębie Wałbrzych": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/b/b6/Zaglebie-Walbrzych.png"
  },
  "Zawisza Bydgoszcz": {
   "country": "Poland",
@@ -431,7 +447,8 @@
  },
  "ŁTSG Łódź": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://polskielogo.net/wp-content/uploads/2016/02/140-ltsg-ikona.jpg"
  },
  "Śląsk Wrocław": {
   "country": "Poland",
@@ -440,7 +457,8 @@
  },
  "Śląsk Świętochłowice": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/4b/%C5%9Al%C4%85sk_%C5%9Awi%C4%99toch%C5%82owice.png"
  },
  "Śmigły Wilno": {
   "country": "Poland",
