@@ -48,7 +48,8 @@
  },
  "Czarni Lwów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/2/20/CzarniLw%C3%B3wherb.png"
  },
  "Dyskobolia Grodzisk Wielkopolski": {
   "country": "Poland",
@@ -59,7 +60,8 @@
  },
  "Dąb Katowice": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Katowice_Herb.svg"
  },
  "GKS Bełchatów": {
   "country": "Poland",
@@ -143,7 +145,8 @@
  },
  "Jutrzenka Kraków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/a8/Jutrzenka_Krak%C3%B3w_herb.png"
  },
  "KP Unia Racibórz": {
   "country": "Poland",
@@ -241,11 +244,13 @@
  },
  "Podgórze Kraków": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/b/b2/Logo_of_Krak%C3%B3w.svg"
  },
  "Pogoń Lwów": {
   "country": "Poland",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Pogon-logoNEW.svg"
  },
  "Pogoń Szczecin": {
   "country": "Poland",
