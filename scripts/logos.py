@@ -37,14 +37,14 @@ def search(key, q):
     return []
 
 
-WIKI_API = "https://en.wikipedia.org/w/api.php?format=json&"
-CREST = re.compile(r"(logo|crest|badge|emblem|coat[ _]of|shield)", re.I)
+WIKI_API = "https://{lang}.wikipedia.org/w/api.php?format=json&"
+CREST = re.compile(r"(logo|crest|badge|emblem|coat[ _]of|shield|herb|godło|znak)", re.I)
 NOT_CREST = re.compile(r"(flag[ _]of|commons-logo|wikiproject|wikimedia|wiktionary|ambox|question|icon|kit|stadium)", re.I)
 
 
-def wiki(**params):
+def wiki(lang="en", **params):
     """Wikipedia API call: spaced out and retried, because bursts get rate limited."""
-    url = WIKI_API + urllib.parse.urlencode(params)
+    url = WIKI_API.format(lang=lang) + urllib.parse.urlencode(params)
     for attempt in range(5):
         time.sleep(0.6)
         try:
@@ -57,23 +57,25 @@ def wiki(**params):
             time.sleep(8 * (attempt + 1))
 
 
-def wiki_logo(name):
-    """Fallback: the crest file listed on the Wikipedia article of "<name> football club".
-    (Most crests are non-free files, which the lead-image API hides, so the file list is read.)"""
+def wiki_logo(name, lang="en"):
+    """Fallback: the crest file listed on the Wikipedia article of the club (English: "<name> football club",
+    Polish: "<name> klub piłkarski"). Most crests are non-free files, which the lead-image API hides,
+    so the file list is read. The file must be named after the club (never e.g. "Speedway_logo")."""
     words = [w for w in (norm(t) for t in name.split()) if len(w) >= 3]
+    query = f"{name} klub piłkarski" if lang == "pl" else f"{name} football club"
     try:
-        hits = wiki(action="query", list="search", srsearch=f"{name} football club", srlimit=3)["query"]["search"]
+        hits = wiki(lang, action="query", list="search", srsearch=query, srlimit=3)["query"]["search"]
         title = next((h["title"] for h in hits if any(w in norm(h["title"]) for w in words)
-                      and not re.search(r"season|stadium", h["title"], re.I)), None)
+                      and not re.search(r"season|sezon|stadium|stadion", h["title"], re.I)), None)
         if not title:
             return None
-        pages = wiki(action="query", titles=title, prop="images", imlimit=500)["query"]["pages"]
+        pages = wiki(lang, action="query", titles=title, prop="images", imlimit=500)["query"]["pages"]
         files = [i["title"] for p in pages.values() for i in p.get("images", [])]
         good = [f for f in files if CREST.search(f) and not NOT_CREST.search(f) and f.lower().endswith((".svg", ".png"))]
-        good = [f for f in good if any(w in norm(f) for w in words)]      # the file must be named after the club (not "Speedway_logo")
+        good = [f for f in good if any(w in norm(f) for w in words)]
         if not good:
             return None
-        info = wiki(action="query", titles=good[0], prop="imageinfo", iiprop="url")["query"]["pages"]
+        info = wiki(lang, action="query", titles=good[0], prop="imageinfo", iiprop="url")["query"]["pages"]
         url = next(iter(info.values())).get("imageinfo", [{}])[0].get("url")
         return url.split("?")[0] if url else None
     except Exception:
@@ -105,6 +107,9 @@ def main():
                 if hit:
                     break
             badge = (hit or {}).get("strBadge") or (hit or {}).get("strTeamBadge")
+            if not badge and info.get("country") == "Poland":
+                badge = wiki_logo(name, "pl")                 # Polish clubs: the Polish article has the crest
+                time.sleep(1)
             if not badge:
                 badge = wiki_logo(name)
                 time.sleep(1)
