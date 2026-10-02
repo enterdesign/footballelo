@@ -4,13 +4,6 @@
   "aliases": [],
   "logo": "https://upload.wikimedia.org/wikipedia/commons/8/8f/1._FC_Kattowitz.png"
  },
- "22 pp Siedlce": {
-  "country": "Poland",
-  "aliases": [
-   "WKS 22 pp Siedlce"
-  ],
-  "logo": "https://r2.thesportsdb.com/images/media/team/badge/2udbzg1717918033.png"
- },
  "AKS Chorzów": {
   "country": "Poland",
   "aliases": [],
@@ -263,6 +256,17 @@
   "aliases": [],
   "logo": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Pogon-logoNEW.svg"
  },
+ "Pogoń Siedlce": {
+  "country": "Poland",
+  "aliases": [
+   "22 pp Siedlce",
+   "KS 22 Strzelec Siedlce",
+   "Strzelec Siedlce",
+   "WKS 22 pp Siedlce"
+  ],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/a/aa/Herb_Pogo%C5%84.cdr.svg",
+  "note": "Includes WKS 22 pp Siedlce and KS 22 Strzelec Siedlce (1932–34), whose tradition Pogoń continues"
+ },
  "Pogoń Szczecin": {
   "country": "Poland",
   "aliases": [],
@@ -356,12 +360,6 @@
   "country": "Poland",
   "aliases": [],
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/xnvanb1717917947.png"
- },
- "Strzelec Siedlce": {
-  "country": "Poland",
-  "aliases": [],
-  "logo": "https://upload.wikimedia.org/wikipedia/en/a/aa/Herb_Pogo%C5%84.cdr.svg",
-  "note": "Later Pogoń Siedlce"
  },
  "Szczakowianka Jaworzno": {
   "country": "Poland",
