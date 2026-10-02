@@ -1,2 +1,4 @@
 site/data/
 __pycache__/
+site/rankings/
+site/sitemap.xml

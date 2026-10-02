@@ -12,6 +12,7 @@ from common import DATA, ROOT, alias_map, load, unknown_names
 import combined
 import elo
 import nationsleague
+import seo
 import tournaments
 
 COMPS = {
@@ -147,6 +148,7 @@ def main():
     meta = {"built": datetime.now(timezone.utc).isoformat(timespec="minutes"),
             "synced": load(sync)["synced"] if sync.exists() else None, "comps": info}
     (outdir / "meta.json").write_text(json.dumps(meta))
+    seo.generate(ROOT / "site")
 
 
 if __name__ == "__main__":
