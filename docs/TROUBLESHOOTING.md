@@ -239,7 +239,7 @@ Używany tylko dla bieżącego sezonu Ligi Mistrzów i Premier League.
 
 Harmonogram GitHuba (cron) wyłącza się po 60 dniach bez aktywności w repozytorium. Tutaj codzienny commit (`Daily update: new matches`) temu zapobiega,
 ale jeśli w Actions widzisz komunikat „This scheduled workflow is disabled”, wejdź w **Actions → Update & deploy → Enable workflow**.
-Uruchomienie bywa opóźnione o kilkanaście minut względem 05:17 UTC – to normalne.
+Uruchomienie bywa opóźnione o kilkanaście minut względem 05:17 UTC – to normalne. Zdarza się też, że GitHub pomija poranny przebieg; dlatego jest drugi, awaryjny harmonogram o 11:17 UTC, który uruchamia się tylko wtedy, gdy dziś rano nie było przebiegu (job „gate” w `update.yml` sprawdza datę w `data/sync.json`).
 
 ---
 
