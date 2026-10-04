@@ -3,6 +3,7 @@ name: Update & deploy
 on:
   schedule:
     - cron: "17 5 * * *"        # every day 05:17 UTC
+    - cron: "17 11 * * *"       # backup: only runs if the morning run did not happen (see the gate job)
   workflow_dispatch:            # manual "Run workflow" button
   push:
     branches: [main]
@@ -19,7 +20,27 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: g
+        run: |
+          run=true
+          # the backup schedule does nothing when today's morning run already checked the data
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" = "17 11 * * *" ]; then
+            if grep -q "\"synced\":\"$(date -u +%F)" data/sync.json; then
+              run=false
+              echo "The morning run already happened today - skipping the backup run."
+            fi
+          fi
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
   build:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
