@@ -1,0 +1,37 @@
+name: probe
+on:
+  push:
+    branches: [claude/adoring-knuth-4bh23x]
+    paths: [".github/workflows/probe.yml"]
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          K: ${{ secrets.FOOTBALL_DATA_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error, time
+          K = os.environ["K"]
+          def get(path):
+              req = urllib.request.Request("https://api.football-data.org/v4/" + path, headers={"X-Auth-Token": K})
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      return r.status, json.load(r), dict(r.headers)
+              except urllib.error.HTTPError as e:
+                  return e.code, {"error": e.read().decode()[:160]}, {}
+          st, d, h = get("competitions")
+          print("competitions", st, "key set:", bool(K))
+          for c in d.get("competitions", []): print(" ", c["code"], c["name"], c.get("plan"), c["currentSeason"]["startDate"] if c.get("currentSeason") else "")
+          time.sleep(7)
+          for code in ["EL", "UEL", "ECL", "UECL", "PL", "CL", "UNL", "PPL", "PD", "WC", "EC", "CLI"]:
+              st, d, _ = get(f"competitions/{code}/matches?season=2026" if code not in ("WC","EC") else f"competitions/{code}/matches")
+              n = len(d.get("matches", [])) if st == 200 else d.get("error", "")
+              print("matches", code, st, n)
+              time.sleep(6.5)
+          st, d, h = get("matches?dateFrom=2026-09-24&dateTo=2026-10-03")
+          print("matches by date", st)
+          from collections import Counter
+          print(Counter((m["competition"]["code"], m["status"]) for m in d.get("matches", [])))
+          print({k: v for k, v in h.items() if k.lower().startswith("x-")})
+          PY
