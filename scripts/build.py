@@ -12,6 +12,7 @@ from common import DATA, ROOT, alias_map, load, unknown_names
 import combined
 import elo
 import nationsleague
+import recent
 import seo
 import tournaments
 
@@ -76,6 +77,9 @@ def pens(m):
     return m.get("penA"), m.get("penB")
 
 
+RECENT = {}        # competition -> rows of its latest periods (for the "recently added matches" list)
+
+
 def build(key):
     cfg = COMPS[key]
     period = cfg["period"]
@@ -99,11 +103,14 @@ def build(key):
         if bad:
             return None, bad
     matches.sort(key=lambda m: str(m[period]))          # stable: file order inside a period
+    raw_names = [(m["teamA"], m["teamB"]) for m in matches]
     for m in matches:
         m["teamA"], m["teamB"] = amap[m["teamA"]], amap[m["teamB"]]
         if m["phase"] not in phases:
             raise SystemExit(f"{key}: unknown phase {m['phase']!r} in {m}")
     division = {amap[t]: d for t, d in division.items() if t in amap}
+    if key != "uefa":                   # the combined ranking only repeats the three competitions
+        RECENT[key] = recent.rows_of(key, period, matches, raw_names)
     ratings, count, hist = elo.run(matches, phases, seed=teams)
     order = sorted(ratings, key=lambda t: (-ratings[t], t))
     idx = {t: i for i, t in enumerate(order)}
@@ -126,6 +133,7 @@ def build(key):
 
 
 def main():
+    record = "--record" in sys.argv       # CI: remember what this build added (data/recent.json, data/build_state.json)
     outdir = ROOT / "site" / "data"
     outdir.mkdir(parents=True, exist_ok=True)
     failed = False
@@ -148,6 +156,11 @@ def main():
     meta = {"built": datetime.now(timezone.utc).isoformat(timespec="minutes"),
             "synced": load(sync)["synced"] if sync.exists() else None, "comps": info}
     (outdir / "meta.json").write_text(json.dumps(meta))
+    if record:
+        fresh = recent.record(RECENT, meta["built"])
+        print(f"recently added: {len(fresh)} new match(es) since the previous build")
+    src = DATA / "recent.json"
+    (outdir / "recent.json").write_text(src.read_text(encoding="utf-8") if src.exists() else '{"batches":[]}', encoding="utf-8")
     seo.generate(ROOT / "site")
 
 
