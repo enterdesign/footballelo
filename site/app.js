@@ -102,6 +102,20 @@ async function render() {
   document.title = `${C.eyebrow} ELO Ranking`;
   ({ranking, history, stats, compare, about})[route.tab]();
 }
+// Matches that each build found new (data/recent.json: batches of the last 30 days, newest first)
+async function recentHtml() {
+  let batches = [];
+  try { batches = (await (await fetch(`data/recent.json?v=${encodeURIComponent(window.buildId)}`)).json()).batches || []; } catch (e) { return ""; }
+  const n = batches.reduce((a, b) => a + b.matches.length, 0);
+  const body = batches.slice(0, 12).map(b => {
+    const by = new Map();
+    b.matches.forEach(m => { if (COMPS[m.c]) by.set(m.c, [...(by.get(m.c) || []), m]); });
+    return `<h4>${fmtTime(b.at)} · ${b.matches.length} match${b.matches.length === 1 ? "" : "es"}</h4>` + [...by].map(([c, ms]) =>
+      `<div class="rc"><a href="#${c}/history">${esc(COMPS[c].short || COMPS[c].eyebrow)}</a></div>` + ms.map(m =>
+        `<div class="rm"><span>${esc(m.a)}</span><b>${esc(m.s)}</b><span>${esc(m.b)}</span><i>${esc(m.d || m.p)}</i></div>`).join("")).join("");
+  }).join("");
+  return `<details class="recent"><summary>Recently added matches${n ? ` (${n})` : ""}</summary>${body || '<p class="sub">No new matches were found in the last updates.</p>'}</details>`;
+}
 async function renderHome() {
   document.title = "Football ELO Rankings";
   // card artwork without trademarked competition logos: the flag of the country, the flags of the best nations,
@@ -124,6 +138,7 @@ async function renderHome() {
   $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every day;
     the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}), European Championship (${esc(cache.euro ? cache.euro.last : "")}) and Copa América (${esc(cache.copa ? cache.copa.last : "")}) update when a new tournament is played.<br>
     Last data check: <b>${m.synced ? fmtTime(m.synced) : "n/a"}</b> · site built: <b>${m.built ? fmtTime(m.built) : "n/a"}</b>`;
+  $("home-recent").innerHTML = await recentHtml();
 }
 window.addEventListener("hashchange", render);
 window.addEventListener("scroll", () => document.querySelectorAll(".hero-bg").forEach(el => { el.style.transform = `translateY(${Math.round(scrollY * .35)}px)`; }));

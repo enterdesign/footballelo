@@ -243,7 +243,20 @@ Uruchomienie bywa opóźnione o kilkanaście minut względem 05:17 UTC – to no
 
 ---
 
-## 10. Co w razie wątpliwości
+## 10. Lista „Recently added matches” na stronie głównej
+
+Na dole strony głównej jest rozwijana lista meczów, które każdy przebieg dodał w porównaniu z poprzednim (ostatnie 30 dni, najwyżej 400 meczów).
+Dane: `data/recent.json` (to, co widać) i `data/build_state.json` (zapamiętany stan do porównania; nie edytuj go ręcznie).
+
+- **Lista jest pusta („No new matches were found in the last updates”)** – nic nowego nie przyszło albo to pierwszy przebieg po wdrożeniu funkcji
+  (pierwszy zapisuje tylko stan wyjściowy, żeby nie uznać wszystkich meczów za nowe).
+- **Na liście pojawił się cały sezon naraz** – źródło poprawiło lub przeniosło wyniki (np. Wikipedia zmieniła wynik), więc mecze wyglądają na nowe. To tylko informacja, rankingi są liczone poprawnie.
+- **Chcesz wyczyścić listę:** w `data/recent.json` wpisz `{"batches":[]}` (commit na `main`).
+- Zapis dzieje się tylko w przebiegach planowych i ręcznych (te, które commitują dane), a nie w przebiegach po zmianie plików w repozytorium.
+
+---
+
+## 11. Co w razie wątpliwości
 
 Opisz problem w Claude Code razem z linkiem do czerwonego przebiegu lub issue – wszystkie skrypty mają testy
 (`python -m unittest discover -s tests`), więc poprawki da się sprawdzić przed wdrożeniem.

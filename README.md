@@ -75,6 +75,10 @@ python -m http.server -d site
 python -m unittest discover -s tests
 ```
 
+## Recently added matches
+Every recorded build (`build.py --record`, run by the daily workflow) compares the matches of the latest seasons with the previous build
+(`data/build_state.json`) and adds the new ones to `data/recent.json`; the home page shows them in a collapsible list (`scripts/recent.py`).
+
 ## Monitoring
 The daily run opens an issue when a source breaks: *Unknown team names in daily update* (a name has to be added to `data/teams_*.json`) and
 *No new matches from some sources* (`scripts/freshness.py`: a running competition has had no new matches for 3 weeks, which would otherwise be silent).
