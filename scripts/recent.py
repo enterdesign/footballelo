@@ -3,8 +3,9 @@
 data/build_state.json  ids of the matches of the latest periods per competition, as of the last recorded build
 data/recent.json       batches {"at", "matches": [...]} (last 30 days, at most 400 matches); shown on the home page
 
-A match id is made of its raw (source) names, so renaming a club in data/teams_*.json does not make old matches look new.
-The first recorded build only stores the state (it would otherwise report every match as new).
+A match id is made of the period, the canonical team names and the score (not the source or its spelling), so the same match
+fetched from another source - or after a temporary data hiccup - is not reported twice, and a match already shown in an earlier
+batch is never listed again. The first recorded build (or one after an id format change) only stores the state.
 """
 import json
 from collections import Counter
@@ -12,6 +13,7 @@ from pathlib import Path
 
 from common import DATA
 
+VERSION = 2          # bump when the id format changes (the next build then only stores a new baseline)
 KEEP_PERIODS = 3
 MAX_MATCHES = 400
 MAX_DAYS = 30
@@ -36,23 +38,46 @@ def rows_of(key, period, matches, raw_names):
         p = str(m[period])
         if p not in last:
             continue
-        base = f"{p}|{m['phase']}|{ra}|{rb}|{m['goalsA']}-{m['goalsB']}"
+        base = f"{p}|{m['teamA']}|{m['teamB']}|{m['goalsA']}-{m['goalsB']}"
         seen[base] += 1
         out.append({"id": f"{base}#{seen[base]}", "c": key, "p": p, "a": m["teamA"], "b": m["teamB"],
                     "s": score_text(m), "d": m.get("date", "")})
     return out
 
 
+def shown(batches):
+    return {(m["c"], m["p"], m["a"], m["b"], m["s"]) for b in batches for m in b["matches"]}
+
+
+def dedupe(batches):
+    """Oldest batch wins: a match is listed once."""
+    seen, out = set(), []
+    for b in reversed(batches):
+        keep = []
+        for m in b["matches"]:
+            k = (m["c"], m["p"], m["a"], m["b"], m["s"])
+            if k not in seen:
+                seen.add(k)
+                keep.append(m)
+        if keep:
+            out.append({**b, "matches": keep})
+    return list(reversed(out))
+
+
 def update(state, batches, rows_by_comp, now):
-    """(new state, new batches, new matches). First run: only the state."""
-    new_state = dict(state)
+    """(new state, new batches, new matches). First run (or an older state format): only the state."""
+    batches = dedupe(batches)
+    new_state = {"_v": VERSION, **{k: v for k, v in state.items() if k != "_v"}}
+    baseline = state.get("_v") == VERSION
+    before = shown(batches)
     fresh = []
     for comp, rows in rows_by_comp.items():
-        if state and comp in state:
+        if baseline and comp in state:
             known = set(state[comp])
-            fresh += [{k: v for k, v in r.items() if k != "id"} for r in rows if r["id"] not in known]
+            fresh += [{k: v for k, v in r.items() if k != "id"} for r in rows
+                      if r["id"] not in known and (r["c"], r["p"], r["a"], r["b"], r["s"]) not in before]
         new_state[comp] = [r["id"] for r in rows]
-    if not state or not fresh:
+    if not baseline or not fresh:
         return new_state, batches, []
     batches = [{"at": now, "matches": fresh}] + batches
     kept, total = [], 0

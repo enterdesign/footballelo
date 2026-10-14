@@ -49,6 +49,17 @@ def load_old(name):
     return json.loads((DATA / f"matches/{name}.json").read_text(encoding="utf-8"))
 
 
+def keep_if_larger(old, matches, season, comp):
+    """A running season never shrinks: if the stored copy has more matches than the fresh one (a source that lags or
+    hiccups for a day), the stored copy stays."""
+    have = [m for m in matches if m["season"] == season]
+    stored = [m for m in old if m["season"] == season]
+    if len(stored) > len(have):
+        print(f"{comp} {season}: source has fewer matches ({len(have)} < {len(stored)}); kept stored")
+        return [m for m in matches if m["season"] != season] + stored
+    return matches
+
+
 def with_current_season(old, matches, comp, stages):
     """Replace the running season by football-data.org's live data (needs FOOTBALL_DATA_KEY).
     Its free plan only covers the last few seasons, so older ones are left alone."""
@@ -57,18 +68,14 @@ def with_current_season(old, matches, comp, stages):
     season = f"{year}/{str(year + 1)[2:]}"
     key = os.environ.get("FOOTBALL_DATA_KEY")
     if not key:                                 # nothing newer available: keep the running season
-        if not any(m["season"] == season for m in matches):
-            matches += [m for m in old if m["season"] == season]
-        return matches
+        return keep_if_larger(old, matches, season, comp)
     try:
         fresh = footballdata.convert(footballdata.fetch(year, key, comp), season, stages)
     except Exception as e:                      # keep what we already have
         print(f"football-data.org {comp} failed ({e}); keeping existing {season} matches")
-        if not any(m["season"] == season for m in matches):
-            matches += [m for m in old if m["season"] == season]
-        return matches
+        return keep_if_larger(old, matches, season, comp)
     print(f"{comp} {season}: {len(fresh)} matches from football-data.org")
-    return [m for m in matches if m["season"] != season] + fresh
+    return keep_if_larger(old, [m for m in matches if m["season"] != season] + fresh, season, comp)
 
 
 def refresh_ekstraklasa(recent=2):
