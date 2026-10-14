@@ -38,6 +38,25 @@ class Recent(unittest.TestCase):
             batches = json.loads((Path(d) / "recent.json").read_text())["batches"]
             self.assertEqual([b["at"][:10] for b in batches], ["2026-11-15"])                    # September batch is older than 30 days
 
+    def test_a_match_that_vanishes_for_one_build_and_returns_is_not_reported_again(self):
+        with tempfile.TemporaryDirectory() as d:
+            a, b, c = m("A", "B", 1, 0), m("C", "D", 2, 2), m("E", "F", 0, 1)
+            recent.record(rows(a, b), "2026-10-01T05:00+00:00", d)
+            self.assertEqual(len(recent.record(rows(a, b, c), "2026-10-02T05:00+00:00", d)), 1)
+            self.assertEqual(recent.record(rows(a, b), "2026-10-03T05:00+00:00", d), [])         # source hiccup: c is gone
+            self.assertEqual(recent.record(rows(a, b, c), "2026-10-04T05:00+00:00", d), [])      # ... and back: not new
+            self.assertEqual(sum(len(x["matches"]) for x in json.loads((Path(d) / "recent.json").read_text())["batches"]), 1)
+
+    def test_an_old_state_format_only_rebuilds_the_baseline(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "build_state.json").write_text(json.dumps({"ucl": ["old|raw|id#1"]}))
+            self.assertEqual(recent.record(rows(m("A", "B", 1, 0)), "2026-10-05T05:00+00:00", d), [])
+
+    def test_existing_duplicates_are_cleaned(self):
+        batch = lambda at, *ms: {"at": at, "matches": [{"c": "pl", "p": "2026/27", "a": a, "b": b, "s": "1–0", "d": ""} for a, b in ms]}
+        out = recent.dedupe([batch("2026-10-14", ("A", "B"), ("C", "D")), batch("2026-10-12", ("A", "B"))])
+        self.assertEqual([(b["at"], len(b["matches"])) for b in out], [("2026-10-14", 1), ("2026-10-12", 1)])
+
 
 if __name__ == "__main__":
     unittest.main()
