@@ -1125,7 +1125,8 @@
  "Unirea Urziceni": {
   "code": "ROU",
   "country": "Romania",
-  "aliases": []
+  "aliases": [],
+  "logo": "https://upload.wikimedia.org/wikipedia/en/f/f6/Unirea_Urziceni.png"
  },
  "Valencia": {
   "code": "ESP",
