@@ -1061,5 +1061,66 @@
   "country": "Lithuania",
   "code": "LTU",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/4x8gap1579201999.png"
+ },
+ "Monaco": {
+  "code": "FRA",
+  "country": "France",
+  "logo": "https://crests.football-data.org/548.png",
+  "aliases": [
+   "AS Monaco FC"
+  ]
+ },
+ "Getafe": {
+  "country": "Spain",
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/eyh2891655594452.png",
+  "aliases": [
+   "Getafe CF"
+  ]
+ },
+ "Hajduk Split": {
+  "code": "CRO",
+  "country": "Croatia",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/23mvtk1579955412.png",
+  "aliases": [
+   "HNK Hajduk Split"
+  ]
+ },
+ "Red Star Belgrade": {
+  "code": "SRB",
+  "country": "Serbia",
+  "logo": "https://crests.football-data.org/7283.png",
+  "aliases": []
+ },
+ "AGF": {
+  "aliases": [
+   "Aarhus Gymnastikforening"
+  ],
+  "country": "Denmark",
+  "code": "DEN"
+ },
+ "Inter Club d'Escaldes": {
+  "aliases": [],
+  "country": "Andorra",
+  "code": "AND"
+ },
+ "Egnatia": {
+  "aliases": [
+   "KF Egnatia"
+  ],
+  "country": "Albania",
+  "code": "ALB"
+ },
+ "Mjällby": {
+  "aliases": [
+   "Mjällby AIF"
+  ],
+  "country": "Sweden",
+  "code": "SWE"
+ },
+ "Riga FC": {
+  "aliases": [],
+  "country": "Latvia",
+  "code": "LVA"
  }
 }

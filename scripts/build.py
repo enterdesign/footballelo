@@ -142,7 +142,7 @@ def main():
         out, bad = build(key)
         if bad:
             failed = True
-            print(f"[{key}] {len(bad)} unknown team name(s) — add them (or as an alias) in data/{COMPS[key]['teams']}:")
+            print(f"[{key}] {len(bad)} unknown team name(s) — add them (or as an alias) in {'data/teams_<ucl|el|conf>.json' if key == 'uefa' else 'data/' + COMPS[key]['teams']}:")
             for b in bad:
                 print(f"    {b}")
             continue
