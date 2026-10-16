@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build site/data/{ucl,wc,pl,ekstraklasa,nl}.json (ranking + per-match history) from data/.
+"""Build site/data/{ucl,wc,pl,ekstraklasa,bundesliga,spain,france,nl}.json (ranking + per-match history) from data/.
 
 Exits with status 2 (and a readable report) if a team name has no entry in
 data/teams_*.json, so new names are never guessed.
@@ -27,6 +27,9 @@ COMPS = {
                     "eras": [{"id": "pre", "label": "Pre-war (1927–1939)", "to": "1939"},
                              {"id": "post", "label": "Post-war (1948–)", "from": "1948"}],
                     "default_era": "post"},
+    "bundesliga": {"teams": "teams_bundesliga.json", "period": "season", "title": "Bundesliga (1963 →)"},
+    "spain": {"teams": "teams_spain.json", "period": "season", "title": "La Liga (1928/29 →)"},
+    "france": {"teams": "teams_france.json", "period": "season", "title": "Ligue 1 (Division 1 1932/33 →)"},
     "el": {"teams": "teams_el.json", "period": "season", "title": "UEFA Europa League"},
     "conf": {"teams": "teams_conf.json", "period": "season", "title": "UEFA Conference League"},
     "uefa": {"teams": None, "period": "season", "title": "UEFA Club Competitions"},

@@ -93,7 +93,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--key", default="3")
     args = ap.parse_args()
-    for fname in ("teams_ucl.json", "teams_pl.json", "teams_ekstraklasa.json", "teams_el.json", "teams_conf.json"):
+    for fname in ("teams_ucl.json", "teams_pl.json", "teams_ekstraklasa.json", "teams_bundesliga.json", "teams_spain.json", "teams_france.json", "teams_el.json", "teams_conf.json"):
         path = DATA / fname
         teams = json.loads(path.read_text(encoding="utf-8"))
         missing = []

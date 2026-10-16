@@ -17,9 +17,18 @@ const COMPS = {
   wc:  {file: "data/wc.json", c1: "#92400e", c2: "#ca8a04", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930", flags: true},
   pl:  {file: "data/pl.json", c1: "#3d195b", c2: "#7c3aed", flag: "gb-eng", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",
-        group: () => "", groupLabel: () => "England", sub: "England", first: "1888/89"},
+        group: () => "", groupLabel: () => "England", sub: "England", first: "1888/89", domestic: true},
   ekstraklasa: {file: "data/ekstraklasa.json", c1: "#9f1239", c2: "#e11d48", flag: "pl", img: "img/home.jpg", eyebrow: "Ekstraklasa (I liga 1927–2008)", short: "Ekstraklasa", noun: "Clubs", period: "Seasons", live: "updated daily",
-        group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927"},
+        group: () => "", groupLabel: () => "Poland", sub: "Poland", first: "1927", domestic: true},
+  bundesliga: {file: "data/bundesliga.json", c1: "#7f1d1d", c2: "#dc2626", flag: "de", img: "img/home.jpg", eyebrow: "Bundesliga (1963 →)", short: "Bundesliga", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: () => "", groupLabel: () => "Germany", sub: "Germany", first: "1963/64", domestic: true,
+        note: "The Bundesliga started in 1963/64. After German reunification the clubs from the former East Germany simply start at 1600 when they first appear; there is no separate treatment of that period."},
+  spain: {file: "data/spain.json", c1: "#92400e", c2: "#f59e0b", flag: "es", img: "img/home.jpg", eyebrow: "La Liga (1928/29 →)", short: "La Liga", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: () => "", groupLabel: () => "Spain", sub: "Spain", first: "1928/29", domestic: true,
+        note: "No league was played in 1936–39 (Spanish Civil War). The 1986/87 promotion/relegation group stage is not rated. One 1979/80 match (Málaga–Salamanca) is missing from every source."},
+  france: {file: "data/france.json", c1: "#1e3a8a", c2: "#3b82f6", flag: "fr", img: "img/home.jpg", eyebrow: "Ligue 1 (Division 1 1932/33 →)", short: "Ligue 1", noun: "Clubs", period: "Seasons", live: "updated daily",
+        group: () => "", groupLabel: () => "France", sub: "France", first: "1932/33", domestic: true,
+        note: "No league was played in 1939–45 (Second World War). The 2019/20 season was stopped in March with 279 of 380 matches played."},
   euro: {file: "data/euro.json", c1: "#1e3a8a", c2: "#2563eb", img: "img/home.jpg", eyebrow: "UEFA European Championship", short: "European Championship", noun: "Nations", period: "Editions",
         group: () => "", groupLabel: () => "Europe", sub: "Europe", first: "1960", flags: true, source: INTL},
   copa: {file: "data/copa.json", c1: "#0e7490", c2: "#facc15", img: "img/home.jpg", eyebrow: "Copa América (1993 →)", short: "Copa América", noun: "Nations", period: "Editions",
@@ -133,7 +142,7 @@ async function renderHome() {
   };
   const section = async (title, keys) => `<h3 class="section">${title}</h3><div class="cards">${(await Promise.all(keys.map(card))).join("")}</div>`;
   const keys = Object.keys(COMPS);
-  $("home-cards").innerHTML = await section("National teams", keys.filter(k => COMPS[k].flags)) + await section("Club teams", keys.filter(k => !COMPS[k].flags));
+  $("home-cards").innerHTML = await section("International Competitions", keys.filter(k => COMPS[k].flags)) + await section("UEFA Competitions", keys.filter(k => !COMPS[k].flags && !COMPS[k].domestic)) + await section("National Competitions", keys.filter(k => COMPS[k].domestic));
   const m = window.meta || {};
   $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every day;
     the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}), European Championship (${esc(cache.euro ? cache.euro.last : "")}) and Copa América (${esc(cache.copa ? cache.copa.last : "")}) update when a new tournament is played.<br>
@@ -254,7 +263,7 @@ function about() {
       <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
     <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
     <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "nl" ? "<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of Division A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one. <b>PO</b> in the history marks these promotion/relegation play-offs.</li><li>The Nations League is played every two years (2018/19, 2020/21, 2022/23 …); the years in between have no edition.</li><li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "pl" || route.comp === "ekstraklasa" ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
+      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "nl" ? "<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of Division A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one. <b>PO</b> in the history marks these promotion/relegation play-offs.</li><li>The Nations League is played every two years (2018/19, 2020/21, 2022/23 …); the years in between have no edition.</li><li>Two-legged ties: each leg is rated separately.</li>" : ""}${["pl", "ekstraklasa", "bundesliga", "spain", "france"].includes(route.comp) ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
     <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
       ${C.note ? `<li>${C.note}</li>` : ""}<li>Updated daily from ${C.source || `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and Wikipedia`}</li>
       <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp}.json" style="color:var(--accent);text-decoration:underline">teams file</a></li></ul></div></div>`;
