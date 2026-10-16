@@ -20,7 +20,8 @@
    "US Alessandria 1912"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/40/US_Alessandria_Calcio_1912_crest.svg"
  },
  "Ancona": {
   "aliases": [
@@ -34,7 +35,8 @@
    "Ascoli Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/Ascoli_Calcio_1898_logo.svg"
  },
  "Atalanta": {
   "aliases": [
@@ -56,14 +58,16 @@
    "AS Bari"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/85/SSC_Bari_crest.svg"
  },
  "Benevento": {
   "aliases": [
    "Benevento Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/61/Benevento_Calcio_logo.svg"
  },
  "Bologna": {
   "aliases": [
@@ -79,7 +83,8 @@
    "Brescia Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/c/c9/Union_Brescia_crest.svg"
  },
  "Cagliari": {
   "aliases": [
@@ -93,40 +98,46 @@
    "Carpi FC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/48/AC_Carpi_crest.svg"
  },
  "Casale": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_Casale_Calcio_2023.png"
  },
  "Catania": {
   "aliases": [
    "Calcio Catania"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/1/10/Logo_CATANIA_FC.svg"
  },
  "Catanzaro": {
   "aliases": [
    "US Catanzaro"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/40/US_Catanzaro_1929_crest.svg"
  },
  "Cesena": {
   "aliases": [
    "AC Cesena"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/5a/Cesena_FC_crest.svg"
  },
  "Chievo": {
   "aliases": [
    "Chievo Verona"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/f/f0/A.C._ChievoVerona_logo.svg"
  },
  "Como": {
   "aliases": [
@@ -142,21 +153,24 @@
    "US Cremonese"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/e/e1/US_Cremonese_logo.svg"
  },
  "Crotone": {
   "aliases": [
    "FC Crotone"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/d/db/FC_Crotone_logo.svg"
  },
  "Empoli": {
   "aliases": [
    "Empoli FC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/f/fb/Empoli_FC_crest.svg"
  },
  "Fiorentina": {
   "aliases": [
@@ -171,14 +185,16 @@
    "US Foggia"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/21/Calcio_Foggia_1920_crest.svg"
  },
  "Frosinone": {
   "aliases": [
    "Frosinone Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/0b/Frosinone_Calcio_logo.svg"
  },
  "Genoa": {
   "aliases": [
@@ -194,7 +210,8 @@
    "Hellas Verona FC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/0/00/Associazione_Calcio_Verona_logo_%281965-1984%29.png"
  },
  "Inter Milan": {
   "aliases": [
@@ -227,19 +244,22 @@
    "US Lecce"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/US_Lecce_crest.svg"
  },
  "Lecco": {
   "aliases": [
    "Calcio Lecco 1912"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/9/98/Calcio_Lecco_1912_crest.svg"
  },
  "Legnano": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Logo_AC_Legnano.svg"
  },
  "Livorno": {
   "aliases": [
@@ -252,14 +272,16 @@
  "Lucchese": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/81/Lucchese_1905_crest.svg"
  },
  "Mantova": {
   "aliases": [
    "AC Mantova"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Logo_Mantova_Calcio1994.svg"
  },
  "Messina": {
   "aliases": [
@@ -267,14 +289,16 @@
    "FC Messina"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Logo_of_ACR_Messina.svg"
  },
  "Modena": {
   "aliases": [
    "Modena FC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/d/d8/Modena_FC_2018_crest.svg"
  },
  "Monza": {
   "aliases": [
