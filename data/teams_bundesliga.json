@@ -1,0 +1,388 @@
+{
+ "1. FC Heidenheim": {
+  "aliases": [
+   "1. FC Heidenheim 1846",
+   "Heidenheim"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lbj7g01608236988.png"
+ },
+ "1. FC Kaiserslautern": {
+  "aliases": [
+   "Kaiserslautern"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/jghax31740165513.png"
+ },
+ "1. FC Köln": {
+  "aliases": [
+   "1. FC Koln"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/2j1sc91566049407.png"
+ },
+ "1. FC Nürnberg": {
+  "aliases": [
+   "1. FC Nurnberg"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "1. FC Saarbrücken": {
+  "aliases": [
+   "1. FC Saarbrucken"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "1860 Munich": {
+  "aliases": [
+   "TSV 1860 Munchen",
+   "TSV 1860 München"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Alemannia Aachen": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Arminia Bielefeld": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Bayer Leverkusen": {
+  "aliases": [
+   "Bayer 04 Leverkusen",
+   "SV Bayer 04 Leverkusen"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/3.png"
+ },
+ "Bayer Uerdingen": {
+  "aliases": [
+   "Bayer 05 Uerdingen"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Bayern Munich": {
+  "aliases": [
+   "Bayern München",
+   "FC Bayern München",
+   "Bayern Munchen"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/5.png"
+ },
+ "Blau-Weiß 90 Berlin": {
+  "aliases": [
+   "Blau-Weiss 90 Berlin"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Borussia Dortmund": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/4.png"
+ },
+ "Borussia Mönchengladbach": {
+  "aliases": [
+   "Bor. Mönchengladbach",
+   "Bor. Monchengladbach",
+   "Borussia M'gladbach",
+   "Gladbach"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sysurw1473453380.png"
+ },
+ "Borussia Neunkirchen": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Dynamo Dresden": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Eintracht Braunschweig": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Eintracht Frankfurt": {
+  "aliases": [
+   "Frankfurter SG Eintracht"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/19.png"
+ },
+ "Energie Cottbus": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "FC Augsburg": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/xqyyvq1473453233.png"
+ },
+ "FC Homburg": {
+  "aliases": [
+   "FC 08 Homburg"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "FC Ingolstadt 04": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "FC St. Pauli": {
+  "aliases": [
+   "FC St. Pauli 1910",
+   "St. Pauli"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Fortuna Düsseldorf": {
+  "aliases": [
+   "Fortuna Dusseldorf"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Fortuna Köln": {
+  "aliases": [
+   "Fortuna Koln"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Hamburger SV": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Hamburger_SV_logo.svg"
+ },
+ "Hannover 96": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tqpqqv1473454148.png"
+ },
+ "Hansa Rostock": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Hertha Berlin": {
+  "aliases": [
+   "Hertha BSC"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/aszcmz1782623817.png"
+ },
+ "Hoffenheim": {
+  "aliases": [
+   "1899 Hoffenheim",
+   "TSG 1899 Hoffenheim"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/9hwvb21621593919.png"
+ },
+ "Holstein Kiel": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Karlsruher SC": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Kickers Offenbach": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "MSV Duisburg": {
+  "aliases": [
+   "Meidericher SV"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Mainz 05": {
+  "aliases": [
+   "1. FSV Mainz 05"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/r50v8i1696012905.png"
+ },
+ "Preußen Münster": {
+  "aliases": [
+   "Preussen Munster"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "RB Leipzig": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/721.png"
+ },
+ "Rot-Weiss Essen": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Rot-Weiss Oberhausen": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SC Freiburg": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/urwtup1473453288.png"
+ },
+ "SC Paderborn 07": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SG Wattenscheid 09": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SSV Ulm 1846": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SV Darmstadt 98": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SV Elversberg": {
+  "aliases": [
+   "SV 07 Elversberg"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Schalke 04": {
+  "aliases": [
+   "FC Schalke 04"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/hnci291621593978.png"
+ },
+ "SpVgg Greuther Fürth": {
+  "aliases": [
+   "SpVgg Greuther Fürth 1903"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "SpVgg Unterhaching": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Stuttgarter Kickers": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Tasmania Berlin": {
+  "aliases": [
+   "Tasmania 1900 Berlin"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Tennis Borussia Berlin": {
+  "aliases": [
+   "TeBe Berlin"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Union Berlin": {
+  "aliases": [
+   "1. FC Union Berlin"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/q0o5001599679795.png"
+ },
+ "VfB Leipzig": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "VfB Stuttgart": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://crests.football-data.org/10.png"
+ },
+ "VfL Bochum": {
+  "aliases": [
+   "VfL Bochum 1848"
+  ],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "VfL Wolfsburg": {
+  "aliases": [
+   "Wolfsburg"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ci9trv1778399557.png"
+ },
+ "Waldhof Mannheim": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ },
+ "Werder Bremen": {
+  "aliases": [
+   "SV Werder Bremen"
+  ],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tkvqan1716960454.png"
+ },
+ "Wuppertaler SV": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER"
+ }
+}

@@ -261,5 +261,12 @@
    "k": 16,
    "color": "#b3261e"
   }
+ },
+ "bundesliga": {
+  "league": {
+   "label": "LG",
+   "k": 16,
+   "color": "#4a78a8"
+  }
  }
 }
