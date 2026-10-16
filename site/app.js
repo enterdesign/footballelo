@@ -13,7 +13,7 @@ const COMPS = {
         group: t => t.code, groupLabel: t => t.country, first: "2021/22", source: WIKI, note: "Qualifying rounds are not rated."},
   uefa: {file: "data/uefa.json", c1: "#1e293b", c2: "#475569", img: "img/ucl.jpg", eyebrow: "UEFA Club Competitions", short: "UEFA Club Competitions", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93", source: WIKI_OPENFOOTBALL,
-        note: "One rating per club across the Champions League (1992/93 →), Europa League (2009/10 →) and Conference League (2021/22 →). Every match is rated with the K-factor of its own competition and stage (see K-factors); within a season matches are ordered by stage, then competition."},
+        note: "One rating per club across the Champions League (1992/93 →), Europa League (2009/10 →) and Conference League (2021/22 →). Every match is rated with the K-factor of its own competition and stage (see K-factors); within a season matches are ordered by stage, then competition. Because opponents carry their results from all three competitions, a club's rating here can differ by a few points from its rating in a single competition's ranking, even if it only ever played in that one (for example Real Madrid in the Champions League)."},
   wc:  {file: "data/wc.json", c1: "#92400e", c2: "#ca8a04", img: "img/wc.jpg", eyebrow: "FIFA World Cup", noun: "Nations", period: "Editions",
         group: t => t.region, groupLabel: t => t.label, first: "1930", flags: true},
   pl:  {file: "data/pl.json", c1: "#3d195b", c2: "#7c3aed", flag: "gb-eng", img: "img/home.jpg", eyebrow: "Premier League (First Division 1888–1992)", short: "Premier League", noun: "Clubs", period: "Seasons", live: "updated daily",
