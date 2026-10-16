@@ -116,7 +116,8 @@
    "CD Condal"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/km8uds1734648989.png"
  },
  "Cádiz": {
   "aliases": [
@@ -314,28 +315,32 @@
    "CD Numancia"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/csil0b1535206624.png"
  },
  "Osasuna": {
   "aliases": [
    "CA Osasuna"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rvspvt1473502960.png"
  },
  "Pontevedra": {
   "aliases": [
    "Pontevedra CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sndafh1578852533.png"
  },
  "Racing Santander": {
   "aliases": [
    "Real Racing Club de Santander"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/97kkiq1536575158.png"
  },
  "Rayo Vallecano": {
   "aliases": [
@@ -356,14 +361,16 @@
  "Real Burgos": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/d/d6/Burgos_CF_logo.svg"
  },
  "Real Jaén": {
   "aliases": [
    "Real Jaen"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/may3aj1735056799.png"
  },
  "Real Madrid": {
   "aliases": [
@@ -377,12 +384,14 @@
  "Real Murcia": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/zoo96h1747995489.png"
  },
  "Real Oviedo": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yuwqus1447590681.png"
  },
  "Real Sociedad": {
   "aliases": [
@@ -397,38 +406,44 @@
    "Real Union"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/45alur1786122180.png"
  },
  "Real Valladolid": {
   "aliases": [
    "Real Valladolid CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/bnhu8b1719983736.png"
  },
  "Real Zaragoza": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/69/Real_Zaragoza_logo.svg"
  },
  "Recreativo Huelva": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/2c/Recreativo_huelva_crest.png"
  },
  "Sabadell": {
   "aliases": [
    "CE Sabadell"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/77/CE_Sabadell_FC_logo.svg"
  },
  "Salamanca": {
   "aliases": [
    "UD Salamanca"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ea70171579897018.png"
  },
  "Sevilla": {
   "aliases": [
@@ -443,14 +458,16 @@
    "Sporting Gijon"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/oom09m1578831384.png"
  },
  "Tenerife": {
   "aliases": [
    "CD Tenerife"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/utuqys1420503958.png"
  },
  "Valencia": {
   "aliases": [
@@ -473,6 +490,7 @@
    "Xerez CD"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/cxpzkp1511516976.png"
  }
 }
