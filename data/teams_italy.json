@@ -1,0 +1,495 @@
+{
+ "AC Milan": {
+  "aliases": [
+   "Milan"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/98.png"
+ },
+ "AS Roma": {
+  "aliases": [
+   "Roma"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/100.png"
+ },
+ "Alessandria": {
+  "aliases": [
+   "US Alessandria 1912"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Ancona": {
+  "aliases": [
+   "Ancona Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Ascoli": {
+  "aliases": [
+   "Ascoli Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Atalanta": {
+  "aliases": [
+   "Atalanta BC"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/102.png"
+ },
+ "Avellino": {
+  "aliases": [
+   "US Avellino"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Bari": {
+  "aliases": [
+   "AS Bari"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Benevento": {
+  "aliases": [
+   "Benevento Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Bologna": {
+  "aliases": [
+   "Bologna FC",
+   "Bologna FC 1909"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/103.png"
+ },
+ "Brescia": {
+  "aliases": [
+   "Brescia Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Cagliari": {
+  "aliases": [
+   "Cagliari Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Carpi": {
+  "aliases": [
+   "Carpi FC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Casale": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Catania": {
+  "aliases": [
+   "Calcio Catania"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Catanzaro": {
+  "aliases": [
+   "US Catanzaro"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Cesena": {
+  "aliases": [
+   "AC Cesena"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Chievo": {
+  "aliases": [
+   "Chievo Verona"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Como": {
+  "aliases": [
+   "Como Calcio",
+   "Como 1907"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/7397.png"
+ },
+ "Cremonese": {
+  "aliases": [
+   "US Cremonese"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Crotone": {
+  "aliases": [
+   "FC Crotone"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Empoli": {
+  "aliases": [
+   "Empoli FC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Fiorentina": {
+  "aliases": [
+   "ACF Fiorentina"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/hc8nhu1656098030.png"
+ },
+ "Foggia": {
+  "aliases": [
+   "US Foggia"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Frosinone": {
+  "aliases": [
+   "Frosinone Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Genoa": {
+  "aliases": [
+   "Genoa CFC",
+   "Genova 1893 Circolo del Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/52s8dn1655553600.png"
+ },
+ "Hellas Verona": {
+  "aliases": [
+   "Hellas Verona FC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Inter Milan": {
+  "aliases": [
+   "Inter",
+   "FC Internazionale Milano"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/108.png"
+ },
+ "Juventus": {
+  "aliases": [
+   "Juventus FC"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/109.png"
+ },
+ "Lazio": {
+  "aliases": [
+   "Lazio Roma",
+   "SS Lazio"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rwqyvs1448806608.png"
+ },
+ "Lecce": {
+  "aliases": [
+   "US Lecce"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Lecco": {
+  "aliases": [
+   "Calcio Lecco 1912"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Legnano": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Livorno": {
+  "aliases": [
+   "US Livorno",
+   "AS Livorno"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Lucchese": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Mantova": {
+  "aliases": [
+   "AC Mantova"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Messina": {
+  "aliases": [
+   "A.C.R. Messina",
+   "FC Messina"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Modena": {
+  "aliases": [
+   "Modena FC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Monza": {
+  "aliases": [
+   "AC Monza"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Napoli": {
+  "aliases": [
+   "SSC Napoli"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/113.png"
+ },
+ "Novara": {
+  "aliases": [
+   "Novara Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Padova": {
+  "aliases": [
+   "Calcio Padova"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Palermo": {
+  "aliases": [
+   "US Palermo"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/zi1tb01579708939.png"
+ },
+ "Parma": {
+  "aliases": [
+   "Parma AC",
+   "Parma FC",
+   "Parma Calcio 1913"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/6yiaxs1627406063.png"
+ },
+ "Perugia": {
+  "aliases": [
+   "AC Perugia"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Pescara": {
+  "aliases": [
+   "Delfino Pescara",
+   "Pescara Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Piacenza": {
+  "aliases": [
+   "Piacenza Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Pisa": {
+  "aliases": [
+   "Pisa SC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Pistoiese": {
+  "aliases": [
+   "AC Pistoiese"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Pro Patria": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Pro Vercelli": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Reggiana": {
+  "aliases": [
+   "AC Reggiana"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Reggina": {
+  "aliases": [
+   "Reggina Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "SPAL": {
+  "aliases": [
+   "SPAL 1907 Ferrara",
+   "SPAL 2013 Ferrara"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Salernitana": {
+  "aliases": [
+   "Salernitana Calcio 1919",
+   "Salernitana Sport",
+   "US Salernitana 1919"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Sampdoria": {
+  "aliases": [
+   "UC Sampdoria",
+   "Sampierdarenese",
+   "AC Liguria"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/pr6co21655592769.png",
+  "note": "Formed in 1946 by the merger of Sampierdarenese and Andrea Doria; the rating continues from Sampierdarenese (AC Liguria in 1937–43)."
+ },
+ "Sassuolo": {
+  "aliases": [
+   "Sassuolo Calcio",
+   "US Sassuolo Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/xystvp1448806138.png"
+ },
+ "Siena": {
+  "aliases": [
+   "AC Siena"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Spezia": {
+  "aliases": [
+   "Spezia Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Ternana": {
+  "aliases": [
+   "Ternana Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Torino": {
+  "aliases": [
+   "Torino FC"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/xxprty1448806802.png"
+ },
+ "Treviso": {
+  "aliases": [
+   "Treviso FBC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Udinese": {
+  "aliases": [
+   "Udinese Calcio"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/vwvstr1448806811.png"
+ },
+ "Unione Triestina": {
+  "aliases": [],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Varese": {
+  "aliases": [
+   "AS Varese 1910"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Venezia": {
+  "aliases": [
+   "AC Venezia",
+   "Venezia FC"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ },
+ "Vicenza": {
+  "aliases": [
+   "Vicenza Calcio",
+   "Lanerossi Vicenza"
+  ],
+  "country": "Italy",
+  "code": "ITA"
+ }
+}

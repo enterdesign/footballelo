@@ -12,7 +12,7 @@ from pathlib import Path
 BASE = "https://enterdesign.github.io/footballelo/"
 SLUGS = {"wc": "world-cup", "euro": "european-championship", "copa": "copa-america", "nl": "nations-league",
          "ucl": "champions-league", "el": "europa-league", "conf": "conference-league",
-         "uefa": "uefa-club-competitions", "pl": "premier-league", "ekstraklasa": "ekstraklasa", "bundesliga": "bundesliga", "spain": "la-liga", "france": "ligue-1"}
+         "uefa": "uefa-club-competitions", "pl": "premier-league", "ekstraklasa": "ekstraklasa", "bundesliga": "bundesliga", "spain": "la-liga", "france": "ligue-1", "italy": "serie-a"}
 NATIONS = {"wc", "euro", "copa", "nl"}
 TOP = 50
 e = html.escape

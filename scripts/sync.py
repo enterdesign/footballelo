@@ -12,10 +12,11 @@ usage: sync.py [--worldcup DIR] [--ucl DIR] [--england DIR]   (default: shallow-
 * La Liga: seasons from 2012/13 replaced from openfootball/espana; the archive before (engsoccerdata) is kept.
 * Ligue 1: seasons from 2014/15 replaced from openfootball/france; the archive before (engsoccerdata, completed from
   footballcsv for 1937/38, 1994/95 and one 2006/07 match) is kept.
+* Serie A: seasons from 2013/14 replaced from openfootball/italy; the archive before (engsoccerdata) is kept.
 * Europa League and Conference League: the running season(s) from Wikipedia (uefa_wikipedia.py).
 * Nations League, European Championship, Copa América: replaced wholesale from the open international_results
   dataset (see nationsleague.py, tournaments.py).
-* Running season of the Champions League, Premier League, Bundesliga, La Liga and Ligue 1: football-data.org when
+* Running season of the Champions League, Premier League, Bundesliga, La Liga, Ligue 1 and Serie A: football-data.org when
   FOOTBALL_DATA_KEY is set (it is live; openfootball is often weeks behind).
 """
 import argparse
@@ -31,6 +32,7 @@ import england
 import germany
 import spain
 import france
+import italy
 import footballdata
 import import_ekstraklasa
 import nationsleague
@@ -187,6 +189,7 @@ def main():
     ap.add_argument("--deutschland")
     ap.add_argument("--espana")
     ap.add_argument("--france")
+    ap.add_argument("--italy")
     args = ap.parse_args()
     with tempfile.TemporaryDirectory() as tmp:
         wc_dir = args.worldcup or clone("worldcup", Path(tmp) / "worldcup")
@@ -201,6 +204,8 @@ def main():
         bl_new = germany.parse_openfootball(de_dir)
         es_new = spain.parse_openfootball(es_dir)
         fr_new = france.parse_openfootball(Path(fr_dir) / "france")
+        it_dir = args.italy or clone("italy", Path(tmp) / "italy")
+        it_new = italy.parse_openfootball(it_dir)
     for m in ucl_new:
         m.pop("codeA", None)
         m.pop("codeB", None)
@@ -225,6 +230,10 @@ def main():
     fr = [m for m in old if m["season"] < france.FIRST_OF] + fr_new
     fr = with_current_season(old, fr, "FL1", footballdata.PL_STAGES)
 
+    old = load_old("italy")
+    it = [m for m in old if m["season"] < italy.FIRST_OF] + it_new
+    it = with_current_season(old, it, "SA", footballdata.PL_STAGES)
+
     ekstraklasa = refresh_ekstraklasa()
     intl = refresh_internationals()
     for k, v in intl.items():
@@ -239,13 +248,14 @@ def main():
     dump(DATA / "matches/bundesliga.json", bl)
     dump(DATA / "matches/spain.json", es)
     dump(DATA / "matches/france.json", fr)
+    dump(DATA / "matches/italy.json", it)
     # heartbeat: shown on the home page, and the daily commit keeps the schedule alive
-    counts = {"ucl": len(ucl), "wc": len(wc), "pl": len(pl), "bundesliga": len(bl), "spain": len(es), "france": len(fr), "ekstraklasa": len(ekstraklasa), "nl": len(nl),
+    counts = {"ucl": len(ucl), "wc": len(wc), "pl": len(pl), "bundesliga": len(bl), "spain": len(es), "france": len(fr), "italy": len(it), "ekstraklasa": len(ekstraklasa), "nl": len(nl),
               "euro": len(intl["euro"]), "copa": len(intl["copa"]),
               "el": len(load_old("el")), "conf": len(load_old("conf"))}
     dump(DATA / "sync.json", {"synced": datetime.now(timezone.utc).isoformat(timespec="minutes"),
                               "feeds": feed_changes(counts)})
-    print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, bundesliga: {len(bl)}, la liga: {len(es)}, ligue 1: {len(fr)}, "
+    print(f"world cup: {len(wc)}, champions league: {len(ucl)}, premier league: {len(pl)}, bundesliga: {len(bl)}, la liga: {len(es)}, ligue 1: {len(fr)}, serie a: {len(it)}, "
           f"ekstraklasa: {len(ekstraklasa)}, nations league: {len(nl)}, euro: {len(intl['euro'])}, copa: {len(intl['copa'])} matches")
 
 
