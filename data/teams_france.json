@@ -359,7 +359,9 @@
   "code": "FRA"
  },
  "Paris FC": {
-  "aliases": [],
+  "aliases": [
+   "Stade de Paris FC"
+  ],
   "country": "France",
   "code": "FRA"
  },
@@ -475,8 +477,7 @@
  "Stade Français": {
   "aliases": [
    "Stade Francais",
-   "Stade Francais FC",
-   "Stade de Paris FC"
+   "Stade Francais FC"
   ],
   "country": "France",
   "code": "FRA"
