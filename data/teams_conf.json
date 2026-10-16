@@ -1097,30 +1097,35 @@
    "Aarhus Gymnastikforening"
   ],
   "country": "Denmark",
-  "code": "DEN"
+  "code": "DEN",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/n5mwbk1628558301.png"
  },
  "Inter Club d'Escaldes": {
   "aliases": [],
   "country": "Andorra",
-  "code": "AND"
+  "code": "AND",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tbxkcc1789008725.png"
  },
  "Egnatia": {
   "aliases": [
    "KF Egnatia"
   ],
   "country": "Albania",
-  "code": "ALB"
+  "code": "ALB",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/4tufos1639086825.png"
  },
  "Mjällby": {
   "aliases": [
    "Mjällby AIF"
   ],
   "country": "Sweden",
-  "code": "SWE"
+  "code": "SWE",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ruwqxv1430239112.png"
  },
  "Riga FC": {
   "aliases": [],
   "country": "Latvia",
-  "code": "LVA"
+  "code": "LVA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/0cup9s1579192235.png"
  }
 }
