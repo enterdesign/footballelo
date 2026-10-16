@@ -4,7 +4,8 @@
    "AD Almeria"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/4a/UD_Almeria_logo.svg"
  },
  "Alavés": {
   "aliases": [
@@ -13,19 +14,22 @@
    "Deportivo Alavés"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/0aaifo1734673843.png"
  },
  "Albacete": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/17oqja1616436316.png"
  },
  "Alcoyano": {
   "aliases": [
    "CD Alcoyano"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/4f60su1639481382.png"
  },
  "Almería": {
   "aliases": [
@@ -33,12 +37,14 @@
    "UD Almería"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yswsww1473503818.png"
  },
  "Arenas de Getxo": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/Arenas_Club_de_Getxo_logo.svg"
  },
  "Athletic Club": {
   "aliases": [
@@ -63,7 +69,8 @@
    "Atletico Tetuan"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/r6k2091773232292.png"
  },
  "Barcelona": {
   "aliases": [
@@ -76,14 +83,16 @@
  "Burgos CF": {
   "aliases": [],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/79h3ul1708150894.png"
  },
  "Castellón": {
   "aliases": [
    "CD Castellon"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ywibjw1733456820.png"
  },
  "Celta Vigo": {
   "aliases": [
@@ -99,7 +108,8 @@
    "SD Compostela"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/yo58ie1690065450.png"
  },
  "Condal": {
   "aliases": [
@@ -114,7 +124,8 @@
    "Cádiz CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/e2phzp1639408503.png"
  },
  "Córdoba": {
   "aliases": [
@@ -122,7 +133,8 @@
    "Córdoba CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ttyyvy1473503827.png"
  },
  "Deportivo La Coruña": {
   "aliases": [
@@ -138,14 +150,16 @@
    "SD Eibar"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/hccive1680933599.png"
  },
  "Elche": {
   "aliases": [
    "Elche CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/e4vaw51655594332.png"
  },
  "Espanyol": {
   "aliases": [
@@ -162,14 +176,16 @@
    "CE Europa"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/6sjygh1596488495.png"
  },
  "Extremadura": {
   "aliases": [
    "CF Extremadura"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ye7j261736043777.png"
  },
  "Getafe": {
   "aliases": [
@@ -184,7 +200,8 @@
    "Gimnastic"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tpytry1447591259.png"
  },
  "Girona": {
   "aliases": [
@@ -207,35 +224,40 @@
    "SD Huesca"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tuxusx1447590509.png"
  },
  "Hércules": {
   "aliases": [
    "Hercules CF"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/3evl161711252098.png"
  },
  "Las Palmas": {
   "aliases": [
    "UD Las Palmas"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/mmhyb11616443601.png"
  },
  "Leganés": {
   "aliases": [
    "CD Leganés"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/tm0adr1616443898.png"
  },
  "Leonesa": {
   "aliases": [
    "CD Leonesa"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/5/5c/Logo_of_Cultural_y_Deportiva_Leonesa.svg"
  },
  "Levante": {
   "aliases": [
@@ -250,14 +272,16 @@
    "UE Lleida"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/1jz6jv1579959374.png"
  },
  "Logroñés": {
   "aliases": [
    "CD Logrones"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/k64thp1732833216.png"
  },
  "Mallorca": {
   "aliases": [
@@ -282,7 +306,8 @@
    "CP Merida"
   ],
   "country": "Spain",
-  "code": "ESP"
+  "code": "ESP",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/x2o62u1718211663.png"
  },
  "Numancia": {
   "aliases": [
