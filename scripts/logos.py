@@ -26,14 +26,20 @@ def norm(s):
     return "".join(c for c in s if c.isalnum())
 
 
+BUDGET = 40 * 60                 # seconds: after this the run stops searching and saves what it found
+DEADLINE = time.time() + BUDGET
+
+
 def search(key, q):
     url = API.format(key=key, q=urllib.parse.quote(q))
-    for attempt in range(3):
+    for attempt in range(2):
+        if time.time() > DEADLINE:
+            return []
         try:
-            with urllib.request.urlopen(url, timeout=30) as r:
+            with urllib.request.urlopen(url, timeout=20) as r:
                 return [t for t in (json.load(r).get("teams") or []) if t.get("strSport") == "Soccer"]
         except Exception:
-            time.sleep(5 * (attempt + 1))
+            time.sleep(10 * (attempt + 1))
     return []
 
 
@@ -63,6 +69,8 @@ def wiki_logo(name, lang="en"):
     so the file list is read. The file must be named after the club (never e.g. "Speedway_logo")."""
     words = [w for w in (norm(t) for t in name.split()) if len(w) >= 3]
     query = f"{name} klub piłkarski" if lang == "pl" else f"{name} football club"
+    if time.time() > DEADLINE:
+        return None
     try:
         hits = wiki(lang, action="query", list="search", srsearch=query, srlimit=3)["query"]["search"]
         title = next((h["title"] for h in hits if any(w in norm(h["title"]) for w in words)
@@ -100,6 +108,9 @@ def main():
         for name, info in teams.items():
             if info.get("logo"):
                 continue
+            if time.time() > DEADLINE:
+                missing.append(name)
+                continue
             hit = None
             for q in [name, *info.get("aliases", [])][:3]:
                 hit = pick(search(args.key, q), info.get("country", ""))
@@ -122,6 +133,8 @@ def main():
         print(f"{fname}: logos {found}/{len(teams)}")
         if missing:
             print("  no logo found for:", ", ".join(missing))
+    if time.time() > DEADLINE:
+        print("time budget used up: run the workflow again to continue with the remaining clubs")
 
 
 if __name__ == "__main__":
