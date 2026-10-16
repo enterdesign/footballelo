@@ -18,10 +18,11 @@ MAX_DAYS = 21
 WINDOWS = {"ucl": {10, 11, 3, 4, 5}, "el": {10, 11, 3, 4, 5}, "conf": {10, 11, 3, 4, 5},
            "pl": {9, 10, 11, 12, 1, 2, 3, 4, 5}, "ekstraklasa": {9, 10, 11, 3, 4, 5},
            "bundesliga": {9, 10, 11, 12, 1, 2, 3, 4, 5},
-           "spain": {9, 10, 11, 12, 1, 2, 3, 4, 5}, "france": {9, 10, 11, 12, 1, 2, 3, 4, 5}}
+           "spain": {9, 10, 11, 12, 1, 2, 3, 4, 5}, "france": {9, 10, 11, 12, 1, 2, 3, 4, 5},
+           "italy": {9, 10, 11, 12, 1, 2, 3, 4, 5}}
 NL_MONTHS = {10, 11}            # league phase of the Nations League, in the years with an edition (even years)
 NAMES = {"ucl": "Champions League", "el": "Europa League", "conf": "Conference League", "pl": "Premier League",
-         "ekstraklasa": "Ekstraklasa", "bundesliga": "Bundesliga", "spain": "La Liga", "france": "Ligue 1", "nl": "Nations League"}
+         "ekstraklasa": "Ekstraklasa", "bundesliga": "Bundesliga", "spain": "La Liga", "france": "Ligue 1", "italy": "Serie A", "nl": "Nations League"}
 
 
 def stale(feeds, today):

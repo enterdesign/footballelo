@@ -282,5 +282,12 @@
    "k": 16,
    "color": "#4a78a8"
   }
+ },
+ "italy": {
+  "league": {
+   "label": "LG",
+   "k": 16,
+   "color": "#4a78a8"
+  }
  }
 }

@@ -38,7 +38,7 @@ codziennie 05:17 UTC  →  sync.py (pobiera nowe mecze)  →  build.py (liczy EL
 ```
 
 Przebieg zatrzymuje się, dopóki nie zdecydujesz, co to za drużyna (strona zostaje na ostatniej dobrej wersji).
-Plik do edycji jest w nawiasie: `data/teams_<rozgrywki>.json` (`ucl`, `el`, `conf`, `pl`, `ekstraklasa`, `bundesliga`, `spain`, `france`, `wc`, `euro`, `copa`, `nl`).
+Plik do edycji jest w nawiasie: `data/teams_<rozgrywki>.json` (`ucl`, `el`, `conf`, `pl`, `ekstraklasa`, `bundesliga`, `spain`, `france`, `italy`, `wc`, `euro`, `copa`, `nl`).
 
 **a) To nowy klub / reprezentacja** – dopisz wpis na końcu (przed ostatnim `}`, pamiętaj o przecinku po poprzednim):
 
@@ -127,6 +127,7 @@ Gdzie jest który parser:
 | Bundesliga | engsoccerdata (przed 2010/11, archiwum) + openfootball/deutschland (od 2010/11) + football-data.org (bieżący sezon) | `scripts/germany.py` |
 | La Liga | engsoccerdata (przed 2012/13) + openfootball/espana (od 2012/13) + football-data.org (PD, bieżący sezon) | `scripts/spain.py` |
 | Ligue 1 | engsoccerdata (przed 2014/15, uzupełnione z footballcsv: sezony 1937/38, 1994/95 i jeden mecz 2006/07) + openfootball/france (od 2014/15) + football-data.org (FL1, bieżący sezon) | `scripts/france.py` |
+| Serie A | engsoccerdata (przed 2013/14) + openfootball/italy (od 2013/14) + football-data.org (SA, bieżący sezon) | `scripts/italy.py` |
 
 **Do czasu naprawy** brakujące mecze możesz dopisać ręcznie (sekcja 4) – strona od razu je uwzględni.
 
@@ -173,7 +174,7 @@ Plik `data/overrides.json` pozwala dodać lub usunąć mecze **bez dotykania źr
 }
 ```
 
-- klucz najwyższego poziomu to rozgrywki: `ucl`, `wc`, `pl`, `ekstraklasa`, `bundesliga`, `spain`, `france`, `nl`, `euro`, `copa`, `el`, `conf`,
+- klucz najwyższego poziomu to rozgrywki: `ucl`, `wc`, `pl`, `ekstraklasa`, `bundesliga`, `spain`, `france`, `italy`, `nl`, `euro`, `copa`, `el`, `conf`,
 - `remove` przyjmuje dowolny zestaw pól, który jednoznacznie wskazuje mecz (np. sezon + obie drużyny),
 - dla World Cup / Euro / Copa zamiast `season` jest `"year"` (np. `"year": "2028"`), a faza to `group`, `r16`, `qf`, `sf`, `3rd`, `final`,
 - rzuty karne: dodaj `"penA": 4, "penB": 3` (zwycięzca karnych liczy się jak zwycięzca meczu),
