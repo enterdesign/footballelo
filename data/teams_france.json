@@ -1,0 +1,552 @@
+{
+ "AC Ajaccio": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "AS Aixoise": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "AS Troyes-Savinienne": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Alès": {
+  "aliases": [
+   "Olympique Ales"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Amiens": {
+  "aliases": [
+   "Amiens SC"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Angers": {
+  "aliases": [
+   "Angers SCO"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Angoulême": {
+  "aliases": [
+   "AS Angouleme"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Antibes": {
+  "aliases": [
+   "FC Antibes"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Arles-Avignon": {
+  "aliases": [
+   "AC Arles-Avignon"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Auxerre": {
+  "aliases": [
+   "AJ Auxerre",
+   "Aj Auxerre"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/lzdtbf1658753355.png"
+ },
+ "Avignonnaise": {
+  "aliases": [
+   "Association Sportive Avignonaise"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Bastia": {
+  "aliases": [
+   "SC Bastia"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Bordeaux": {
+  "aliases": [
+   "Girondins Bordeaux"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/u45vc51627132724.png"
+ },
+ "Boulogne": {
+  "aliases": [
+   "US Boulogne"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Brest": {
+  "aliases": [
+   "Stade Brest",
+   "Brest Armorique FC",
+   "Stade Brestois",
+   "Stade Brestois 29"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/512.png"
+ },
+ "Béziers": {
+  "aliases": [
+   "AS Beziers"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "CA Paris": {
+  "aliases": [
+   "CA Paris (alt)"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Caen": {
+  "aliases": [
+   "SM Caen"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Cannes": {
+  "aliases": [
+   "AS Cannes",
+   "As Cannes",
+   "AS Cannes-Grasse"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Châteauroux": {
+  "aliases": [
+   "LB Chateauroux"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Clermont": {
+  "aliases": [
+   "Clermont Foot 63"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Colmar": {
+  "aliases": [
+   "SR Colmar"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Dijon": {
+  "aliases": [
+   "Dijon FCO"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Excelsior Roubaix": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Gazélec Ajaccio": {
+  "aliases": [
+   "Gazélec FC Ajaccio"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Grenoble": {
+  "aliases": [
+   "Grenoble Foot 38"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Gueugnon": {
+  "aliases": [
+   "FC Gueugnon"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Guingamp": {
+  "aliases": [
+   "EA Guingamp",
+   "En Avant Guingamp"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/5iihrp1590259631.png"
+ },
+ "Istres": {
+  "aliases": [
+   "FC Istres"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Laval": {
+  "aliases": [
+   "Stade Laval"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Le Havre": {
+  "aliases": [
+   "Le Havre AC",
+   "Le Havre Ac"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Le Mans": {
+  "aliases": [
+   "Le Mans FC",
+   "Le Mans UC 72"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Lens": {
+  "aliases": [
+   "RC Lens",
+   "Racing Club de Lens"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/546.png"
+ },
+ "Lille": {
+  "aliases": [
+   "Lille OSC",
+   "Olympique Lillois Lille"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/521.png",
+  "note": "Formed in 1944 by the merger of Olympique Lillois and SC Fives; the rating continues from Olympique Lillois (SC Fives is rated separately before 1944)."
+ },
+ "Limoges": {
+  "aliases": [
+   "Limoges FC"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Lorient": {
+  "aliases": [
+   "FC Lorient"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Lyon": {
+  "aliases": [
+   "Olympique Lyon",
+   "Olympique Lyonnais"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/blk9771656932845.png"
+ },
+ "Marseille": {
+  "aliases": [
+   "Olympique Marseille",
+   "Olympique de Marseille"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/516.png"
+ },
+ "Martigues": {
+  "aliases": [
+   "FC Martigues"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Metz": {
+  "aliases": [
+   "FC Metz"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Monaco": {
+  "aliases": [
+   "AS Monaco",
+   "As Monaco",
+   "AS Monaco FC"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/548.png"
+ },
+ "Montpellier": {
+  "aliases": [
+   "Montpellier HSC",
+   "Montpellier La Paillade SC"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/8wn9x31750879448.png"
+ },
+ "Mulhouse": {
+  "aliases": [
+   "FC Mulhouse"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Nancy": {
+  "aliases": [
+   "AS Nancy",
+   "AS Nancy Lorraine"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Nantes": {
+  "aliases": [
+   "FC Nantes"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/mla9x61678808018.png"
+ },
+ "Nice": {
+  "aliases": [
+   "OGC Nice"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png"
+ },
+ "Niort": {
+  "aliases": [
+   "Chamois Niortais"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Nîmes": {
+  "aliases": [
+   "Nimes Olympique",
+   "Nîmes Olympique"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Paris FC": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Paris Saint-Germain": {
+  "aliases": [
+   "Paris Saint Germain",
+   "Paris Saint-Germain FC"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/524.png"
+ },
+ "Racing Paris": {
+  "aliases": [
+   "Racing Club de France",
+   "Racing Club De France",
+   "Matra Racing"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "note": "Racing Club de France (also Matra Racing 1987–89)."
+ },
+ "Red Star": {
+  "aliases": [
+   "Red Star FC",
+   "Red Star Olympique",
+   "Red Star Olympique Audonien",
+   "Stade Red Star"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://crests.football-data.org/7283.png",
+  "note": "In 1948–50 the club played merged with Stade Français as Stade Red Star; the rating continues here and Stade Français re-formed separately in 1950."
+ },
+ "Reims": {
+  "aliases": [
+   "Stade Reims",
+   "Stade de Reims"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Rennes": {
+  "aliases": [
+   "Stade Rennais",
+   "Stade Rennes",
+   "Stade Rennais FC 1901"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ypturx1473504818.png"
+ },
+ "Roubaix": {
+  "aliases": [
+   "RC Roubaix"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Rouen": {
+  "aliases": [
+   "FC Rouen"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "SC Fives": {
+  "aliases": [
+   "SC Fives Lille"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "SC Nîmes": {
+  "aliases": [
+   "SC Nimes"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "SO Montpellier": {
+  "aliases": [
+   "Stade Olympique Montpellierain"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Saint-Étienne": {
+  "aliases": [
+   "AS Saint-Etienne",
+   "AS Saint-Étienne",
+   "As Saint Etienne"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/25/AS_Saint-%C3%89tienne_logo.svg"
+ },
+ "Sedan": {
+  "aliases": [
+   "CS Sedan",
+   "UA Sedan-Torcy"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Sochaux": {
+  "aliases": [
+   "FC Sochaux"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Stade Français": {
+  "aliases": [
+   "Stade Francais",
+   "Stade Francais FC",
+   "Stade de Paris FC"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Strasbourg": {
+  "aliases": [
+   "RC Strasbourg",
+   "RC Strasbourg Alsace"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/b8k77w1766625501.png"
+ },
+ "Sète": {
+  "aliases": [
+   "FC Sete"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Toulon": {
+  "aliases": [
+   "Sporting Toulon Var"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Toulouse": {
+  "aliases": [
+   "Toulouse FC"
+  ],
+  "country": "France",
+  "code": "FRA",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/17eqox1688449282.png"
+ },
+ "Tours": {
+  "aliases": [
+   "Tours FC"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Troyes": {
+  "aliases": [
+   "ES Troyes AC",
+   "ESTAC Troyes",
+   "ATAC Troyes"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Troyes AF": {
+  "aliases": [],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Valenciennes": {
+  "aliases": [
+   "US Valenciennes-Anzin",
+   "Valenciennes FC"
+  ],
+  "country": "France",
+  "code": "FRA"
+ },
+ "Évian": {
+  "aliases": [
+   "Evian Thonon Gaillard",
+   "Évian Thonon Gaillard"
+  ],
+  "country": "France",
+  "code": "FRA"
+ }
+}

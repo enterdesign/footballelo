@@ -2,12 +2,12 @@
 
 ELO rankings for the UEFA Champions League (1992/93 →), the FIFA World Cup (1930 →), the English
 top flight (First Division from 1888/89, Premier League from 1992/93) and the Polish top flight
-(Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →) the Bundesliga (1963/64 →), the UEFA Nations League (2018/19 →), the European Championship (1960 →) the Copa América (1993 →), the Europa League (2009/10 →) and the Conference League (2021/22 →).
+(Liga 1927, I liga 1948–2008, Ekstraklasa 2008 →) the Bundesliga (1963/64 →), La Liga (1928/29 →), Ligue 1 (1932/33 →), the UEFA Nations League (2018/19 →), the European Championship (1960 →) the Copa América (1993 →), the Europa League (2009/10 →) and the Conference League (2021/22 →).
 Static site on GitHub Pages; data refreshed daily by GitHub Actions.
 
 ```
-data/matches/{ucl,wc,pl,ekstraklasa,bundesliga,nl,euro,copa,el,conf}.json   matches exactly as imported (source names)
-data/teams_{ucl,wc,pl,ekstraklasa,bundesliga,nl,euro,copa,el,conf}.json  canonical team -> aliases (renames, successor states)
+data/matches/{ucl,wc,pl,ekstraklasa,bundesliga,spain,france,nl,euro,copa,el,conf}.json   matches exactly as imported (source names)
+data/teams_{ucl,wc,pl,ekstraklasa,bundesliga,spain,france,nl,euro,copa,el,conf}.json  canonical team -> aliases (renames, successor states)
 data/sync.json                  time of the last daily data check (shown on the home page)
 data/phases.json             K-factor per phase
 data/nl_leagues.json         Nations League editions (dates, 2018/19 divisions)
@@ -23,7 +23,7 @@ red runs, manual match fixes, format changes - each with examples.
 - Start 1600; K per phase (`data/phases.json`); `R += K·(S−E)`.
 - Extra time counts by its score; a match decided on penalties is a win for the shoot-out winner.
 - Qualifying rounds are not rated. The Champions League knockout play-off round is rated as R16.
-- Premier League, Ekstraklasa and Bundesliga: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
+- Premier League, Ekstraklasa, Bundesliga, La Liga and Ligue 1: one phase (`league`, K=16). Clubs keep their rating while outside the top flight.
 - Nations League: one common ranking for all divisions; K by division (A 24 · B 12 · C 8 · D 4), quarter-finals K 24,
   semi-finals / 3rd place / final K 32, promotion/relegation play-offs between two divisions use the K of the lower one.
 - Europa League: group/league phase 6, R32 and knockout play-offs 12, R16 and QF 12, SF 18, final 24;
