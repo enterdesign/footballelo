@@ -1,0 +1,21 @@
+name: probe
+on:
+  push:
+    branches: [probe-seriea]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Serie A matches around yesterday (football-data.org)
+        env:
+          K: ${{ secrets.FOOTBALL_DATA_KEY }}
+        run: |
+          curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/SA/matches?season=2026&dateFrom=2026-10-13&dateTo=2026-10-19" > sa.json || true
+          python3 - <<'P'
+          import json
+          d=json.load(open("sa.json"))
+          print({k:v for k,v in d.items() if k!="matches"} if "matches" not in d else "")
+          for m in d.get("matches",[]):
+              s=m["score"]
+              print(m["utcDate"],m["status"],m["stage"],m["matchday"],m["homeTeam"]["name"],"-",m["awayTeam"]["name"],s["fullTime"],s.get("duration"),"lastUpdated",m["lastUpdated"])
+          P
