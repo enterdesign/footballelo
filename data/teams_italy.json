@@ -305,7 +305,8 @@
    "AC Monza"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/0/08/AC_Monza_Brianza_1912_logo.svg"
  },
  "Napoli": {
   "aliases": [
@@ -320,14 +321,16 @@
    "Novara Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/9/9a/Novara_FC_crest.svg"
  },
  "Padova": {
   "aliases": [
    "Calcio Padova"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Biancoscudati_Padova_logo.png"
  },
  "Palermo": {
   "aliases": [
@@ -352,7 +355,8 @@
    "AC Perugia"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/08/Ac_Perugia_logo.svg"
  },
  "Pescara": {
   "aliases": [
@@ -360,52 +364,60 @@
    "Pescara Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/06/Delfino_Pescara_logo.svg"
  },
  "Piacenza": {
   "aliases": [
    "Piacenza Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/4/45/Piacenza_Calcio_1919_crest.svg"
  },
  "Pisa": {
   "aliases": [
    "Pisa SC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/6b/Pisa_SC_crest.svg"
  },
  "Pistoiese": {
   "aliases": [
    "AC Pistoiese"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/9/93/FC_Pistoiese_crest.svg"
  },
  "Pro Patria": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/08/Aurora_Pro_Patria_1919_crest.svg"
  },
  "Pro Vercelli": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/04/FC_Pro_Vercelli_1892_crest.svg"
  },
  "Reggiana": {
   "aliases": [
    "AC Reggiana"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/00/AC_Reggiana_1919_crest.svg"
  },
  "Reggina": {
   "aliases": [
    "Reggina Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/c/cd/AS_Reggina_1914_crest.svg"
  },
  "SPAL": {
   "aliases": [
@@ -422,7 +434,8 @@
    "US Salernitana 1919"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/8/85/US_Salernitana_1919_logo.svg"
  },
  "Sampdoria": {
   "aliases": [
@@ -449,21 +462,24 @@
    "AC Siena"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/7/75/Robur_Siena_SSD_logo_%282014%29.png"
  },
  "Spezia": {
   "aliases": [
    "Spezia Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/6/6f/Spezia_Calcio_crest.svg"
  },
  "Ternana": {
   "aliases": [
    "Ternana Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/e/ee/Ternana_Calcio_crest.svg"
  },
  "Torino": {
   "aliases": [
@@ -478,7 +494,8 @@
    "Treviso FBC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/3/36/A.C.D._Treviso_logo.png"
  },
  "Udinese": {
   "aliases": [
@@ -491,14 +508,16 @@
  "Unione Triestina": {
   "aliases": [],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/2/28/US_Triestina_Calcio_1918_crest.svg"
  },
  "Varese": {
   "aliases": [
    "AS Varese 1910"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/d/de/Logo_Varese_FC_2025.svg"
  },
  "Venezia": {
   "aliases": [
@@ -506,7 +525,8 @@
    "Venezia FC"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/3/39/Venezia_FC_crest.svg"
  },
  "Vicenza": {
   "aliases": [
@@ -514,6 +534,7 @@
    "Lanerossi Vicenza"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/1/19/Antico_logo_ac_Vicenza.png"
  }
 }
