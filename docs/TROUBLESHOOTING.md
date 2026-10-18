@@ -103,6 +103,7 @@ Sprawdź w internecie, czy w ostatnich tygodniach rozegrano mecze tych rozgrywek
 |---|---|---|
 | `Wikipedia page '2026–27 UEFA Europa League league phase' failed: HTTP Error 429` | Wikipedia chwilowo ogranicza zapytania | nic; spróbuj ponownie później (Run workflow) |
 | `el 2026/27: no matches parsed (stored 24); kept stored` (albo `… fresh copy has fewer matches …`) | pobrano stronę, ale parser nie znalazł meczów → **zmienił się układ strony** | krok 3 |
+| `PL 2026/27: source has fewer matches (56 < 60); kept stored, added 5 new` | football-data.org zwróciło chwilowo niepełną listę → zostają zapisane mecze, a **nowe** i tak są dodawane. Bez „added N new” zwykle wystarczy ponowić aktualizację (workflow „Update & deploy” → Run workflow) | nic, chyba że powtarza się codziennie |
 | `international_results failed (…)` | repozytorium z wynikami reprezentacji niedostępne | poczekaj; dane zostają jak były |
 | `football-data.org CL failed (…)` | klucz/limit API | sekcja 8 |
 | brak jakichkolwiek komunikatów, a nowych meczów nie ma | źródło nie ma jeszcze tych meczów (np. opóźnienie) | poczekaj kilka dni |

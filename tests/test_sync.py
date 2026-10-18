@@ -15,6 +15,17 @@ class RunningSeason(unittest.TestCase):
         out = sync.keep_if_larger(old, mk(61), "2026/27", "PL")
         self.assertEqual(len(out), 61)
 
+    def test_new_matches_are_added_even_when_the_source_is_short(self):
+        mk = lambda n: [{"season": "2026/27", "phase": "league", "teamA": f"A{i}", "teamB": f"B{i}"} for i in range(n)]
+        canon = {"A0": "Same"}.get                                 # spelling variants of one team count as one
+        old = mk(60)
+        fresh = mk(56) + [{"season": "2026/27", "phase": "league", "teamA": "N1", "teamB": "N2"},
+                          {"season": "2026/27", "phase": "league", "teamA": "A0", "teamB": "B0"}]
+        out = sync.keep_if_larger(old, fresh, "2026/27", "PL", lambda t: canon(t) or t)
+        cur = [m for m in out if m["season"] == "2026/27"]
+        self.assertEqual(len(cur), 61)                             # 60 stored + the one genuinely new match
+        self.assertIn(("N1", "N2"), {(m["teamA"], m["teamB"]) for m in cur})
+
 
 if __name__ == "__main__":
     unittest.main()
