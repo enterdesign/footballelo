@@ -6,16 +6,19 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Serie A matches around yesterday (football-data.org)
+      - name: Premier League from football-data.org
         env:
           K: ${{ secrets.FOOTBALL_DATA_KEY }}
         run: |
-          curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/SA/matches?season=2026&dateFrom=2026-10-13&dateTo=2026-10-19" > sa.json || true
+          curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/PL/matches?season=2026" > pl.json || true
           python3 - <<'P'
-          import json
-          d=json.load(open("sa.json"))
-          print({k:v for k,v in d.items() if k!="matches"} if "matches" not in d else "")
-          for m in d.get("matches",[]):
-              s=m["score"]
-              print(m["utcDate"],m["status"],m["stage"],m["matchday"],m["homeTeam"]["name"],"-",m["awayTeam"]["name"],s["fullTime"],s.get("duration"),"lastUpdated",m["lastUpdated"])
+          import json, collections
+          d=json.load(open("pl.json"))
+          ms=d.get("matches",[])
+          print("total",len(ms),collections.Counter(m["status"] for m in ms))
+          print("stages",collections.Counter(m["stage"] for m in ms))
+          for m in sorted(ms,key=lambda m:m["utcDate"]):
+              if m["status"] not in ("FINISHED","TIMED","SCHEDULED") or "2026-10-09"<=m["utcDate"][:10]<="2026-10-19":
+                  s=m["score"]
+                  print(m["utcDate"],m["status"],m["stage"],m["matchday"],m["homeTeam"]["name"],"-",m["awayTeam"]["name"],s["fullTime"],"upd",m["lastUpdated"])
           P
