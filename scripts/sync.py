@@ -59,18 +59,25 @@ def load_old(name):
     return json.loads((DATA / f"matches/{name}.json").read_text(encoding="utf-8"))
 
 
-def keep_if_larger(old, matches, season, comp):
+def keep_if_larger(old, matches, season, comp, canon=None):
     """A running season never shrinks: if the stored copy has more matches than the fresh one (a source that lags or
-    hiccups for a day), the stored copy stays."""
+    hiccups for a day), the stored copy stays. With `canon` (source name -> canonical name) the matches that are new
+    in the fresh copy are still added, so a half-empty answer cannot hold back the matches played since."""
     have = [m for m in matches if m["season"] == season]
     stored = [m for m in old if m["season"] == season]
     if len(stored) > len(have):
-        print(f"{comp} {season}: source has fewer matches ({len(have)} < {len(stored)}); kept stored")
-        return [m for m in matches if m["season"] != season] + stored
+        extra = []
+        if canon:
+            key = lambda m: (m.get("phase"), canon(m["teamA"]), canon(m["teamB"]))
+            seen = {key(m) for m in stored}
+            extra = [m for m in have if key(m) not in seen]
+        print(f"{comp} {season}: source has fewer matches ({len(have)} < {len(stored)}); kept stored"
+              + (f", added {len(extra)} new" if extra else ""))
+        return [m for m in matches if m["season"] != season] + stored + extra
     return matches
 
 
-def with_current_season(old, matches, comp, stages):
+def with_current_season(old, matches, comp, stages, canon=None):
     """Replace the running season by football-data.org's live data (needs FOOTBALL_DATA_KEY).
     Its free plan only covers the last few seasons, so older ones are left alone."""
     today = date.today()
@@ -85,7 +92,13 @@ def with_current_season(old, matches, comp, stages):
         print(f"football-data.org {comp} failed ({e}); keeping existing {season} matches")
         return keep_if_larger(old, matches, season, comp)
     print(f"{comp} {season}: {len(fresh)} matches from football-data.org")
-    return keep_if_larger(old, [m for m in matches if m["season"] != season] + fresh, season, comp)
+    return keep_if_larger(old, [m for m in matches if m["season"] != season] + fresh, season, comp, canon)
+
+
+def canon_for(team_file):
+    """Source name -> canonical name of a competition (unknown names stay as they are)."""
+    amap = alias_map(json.loads((DATA / team_file).read_text(encoding="utf-8")))
+    return lambda t: amap.get(t, t)
 
 
 def refresh_ekstraklasa(recent=2):
@@ -212,27 +225,27 @@ def main():
 
     old = load_old("ucl")
     ucl = [m for m in old if m["season"] < UCL_FIRST] + ucl_new
-    ucl = with_current_season(old, ucl, "CL", footballdata.STAGES)
+    ucl = with_current_season(old, ucl, "CL", footballdata.STAGES, canon_for("teams_ucl.json"))
 
     old = load_old("pl")
     pl = [m for m in old if m["season"] < england.FIRST_PL] + pl_new
-    pl = with_current_season(old, pl, "PL", footballdata.PL_STAGES)
+    pl = with_current_season(old, pl, "PL", footballdata.PL_STAGES, canon_for("teams_pl.json"))
 
     old = load_old("bundesliga")
     bl = [m for m in old if m["season"] < germany.FIRST_OF] + bl_new
-    bl = with_current_season(old, bl, "BL1", footballdata.PL_STAGES)
+    bl = with_current_season(old, bl, "BL1", footballdata.PL_STAGES, canon_for("teams_bundesliga.json"))
 
     old = load_old("spain")
     es = [m for m in old if m["season"] < spain.FIRST_OF] + es_new
-    es = with_current_season(old, es, "PD", footballdata.PL_STAGES)
+    es = with_current_season(old, es, "PD", footballdata.PL_STAGES, canon_for("teams_spain.json"))
 
     old = load_old("france")
     fr = [m for m in old if m["season"] < france.FIRST_OF] + fr_new
-    fr = with_current_season(old, fr, "FL1", footballdata.PL_STAGES)
+    fr = with_current_season(old, fr, "FL1", footballdata.PL_STAGES, canon_for("teams_france.json"))
 
     old = load_old("italy")
     it = [m for m in old if m["season"] < italy.FIRST_OF] + it_new
-    it = with_current_season(old, it, "SA", footballdata.PL_STAGES)
+    it = with_current_season(old, it, "SA", footballdata.PL_STAGES, canon_for("teams_italy.json"))
 
     ekstraklasa = refresh_ekstraklasa()
     intl = refresh_internationals()
