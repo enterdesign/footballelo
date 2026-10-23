@@ -1127,5 +1127,72 @@
   "country": "Latvia",
   "code": "LVA",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/0cup9s1579192235.png"
+ },
+ "Atalanta": {
+  "aliases": [
+   "Atalanta BC"
+  ],
+  "country": "Italy",
+  "code": "ITA",
+  "logo": "https://crests.football-data.org/102.png"
+ },
+ "Brighton & Hove Albion": {
+  "aliases": [
+   "Brighton & Hove Albion F.C."
+  ],
+  "country": "England",
+  "code": "ENG",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/zn0x7h1605371909.png"
+ },
+ "Iberia 1999": {
+  "aliases": [
+   "FC Iberia 1999"
+  ],
+  "country": "Georgia",
+  "code": "GEO"
+ },
+ "Thun": {
+  "aliases": [
+   "FC Thun"
+  ],
+  "country": "Switzerland",
+  "code": "SUI",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/sovjgl1699462359.png"
+ },
+ "Twente": {
+  "aliases": [
+   "FC Twente"
+  ],
+  "country": "Netherlands",
+  "code": "NED",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/rsrxrt1473534783.png"
+ },
+ "Kauno Žalgiris": {
+  "aliases": [
+   "FK Kauno Žalgiris"
+  ],
+  "country": "Lithuania",
+  "code": "LTU"
+ },
+ "SC Freiburg": {
+  "aliases": [],
+  "country": "Germany",
+  "code": "GER",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/urwtup1473453288.png"
+ },
+ "Brann": {
+  "aliases": [
+   "SK Brann"
+  ],
+  "country": "Norway",
+  "code": "NOR",
+  "logo": "https://r2.thesportsdb.com/images/media/team/badge/ovuad71690695412.png"
+ },
+ "Sint-Truidense": {
+  "aliases": [
+   "Sint-Truidense VV"
+  ],
+  "country": "Belgium",
+  "code": "BEL"
  }
 }
