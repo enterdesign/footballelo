@@ -1149,7 +1149,8 @@
    "FC Iberia 1999"
   ],
   "country": "Georgia",
-  "code": "GEO"
+  "code": "GEO",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/6/61/FC_Iberia_1999_logo.svg/250px-FC_Iberia_1999_logo.svg.png"
  },
  "Thun": {
   "aliases": [
@@ -1172,7 +1173,8 @@
    "FK Kauno Žalgiris"
   ],
   "country": "Lithuania",
-  "code": "LTU"
+  "code": "LTU",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/f/fd/FK_Kauno_%C5%BDalgiris_logo.svg/250px-FK_Kauno_%C5%BDalgiris_logo.svg.png"
  },
  "SC Freiburg": {
   "aliases": [],
@@ -1193,6 +1195,7 @@
    "Sint-Truidense VV"
   ],
   "country": "Belgium",
-  "code": "BEL"
+  "code": "BEL",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/6/60/Sint-Truidense_VV_logo.svg/250px-Sint-Truidense_VV_logo.svg.png"
  }
 }
