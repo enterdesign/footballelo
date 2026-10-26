@@ -6,19 +6,15 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Premier League from football-data.org
+      - name: La Liga around the Clasico (football-data.org)
         env:
           K: ${{ secrets.FOOTBALL_DATA_KEY }}
         run: |
-          curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/PL/matches?season=2026" > pl.json || true
+          curl -s -H "X-Auth-Token: $K" "https://api.football-data.org/v4/competitions/PD/matches?season=2026&dateFrom=2026-10-23&dateTo=2026-10-27" > pd.json || true
           python3 - <<'P'
-          import json, collections
-          d=json.load(open("pl.json"))
-          ms=d.get("matches",[])
-          print("total",len(ms),collections.Counter(m["status"] for m in ms))
-          print("stages",collections.Counter(m["stage"] for m in ms))
-          for m in sorted(ms,key=lambda m:m["utcDate"]):
-              if m["status"] not in ("FINISHED","TIMED","SCHEDULED") or "2026-10-09"<=m["utcDate"][:10]<="2026-10-19":
-                  s=m["score"]
-                  print(m["utcDate"],m["status"],m["stage"],m["matchday"],m["homeTeam"]["name"],"-",m["awayTeam"]["name"],s["fullTime"],"upd",m["lastUpdated"])
+          import json
+          d=json.load(open("pd.json"))
+          for m in sorted(d.get("matches",[]),key=lambda m:m["utcDate"]):
+              s=m["score"]
+              print(m["utcDate"],m["status"],m["stage"],m["matchday"],m["homeTeam"]["name"],"-",m["awayTeam"]["name"],s["fullTime"],s.get("duration"),"upd",m["lastUpdated"])
           P
