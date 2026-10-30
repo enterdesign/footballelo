@@ -230,6 +230,20 @@ function drawChart(canvas, series) {
 }
 const periodElo = i => { const m = {}; D.tl[i].forEach(e => m[e.per] = e.after); return m; };
 const periodStats = i => { const s = new Map(); D.tl[i].forEach(e => { const x = s.get(e.per) || {start: e.before, n: 0}; x.end = e.after; x.n++; s.set(e.per, x); }); return s; };
+// Highest rating after any single match (what the History tab shows as "ea/eb"), not the end-of-period value.
+// A team that never rose above its starting rating peaks at 1600, before its first match.
+function allTimeHigh(i) {
+  let best = null;
+  D.tl[i].forEach(e => { if (!best || e.after > best.after) best = e; });
+  if (!best || best.after <= 1600) return {elo: 1600, start: true};
+  return {elo: best.after, per: best.per, e: best};
+}
+function athHtml(i) {
+  const h = allTimeHigh(i);
+  if (h.start) return `<div class="ath">ALL-TIME HIGH <b>${h.elo}</b> · starting rating</div>`;
+  const m = D.matches[h.e.i];
+  return `<div class="ath">ALL-TIME HIGH <b>${h.elo}</b> · ${esc(h.per)} · after ${esc(D.teams[m[2]].name)} ${score(m)} ${esc(D.teams[m[4]].name)}</div>`;
+}
 function seasonTable(i) {
   return `<table class="seasons"><tr><th>${C.period.slice(0, -1)}</th><th>Start</th><th>End</th><th>Δ</th><th>Games</th></tr>${[...periodStats(i)].reverse().map(([p, x]) => {
     const d = x.end - x.start; return `<tr><td>${esc(p)}</td><td>${x.start}</td><td>${x.end}</td><td class="${d > 0 ? "up" : d < 0 ? "down" : "flat"}">${d > 0 ? "+" : ""}${d}</td><td>${x.n}</td></tr>`; }).join("")}</table>`;
@@ -240,7 +254,7 @@ function stats() {
   $("st").onchange = () => { location.hash = `#${route.comp}/stats/${$("st").value === "" ? "" : encodeURIComponent(D.teams[$("st").value].name)}`; };
   if (cur < 0) { $("out").innerHTML = `<div class="empty">SELECT A TEAM TO VIEW ELO PROGRESSION</div>`; return; }
   const t = D.teams[cur];
-  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3><canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
+  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3>${athHtml(cur)}<canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
   drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#b3261e"}]);
 }
