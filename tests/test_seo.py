@@ -14,9 +14,10 @@ DATA = {"title": "Test League", "phases": {"g": {"label": "GR", "k": 8}},
 class Seo(unittest.TestCase):
     def test_page_has_title_description_and_escaped_table(self):
         h = seo.page("ucl", DATA)
-        self.assertIn("<title>Test League ELO ranking – Football ELO</title>", h)
+        self.assertIn("<title>Test League ELO ranking – football ELO ratings since 1992/93</title>", h)
         self.assertIn("from 1992/93 to 2026/27", h)
         self.assertIn("A &amp; B", h)
+        self.assertIn("About this football ELO ranking", h)
         self.assertIn('rel="canonical" href="https://enterdesign.github.io/footballelo/rankings/champions-league.html"', h)
 
     def test_every_ranking_is_linked_from_the_home_page_and_listed_in_the_sitemap(self):
