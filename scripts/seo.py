@@ -31,6 +31,9 @@ def page(key, d):
     url = f"{BASE}rankings/{slug}.html"
     desc = describe(d, key)
     title = f"{d['title']} ELO ranking"
+    first, last = d["matches"][0][0], d["matches"][-1][0]
+    full_title = f"{title} – football ELO ratings since {first}"
+    noun = "national teams" if key in NATIONS else "clubs"
     rows = "".join(
         f"<tr><td>{i}</td><td>{e(t['name'])}</td><td>{e(t.get('country') or t.get('label') or '')}</td>"
         f"<td>{t['elo']}</td><td>{t['matches']}</td></tr>" for i, t in enumerate(d["teams"][:TOP], 1))
@@ -44,11 +47,11 @@ def page(key, d):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{e(title)} – Football ELO</title>
+<title>{e(full_title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{e(title)} – Football ELO">
+<meta property="og:title" content="{e(full_title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
@@ -66,6 +69,8 @@ table.seo td{{padding:6px 8px;border-bottom:1px solid var(--rule)}}.open{{displa
 <a class="open" href="../#{key}">Open the interactive ranking</a>
 <h2 style="font:700 20px var(--display);margin:6px 0">Top {min(TOP, len(d["teams"]))}</h2>
 <table class="seo"><tr><th>#</th><th>Name</th><th>{'Region' if key in NATIONS else 'Country'}</th><th>ELO</th><th>Matches</th></tr>{rows}</table>
+<h2 style="font:700 20px var(--display);margin:22px 0 6px">About this football ELO ranking</h2>
+<p>This is a football ELO ranking of {len(d["teams"])} {noun}, rated match by match from {e(first)} to {e(last)} ({len(d["matches"]):,} matches). Every team has one continuous ELO rating, so the numbers can be compared across seasons. The ranking is rebuilt from the full match history and refreshed daily. In the interactive version you can see the rating history of each team, its all-time high rating, season-by-season changes, every match with the rating after it, and head-to-head comparisons.</p>
 <h2 style="font:700 20px var(--display);margin:22px 0 6px">How the rating works</h2>
 <p>Every team starts at 1600. After each match R ← R + K × (S − E), where E = 1 / (1 + 10^((R<sub>opponent</sub> − R) / 400)) and S is 1 for a win, 0.5 for a draw, 0 for a loss. A match decided on penalties counts as a win for the shoot-out winner. K-factors by stage: {ks}.</p>
 <p>All rankings: <a href="../">home</a> · {nav}</p>
