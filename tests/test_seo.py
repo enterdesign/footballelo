@@ -26,6 +26,14 @@ class Seo(unittest.TestCase):
             self.assertIn(f"rankings/{slug}.html", index)
             self.assertIn(f"rankings/{slug}.html", seo.sitemap())
 
+    def test_update_page_is_private_and_holds_no_secret(self):
+        root = Path(__file__).resolve().parent.parent / "site"
+        page = (root / "update.html").read_text(encoding="utf-8")
+        self.assertIn('content="noindex', page)
+        self.assertNotIn("update.html", seo.sitemap())
+        for marker in ("github_pat_", "ghp_", "ghs_"):
+            self.assertNotIn(marker, page)
+
 
 if __name__ == "__main__":
     unittest.main()
