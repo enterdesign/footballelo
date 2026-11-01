@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Force update – Football ELO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+main{max-width:720px;margin:0 auto;padding:28px 16px 80px}
+h1{font:700 44px/1 var(--display);margin:6px 0 4px}h1 span{color:var(--accent)}
+h2{font:700 20px var(--display);margin:26px 0 8px}
+p,li{color:var(--dim);line-height:1.55}ul,ol{padding-left:20px}li{margin:3px 0}
+.act{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.input{flex:1;min-width:220px;padding:9px 12px;background:var(--panel);border:1px solid var(--rule2);font:500 15px var(--body)}
+.btn{padding:10px 20px;background:var(--ink);color:#fff;border:0;font:600 17px var(--display);cursor:pointer}
+.btn:disabled{opacity:.5;cursor:default}
+.msg{margin:10px 0;padding:10px 12px;border:1px solid var(--rule2);background:var(--panel)}
+.msg.ok{border-color:var(--up)}.msg.err{border-color:var(--down)}
+table{width:100%;border-collapse:collapse;font-size:14px}th{text-align:left;font:600 13px var(--display);color:var(--mute);border-bottom:1px solid var(--ink);padding:5px 6px}
+td{padding:5px 6px;border-bottom:1px solid var(--rule)}.s-success{color:var(--up);font-weight:600}.s-failure{color:var(--down);font-weight:600}
+a.l{color:var(--accent);text-decoration:underline}
+label.chk{font-size:14px;color:var(--mute);display:flex;gap:6px;align-items:center}
+</style>
+</head>
+<body>
+<main>
+  <a class="back-link" href="./">← All rankings</a>
+  <h1>Force <span>update</span></h1>
+  <p id="fresh" class="subtitle">Loading…</p>
+
+  <h2>Run the update now</h2>
+  <p>Starts the “Update &amp; deploy” workflow on GitHub: it fetches new matches from every source, rebuilds the rankings and deploys the site. It takes about a minute.</p>
+  <div class="act">
+    <input id="tok" class="input" type="password" autocomplete="off" placeholder="GitHub token (only you have it)" aria-label="GitHub token">
+    <button id="go" class="btn">Run update now</button>
+  </div>
+  <label class="chk"><input id="rem" type="checkbox"> Remember the token in this browser</label>
+  <div id="out"></div>
+
+  <h2>Latest runs</h2>
+  <div id="runs"><p>Loading…</p></div>
+
+  <h2>How to get the token (once)</h2>
+  <ol>
+    <li>GitHub → Settings → Developer settings → Personal access tokens → <b>Fine-grained tokens</b> → Generate new token.</li>
+    <li>Repository access: <b>Only select repositories</b> → <code>enterdesign/footballelo</code>.</li>
+    <li>Permissions → Repository permissions → <b>Actions: Read and write</b> (Metadata: read is added automatically).</li>
+    <li>Pick an expiry (e.g. 90 days), generate, paste the token above.</li>
+  </ol>
+  <p>The token is never part of this site: it is typed here, kept only in this browser (if you tick the box) and sent only to api.github.com. Without it nobody can start the update, even though this page is public. If you prefer, use the button on GitHub instead:
+    <a class="l" href="https://github.com/enterdesign/footballelo/actions/workflows/update.yml" target="_blank" rel="noopener">Actions → Update &amp; deploy → Run workflow</a>.</p>
+</main>
+<script>
+"use strict";
+const REPO = "enterdesign/footballelo", WF = "update.yml", API = `https://api.github.com/repos/${REPO}/actions/workflows/${WF}`;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const store = {get: k => { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } },
+  set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} }};
+const fmt = iso => new Date(iso).toLocaleString("en-GB", {dateStyle: "medium", timeStyle: "short"});
+const say = (cls, html) => { $("out").innerHTML = html ? `<div class="msg ${cls}">${html}</div>` : ""; };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+$("tok").value = store.get("gh_token"); $("rem").checked = !!$("tok").value;
+
+async function fresh() {
+  try {
+    const m = await (await fetch("data/meta.json", {cache: "no-store"})).json();
+    $("fresh").textContent = `Last data check: ${fmt(m.synced)} · site built: ${fmt(m.built)}`;
+  } catch (e) { $("fresh").textContent = ""; }
+}
+async function runs() {
+  try {
+    const r = await fetch(`${API}/runs?per_page=6`, {headers: {Accept: "application/vnd.github+json"}});
+    const d = await r.json();
+    $("runs").innerHTML = `<table><tr><th>Started</th><th>Trigger</th><th>Result</th><th></th></tr>${d.workflow_runs.map(x =>
+      `<tr><td>${esc(fmt(x.created_at))}</td><td>${esc(x.event === "workflow_dispatch" ? "manual" : x.event)}</td>
+       <td class="s-${esc(x.conclusion || "")}">${esc(x.status === "completed" ? x.conclusion : x.status)}</td>
+       <td><a class="l" href="${esc(x.html_url)}" target="_blank" rel="noopener">log</a></td></tr>`).join("")}</table>`;
+    return d.workflow_runs;
+  } catch (e) { $("runs").innerHTML = `<p>Could not load the run list (GitHub may be rate limiting; try again in a minute).</p>`; return []; }
+}
+
+$("go").onclick = async () => {
+  const token = $("tok").value.trim();
+  if (!token) { say("err", "Paste the GitHub token first (how to get it is described below)."); return; }
+  store.set("gh_token", $("rem").checked ? token : "");
+  $("go").disabled = true; say("", "Starting…");
+  const started = Date.now();
+  try {
+    const r = await fetch(`${API}/dispatches`, {method: "POST", headers: {Accept: "application/vnd.github+json", Authorization: `Bearer ${token}`, "Content-Type": "application/json"},
+      body: JSON.stringify({ref: "main"})});
+    if (r.status !== 204) {
+      const why = {401: "The token is invalid or expired.", 403: "The token has no permission to run workflows (needs Actions: Read and write on this repository).",
+        404: "Repository or workflow not found for this token (check the repository selected for the token).", 422: "GitHub refused the request (is the workflow enabled?)."}[r.status] || `GitHub answered ${r.status}.`;
+      say("err", esc(why)); $("go").disabled = false; return;
+    }
+    say("ok", "Update started. Waiting for the result…");
+    for (let i = 0; i < 90; i++) {                       // up to ~12 minutes
+      await sleep(8000);
+      const list = await runs();
+      const mine = list.find(x => x.event === "workflow_dispatch" && new Date(x.created_at).getTime() >= started - 15000);
+      if (mine && mine.status === "completed") {
+        const good = mine.conclusion === "success";
+        say(good ? "ok" : "err", good ? `Done: the site was updated and deployed (<a class="l" href="${esc(mine.html_url)}" target="_blank" rel="noopener">log</a>). Reload the rankings to see the new data.`
+          : `The run ended with “${esc(mine.conclusion)}”. See the <a class="l" href="${esc(mine.html_url)}" target="_blank" rel="noopener">log</a>.`);
+        fresh(); $("go").disabled = false; return;
+      }
+    }
+    say("err", "Still running after 12 minutes: check the list below or GitHub.");
+  } catch (e) { say("err", "Network error while talking to GitHub."); }
+  $("go").disabled = false;
+};
+fresh(); runs();
+</script>
+</body>
+</html>
