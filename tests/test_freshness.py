@@ -9,10 +9,10 @@ import freshness
 
 class Stale(unittest.TestCase):
     feeds = {"ucl": {"n": 10, "changed": "2026-09-01"}, "pl": {"n": 5, "changed": "2026-09-20"},
-             "wc": {"n": 1, "changed": "2020-01-01"}, "nl": {"n": 3, "changed": "2026-09-15"}}
+             "wc": {"n": 1, "changed": "2020-01-01"}, "nl": {"n": 3, "changed": "2026-09-01"}}
 
     def test_in_season_gap_is_reported(self):
-        self.assertEqual(freshness.stale(self.feeds, date(2026, 10, 25)), [("ucl", 54), ("pl", 35), ("nl", 40)])
+        self.assertEqual(freshness.stale(self.feeds, date(2026, 10, 25)), [("ucl", 54), ("pl", 35), ("nl", 54)])
 
     def test_summer_break_and_finished_tournaments_are_ignored(self):
         self.assertEqual(freshness.stale(self.feeds, date(2026, 7, 20)), [])
@@ -20,6 +20,11 @@ class Stale(unittest.TestCase):
     def test_recent_change_is_fine(self):
         feeds = {"ucl": {"n": 10, "changed": "2026-10-20"}}
         self.assertEqual(freshness.stale(feeds, date(2026, 10, 25)), [])
+
+    def test_nations_league_break_between_early_october_and_mid_november_is_normal(self):
+        feeds = {"nl": {"n": 762, "changed": "2026-10-06"}}
+        self.assertEqual(freshness.stale(feeds, date(2026, 10, 28)), [])
+        self.assertEqual(freshness.stale(feeds, date(2026, 11, 25)), [("nl", 50)])
 
 
 if __name__ == "__main__":

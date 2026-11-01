@@ -14,6 +14,8 @@ from datetime import date
 from common import DATA, load
 
 MAX_DAYS = 21
+# the Nations League plays in international windows: after the early-October matchdays the next one is in mid-November
+MAX_DAYS_BY = {"nl": 45}
 # competition -> months in which a gap of three weeks means something is wrong
 WINDOWS = {"ucl": {10, 11, 3, 4, 5}, "el": {10, 11, 3, 4, 5}, "conf": {10, 11, 3, 4, 5},
            "pl": {9, 10, 11, 12, 1, 2, 3, 4, 5}, "ekstraklasa": {9, 10, 11, 3, 4, 5},
@@ -35,7 +37,7 @@ def stale(feeds, today):
         if not months or today.month not in months:
             continue
         days = (today - date.fromisoformat(f["changed"])).days
-        if days > MAX_DAYS:
+        if days > MAX_DAYS_BY.get(comp, MAX_DAYS):
             out.append((comp, days))
     return out
 
