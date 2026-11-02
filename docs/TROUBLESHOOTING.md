@@ -6,7 +6,7 @@ Każdy commit na `main` sam uruchamia przebieg „Update & deploy”; strona jes
 ## Jak to działa (w skrócie)
 
 ```
-codziennie 05:17 UTC  →  sync.py (pobiera nowe mecze)  →  build.py (liczy ELO od zera)  →  strona (GitHub Pages)
+co 3 godziny (00:17, 03:17 … UTC)  →  sync.py (pobiera nowe mecze)  →  build.py (liczy ELO od zera)  →  strona (GitHub Pages)
                               │                                │
                               │                                └─ nieznana nazwa drużyny → issue „Unknown team names…”
                               └─ źródło nie dostarcza meczów od 3 tygodni → issue „No new matches from some sources”
@@ -244,7 +244,7 @@ Używany tylko dla bieżącego sezonu Ligi Mistrzów i Premier League.
 
 Harmonogram GitHuba (cron) wyłącza się po 60 dniach bez aktywności w repozytorium. Tutaj codzienny commit (`Daily update: new matches`) temu zapobiega,
 ale jeśli w Actions widzisz komunikat „This scheduled workflow is disabled”, wejdź w **Actions → Update & deploy → Enable workflow**.
-Uruchomienie bywa opóźnione o kilkanaście minut względem 05:17 UTC – to normalne. Zdarza się też, że GitHub pomija poranny przebieg; dlatego jest drugi harmonogram o 11:17 UTC. Uruchamia się zawsze, także gdy poranny przebieg (albo ręczny) już dziś sprawdził dane – źródło bywa kilka godzin spóźnione z wynikiem, więc drugie sprawdzenie ma sens.
+GitHub uruchamia zaplanowane przebiegi z opóźnieniem, a przy dużym obciążeniu nawet z kilkugodzinnym (od 31.10 było to 5–6 godzin) i czasem je pomija. Dlatego przebieg jest co 3 godziny (00:17, 03:17, 06:17 … UTC): któryś z nich trafia rano, już po tym jak źródła opublikowały wczorajsze wyniki (ok. 00:20 UTC). Każdy przebieg sprawdza źródła, a commit z danymi powstaje tylko gdy coś się zmieniło. Gdy rano nadal brakuje wyników, użyj ręcznego „Run workflow” albo strony `update.html`.
 
 ---
 
