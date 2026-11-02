@@ -2,8 +2,10 @@ name: Update & deploy
 
 on:
   schedule:
-    - cron: "17 5 * * *"        # every day 05:17 UTC
-    - cron: "17 11 * * *"       # second check of the day: picks up results a source published late
+    # every 3 hours (UTC 00:17, 03:17, ...). GitHub starts scheduled runs late under load - since 31 Oct by 5-6 hours -
+    # and sometimes drops them, so several runs a day make sure one lands in the morning, after the sources
+    # publish yesterday's results (about 00:20 UTC)
+    - cron: "17 */3 * * *"
   workflow_dispatch:            # manual "Run workflow" button
   push:
     branches: [main]
