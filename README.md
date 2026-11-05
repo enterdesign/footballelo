@@ -38,7 +38,7 @@ red runs, manual match fixes, format changes - each with examples.
 
 ## Languages
 
-The site is available in English (`/`) and Spanish (`/es/`): the same app and the same data, with a language switch in the top right corner. The Spanish page is generated from `index.html` on every build; texts are written as `L("English", "Español")` in `site/app.js`.
+The site is available in English (`/`), Spanish (`/es/`), Portuguese (`/pt/`) and Polish (`/pl/`): the same app and the same data, with a language switch in the top right corner. The language pages are generated from `index.html` on every build; all interface texts are in `site/i18n.js` (`L("key")` in `site/app.js`).
 
 ## Data sources
 - World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (daily).
