@@ -1,0 +1,16 @@
+name: probe
+on:
+  push:
+    branches: [probe-seriea]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the deployed language versions
+        run: |
+          for l in "" es/ pt/ pl/; do
+            u=https://enterdesign.github.io/footballelo/$l
+            echo "=== $u -> $(curl -s -o b.tmp -w '%{http_code}' "$u")  $(grep -o '<html lang="[a-z]*"' b.tmp | head -1)  $(grep -o 'window.LANG = "[a-z]*"' b.tmp | head -1)  $(grep -o 'src="[^"]*i18n.js[^"]*"' b.tmp | head -1)"
+          done
+          for p in pt/rankings/liga-dos-campeoes.html pl/rankings/liga-mistrzow.html es/rankings/liga-de-campeones.html; do echo "$p -> $(curl -s -o b.tmp -w '%{http_code}' https://enterdesign.github.io/footballelo/$p) $(grep -o '<title>[^<]*</title>' b.tmp | head -1)"; done
+          echo "i18n.js: $(curl -s -o /dev/null -w '%{http_code}' https://enterdesign.github.io/footballelo/i18n.js)  sitemap urls: $(curl -s https://enterdesign.github.io/footballelo/sitemap.xml | grep -o '<loc>' | wc -l)"
