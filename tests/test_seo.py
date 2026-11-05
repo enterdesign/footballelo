@@ -25,27 +25,38 @@ class Seo(unittest.TestCase):
         self.assertIn("<title>World football ELO ratings – national team ELO ranking since 1992/93</title>", seo.page("wc", DATA))
         self.assertIn("<title>UEFA club ELO ranking: Champions League, Europa League &amp; Conference League</title>", seo.page("uefa", DATA))
 
-    def test_spanish_page_with_hreflang_and_links_to_the_app(self):
-        h = seo.page("ucl", DATA, "es")
-        self.assertIn("<html lang=\"es\">", h)
-        self.assertIn("<title>Ranking Elo – Liga de Campeones: clasificación Elo de fútbol desde 1992/93</title>", h)
-        self.assertIn('hreflang="en" href="https://enterdesign.github.io/footballelo/rankings/champions-league.html"', h)
-        self.assertIn('hreflang="es" href="https://enterdesign.github.io/footballelo/es/rankings/liga-de-campeones.html"', h)
-        self.assertIn('href="../#ucl"', h)
-        self.assertIn("A &amp; B", h)
+    def test_translated_pages_have_hreflang_and_link_to_the_app_of_their_language(self):
+        titles = {"es": "Ranking Elo – Liga de Campeones: clasificación Elo de fútbol desde 1992/93",
+                  "pt": "Ranking Elo – Liga dos Campeões: classificação Elo de futebol desde 1992/93",
+                  "pl": "Ranking Elo – Liga Mistrzów: punktacja Elo w piłce nożnej od 1992/93"}
+        for lang, title in titles.items():
+            h = seo.page("ucl", DATA, lang)
+            self.assertIn(f'<html lang="{lang}">', h)
+            self.assertIn(f"<title>{title}</title>", h)
+            for l in seo.LANGS:
+                self.assertIn(f'hreflang="{l}" href="{seo.url_of("ucl", l)}"', h)
+            self.assertIn('hreflang="x-default" href="https://enterdesign.github.io/footballelo/rankings/champions-league.html"', h)
+            self.assertIn('href="../#ucl"', h)
+            self.assertIn("A &amp; B", h)
+        self.assertIn("rankings/liga-dos-campeoes.html", seo.url_of("ucl", "pt"))
+        self.assertIn("pl/rankings/liga-mistrzow.html", seo.url_of("ucl", "pl"))
 
-    def test_spanish_app_shell_is_the_english_page_with_spanish_texts_and_paths(self):
+    def test_language_app_shells_are_the_english_page_with_translated_texts_and_paths(self):
         index = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")
-        h = seo.shell_es(index)
-        for marker in ('<html lang="es">', 'href="../style.css"', 'window.LANG = "es"; window.ROOT = "../"', 'src="../app.js"', 'href="../update.html"',
-                       'rel="canonical" href="https://enterdesign.github.io/footballelo/es/"', "url('../img/home.jpg')", "← Todos los rankings",
-                       '<div class="eyebrow">Fútbol</div>', 'hreflang="en" href="https://enterdesign.github.io/footballelo/"'):
-            self.assertIn(marker, h)
-        for slug in seo.SLUGS_ES.values():
-            self.assertIn(f'href="rankings/{slug}.html"', h)
-            self.assertIn(f"es/rankings/{slug}.html", seo.sitemap())
-        self.assertNotIn("World Cup · European", h)
-        self.assertIn("https://enterdesign.github.io/footballelo/es/</loc>", seo.sitemap())
+        for lang in seo.LANGS[1:]:
+            h = seo.shell(index, lang)
+            for marker in (f'<html lang="{lang}">', 'href="../style.css"', f'window.LANG = "{lang}"; window.ROOT = "../"', 'src="../app.js"', 'src="../i18n.js"',
+                           'href="../update.html"', f'rel="canonical" href="https://enterdesign.github.io/footballelo/{lang}/"', "url('../img/home.jpg')",
+                           seo.TX[lang]["all"], f'<div class="eyebrow">{seo.TX[lang]["eyebrow"]}</div>', 'hreflang="x-default" href="https://enterdesign.github.io/footballelo/"'):
+                self.assertIn(marker, h, (lang, marker))
+            for k, slug in seo.SLUGS_BY[lang].items():
+                self.assertIn(f'href="rankings/{slug}.html"', h)
+                self.assertIn(seo.url_of(k, lang), seo.sitemap())
+            self.assertNotIn("World Cup · European", h)
+            self.assertEqual(h.count('data-l="'), 4)
+        for lang in seo.LANGS:
+            self.assertIn(f"{seo.home_url(lang)}</loc>", seo.sitemap())
+        self.assertEqual(seo.sitemap().count("<loc>"), 4 * 15)
 
     def test_every_ranking_is_linked_from_the_home_page_and_listed_in_the_sitemap(self):
         index = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")

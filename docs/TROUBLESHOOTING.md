@@ -261,15 +261,16 @@ Dane: `data/recent.json` (to, co widać) i `data/build_state.json` (zapamiętany
 
 ---
 
-## 10b. Wersja hiszpańska strony
+## 10b. Wersje językowe strony (EN, ES, PT, PL)
 
-Dwie wersje językowe korzystają z **tego samego** `app.js` i tych samych danych, więc aktualizują się razem:
-- angielska: `site/index.html`, hiszpańska: `site/es/index.html` (generowana przy każdym buildzie z `index.html` przez `seo.shell_es`, nie jest w repozytorium),
-- przełącznik EN/ES jest w prawym górnym rogu i zachowuje bieżący widok (ten sam ranking i zakładka),
-- w `app.js` teksty interfejsu mają postać `L("English", "Español")`; opisy rozgrywek (nazwy, notatki) są w `COMPS_ES`, nazwy państw i regionów w `COUNTRY_ES` i `REGION_ES`.
+Cztery wersje korzystają z **tego samego** `app.js` i tych samych danych, więc aktualizują się razem:
+- angielska: `site/index.html`; hiszpańska, portugalska i polska: `site/es/`, `site/pt/`, `site/pl/` (`index.html` generowany przy każdym buildzie z `index.html` przez `seo.shell`; nie są w repozytorium),
+- przełącznik EN | ES | PT | PL jest w prawym górnym rogu i zachowuje bieżący widok (ten sam ranking i zakładka),
+- **wszystkie teksty interfejsu są w `site/i18n.js`**: `dict` (klucz → [en, es, pt, pl]), `comps` (nazwy i notatki rozgrywek), `country` i `region` (nazwy państw i regionów), `nouns`. Brakujące tłumaczenie = angielski tekst,
+- statyczne strony dla Google (tytuły, opisy, tekst o rankingu) są w `scripts/seo.py`: `TX`, `SHORT`, `SLUGS_BY`.
 
-**Dodajesz nowy ranking?** Dopisz też jego wpis w `COMPS_ES` (nazwa i notatka po hiszpańsku) oraz `SLUGS_ES` i `SHORT_ES` w `scripts/seo.py`. Bez wpisu w `COMPS_ES` aplikacja pokaże angielski opis, a `seo.py` zgłosi błąd przy budowie stron statycznych.
-Nowe państwo w reprezentacjach: dopisz je do `COUNTRY_ES` (bez tego pokaże się angielska nazwa).
+**Dodajesz nowy ranking?** Dopisz jego wpis w `I18N.comps` (dla es, pt, pl) w `site/i18n.js` oraz w `SLUGS_BY` i `SHORT` w `scripts/seo.py`. Nowe państwo w reprezentacjach: dopisz je do `I18N.country` (bez tego pokaże się angielska nazwa).
+**Dodajesz nowy język?** Dopisz go do `I18N.langs` i każdego wpisu w `i18n.js`, do `LANGS`, `TX`, `SHORT`, `SLUGS_BY` w `seo.py`, do przełącznika w `index.html` i do `sed` w `update.yml`.
 
 ## 11. Co w razie wątpliwości
 
