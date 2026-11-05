@@ -56,7 +56,8 @@
    "AC Arles-Avignon"
   ],
   "country": "France",
-  "code": "FRA"
+  "code": "FRA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/b/b4/AC_Arl%C3%A9sien_logo.svg/250px-AC_Arl%C3%A9sien_logo.svg.png"
  },
  "Auxerre": {
   "aliases": [
@@ -72,7 +73,8 @@
    "Association Sportive Avignonaise"
   ],
   "country": "France",
-  "code": "FRA"
+  "code": "FRA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/b/ba/AC_Avignonnais_logo.svg/250px-AC_Avignonnais_logo.svg.png"
  },
  "Bastia": {
   "aliases": [
@@ -178,7 +180,8 @@
  "Excelsior Roubaix": {
   "aliases": [],
   "country": "France",
-  "code": "FRA"
+  "code": "FRA",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/b/b5/Excelsior_AC_Roubaix.png"
  },
  "Gazélec Ajaccio": {
   "aliases": [
@@ -457,7 +460,8 @@
    "FC Rouen"
   ],
   "country": "France",
-  "code": "FRA"
+  "code": "FRA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/b/be/F.C._Rouen.svg/250px-F.C._Rouen.svg.png"
  },
  "SC Fives": {
   "aliases": [
@@ -583,7 +587,8 @@
    "Valenciennes FC"
   ],
   "country": "France",
-  "code": "FRA"
+  "code": "FRA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/8c/Valenciennes_FC.svg/250px-Valenciennes_FC.svg.png"
  },
  "Évian": {
   "aliases": [

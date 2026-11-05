@@ -93,7 +93,8 @@
    "Blau-Weiss 90 Berlin"
   ],
   "country": "Germany",
-  "code": "GER"
+  "code": "GER",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/c/cc/SpVgg_Blau-Wei%C3%9F_Berlin.png/250px-SpVgg_Blau-Wei%C3%9F_Berlin.png"
  },
  "Borussia Dortmund": {
   "aliases": [],
@@ -115,7 +116,8 @@
  "Borussia Neunkirchen": {
   "aliases": [],
   "country": "Germany",
-  "code": "GER"
+  "code": "GER",
+  "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Borussia_Neunkirchen.svg/250px-Borussia_Neunkirchen.svg.png"
  },
  "Dynamo Dresden": {
   "aliases": [],

@@ -28,7 +28,8 @@
    "Ancona Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/1/1f/ACAncona.png/250px-ACAncona.png"
  },
  "Ascoli": {
   "aliases": [
@@ -51,7 +52,8 @@
    "US Avellino"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/8/86/US_Avellino.svg/250px-US_Avellino.svg.png"
  },
  "Bari": {
   "aliases": [
@@ -91,7 +93,8 @@
    "Cagliari Calcio"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/en/thumb/6/61/Cagliari_Calcio_1920.svg/250px-Cagliari_Calcio_1920.svg.png"
  },
  "Carpi": {
   "aliases": [
@@ -267,7 +270,8 @@
    "AS Livorno"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Livorno-Stemma_semplificato.svg/250px-Livorno-Stemma_semplificato.svg.png"
  },
  "Lucchese": {
   "aliases": [],
@@ -425,7 +429,8 @@
    "SPAL 2013 Ferrara"
   ],
   "country": "Italy",
-  "code": "ITA"
+  "code": "ITA",
+  "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/SPAL_Ferrara.svg/250px-SPAL_Ferrara.svg.png"
  },
  "Salernitana": {
   "aliases": [
