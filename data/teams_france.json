@@ -11,11 +11,6 @@
   "code": "FRA",
   "logo": "https://r2.thesportsdb.com/images/media/team/badge/zthopu1626296515.png"
  },
- "AS Troyes-Savinienne": {
-  "aliases": [],
-  "country": "France",
-  "code": "FRA"
- },
  "Alès": {
   "aliases": [
    "Olympique Ales"
@@ -567,9 +562,10 @@
  },
  "Troyes": {
   "aliases": [
+   "AS Troyes-Savinienne",
+   "ATAC Troyes",
    "ES Troyes AC",
-   "ESTAC Troyes",
-   "ATAC Troyes"
+   "ESTAC Troyes"
   ],
   "country": "France",
   "code": "FRA",
