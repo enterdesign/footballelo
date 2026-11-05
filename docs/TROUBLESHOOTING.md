@@ -261,6 +261,16 @@ Dane: `data/recent.json` (to, co widać) i `data/build_state.json` (zapamiętany
 
 ---
 
+## 10b. Wersja hiszpańska strony
+
+Dwie wersje językowe korzystają z **tego samego** `app.js` i tych samych danych, więc aktualizują się razem:
+- angielska: `site/index.html`, hiszpańska: `site/es/index.html` (generowana przy każdym buildzie z `index.html` przez `seo.shell_es`, nie jest w repozytorium),
+- przełącznik EN/ES jest w prawym górnym rogu i zachowuje bieżący widok (ten sam ranking i zakładka),
+- w `app.js` teksty interfejsu mają postać `L("English", "Español")`; opisy rozgrywek (nazwy, notatki) są w `COMPS_ES`, nazwy państw i regionów w `COUNTRY_ES` i `REGION_ES`.
+
+**Dodajesz nowy ranking?** Dopisz też jego wpis w `COMPS_ES` (nazwa i notatka po hiszpańsku) oraz `SLUGS_ES` i `SHORT_ES` w `scripts/seo.py`. Bez wpisu w `COMPS_ES` aplikacja pokaże angielski opis, a `seo.py` zgłosi błąd przy budowie stron statycznych.
+Nowe państwo w reprezentacjach: dopisz je do `COUNTRY_ES` (bez tego pokaże się angielska nazwa).
+
 ## 11. Co w razie wątpliwości
 
 Opisz problem w Claude Code razem z linkiem do czerwonego przebiegu lub issue – wszystkie skrypty mają testy

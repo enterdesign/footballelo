@@ -36,6 +36,10 @@ red runs, manual match fixes, format changes - each with examples.
 - Era buttons (Premier League: pre-1992 / 1992-; Ekstraklasa: pre-war / post-war) are filters over the years, not separate
   rankings: one continuous rating per club, shown as it stood at the end of the era; games and Δ count that era only.
 
+## Languages
+
+The site is available in English (`/`) and Spanish (`/es/`): the same app and the same data, with a language switch in the top right corner. The Spanish page is generated from `index.html` on every build; texts are written as `L("English", "Español")` in `site/app.js`.
+
 ## Data sources
 - World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (daily).
 - Premier League before 1992/93: [engsoccerdata](https://github.com/jalapic/engsoccerdata) `england.csv`, tier 1

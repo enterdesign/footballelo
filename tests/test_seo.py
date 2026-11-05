@@ -31,16 +31,21 @@ class Seo(unittest.TestCase):
         self.assertIn("<title>Ranking Elo – Liga de Campeones: clasificación Elo de fútbol desde 1992/93</title>", h)
         self.assertIn('hreflang="en" href="https://enterdesign.github.io/footballelo/rankings/champions-league.html"', h)
         self.assertIn('hreflang="es" href="https://enterdesign.github.io/footballelo/es/rankings/liga-de-campeones.html"', h)
-        self.assertIn('href="../../#ucl"', h)
+        self.assertIn('href="../#ucl"', h)
         self.assertIn("A &amp; B", h)
 
-    def test_spanish_home_links_every_ranking_and_is_in_the_sitemap(self):
-        h = seo.home_es({"pl": "X (1700)"})
+    def test_spanish_app_shell_is_the_english_page_with_spanish_texts_and_paths(self):
+        index = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")
+        h = seo.shell_es(index)
+        for marker in ('<html lang="es">', 'href="../style.css"', 'window.LANG = "es"; window.ROOT = "../"', 'src="../app.js"', 'href="../update.html"',
+                       'rel="canonical" href="https://enterdesign.github.io/footballelo/es/"', "url('../img/home.jpg')", "← Todos los rankings",
+                       '<div class="eyebrow">Fútbol</div>', 'hreflang="en" href="https://enterdesign.github.io/footballelo/"'):
+            self.assertIn(marker, h)
         for slug in seo.SLUGS_ES.values():
-            self.assertIn(f"rankings/{slug}.html", h)
+            self.assertIn(f'href="rankings/{slug}.html"', h)
             self.assertIn(f"es/rankings/{slug}.html", seo.sitemap())
+        self.assertNotIn("World Cup · European", h)
         self.assertIn("https://enterdesign.github.io/footballelo/es/</loc>", seo.sitemap())
-        self.assertIn("líder actual: X (1700)", h)
 
     def test_every_ranking_is_linked_from_the_home_page_and_listed_in_the_sitemap(self):
         index = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")
