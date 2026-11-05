@@ -63,7 +63,30 @@ def wiki(lang="en", **params):
             time.sleep(8 * (attempt + 1))
 
 
-def wiki_logo(name, lang="en"):
+CLUB_BOX = re.compile(r"Founded|Ground|Stadium|Full name|Nickname|Założ|Stadion", re.I)
+
+
+def infobox_image(title, lang="en"):
+    """The first image of the infobox of a club article (its crest), as a 250px thumbnail URL, or None.
+    This is the picture a reader sees on the article; it works for non-free crests too, whatever the file is called."""
+    d = wiki(lang, action="parse", page=title, prop="text", redirects=1)
+    html = d.get("parse", {}).get("text", {}).get("*", "") if isinstance(d.get("parse", {}).get("text"), dict) else d.get("parse", {}).get("text", "")
+    start = html.find('class="infobox')
+    if start < 0:
+        return None
+    box = html[start:start + 9000]
+    if not CLUB_BOX.search(box):                         # a city or a person, not a club
+        return None
+    img = re.search(r'<img[^>]+src="([^"]+)"', box)
+    if not img or re.search(r"Flag_of|flag", img.group(1)):
+        return None
+    src = img.group(1)
+    src = "https:" + src if src.startswith("//") else src
+    src = src.split("?")[0]                              # the thumbnail URL carries tracking parameters
+    return re.sub(r"/\d+px-", "/250px-", src)
+
+
+def wiki_logo(name, lang="en", aliases=()):
     """Fallback: the crest file listed on the Wikipedia article of the club (English: "<name> football club",
     Polish: "<name> klub piłkarski"). Most crests are non-free files, which the lead-image API hides,
     so the file list is read. The file must be named after the club (never e.g. "Speedway_logo")."""
@@ -71,6 +94,25 @@ def wiki_logo(name, lang="en"):
     query = f"{name} klub piłkarski" if lang == "pl" else f"{name} football club"
     if time.time() > DEADLINE:
         return None
+    if lang == "en":                  # first: the crest in the infobox of the club article, searched like a reader would
+        tried = set()
+        for n in [name, *list(aliases)[:2]]:
+            nwords = [w[:7] for w in (norm(t) for t in re.split(r"[\s-]+", n)) if len(w) >= 3]   # "Arles-Avignon" ~ "AC Arlésien"
+            for q in (f"{n} football club", f"{n} FC", n):
+                if time.time() > DEADLINE:
+                    return None
+                try:
+                    hits = wiki(lang, action="query", list="search", srsearch=q, srlimit=3)["query"]["search"]
+                    for h in hits:
+                        t = h["title"]
+                        if t in tried or not any(w in norm(t) for w in nwords) or re.search(r"season|stadium|stadion|list of|history", t, re.I):
+                            continue
+                        tried.add(t)
+                        src = infobox_image(t, lang)
+                        if src:
+                            return src
+                except Exception:
+                    pass
     try:
         hits = wiki(lang, action="query", list="search", srsearch=query, srlimit=3)["query"]["search"]
         title = next((h["title"] for h in hits if any(w in norm(h["title"]) for w in words)
@@ -122,7 +164,7 @@ def main():
                 badge = wiki_logo(name, "pl")                 # Polish clubs: the Polish article has the crest
                 time.sleep(1)
             if not badge:
-                badge = wiki_logo(name)
+                badge = wiki_logo(name, aliases=info.get("aliases", []))
                 time.sleep(1)
             if badge:
                 info["logo"] = badge
