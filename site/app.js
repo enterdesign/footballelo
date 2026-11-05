@@ -1,8 +1,15 @@
 "use strict";
+// Two languages share this file and the data: the English page (index.html) and the Spanish page (es/index.html),
+// which sets window.LANG = "es" and window.ROOT = "../" before loading it. L(en, es) picks the text.
+const LANG = window.LANG === "es" ? "es" : "en";
+const ROOT = window.ROOT || "";
+const L = (en, es) => (LANG === "es" ? es : en);
 const REPO = "https://github.com/enterdesign/footballelo";
-const INTL = `<a href="https://github.com/martj42/international_results" style="color:var(--accent);text-decoration:underline">international_results</a>`;
-const WIKI = `<a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a> (CC BY-SA)`;
-const WIKI_OPENFOOTBALL = `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and <a href="https://en.wikipedia.org" style="color:var(--accent);text-decoration:underline">English Wikipedia</a>`;
+const lnk = (href, text) => `<a href="${href}" style="color:var(--accent);text-decoration:underline">${text}</a>`;
+const INTL = lnk("https://github.com/martj42/international_results", "international_results");
+const WIKI_LINK = lnk("https://en.wikipedia.org", L("English Wikipedia", "Wikipedia en inglés"));
+const WIKI = `${WIKI_LINK} (CC BY-SA)`;
+const WIKI_OPENFOOTBALL = `${lnk("https://github.com/openfootball", "openfootball")}, football-data.org ${L("and", "y")} ${WIKI_LINK}`;
 const COMPS = {
   ucl: {file: "data/ucl.json", c1: "#0b1d4d", c2: "#2147a8", img: "img/ucl.jpg", eyebrow: "UEFA Champions League", noun: "Clubs", period: "Seasons", live: "updated daily",
         group: t => t.code, groupLabel: t => t.country, first: "1992/93"},
@@ -41,11 +48,48 @@ const COMPS = {
         group: t => t.division, groupLabel: t => `Division ${t.division}`, first: "2018/19", flags: true,
         source: INTL},
 };
+const COUNTRY_ES = {"Albania": "Albania", "Algeria": "Argelia", "Andorra": "Andorra", "Angola": "Angola", "Argentina": "Argentina", "Armenia": "Armenia", "Australia": "Australia", "Austria": "Austria", "Azerbaijan": "Azerbaiyán", "Belarus": "Bielorrusia", "Belgium": "Bélgica", "Bolivia": "Bolivia", "Bosnia and Herzegovina": "Bosnia y Herzegovina", "Brazil": "Brasil", "Bulgaria": "Bulgaria", "Cameroon": "Camerún", "Canada": "Canadá", "Cape Verde": "Cabo Verde", "Chile": "Chile", "China": "China", "Colombia": "Colombia", "Costa Rica": "Costa Rica", "Croatia": "Croacia", "Cuba": "Cuba", "Curaçao": "Curazao", "Cyprus": "Chipre", "Czechia": "Chequia", "DR Congo": "RD del Congo", "Denmark": "Dinamarca", "East Germany": "Alemania Oriental", "Ecuador": "Ecuador", "Egypt": "Egipto", "El Salvador": "El Salvador", "England": "Inglaterra", "Estonia": "Estonia", "Faroe Islands": "Islas Feroe", "Finland": "Finlandia", "France": "Francia", "Georgia": "Georgia", "Germany": "Alemania", "Ghana": "Ghana", "Gibraltar": "Gibraltar", "Greece": "Grecia", "Haiti": "Haití", "Honduras": "Honduras", "Hungary": "Hungría", "Iceland": "Islandia", "Indonesia": "Indonesia", "Iran": "Irán", "Iraq": "Irak", "Israel": "Israel", "Italy": "Italia", "Ivory Coast": "Costa de Marfil", "Jamaica": "Jamaica", "Japan": "Japón", "Jordan": "Jordania", "Kazakhstan": "Kazajistán", "Kosovo": "Kosovo", "Kuwait": "Kuwait", "Latvia": "Letonia", "Liechtenstein": "Liechtenstein", "Lithuania": "Lituania", "Luxembourg": "Luxemburgo", "Malta": "Malta", "Mexico": "México", "Moldova": "Moldavia", "Montenegro": "Montenegro", "Morocco": "Marruecos", "Netherlands": "Países Bajos", "New Zealand": "Nueva Zelanda", "Nigeria": "Nigeria", "North Korea": "Corea del Norte", "North Macedonia": "Macedonia del Norte", "Northern Ireland": "Irlanda del Norte", "Norway": "Noruega", "Panama": "Panamá", "Paraguay": "Paraguay", "Peru": "Perú", "Poland": "Polonia", "Portugal": "Portugal", "Qatar": "Catar", "Republic of Ireland": "República de Irlanda", "Romania": "Rumanía", "Russia": "Rusia", "San Marino": "San Marino", "Saudi Arabia": "Arabia Saudita", "Scotland": "Escocia", "Senegal": "Senegal", "Serbia": "Serbia", "Slovakia": "Eslovaquia", "Slovenia": "Eslovenia", "South Africa": "Sudáfrica", "South Korea": "Corea del Sur", "Spain": "España", "Sweden": "Suecia", "Switzerland": "Suiza", "Togo": "Togo", "Trinidad and Tobago": "Trinidad y Tobago", "Tunisia": "Túnez", "Turkey": "Turquía", "Ukraine": "Ucrania", "United Arab Emirates": "Emiratos Árabes Unidos", "United States": "Estados Unidos", "Uruguay": "Uruguay", "Uzbekistan": "Uzbekistán", "Venezuela": "Venezuela", "Wales": "Gales"};
+const REGION_ES = {"Africa": "África", "Asia": "Asia", "Europe": "Europa", "N/C America & Caribbean": "Norte y Centroamérica y Caribe", "Oceania": "Oceanía", "South America": "Sudamérica"};
+const COMPS_ES = {
+  ucl: {eyebrow: "Liga de Campeones de la UEFA", short: "Liga de Campeones"},
+  el: {eyebrow: "Liga Europa de la UEFA (2009/10 →)", short: "Liga Europa",
+       note: "Desde que la competición cambió de nombre en 2009/10; no se incluyen la antigua Copa de la UEFA ni la Recopa de Europa. Las rondas de clasificación no se valoran."},
+  conf: {eyebrow: "Liga Conferencia de la UEFA (2021/22 →)", short: "Liga Conferencia", note: "Las rondas de clasificación no se valoran."},
+  uefa: {eyebrow: "Competiciones UEFA de clubes", short: "Competiciones UEFA de clubes",
+         note: "Una puntuación por club en la Liga de Campeones (1992/93 →), la Liga Europa (2009/10 →) y la Liga Conferencia (2021/22 →). Cada partido se valora con el factor K de su propia competición y fase (ver factores K); dentro de una temporada los partidos se ordenan por fase y después por competición. Como los rivales arrastran sus resultados de las tres competiciones, la puntuación de un club aquí puede diferir en unos pocos puntos de la de la clasificación de una sola competición, incluso si solo jugó en esa (por ejemplo el Real Madrid en la Liga de Campeones)."},
+  wc: {eyebrow: "Copa del Mundo de la FIFA", short: "Mundial", groupLabel: t => REGION_ES[t.label] || t.label},
+  pl: {eyebrow: "Premier League (Primera División 1888–1992)", sub: "Inglaterra", groupLabel: () => "Inglaterra"},
+  ekstraklasa: {eyebrow: "Ekstraklasa (I liga 1927–2008)", sub: "Polonia", groupLabel: () => "Polonia"},
+  bundesliga: {eyebrow: "Bundesliga (1963 →)", sub: "Alemania", groupLabel: () => "Alemania",
+               note: "La Bundesliga empezó en 1963/64. Tras la reunificación alemana, los clubes de la antigua Alemania del Este empiezan simplemente en 1600 cuando aparecen por primera vez; ese periodo no recibe un tratamiento aparte."},
+  spain: {eyebrow: "La Liga (1928/29 →)", sub: "España", groupLabel: () => "España",
+          note: "No se jugó liga en 1936–39 (Guerra Civil española). La fase de grupos de promoción/descenso de 1986/87 no se valora. Un partido de 1979/80 (Málaga–Salamanca) falta en todas las fuentes."},
+  france: {eyebrow: "Ligue 1 (Division 1 1932/33 →)", sub: "Francia", groupLabel: () => "Francia",
+           note: "No se jugó liga en 1939–45 (Segunda Guerra Mundial). La temporada 2019/20 se detuvo en marzo con 279 de 380 partidos disputados."},
+  italy: {eyebrow: "Serie A (1929/30 →)", sub: "Italia", groupLabel: () => "Italia",
+          note: "Empieza con la primera temporada de tabla única, 1929/30. No se jugó liga en 1943–45 (guerra) y la de 1945/46 (disputada en dos grupos regionales) no se incluye. Faltan 40 de los 420 partidos de 1947/48 en todas las fuentes."},
+  euro: {eyebrow: "Eurocopa de la UEFA", short: "Eurocopa", sub: "Europa", groupLabel: () => "Europa"},
+  copa: {eyebrow: "Copa América (1993 →)", short: "Copa América", groupLabel: t => REGION_ES[t.label] || t.label,
+         note: "Solo se incluyen las ediciones desde 1993: desde entonces el torneo tiene un formato estable (grupos, cuartos de final, semifinales, tercer puesto, final). Las ediciones anteriores eran ligas con formatos cambiantes y registros incompletos."},
+  nl: {eyebrow: "Liga de Naciones de la UEFA", short: "Liga de Naciones", groupLabel: t => `División ${t.division}`},
+};
+if (LANG === "es") {
+  const NOUN = {Clubs: ["Clubes", "Club"], Nations: ["Selecciones", "Selección"]}, PER = {Seasons: ["Temporadas", "Temporada"], Editions: ["Ediciones", "Edición"]};
+  for (const [k, c] of Object.entries(COMPS)) {
+    [c.noun, c.noun1] = NOUN[c.noun]; [c.period, c.period1] = PER[c.period];
+    if (c.live) c.live = "actualizado a diario";
+    if (!COMPS_ES[k] || !COMPS_ES[k].groupLabel) { const g = c.groupLabel; c.groupLabel = (t, i) => { const v = g(t, i); return COUNTRY_ES[v] || v; }; }
+    Object.assign(c, COMPS_ES[k] || {});
+  }
+}
+// Display name of a team: national teams get their Spanish name; routes and search always use the English one.
+const tn = t => (LANG === "es" && C && C.flags ? COUNTRY_ES[t.name] || t.name : t.name);
 const TABS = ["ranking", "history", "stats", "compare", "about"];
+const TAB_ES = {ranking: "Ranking", history: "Historial", stats: "Estadísticas", compare: "Comparar", about: "Información"};
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const cache = {};
-const fmtTime = iso => new Date(iso).toLocaleString("en-GB", {day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"});
+const fmtTime = iso => new Date(iso).toLocaleString(L("en-GB", "es-ES"), {day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"});
 let D, C, T, route = {comp: "", tab: "ranking", team: ""};
 
 async function load(key) {
@@ -53,9 +97,9 @@ async function load(key) {
     // data files are cached by the browser/CDN: version them with the build time so a fresh
     // deploy is never paired with stale data
     if (!window.buildId) {
-      try { window.meta = await (await fetch("data/meta.json", {cache: "no-store"})).json(); window.buildId = window.meta.built; } catch (e) { window.buildId = Date.now(); }
+      try { window.meta = await (await fetch(ROOT + "data/meta.json", {cache: "no-store"})).json(); window.buildId = window.meta.built; } catch (e) { window.buildId = Date.now(); }
     }
-    const r = await fetch(`${COMPS[key].file}?v=${encodeURIComponent(window.buildId)}`);
+    const r = await fetch(`${ROOT}${COMPS[key].file}?v=${encodeURIComponent(window.buildId)}`);
     if (!r.ok) throw new Error(r.status);
     cache[key] = prepare(await r.json());
   }
@@ -92,44 +136,51 @@ const icon = (t, size = "") => {
   return `<span class="ico${size ? " " + size : ""}">${u ? `<img src="${esc(u)}" alt="" loading="lazy" data-mg="${esc(m)}" onerror="this.parentNode.innerHTML='<b class=mg>'+this.dataset.mg+'</b>'">` : `<b class="mg">${esc(m)}</b>`}</span>`;
 };
 const eloColor = () => "var(--ink)";
-const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag"${p.label === "PO" ? ' title="Promotion/relegation play-off between two divisions"' : ""} style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
+const tagHtml = ph => { const p = D.phases[ph]; return `<span class="tag"${p.label === "PO" ? ' title="${L("Promotion/relegation play-off between two divisions", "Eliminatoria de ascenso/descenso entre dos divisiones")}"' : ""} style="background:${p.color}30;border-color:${p.color};color:var(--ink)">${p.label}</span>`; };
 
 // ── routing ───────────────────────────────────────────────────────
 function parseHash() {
   const [comp = "", tab = "ranking", team = ""] = location.hash.slice(1).split("/").map(decodeURIComponent);
   return {comp: COMPS[comp] ? comp : "", tab: TABS.includes(tab) ? tab : "ranking", team};
 }
+// Static texts and the language switch (it keeps the current route: the same ranking and tab in the other language)
+function chrome() {
+  const back = document.querySelector(".back-link"); if (back) back.textContent = L("← All rankings", "← Todos los rankings");
+  const base = {en: LANG === "en" ? "./" : "../", es: LANG === "en" ? "es/" : "./"};
+  document.querySelectorAll("#lang a").forEach(a => { a.href = base[a.dataset.l] + location.hash; a.classList.toggle("on", a.dataset.l === LANG); });
+}
 async function render() {
   route = parseHash();
+  chrome();
   $("home").hidden = !!route.comp; $("comp").hidden = !route.comp;
   if (!route.comp) return renderHome();
-  try { D = await load(route.comp); } catch (e) { $("view").innerHTML = `<div class="empty">FAILED TO LOAD DATA</div>`; return; }
+  try { D = await load(route.comp); } catch (e) { $("view").innerHTML = `<div class="empty">${L("FAILED TO LOAD DATA", "ERROR AL CARGAR LOS DATOS")}</div>`; return; }
   C = COMPS[route.comp];
-  $("comp-bg").style.backgroundImage = `url('${C.img}')`;
+  $("comp-bg").style.backgroundImage = `url('${ROOT}${C.img}')`;
   $("eyebrow").textContent = C.eyebrow;
-  $("subtitle").textContent = `${D.periods[0]} – ${D.last}` + (window.meta && window.meta.synced ? ` · data checked ${fmtTime(window.meta.synced)}` : "");
-  $("stats").innerHTML = [[D.periods.length, C.period], [D.matches.length.toLocaleString("en"), "Matches"], [D.teams.length, C.noun]]
+  $("subtitle").textContent = `${D.periods[0]} – ${D.last}` + (window.meta && window.meta.synced ? ` · ${L("data checked", "datos comprobados")} ${fmtTime(window.meta.synced)}` : "");
+  $("stats").innerHTML = [[D.periods.length, C.period], [D.matches.length.toLocaleString(LANG), L("Matches", "Partidos")], [D.teams.length, C.noun]]
     .map(([v, l]) => `<div><div class="stat-val">${v}</div><div class="stat-label">${l}</div></div>`).join("");
-  $("tabs").innerHTML = TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${t}</a>`).join("");
-  document.title = `${C.eyebrow} ELO Ranking`;
+  $("tabs").innerHTML = TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${L(t, TAB_ES[t])}</a>`).join("");
+  document.title = L(`${C.eyebrow} ELO Ranking`, `Ranking ELO – ${C.eyebrow}`);
   ({ranking, history, stats, compare, about})[route.tab]();
 }
 // Matches that each build found new (data/recent.json: batches of the last 30 days, newest first)
 async function recentHtml() {
   let batches = [];
-  try { batches = (await (await fetch(`data/recent.json?v=${encodeURIComponent(window.buildId)}`)).json()).batches || []; } catch (e) { return ""; }
+  try { batches = (await (await fetch(`${ROOT}data/recent.json?v=${encodeURIComponent(window.buildId)}`)).json()).batches || []; } catch (e) { return ""; }
   const n = batches.reduce((a, b) => a + b.matches.length, 0);
   const body = batches.slice(0, 12).map(b => {
     const by = new Map();
     b.matches.forEach(m => { if (COMPS[m.c]) by.set(m.c, [...(by.get(m.c) || []), m]); });
-    return `<h4>${fmtTime(b.at)} · ${b.matches.length} match${b.matches.length === 1 ? "" : "es"}</h4>` + [...by].map(([c, ms]) =>
+    return `<h4>${fmtTime(b.at)} · ${b.matches.length} ${L(b.matches.length === 1 ? "match" : "matches", b.matches.length === 1 ? "partido" : "partidos")}</h4>` + [...by].map(([c, ms]) =>
       `<div class="rc"><a href="#${c}/history">${esc(COMPS[c].short || COMPS[c].eyebrow)}</a></div>` + ms.map(m =>
         `<div class="rm"><span>${esc(m.a)}</span><b>${esc(m.s)}</b><span>${esc(m.b)}</span><i>${esc(m.d || m.p)}</i></div>`).join("")).join("");
   }).join("");
-  return `<details class="recent"><summary>Recently added matches${n ? ` (${n})` : ""}</summary>${body || '<p class="sub">No new matches were found in the last updates.</p>'}</details>`;
+  return `<details class="recent"><summary>${L("Recently added matches", "Partidos añadidos recientemente")}${n ? ` (${n})` : ""}</summary>${body || `<p class="sub">${L("No new matches were found in the last updates.", "No se encontraron partidos nuevos en las últimas actualizaciones.")}</p>`}</details>`;
 }
 async function renderHome() {
-  document.title = "Football ELO Rankings";
+  document.title = L("Football ELO Rankings", "Ranking ELO de fútbol");
   // card artwork without trademarked competition logos: the flag of the country, the flags of the best nations,
   // or the crests of the best clubs of that very ranking
   const art = (d, c) => {
@@ -140,16 +191,20 @@ async function renderHome() {
   const card = async k => {
     const d = await load(k), c = COMPS[k];
     return `<a class="home-card" href="#${k}" style="--c1:${c.c1};--c2:${c.c2}">${art(d, c)}<div class="eyebrow">${c.short || c.eyebrow}</div>
-      <h2>ELO Ranking</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString("en")} matches · ${d.teams.length} ${c.noun.toLowerCase()}</div>
-      <div class="subtitle">through ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
+      <h2>${L("ELO Ranking", "Ranking ELO")}</h2><div class="subtitle">${d.periods.length} ${c.period.toLowerCase()} · ${d.matches.length.toLocaleString(LANG)} ${L("matches", "partidos")} · ${d.teams.length} ${c.noun.toLowerCase()}</div>
+      <div class="subtitle">${L("through", "hasta")} ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
   };
   const section = async (title, keys) => `<h3 class="section">${title}</h3><div class="cards">${(await Promise.all(keys.map(card))).join("")}</div>`;
   const keys = Object.keys(COMPS);
-  $("home-cards").innerHTML = await section("International Competitions", keys.filter(k => COMPS[k].flags)) + await section("UEFA Competitions", keys.filter(k => !COMPS[k].flags && !COMPS[k].domestic)) + await section("National Competitions", keys.filter(k => COMPS[k].domestic));
+  $("home-cards").innerHTML = await section(L("International Competitions", "Competiciones internacionales"), keys.filter(k => COMPS[k].flags)) + await section(L("UEFA Competitions", "Competiciones UEFA"), keys.filter(k => !COMPS[k].flags && !COMPS[k].domestic)) + await section(L("National Competitions", "Competiciones nacionales"), keys.filter(k => COMPS[k].domestic));
   const m = window.meta || {};
-  $("home-status").innerHTML = `<b>Updates:</b> ${Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ")} refresh automatically every day;
-    the World Cup (last edition ${esc(cache.wc ? cache.wc.last : "")}), European Championship (${esc(cache.euro ? cache.euro.last : "")}) and Copa América (${esc(cache.copa ? cache.copa.last : "")}) update when a new tournament is played.<br>
-    Last data check: <b>${m.synced ? fmtTime(m.synced) : "n/a"}</b> · site built: <b>${m.built ? fmtTime(m.built) : "n/a"}</b>`;
+  const names = Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", "), wcl = esc(cache.wc ? cache.wc.last : ""), eul = esc(cache.euro ? cache.euro.last : ""), cal = esc(cache.copa ? cache.copa.last : "");
+  $("home-status").innerHTML = L(`<b>Updates:</b> ${names} refresh automatically every day;
+    the World Cup (last edition ${wcl}), European Championship (${eul}) and Copa América (${cal}) update when a new tournament is played.<br>
+    Last data check: <b>${m.synced ? fmtTime(m.synced) : "n/a"}</b> · site built: <b>${m.built ? fmtTime(m.built) : "n/a"}</b>`,
+  `<b>Actualizaciones:</b> ${names} se actualizan automáticamente cada día;
+    el Mundial (última edición ${wcl}), la Eurocopa (${eul}) y la Copa América (${cal}) se actualizan cuando se juega un torneo nuevo.<br>
+    Última comprobación de datos: <b>${m.synced ? fmtTime(m.synced) : "n/d"}</b> · sitio generado: <b>${m.built ? fmtTime(m.built) : "n/d"}</b>`);
   $("home-recent").innerHTML = await recentHtml();
 }
 window.addEventListener("hashchange", render);
@@ -161,26 +216,26 @@ function ranking() {
   const groups = new Map();
   if (!eras) D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
   const state = {g: D.default_era || "", q: ""};
-  $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="Search…" autocomplete="off"></div>
-    <div class="chips" id="chips"></div><div class="row head"><span>Pos</span><span></span><span>${C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" id="dhead"></span><span class="r mcount">Games</span></div><div id="rows"></div>`;
+  $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="${L("Search…", "Buscar…")}" autocomplete="off"></div>
+    <div class="chips" id="chips"></div><div class="row head"><span>${L("Pos", "Pos.")}</span><span></span><span>${C.noun1 || C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" id="dhead"></span><span class="r mcount">${L("Games", "Partidos")}</span></div><div id="rows"></div>`;
   const draw = () => {
     const era = eras && eras.find(x => x.id === state.g);
     const v = era || {elo: D.teams.map(t => t.elo), matches: D.teams.map(t => t.matches), delta: D.delta, last: D.last};
-    const chipList = eras ? [["", "All"], ...eras.map(e => [e.id, e.label])] : [["", "All"], ...[...groups].filter(([k]) => k).sort().map(([k]) => [k, k])];
+    const chipList = eras ? [["", L("All", "Todos")], ...eras.map(e => [e.id, e.label])] : [["", L("All", "Todos")], ...[...groups].filter(([k]) => k).sort().map(([k]) => [k, k])];
     const cw = Math.max(...chipList.map(([, l]) => l.length)) * 8 + 24;
     $("chips").innerHTML = chipList
       .map(([k, l]) => `<button class="chip${k === state.g ? " on" : ""}" style="width:${cw}px" data-g="${esc(k)}" title="${esc(groups.get(k) || "")}">${esc(l)}</button>`).join("");
     $("dhead").textContent = `Δ ${v.last}`;
-    $("dhead").title = `Rating change during ${v.last}`;
+    $("dhead").title = L(`Rating change during ${v.last}`, `Variación de la puntuación durante ${v.last}`);
     let list = D.teams.map((t, i) => i);
     if (era) list = list.filter(i => v.matches[i] > 0).sort((a, b) => v.elo[b] - v.elo[a] || a - b);
     const rank = new Map(list.map((i, r) => [i, r + 1]));            // position within the current leaderboard
     if (!eras && state.g) list = list.filter(i => C.group(D.teams[i], i) === state.g);
     const q = state.q.toLowerCase();
-    if (q) list = list.filter(i => [D.teams[i].name, ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
+    if (q) list = list.filter(i => [D.teams[i].name, tn(D.teams[i]), ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
     $("rows").innerHTML = list.map(i => { const t = D.teams[i], dl = v.delta[i], e = v.elo[i], r = rank.get(i);
       return `<div class="row" data-t="${i}"><span class="pos${r <= 3 ? " top" : ""}">${r}</span>${icon(t)}
-        <div><div class="name">${esc(t.name)}</div><div class="sub">${esc(C.sub || C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
+        <div><div class="name">${esc(tn(t))}</div><div class="sub">${esc(C.sub || C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo" style="color:${eloColor(e)}">${e}</span>
         <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
   };
@@ -191,37 +246,37 @@ function ranking() {
 }
 
 // ── history ───────────────────────────────────────────────────────
-const teamOptions = sel => `<option value="">All</option>` + D.teams.map((t, i) => `<option value="${i}"${sel === i ? " selected" : ""}>${esc(t.name)}</option>`).join("");
+const teamOptions = sel => `<option value="">${L("All", "Todos")}</option>` + D.teams.map((t, i) => `<option value="${i}"${sel === i ? " selected" : ""}>${esc(tn(t))}</option>`).join("");
 function history() {
   $("view").innerHTML = `<div class="controls"><select id="ht" class="input">${teamOptions()}</select>
-    <select id="hp" class="input"><option value="">All periods</option>${[...D.periods].reverse().map(p => `<option>${esc(p)}</option>`).join("")}</select></div><div id="list"></div>`;
+    <select id="hp" class="input"><option value="">${L("All periods", "Todos los periodos")}</option>${[...D.periods].reverse().map(p => `<option>${esc(p)}</option>`).join("")}</select></div><div id="list"></div>`;
   const draw = () => {
     const t = $("ht").value, p = $("hp").value;
     const rows = []; for (let i = D.matches.length - 1; i >= 0 && rows.length < 400; i--) {
       const m = D.matches[i];
       if ((!p || m[0] === p) && (!t || m[2] == t || m[4] == t)) rows.push(m);
     }
-    $("list").innerHTML = rows.length ? rows.map(matchRow).join("") : `<div class="empty">NO MATCHES</div>`;
+    $("list").innerHTML = rows.length ? rows.map(matchRow).join("") : `<div class="empty">${L("NO MATCHES", "SIN PARTIDOS")}</div>`;
   };
   $("ht").onchange = $("hp").onchange = draw; draw();
 }
 function score(m) {
   const [, , , ga, , gb, dec, pa, pb] = m;
-  return `${ga}–${gb}` + (dec === "pw" ? ` <span class="pill">(pens)</span>` : dec === "pen" ? ` <span class="pill">(${pa}–${pb} p)</span>` : dec === "aet" ? ` <span class="pill">aet</span>` : "");
+  return `${ga}–${gb}` + (dec === "pw" ? ` <span class="pill">${L("(pens)", "(pen.)")}</span>` : dec === "pen" ? ` <span class="pill">(${pa}–${pb} p)</span>` : dec === "aet" ? ` <span class="pill">${L("aet", "prór.")}</span>` : "");
 }
 function matchRow(m) {
   const [per, ph, a, ga, b, gb, dec, pa, pb, ea, eb] = m;
   const wa = ga > gb || (ga === gb && pa > pb), wb = gb > ga || (ga === gb && pb > pa);
   // crests sit at the outer ends of the two name columns, so the layout is symmetric whatever the name length
-  return `<div class="match"><span class="pill ph">${tagHtml(ph)}</span>${icon(D.teams[a], "sm")}<span class="a${wa ? " win" : ""}">${esc(D.teams[a].name)}</span>
-    <span class="sc">${score(m)}</span><span class="b${wb ? " win" : ""}">${esc(D.teams[b].name)}</span>${icon(D.teams[b], "sm")}<span class="d">${esc(per)} · ${ea}/${eb}</span></div>`;
+  return `<div class="match"><span class="pill ph">${tagHtml(ph)}</span>${icon(D.teams[a], "sm")}<span class="a${wa ? " win" : ""}">${esc(tn(D.teams[a]))}</span>
+    <span class="sc">${score(m)}</span><span class="b${wb ? " win" : ""}">${esc(tn(D.teams[b]))}</span>${icon(D.teams[b], "sm")}<span class="d">${esc(per)} · ${ea}/${eb}</span></div>`;
 }
 
 // ── stats / compare ───────────────────────────────────────────────
 let chart;
 function drawChart(canvas, series) {
   if (chart) chart.destroy();
-  if (typeof Chart === "undefined") { canvas.replaceWith(Object.assign(document.createElement("p"), {className: "sub", textContent: "Chart library failed to load."})); return; }
+  if (typeof Chart === "undefined") { canvas.replaceWith(Object.assign(document.createElement("p"), {className: "sub", textContent: L("Chart library failed to load.", "No se pudo cargar la librería de gráficos.")})); return; }
   Chart.defaults.font.family = "Barlow, system-ui, sans-serif";
   chart = new Chart(canvas, {type: "line", data: {labels: D.periods, datasets: series.map(s => ({label: s.label, data: D.periods.map(p => s.map[p] ?? null),
     borderColor: s.color, backgroundColor: s.color, spanGaps: true, tension: .25, pointRadius: 2, borderWidth: 2}))},
@@ -240,49 +295,56 @@ function allTimeHigh(i) {
 }
 function athHtml(i) {
   const h = allTimeHigh(i);
-  if (h.start) return `<div class="ath">ALL-TIME HIGH <b>${h.elo}</b> · starting rating</div>`;
+  if (h.start) return `<div class="ath">${L("ALL-TIME HIGH", "MÁXIMO HISTÓRICO")} <b>${h.elo}</b> · ${L("starting rating", "puntuación inicial")}</div>`;
   const m = D.matches[h.e.i];
-  return `<div class="ath">ALL-TIME HIGH <b>${h.elo}</b> · ${esc(h.per)} · after ${esc(D.teams[m[2]].name)} ${score(m)} ${esc(D.teams[m[4]].name)}</div>`;
+  return `<div class="ath">${L("ALL-TIME HIGH", "MÁXIMO HISTÓRICO")} <b>${h.elo}</b> · ${esc(h.per)} · ${L("after", "tras")} ${esc(tn(D.teams[m[2]]))} ${score(m)} ${esc(tn(D.teams[m[4]]))}</div>`;
 }
 function seasonTable(i) {
-  return `<table class="seasons"><tr><th>${C.period.slice(0, -1)}</th><th>Start</th><th>End</th><th>Δ</th><th>Games</th></tr>${[...periodStats(i)].reverse().map(([p, x]) => {
+  return `<table class="seasons"><tr><th>${C.period1 || C.period.slice(0, -1)}</th><th>${L("Start", "Inicio")}</th><th>${L("End", "Fin")}</th><th>Δ</th><th>${L("Games", "Partidos")}</th></tr>${[...periodStats(i)].reverse().map(([p, x]) => {
     const d = x.end - x.start; return `<tr><td>${esc(p)}</td><td>${x.start}</td><td>${x.end}</td><td class="${d > 0 ? "up" : d < 0 ? "down" : "flat"}">${d > 0 ? "+" : ""}${d}</td><td>${x.n}</td></tr>`; }).join("")}</table>`;
 }
 function stats() {
   const cur = D.teams.findIndex(t => t.name === route.team);
-  $("view").innerHTML = `<div class="controls"><select id="st" class="input"><option value="">Select…</option>${D.teams.map((t, i) => `<option value="${i}"${i === cur ? " selected" : ""}>${esc(t.name)}</option>`).join("")}</select></div><div id="out"></div>`;
+  $("view").innerHTML = `<div class="controls"><select id="st" class="input"><option value="">${L("Select…", "Seleccionar…")}</option>${D.teams.map((t, i) => `<option value="${i}"${i === cur ? " selected" : ""}>${esc(tn(t))}</option>`).join("")}</select></div><div id="out"></div>`;
   $("st").onchange = () => { location.hash = `#${route.comp}/stats/${$("st").value === "" ? "" : encodeURIComponent(D.teams[$("st").value].name)}`; };
-  if (cur < 0) { $("out").innerHTML = `<div class="empty">SELECT A TEAM TO VIEW ELO PROGRESSION</div>`; return; }
+  if (cur < 0) { $("out").innerHTML = `<div class="empty">${L("SELECT A TEAM TO VIEW ELO PROGRESSION", "SELECCIONA UN EQUIPO PARA VER SU EVOLUCIÓN ELO")}</div>`; return; }
   const t = D.teams[cur];
-  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(t.name)} · ${t.elo} ELO · #${cur + 1}</h3>${athHtml(cur)}<canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
+  $("out").innerHTML = `<div class="card"><h3 style="display:flex;align-items:center;gap:10px">${icon(t)}${esc(tn(t))} · ${t.elo} ELO · #${cur + 1}</h3>${athHtml(cur)}<canvas id="ch" height="110"></canvas>${t.note ? `<p class="sub" style="margin-top:8px">${esc(t.note)}</p>` : ""}</div>
     <div class="card">${seasonTable(cur)}</div><div class="card">${D.tl[cur].slice().reverse().slice(0, 60).map(e => matchRow(D.matches[e.i])).join("")}</div>`;
-  drawChart($("ch"), [{label: t.name, map: periodElo(cur), color: "#b3261e"}]);
+  drawChart($("ch"), [{label: tn(t), map: periodElo(cur), color: "#b3261e"}]);
 }
 function compare() {
   const a = D.teams.findIndex(t => t.name === route.team.split("~")[0]), b = D.teams.findIndex(t => t.name === route.team.split("~")[1]);
   $("view").innerHTML = `<div class="controls"><select id="ca" class="input">${teamOptions(a)}</select><span class="mono">vs</span><select id="cb" class="input">${teamOptions(b)}</select></div><div id="out"></div>`;
   const go = () => { const x = $("ca").value, y = $("cb").value; location.hash = `#${route.comp}/compare/${x === "" ? "" : encodeURIComponent(D.teams[x].name)}${y === "" ? "" : "~" + encodeURIComponent(D.teams[y].name)}`; };
   $("ca").onchange = $("cb").onchange = go;
-  if (a < 0 || b < 0) { $("out").innerHTML = `<div class="empty">SELECT TWO TEAMS TO COMPARE</div>`; return; }
+  if (a < 0 || b < 0) { $("out").innerHTML = `<div class="empty">${L("SELECT TWO TEAMS TO COMPARE", "SELECCIONA DOS EQUIPOS PARA COMPARAR")}</div>`; return; }
   const h2h = D.tl[a].filter(e => e.opp === b);
   const w = h2h.filter(e => e.gf > e.ga || (e.gf === e.ga && e.pf > e.pa)).length, l = h2h.filter(e => e.gf < e.ga || (e.gf === e.ga && e.pf < e.pa)).length;
   $("out").innerHTML = `<div class="card"><canvas id="ch" height="110"></canvas></div>
-    <div class="card"><h3>Head to head</h3><p>${esc(D.teams[a].name)} ${w}W · ${h2h.length - w - l}D · ${l}L vs ${esc(D.teams[b].name)} (${h2h.length} matches)</p></div>
+    <div class="card"><h3>${L("Head to head", "Cara a cara")}</h3><p>${esc(tn(D.teams[a]))} ${w}${L("W", "G")} · ${h2h.length - w - l}${L("D", "E")} · ${l}${L("L", "P")} vs ${esc(tn(D.teams[b]))} (${h2h.length} ${L("matches", "partidos")})</p></div>
     ${h2h.length ? `<div class="card">${h2h.slice().reverse().map(e => matchRow(D.matches[e.i])).join("")}</div>` : ""}`;
-  drawChart($("ch"), [{label: D.teams[a].name, map: periodElo(a), color: "#b3261e"}, {label: D.teams[b].name, map: periodElo(b), color: "#1f4e79"}]);
+  drawChart($("ch"), [{label: tn(D.teams[a]), map: periodElo(a), color: "#b3261e"}, {label: tn(D.teams[b]), map: periodElo(b), color: "#1f4e79"}]);
 }
 
 // ── about ─────────────────────────────────────────────────────────
 function about() {
   const ph = Object.entries(D.phases).map(([k, p]) => `<li>${tagHtml(k)} K = ${p.k}</li>`).join("");
+  const leagues = ["pl", "ekstraklasa", "bundesliga", "spain", "france", "italy"].includes(route.comp);
+  const legs = route.comp === "ucl" ? `<li>${L("Two-legged ties: each leg is rated separately.", "Eliminatorias a doble partido: cada partido se valora por separado.")}</li>` : "";
+  const nl = route.comp === "nl" ? L(`<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of Division A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one. <b>PO</b> in the history marks these promotion/relegation play-offs.</li><li>The Nations League is played every two years (2018/19, 2020/21, 2022/23 …); the years in between have no edition.</li><li>Two-legged ties: each leg is rated separately.</li>`,
+    `<li>K depende de la división en la que se juega el partido (A 24 · B 12 · C 8 · D 4), por lo que una victoria en una división inferior mueve menos la puntuación. Hay un único ranking común para todas las divisiones.</li><li>Cuartos de final: K de la División A. Semifinales, tercer puesto y final: K 32. Las eliminatorias de ascenso/descenso entre dos divisiones usan la K de la inferior. <b>PO</b> en el historial marca estas eliminatorias de ascenso/descenso.</li><li>La Liga de Naciones se juega cada dos años (2018/19, 2020/21, 2022/23 …); los años intermedios no hay edición.</li><li>Eliminatorias a doble partido: cada partido se valora por separado.</li>`) : "";
+  const lg = leagues ? L(`<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>`,
+    `<li>Solo partidos de liga: sin prórroga ni penaltis.</li><li>Los clubes conservan su puntuación mientras están fuera de la máxima categoría.</li><li>Los botones de época solo filtran los años: cada club tiene una puntuación continua, mostrada tal como estaba al final de esa época (los partidos y la Δ cuentan solo esa época).</li>`) : "";
+  const src = C.source || lnk("https://github.com/openfootball", "openfootball") + L(", football-data.org and Wikipedia", ", football-data.org y Wikipedia");
   $("view").innerHTML = `<div class="grid2">
-    <div class="card"><h3>ELO formula</h3><div class="formula">R ← R + K × (S − E)</div><p>E = 1 / (1 + 10^((R_opp − R_self) / 400))</p>
-      <p>S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.</p></div>
-    <div class="card"><h3>K-factors</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
-    <div class="card"><h3>Extra time &amp; penalties</h3><ul><li>Score after extra time is used.</li><li>If a match is decided on penalties, the shoot-out winner counts as the winner.</li>
-      ${route.comp === "ucl" ? "<li>Two-legged ties: each leg is rated separately.</li>" : ""}${route.comp === "nl" ? "<li>K depends on the division the match is played in (A 24 · B 12 · C 8 · D 4), so a win in a lower division moves the rating less. There is one common ranking for all divisions.</li><li>Quarter-finals: K of Division A. Semi-finals, 3rd place and final: K 32. Promotion/relegation play-offs between two divisions use the K of the lower one. <b>PO</b> in the history marks these promotion/relegation play-offs.</li><li>The Nations League is played every two years (2018/19, 2020/21, 2022/23 …); the years in between have no edition.</li><li>Two-legged ties: each leg is rated separately.</li>" : ""}${["pl", "ekstraklasa", "bundesliga", "spain", "france", "italy"].includes(route.comp) ? "<li>League matches only: no extra time or penalties.</li><li>Clubs keep their rating while outside the top flight.</li><li>The era buttons only filter the years: each club has one continuous rating, shown as it stood at the end of that era (games and Δ count that era only).</li>" : ""}</ul></div>
-    <div class="card"><h3>Data</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString("en")} matches</li>
-      ${C.note ? `<li>${C.note}</li>` : ""}<li>Updated daily from ${C.source || `<a href="https://github.com/openfootball" style="color:var(--accent);text-decoration:underline">openfootball</a>, football-data.org and Wikipedia`}</li>
-      <li>Renamed / merged teams are listed in <a href="${REPO}/blob/main/data/teams_${route.comp}.json" style="color:var(--accent);text-decoration:underline">teams file</a></li></ul></div></div>`;
+    <div class="card"><h3>${L("ELO formula", "Fórmula ELO")}</h3><div class="formula">R ← R + K × (S − E)</div><p>E = 1 / (1 + 10^((R_${L("opp", "rival")} − R_${L("self", "propia")}) / 400))</p>
+      <p>${L("S: 1 win · 0.5 draw · 0 loss. Everyone starts at 1600.", "S: 1 victoria · 0,5 empate · 0 derrota. Todos empiezan en 1600.")}</p></div>
+    <div class="card"><h3>${L("K-factors", "Factores K")}</h3><ul style="list-style:none;padding:0">${ph}</ul></div>
+    <div class="card"><h3>${L("Extra time &amp; penalties", "Prórroga y penaltis")}</h3><ul><li>${L("Score after extra time is used.", "Se usa el resultado tras la prórroga.")}</li><li>${L("If a match is decided on penalties, the shoot-out winner counts as the winner.", "Si un partido se decide en penaltis, el ganador de la tanda cuenta como ganador.")}</li>
+      ${legs}${nl}${lg}</ul></div>
+    <div class="card"><h3>${L("Data", "Datos")}</h3><ul><li>${D.periods[0]} – ${D.last}, ${D.matches.length.toLocaleString(LANG)} ${L("matches", "partidos")}</li>
+      ${C.note ? `<li>${C.note}</li>` : ""}<li>${L("Updated daily from", "Actualizado a diario desde")} ${src}</li>
+      <li>${L("Renamed / merged teams are listed in", "Los equipos renombrados o fusionados figuran en el")} ${lnk(`${REPO}/blob/main/data/teams_${route.comp}.json`, L("teams file", "archivo de equipos"))}</li></ul></div></div>`;
 }
 render();

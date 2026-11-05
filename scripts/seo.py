@@ -7,6 +7,7 @@ The interactive app stays English; the Spanish pages link to it.
 """
 import html
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -22,10 +23,6 @@ SHORT_ES = {"wc": "Mundial de fútbol (Copa del Mundo)", "euro": "Eurocopa", "co
             "ucl": "Liga de Campeones", "el": "Liga Europa", "conf": "Liga Conferencia", "uefa": "competiciones UEFA de clubes",
             "pl": "Premier League", "ekstraklasa": "Ekstraklasa", "bundesliga": "Bundesliga", "spain": "La Liga",
             "france": "Ligue 1", "italy": "Serie A"}
-NOTE_ES = {"pl": "liga inglesa, desde 1888", "ekstraklasa": "liga polaca", "bundesliga": "liga alemana",
-           "spain": "Primera División de España", "france": "liga francesa", "italy": "liga italiana"}
-GROUPS = (("international", ("wc", "euro", "copa", "nl")), ("uefa", ("ucl", "el", "conf", "uefa")),
-          ("national", ("pl", "ekstraklasa", "bundesliga", "spain", "france", "italy")))
 # English titles of the pages that match what people search for ("elo champions league", "world football elo ratings", ...)
 EN_TITLES = {"uefa": "UEFA club ELO ranking: Champions League, Europa League & Conference League",
              "ucl": "Champions League ELO ranking – ELO ratings of every club since {first}",
@@ -38,7 +35,7 @@ TX = {
     "en": {"lang": "en", "all": "← All rankings", "open": "Open the interactive ranking", "top": "Top {n}", "name": "Name",
            "country": "Country", "region": "Region", "elo": "ELO", "matches": "Matches",
            "about_h": "About this football ELO ranking", "how_h": "How the rating works", "all_label": "All rankings", "home": "home"},
-    "es": {"lang": "es", "all": "← Todos los rankings", "open": "Abrir el ranking interactivo (en inglés)", "top": "Top {n}", "name": "Nombre",
+    "es": {"lang": "es", "all": "← Todos los rankings", "open": "Abrir el ranking interactivo", "top": "Top {n}", "name": "Nombre",
            "country": "País", "region": "Región", "elo": "Elo", "matches": "Partidos",
            "about_h": "Sobre este ranking Elo de fútbol", "how_h": "Cómo funciona la puntuación", "all_label": "Todos los rankings", "home": "inicio"},
 }
@@ -130,11 +127,11 @@ def page(key, d, lang="en"):
         noun = "selecciones" if key in NATIONS else "clubes"
         slugs = SLUGS_ES
         switch = f'<a href="{url_of(key, "en")}" hreflang="en" lang="en">English</a>'
-        back, open_href = "../", f"../../#{key}"
+        back, open_href = "../", f"../#{key}"
         nav_names = {k: SHORT_ES[k] for k in SLUGS_ES}
         about = (f"Este es un ranking Elo de fútbol de {n} {noun}, calculado partido a partido de {e(first)} a {e(last)} ({m} partidos). "
                  "Cada equipo tiene una puntuación Elo continua, por lo que los valores se pueden comparar entre temporadas. El ranking se recalcula "
-                 "con todo el historial de partidos y se actualiza a diario. En la versión interactiva (en inglés) puedes ver el historial de cada "
+                 "con todo el historial de partidos y se actualiza a diario. En la versión interactiva puedes ver el historial de cada "
                  "equipo, su máxima puntuación histórica, los cambios temporada a temporada, cada partido con la puntuación posterior y comparaciones cara a cara.")
         ks = ", ".join(f"{e(p['label'])} {p['k']}" for p in d["phases"].values())
         how = ("Todos los equipos empiezan con 1600 puntos. Tras cada partido: R ← R + K × (S − E), donde E = 1 / (1 + 10^((R<sub>rival</sub> − R) / 400)) "
@@ -169,34 +166,42 @@ def page(key, d, lang="en"):
 """
 
 
-def home_es(tops):
-    """Spanish landing page: what the site is and a link (with the current leaders) to every ranking."""
-    title = "Ranking Elo de fútbol – puntuaciones Elo de clubes y selecciones"
-    desc = ("Ranking Elo de fútbol: Mundial, Eurocopa, Copa América, Liga de Naciones, Liga de Campeones, Liga Europa, Liga Conferencia, "
-            "Premier League, La Liga, Serie A, Bundesliga y Ligue 1. Una sola escala Elo, todos los partidos desde el principio, actualizado a diario.")
-    heads = {"international": "Selecciones nacionales", "uefa": "Competiciones UEFA de clubes", "national": "Ligas nacionales"}
-    sections = ""
-    for g, keys in GROUPS:
-        items = ""
-        for k in keys:
-            top = f" – líder actual: {e(tops[k])}" if k in tops else ""
-            note = f" ({e(NOTE_ES[k])})" if k in NOTE_ES else ""
-            items += f'<li><a href="rankings/{SLUGS_ES[k]}.html">Ranking Elo – {e(SHORT_ES[k])}</a>{note}{top}</li>\n'
-        sections += f'<h2 style="font:700 20px var(--display);margin:22px 0 6px">{heads[g]}</h2>\n<ul>\n{items}</ul>\n'
-    ld = {"@context": "https://schema.org", "@type": "WebSite", "name": "Ranking Elo de fútbol", "url": f"{BASE}es/", "inLanguage": "es"}
-    alts = [("en", BASE), ("es", f"{BASE}es/"), ("x-default", BASE)]
-    return head("es", title, desc, f"{BASE}es/", alts, "../style.css", ld) + f"""<body>
-<main>
-<p class="eyebrow"><a href="../">English</a></p>
-<h1 class="title" style="font-size:44px">Ranking Elo de fútbol</h1>
-<p>Puntuaciones Elo de clubes y selecciones nacionales, calculadas partido a partido desde el principio de cada competición. Todos los equipos empiezan en 1600 puntos y cada resultado mueve la puntuación según la fuerza del rival y la importancia del partido. Los rankings se actualizan a diario.</p>
-<a class="open" href="../">Abrir la aplicación interactiva (en inglés)</a>
-{sections}<h2 style="font:700 20px var(--display);margin:22px 0 6px">Cómo funciona</h2>
-<p>Es el sistema Elo, creado para el ajedrez y adaptado al fútbol: ganar a un rival fuerte da más puntos que ganar a uno débil, y los partidos importantes (finales, eliminatorias) pesan más que los de fase de grupos. Cada ranking tiene una sola escala continua, por lo que se pueden comparar equipos de distintas épocas.</p>
-</main>
-</body>
-</html>
-"""
+ES_TITLE = "Ranking Elo de fútbol – puntuaciones Elo de clubes y selecciones"
+ES_DESC = ("Ranking Elo de fútbol: Mundial, Eurocopa, Copa América, Liga de Naciones, Liga de Campeones, Liga Europa, Liga Conferencia, "
+           "Premier League, La Liga, Serie A, Bundesliga y Ligue 1. Una sola escala Elo, todos los partidos desde el principio, actualizado a diario.")
+
+
+def shell_es(index_html):
+    """The Spanish version of the interactive app: the English index.html with Spanish metadata, static texts and
+    links, loading the same app.js and data (window.LANG / window.ROOT switch the interface language)."""
+    h = index_html
+    nav = ('<nav id="seo-links" aria-label="Todos los rankings" style="max-width:960px;margin:0 auto;padding:0 16px 10px;font:400 13px var(--body);color:var(--mute)">Rankings: '
+           + " · ".join(f'<a href="rankings/{SLUGS_ES[k]}.html">{e(SHORT_ES[k])}</a>' for k in SLUGS_ES)
+           + ' · <a href="../" hreflang="en" lang="en">English</a></nav>')
+    subtitle = " · ".join(SHORT_ES[k].split(" (")[0] for k in ("wc", "euro", "copa", "nl", "ucl", "el", "conf", "uefa", "pl", "ekstraklasa", "bundesliga", "spain", "france", "italy"))
+    reps = [
+        (r'<html lang="en">', '<html lang="es">'),
+        (r"<title>.*?</title>", f"<title>{e(ES_TITLE)}</title>"),
+        (r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{e(ES_DESC)}">'),
+        (r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{BASE}es/">'),
+        (r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{e(ES_TITLE)}">'),
+        (r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{e(ES_DESC)}">'),
+        (r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{BASE}es/">'),
+        (r'"inLanguage":"en"', '"inLanguage":"es"'),
+        (r'href="style.css"', 'href="../style.css"'),
+        (r"url\('img/home.jpg'\)", "url('../img/home.jpg')"),
+        (r'<div class="eyebrow">Football</div>', '<div class="eyebrow">Fútbol</div>'),
+        (r'(<div class="subtitle">)World Cup[^<]*(</div>)', lambda m: m.group(1) + e(subtitle) + m.group(2)),
+        (r"← All rankings", "← Todos los rankings"),
+        (r'<nav id="lang".*?</nav>', '<nav id="lang" aria-label="Idioma"><a data-l="en" href="../" hreflang="en" lang="en">EN</a><a data-l="es" href="./" hreflang="es" lang="es">ES</a></nav>'),
+        (r'<nav id="seo-links".*?</nav>', lambda m: nav),
+        (r"<noscript>.*?</noscript>", "<noscript><p style=\"padding:16px\">Ranking ELO de fútbol: puntuaciones ELO de selecciones y clubes, actualizadas a diario. Se necesita JavaScript para la vista interactiva; las páginas estáticas de arriba muestran la parte alta de cada ranking.</p></noscript>"),
+        (r'href="update.html"', 'href="../update.html"'),
+        (r'<script src="app.js" defer></script>', '<script>window.LANG = "es"; window.ROOT = "../";</script>\n<script src="../app.js" defer></script>'),
+    ]
+    for pat, rep in reps:
+        h = re.sub(pat, rep, h, count=1, flags=re.S)
+    return h
 
 
 def sitemap():
@@ -210,13 +215,13 @@ def generate(site):
     site = Path(site)
     for sub in ("rankings", "es/rankings"):
         (site / sub).mkdir(parents=True, exist_ok=True)
-    tops = {}
     for key, slug in SLUGS.items():
         f = site / "data" / f"{key}.json"
         if f.exists():
             d = json.loads(f.read_text(encoding="utf-8"))
             (site / "rankings" / f"{slug}.html").write_text(page(key, d), encoding="utf-8")
             (site / "es" / "rankings" / f"{SLUGS_ES[key]}.html").write_text(page(key, d, "es"), encoding="utf-8")
-            tops[key] = f"{d['teams'][0]['name']} ({d['teams'][0]['elo']})"
-    (site / "es" / "index.html").write_text(home_es(tops), encoding="utf-8")
+    index = site / "index.html"
+    if index.exists():
+        (site / "es" / "index.html").write_text(shell_es(index.read_text(encoding="utf-8")), encoding="utf-8")
     (site / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
