@@ -40,6 +40,10 @@ red runs, manual match fixes, format changes - each with examples.
 
 The site is available in English (`/`), Spanish (`/es/`), Portuguese (`/pt/`) and Polish (`/pl/`): the same app and the same data, with a language switch in the top right corner. The language pages are generated from `index.html` on every build; all interface texts are in `site/i18n.js` (`L("key")` in `site/app.js`).
 
+## Home tiles
+
+Every visitor can star the ranking tiles (they move to a "Favourites" section on top) and reorder them (button "Customize": arrows, or drag and drop on a computer; "Reset layout" restores the default). Favourites and order are kept only in the visitor's own browser (`localStorage`, key `elo.layout.v1`), shared by all language versions; nothing is stored on a server.
+
 ## Data sources
 - World Cup, Champions League 2011/12 →, Premier League 1992/93 →: [openfootball](https://github.com/openfootball) (daily).
 - Premier League before 1992/93: [engsoccerdata](https://github.com/jalapic/engsoccerdata) `england.csv`, tier 1
