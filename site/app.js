@@ -163,24 +163,84 @@ async function recentHtml() {
   }).join("");
   return `<details class="recent"><summary>${L("recent")}${n ? ` (${n})` : ""}</summary>${body || `<p class="sub">${L("recent_none")}</p>`}</details>`;
 }
+// ── home tiles: favourites + order, saved only in this browser (localStorage) ──────────────
+const LAYOUT_KEY = "elo.layout.v1";
+const GROUPS = ["intl", "uefa", "national"];
+const groupOf = k => (COMPS[k].flags ? "intl" : COMPS[k].domestic ? "national" : "uefa");
+const SEC_KEY = {intl: "sec_intl", uefa: "sec_uefa", national: "sec_national"};
+let layout = {fav: [], order: {}}, editing = false;
+try {
+  const saved = JSON.parse(localStorage.getItem(LAYOUT_KEY) || "null");
+  const strs = v => (Array.isArray(v) ? v.filter(x => typeof x === "string") : []);
+  if (saved && typeof saved === "object") layout = {fav: strs(saved.fav), order: Object.fromEntries(GROUPS.map(g => [g, strs((saved.order || {})[g])]))};
+} catch (e) { /* storage unavailable or corrupt: the default layout is used */ }
+const saveLayout = () => { try { localStorage.setItem(LAYOUT_KEY, JSON.stringify(layout)); } catch (e) { /* kept in memory for this visit */ } };
+// every key of a group in the user's order (saved order first, keys not seen before at the end in the default order)
+const fullOrder = g => {
+  const def = Object.keys(COMPS).filter(k => groupOf(k) === g), saved = (layout.order[g] || []).filter(k => def.includes(k));
+  return [...saved, ...def.filter(k => !saved.includes(k))];
+};
+const favKeys = () => [...new Set(layout.fav)].filter(k => COMPS[k]);
+const shown = g => fullOrder(g).filter(k => !favKeys().includes(k));
+function moveTile(group, k, to) {                       // to: -1 / +1 (one place) or a key to drop before
+  if (group === "fav") {
+    const f = favKeys(), i = f.indexOf(k); if (i < 0) return;
+    f.splice(i, 1);
+    const j = typeof to === "string" ? f.indexOf(to) : Math.min(Math.max(i + to, 0), f.length);
+    f.splice(j < 0 ? f.length : j, 0, k); layout.fav = f;
+  } else {
+    const ord = fullOrder(group), vis = shown(group), i = ord.indexOf(k);
+    if (typeof to === "string") { ord.splice(i, 1); const j = ord.indexOf(to); ord.splice(j < 0 ? ord.length : j, 0, k); }
+    else { const n = vis[vis.indexOf(k) + to]; if (n === undefined) return; const j = ord.indexOf(n); [ord[i], ord[j]] = [ord[j], ord[i]]; }
+    layout.order[group] = ord;
+  }
+  saveLayout();
+}
+// card artwork without trademarked competition logos: the flag of the country, the flags of the best nations,
+// or the crests of the best clubs of that very ranking
+const art = (d, c) => {
+  if (c.flag) return `<img class="bigflag" src="https://flagcdn.com/w320/${c.flag}.png" alt="">`;
+  const tiles = d.teams.map(t => c.flags ? (t.iso ? `https://flagcdn.com/w80/${t.iso}.png` : "") : t.logo || "").filter(Boolean).slice(0, 6);
+  return `<div class="mosaic">${tiles.map(u => `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">`).join("")}</div>`;
+};
+const tile = (k, group) => {
+  const d = cache[k], c = COMPS[k], fav = favKeys().includes(k);
+  return `<div class="tile" data-k="${k}" data-g="${group}"${editing ? ' draggable="true"' : ""}>
+    <a class="home-card" href="#${k}" style="--c1:${c.c1};--c2:${c.c2}">${art(d, c)}<div class="eyebrow">${c.short || c.eyebrow}</div>
+      <h2>${L("elo_ranking")}</h2><div class="subtitle">${d.periods.length} ${c.periodN || c.period.toLowerCase()} · ${d.matches.length.toLocaleString(LANG)} ${L("matches_n")} · ${d.teams.length} ${c.nounN || c.noun.toLowerCase()}</div>
+      <div class="subtitle">${L("through")} ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>
+    <button class="star" data-a="star" aria-pressed="${fav}" title="${L(fav ? "fav_remove" : "fav_add")}" aria-label="${L(fav ? "fav_remove" : "fav_add")}">${fav ? "★" : "☆"}</button>
+    <span class="mv"><button data-a="mv" data-d="-1" title="${L("move_up")}" aria-label="${L("move_up")}">↑</button><button data-a="mv" data-d="1" title="${L("move_down")}" aria-label="${L("move_down")}">↓</button></span></div>`;
+};
+function drawCards() {
+  const fav = favKeys(), sec = (title, group, keys) => `<h3 class="section">${title}</h3><div class="cards" data-g="${group}">${keys.map(k => tile(k, group)).join("")}</div>`;
+  const root = $("home-cards");
+  root.className = editing ? "editing" : "";
+  root.innerHTML = `<div class="layout-bar">${editing ? `<span class="hint">${L("layout_hint")}</span>` : ""}
+      <button data-a="reset"${editing ? "" : " hidden"}>${L("reset_layout")}</button><button data-a="edit" class="${editing ? "on" : ""}">${L(editing ? "done" : "customize")}</button></div>`
+    + (fav.length ? sec("★ " + L("fav_section"), "fav", fav) : "") + GROUPS.map(g => sec(L(SEC_KEY[g]), g, shown(g))).join("");
+}
+function wireHome() {
+  const root = $("home-cards");
+  root.onclick = e => {
+    const btn = e.target.closest("button[data-a]"); if (!btn) return;
+    const t = btn.closest(".tile"), a = btn.dataset.a;
+    if (a === "edit") editing = !editing;
+    else if (a === "reset") { layout = {fav: [], order: {}}; saveLayout(); }
+    else if (a === "star") { const k = t.dataset.k; layout.fav = favKeys().includes(k) ? favKeys().filter(x => x !== k) : [...favKeys(), k]; saveLayout(); }
+    else if (a === "mv") moveTile(t.dataset.g, t.dataset.k, +btn.dataset.d);
+    drawCards();
+  };
+  let dragged = null;                                   // drag and drop (desktop): a tile moves only inside its own group
+  root.ondragstart = e => { const t = e.target.closest && e.target.closest(".tile"); if (!t || !editing) return; dragged = t; t.classList.add("dragging"); e.dataTransfer.effectAllowed = "move"; try { e.dataTransfer.setData("text/plain", t.dataset.k); } catch (x) { /* some browsers need data */ } };
+  root.ondragover = e => { const t = e.target.closest && e.target.closest(".tile"); if (dragged && t && t !== dragged && t.dataset.g === dragged.dataset.g) { e.preventDefault(); root.querySelectorAll(".over").forEach(x => x.classList.remove("over")); t.classList.add("over"); } };
+  root.ondrop = e => { const t = e.target.closest && e.target.closest(".tile"); if (dragged && t && t !== dragged && t.dataset.g === dragged.dataset.g) { e.preventDefault(); moveTile(dragged.dataset.g, dragged.dataset.k, t.dataset.k); dragged = null; drawCards(); } };
+  root.ondragend = () => { dragged = null; root.querySelectorAll(".dragging,.over").forEach(x => x.classList.remove("dragging", "over")); };
+}
 async function renderHome() {
   document.title = L("home_title");
-  // card artwork without trademarked competition logos: the flag of the country, the flags of the best nations,
-  // or the crests of the best clubs of that very ranking
-  const art = (d, c) => {
-    if (c.flag) return `<img class="bigflag" src="https://flagcdn.com/w320/${c.flag}.png" alt="">`;
-    const tiles = d.teams.map(t => c.flags ? (t.iso ? `https://flagcdn.com/w80/${t.iso}.png` : "") : t.logo || "").filter(Boolean).slice(0, 6);
-    return `<div class="mosaic">${tiles.map(u => `<img src="${esc(u)}" alt="" loading="lazy" onerror="this.remove()">`).join("")}</div>`;
-  };
-  const card = async k => {
-    const d = await load(k), c = COMPS[k];
-    return `<a class="home-card" href="#${k}" style="--c1:${c.c1};--c2:${c.c2}">${art(d, c)}<div class="eyebrow">${c.short || c.eyebrow}</div>
-      <h2>${L("elo_ranking")}</h2><div class="subtitle">${d.periods.length} ${c.periodN || c.period.toLowerCase()} · ${d.matches.length.toLocaleString(LANG)} ${L("matches_n")} · ${d.teams.length} ${c.nounN || c.noun.toLowerCase()}</div>
-      <div class="subtitle">${L("through")} ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div></a>`;
-  };
-  const section = async (title, keys) => `<h3 class="section">${title}</h3><div class="cards">${(await Promise.all(keys.map(card))).join("")}</div>`;
-  const keys = Object.keys(COMPS);
-  $("home-cards").innerHTML = await section(L("sec_intl"), keys.filter(k => COMPS[k].flags)) + await section(L("sec_uefa"), keys.filter(k => !COMPS[k].flags && !COMPS[k].domestic)) + await section(L("sec_national"), keys.filter(k => COMPS[k].domestic));
+  await Promise.all(Object.keys(COMPS).map(load));
+  drawCards(); wireHome();
   const m = window.meta || {};
   const names = Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ");
   $("home-status").innerHTML = L("home_status", names, esc(cache.wc ? cache.wc.last : ""), esc(cache.euro ? cache.euro.last : ""), esc(cache.copa ? cache.copa.last : ""),
