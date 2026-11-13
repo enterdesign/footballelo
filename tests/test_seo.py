@@ -14,21 +14,33 @@ DATA = {"title": "Test League", "phases": {"g": {"label": "GR", "k": 8}},
 class Seo(unittest.TestCase):
     def test_page_has_title_description_and_escaped_table(self):
         h = seo.page("pl", DATA)
-        self.assertIn("<title>Test League ELO ranking – football ELO ratings since 1992/93</title>", h)
+        self.assertIn("<title>Test League ELO ranking – football ELO since 1992/93</title>", h)
         self.assertIn("from 1992/93 to 2026/27", h)
         self.assertIn("A &amp; B", h)
         self.assertIn("About this football ELO ranking", h)
         self.assertIn('rel="canonical" href="https://enterdesign.github.io/footballelo/rankings/premier-league.html"', h)
 
     def test_search_phrases_are_in_the_titles_of_the_matching_pages(self):
-        self.assertIn("<title>Champions League ELO ranking – ELO ratings of every club since 1992/93</title>", seo.page("ucl", DATA))
-        self.assertIn("<title>World football ELO ratings – national team ELO ranking since 1992/93</title>", seo.page("wc", DATA))
-        self.assertIn("<title>UEFA club ELO ranking: Champions League, Europa League &amp; Conference League</title>", seo.page("uefa", DATA))
+        self.assertIn("<title>Champions League ELO ranking – every club since 1992/93</title>", seo.page("ucl", DATA))
+        self.assertIn("<title>World football ELO ratings – national teams since 1992/93</title>", seo.page("wc", DATA))
+        self.assertIn("<title>UEFA club ELO ranking – Champions, Europa &amp; Conference League</title>", seo.page("uefa", DATA))
+
+    def test_titles_are_short_and_have_no_parentheses_with_years(self):
+        d = {**DATA, "title": "Premier League (First Division 1888–1992)"}
+        h = seo.page("pl", d)
+        self.assertIn("<title>Premier League ELO ranking – football ELO since 1992/93</title>", h)
+        self.assertIn("(First Division 1888–1992) ELO ranking: ratings", h)              # the description keeps the full name
+        for lang in ("es", "pt", "pl"):
+            self.assertNotIn("(", seo.page("wc", DATA, lang).split("<title>")[1].split("</title>")[0])
+        for key in seo.SLUGS:
+            for lang in seo.LANGS:
+                title = seo.page(key, DATA, lang).split("<title>")[1].split("</title>")[0]
+                self.assertLessEqual(len(title), 72, (key, lang, title))
 
     def test_translated_pages_have_hreflang_and_link_to_the_app_of_their_language(self):
-        titles = {"es": "Ranking Elo – Liga de Campeones: clasificación Elo de fútbol desde 1992/93",
-                  "pt": "Ranking Elo – Liga dos Campeões: classificação Elo de futebol desde 1992/93",
-                  "pl": "Ranking Elo – Liga Mistrzów: punktacja Elo w piłce nożnej od 1992/93"}
+        titles = {"es": "Ranking Elo – Liga de Campeones: Elo de fútbol desde 1992/93",
+                  "pt": "Ranking Elo – Liga dos Campeões: Elo do futebol desde 1992/93",
+                  "pl": "Ranking Elo – Liga Mistrzów: punktacja Elo od 1992/93"}
         for lang, title in titles.items():
             h = seo.page("ucl", DATA, lang)
             self.assertIn(f'<html lang="{lang}">', h)

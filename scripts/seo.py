@@ -38,13 +38,16 @@ SHORT = {
            "ucl": "Liga Mistrzów", "el": "Liga Europy", "conf": "Liga Konferencji", "uefa": "rozgrywki klubowe UEFA",
            "pl": "Premier League", "ekstraklasa": "Ekstraklasa", "bundesliga": "Bundesliga", "spain": "La Liga", "france": "Ligue 1", "italy": "Serie A"},
 }
+# shorter names for the titles where the navigation name is long
+TITLE_SHORT = {"es": {"uefa": "clubes de la UEFA"}, "pt": {"uefa": "clubes da UEFA"}}
 # English titles of the pages that match what people search for ("elo champions league", "world football elo ratings", ...)
-EN_TITLES = {"uefa": "UEFA club ELO ranking: Champions League, Europa League & Conference League",
-             "ucl": "Champions League ELO ranking – ELO ratings of every club since {first}",
-             "wc": "World football ELO ratings – national team ELO ranking since {first}"}
+EN_TITLES = {"uefa": "UEFA club ELO ranking – Champions, Europa & Conference League",
+             "ucl": "Champions League ELO ranking – every club since {first}",
+             "wc": "World football ELO ratings – national teams since {first}"}
 NATIONS = {"wc", "euro", "copa", "nl"}
 TOP = 50
 e = html.escape
+PAREN = re.compile(r"\s*\([^)]*\)")
 
 # Texts of the static pages. {n} teams, {noun}, {first}/{last} seasons, {m} matches, {top} leaders, {ks} K-factors.
 TX = {
@@ -54,7 +57,7 @@ TX = {
     "es": {"name": "Español", "all": "← Todos los rankings", "open": "Abrir el ranking interactivo", "top": "Top {n}", "col_name": "Nombre",
            "country": "País", "region": "Región", "elo": "Elo", "matches": "Partidos", "about_h": "Sobre este ranking Elo de fútbol",
            "how_h": "Cómo funciona la puntuación", "all_label": "Todos los rankings", "home": "inicio",
-           "nouns": ("clubes", "selecciones"), "title": "Ranking Elo – {short}", "full_title": "{title}: clasificación Elo de fútbol desde {first}",
+           "nouns": ("clubes", "selecciones"), "title": "Ranking Elo – {short}", "full_title": "{title}: Elo de fútbol desde {first}",
            "desc": "Ranking Elo – {short}: puntuación Elo de {n} {noun} de {first} a {last}, {m} partidos valorados. Líderes actuales: {top}. Actualizado a diario.",
            "about": ("Este es un ranking Elo de fútbol de {n} {noun}, calculado partido a partido de {first} a {last} ({m} partidos). "
                      "Cada equipo tiene una puntuación Elo continua, por lo que los valores se pueden comparar entre temporadas. El ranking se recalcula "
@@ -63,7 +66,7 @@ TX = {
            "how": ("Todos los equipos empiezan con 1600 puntos. Tras cada partido: R ← R + K × (S − E), donde E = 1 / (1 + 10^((R<sub>rival</sub> − R) / 400)) "
                    "y S es 1 por victoria, 0,5 por empate y 0 por derrota. Un partido decidido en penaltis cuenta como victoria para el ganador de la tanda. "
                    "Factores K por fase: {ks}."),
-           "shell_title": "Ranking Elo de fútbol – puntuaciones Elo de clubes y selecciones",
+           "shell_title": "Ranking Elo de fútbol – clubes y selecciones",
            "shell_desc": ("Ranking Elo de fútbol: Mundial, Eurocopa, Copa América, Liga de Naciones, Liga de Campeones, Liga Europa, Liga Conferencia, "
                           "Premier League, La Liga, Serie A, Bundesliga y Ligue 1. Una sola escala Elo, todos los partidos desde el principio, actualizado a diario."),
            "eyebrow": "Fútbol", "aria": "Todos los rankings",
@@ -71,7 +74,7 @@ TX = {
     "pt": {"name": "Português", "all": "← Todos os rankings", "open": "Abrir o ranking interativo", "top": "Top {n}", "col_name": "Nome",
            "country": "País", "region": "Região", "elo": "Elo", "matches": "Jogos", "about_h": "Sobre este ranking Elo de futebol",
            "how_h": "Como funciona a pontuação", "all_label": "Todos os rankings", "home": "início",
-           "nouns": ("clubes", "seleções"), "title": "Ranking Elo – {short}", "full_title": "{title}: classificação Elo de futebol desde {first}",
+           "nouns": ("clubes", "seleções"), "title": "Ranking Elo – {short}", "full_title": "{title}: Elo do futebol desde {first}",
            "desc": "Ranking Elo – {short}: pontuação Elo de {n} {noun} de {first} a {last}, {m} jogos avaliados. Líderes atuais: {top}. Atualizado diariamente.",
            "about": ("Este é um ranking Elo de futebol de {n} {noun}, calculado jogo a jogo de {first} a {last} ({m} jogos). "
                      "Cada equipe tem uma pontuação Elo contínua, por isso os valores podem ser comparados entre temporadas. O ranking é recalculado "
@@ -80,7 +83,7 @@ TX = {
            "how": ("Todas as equipes começam com 1600 pontos. Depois de cada jogo: R ← R + K × (S − E), onde E = 1 / (1 + 10^((R<sub>adversário</sub> − R) / 400)) "
                    "e S é 1 para vitória, 0,5 para empate e 0 para derrota. Um jogo decidido nos pênaltis conta como vitória para o vencedor da disputa. "
                    "Fatores K por fase: {ks}."),
-           "shell_title": "Ranking Elo de futebol – pontuações Elo de clubes e seleções",
+           "shell_title": "Ranking Elo de futebol – clubes e seleções",
            "shell_desc": ("Ranking Elo de futebol: Copa do Mundo, Eurocopa, Copa América, Liga das Nações, Liga dos Campeões, Liga Europa, Liga Conferência, "
                           "Premier League, La Liga, Serie A, Bundesliga e Ligue 1. Uma única escala Elo, todos os jogos desde o início, atualizado diariamente."),
            "eyebrow": "Futebol", "aria": "Todos os rankings",
@@ -88,7 +91,7 @@ TX = {
     "pl": {"name": "Polski", "all": "← Wszystkie rankingi", "open": "Otwórz interaktywny ranking", "top": "Top {n}", "col_name": "Nazwa",
            "country": "Kraj", "region": "Region", "elo": "Elo", "matches": "Mecze", "about_h": "O rankingu Elo piłki nożnej",
            "how_h": "Jak działa punktacja", "all_label": "Wszystkie rankingi", "home": "strona główna",
-           "nouns": ("klubów", "reprezentacji"), "title": "Ranking Elo – {short}", "full_title": "{title}: punktacja Elo w piłce nożnej od {first}",
+           "nouns": ("klubów", "reprezentacji"), "title": "Ranking Elo – {short}", "full_title": "{title}: punktacja Elo od {first}",
            "desc": "Ranking Elo – {short}: punktacja Elo {n} {noun} od {first} do {last}, ocenionych meczów: {m}. Obecni liderzy: {top}. Aktualizowany codziennie.",
            "about": ("To ranking Elo piłki nożnej dla {n} {noun}, liczony mecz po meczu od {first} do {last} ({m} meczów). "
                      "Każdy zespół ma jedną ciągłą punktację Elo, więc wartości można porównywać między sezonami. Ranking jest przeliczany z pełnej "
@@ -97,7 +100,7 @@ TX = {
            "how": ("Każdy zespół zaczyna z 1600 punktami. Po każdym meczu: R ← R + K × (S − E), gdzie E = 1 / (1 + 10^((R<sub>rywala</sub> − R) / 400)), "
                    "a S wynosi 1 za zwycięstwo, 0,5 za remis i 0 za porażkę. Mecz rozstrzygnięty w rzutach karnych liczy się jako zwycięstwo dla zwycięzcy serii. "
                    "Współczynniki K według fazy: {ks}."),
-           "shell_title": "Ranking Elo piłki nożnej – punktacja Elo klubów i reprezentacji",
+           "shell_title": "Ranking Elo piłki nożnej – kluby i reprezentacje",
            "shell_desc": ("Ranking Elo piłki nożnej: mistrzostwa świata, mistrzostwa Europy, Copa América, Liga Narodów, Liga Mistrzów, Liga Europy, Liga Konferencji, "
                           "Premier League, La Liga, Serie A, Bundesliga i Ligue 1. Jedna skala Elo, wszystkie mecze od początku, aktualizacja codziennie."),
            "eyebrow": "Piłka nożna", "aria": "Wszystkie rankingi",
@@ -171,8 +174,8 @@ def page(key, d, lang="en"):
     ks = ", ".join(f"{e(p['label'])} {p['k']}" for p in d["phases"].values())
     if lang == "en":
         desc = describe(d, key)
-        title = f"{d['title']} ELO ranking"
-        full_title = EN_TITLES[key].format(first=first) if key in EN_TITLES else f"{title} – football ELO ratings since {first}"
+        title = f"{PAREN.sub('', d['title']).strip()} ELO ranking"                 # no "(First Division 1888–1992)" in titles: they get cut by Google
+        full_title = EN_TITLES[key].format(first=first) if key in EN_TITLES else f"{title} – football ELO since {first}"
         noun = "national teams" if key in NATIONS else "clubs"
         nav_names = {k: s.replace("-", " ").title() for k, s in SLUGS.items()}
         about = (f"This is a football ELO ranking of {n} {noun}, rated match by match from {e(first)} to {e(last)} ({m} matches). "
@@ -184,7 +187,7 @@ def page(key, d, lang="en"):
                f"K-factors by stage: {ks}.")
         open_href, css = f"../#{key}", "../style.css"
     else:
-        short = SHORT[lang][key]
+        short = TITLE_SHORT.get(lang, {}).get(key) or PAREN.sub("", SHORT[lang][key]).strip()
         noun = t["nouns"][1 if key in NATIONS else 0]
         title = t["title"].format(short=short)
         full_title = t["full_title"].format(title=title, first=first)
