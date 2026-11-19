@@ -166,7 +166,7 @@ table.seo td{{padding:6px 8px;border-bottom:1px solid var(--rule)}}.open{{displa
 """
 
 
-def page(key, d, lang="en"):
+def page(key, d, lang="en", team_links=None):
     t = TX[lang]
     url = url_of(key, lang)
     first, last = span(d)
@@ -199,8 +199,10 @@ def page(key, d, lang="en"):
         open_href, css = f"../#{key}", "../../style.css"       # the app of that language is es/index.html etc.
     slugs = SLUGS_BY[lang]
     switch = " · ".join(f'<a href="{url_of(key, l)}" hreflang="{l}" lang="{l}">{TX[l]["name"]}</a>' for l in LANGS if l != lang)
+    tl = team_links or {}
+    name_cell = lambda n: f'<a href="{tl[n]}">{e(n)}</a>' if n in tl else e(n)          # teams with a page of their own are linked
     rows = "".join(
-        f"<tr><td>{i}</td><td>{e(x['name'])}</td><td>{e(x.get('country') or x.get('label') or '')}</td>"
+        f"<tr><td>{i}</td><td>{name_cell(x['name'])}</td><td>{e(x.get('country') or x.get('label') or '')}</td>"
         f"<td>{x['elo']}</td><td>{x['matches']}</td></tr>" for i, x in enumerate(d["teams"][:TOP], 1))
     nav = " · ".join(f'<a href="{slugs[k]}.html">{e(nav_names[k])}</a>' for k in slugs if k != key)
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": title, "url": url, "inLanguage": lang,
@@ -269,9 +271,9 @@ def shell(index_html, lang):
     return h
 
 
-def sitemap():
+def sitemap(extra=()):
     day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    urls = [home_url(l) for l in LANGS] + [url_of(k, l) for l in LANGS for k in SLUGS]
+    urls = [home_url(l) for l in LANGS] + [url_of(k, l) for l in LANGS for k in SLUGS] + list(extra)
     body = "".join(f"<url><loc>{u}</loc><lastmod>{day}</lastmod></url>" for u in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>\n'
 
@@ -280,15 +282,17 @@ def generate(site):
     site = Path(site)
     for l in LANGS:
         (site / ("rankings" if l == "en" else f"{l}/rankings")).mkdir(parents=True, exist_ok=True)
-    for key in SLUGS:
-        f = site / "data" / f"{key}.json"
-        if f.exists():
-            d = json.loads(f.read_text(encoding="utf-8"))
-            for l in LANGS:
-                out = site / "rankings" if l == "en" else site / l / "rankings"
-                (out / f"{SLUGS_BY[l][key]}.html").write_text(page(key, d, l), encoding="utf-8")
+    datas = {key: json.loads((site / "data" / f"{key}.json").read_text(encoding="utf-8")) for key in SLUGS if (site / "data" / f"{key}.json").exists()}
+    links, team_urls = ({l: {} for l in LANGS}, [])
+    if datas:
+        import teams                                         # pages of single teams (teams.py imports this module)
+        links, team_urls = teams.generate(site, datas)
+    for key, d in datas.items():
+        for l in LANGS:
+            out = site / "rankings" if l == "en" else site / l / "rankings"
+            (out / f"{SLUGS_BY[l][key]}.html").write_text(page(key, d, l, links[l]), encoding="utf-8")
     index = site / "index.html"
     if index.exists():
         for l in LANGS[1:]:
             (site / l / "index.html").write_text(shell(index.read_text(encoding="utf-8"), l), encoding="utf-8")
-    (site / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
+    (site / "sitemap.xml").write_text(sitemap(team_urls), encoding="utf-8")

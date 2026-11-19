@@ -272,6 +272,15 @@ Cztery wersje korzystają z **tego samego** `app.js` i tych samych danych, więc
 **Dodajesz nowy ranking?** Dopisz jego wpis w `I18N.comps` (dla es, pt, pl) w `site/i18n.js` oraz w `SLUGS_BY` i `SHORT` w `scripts/seo.py`. Nowe państwo w reprezentacjach: dopisz je do `I18N.country` (bez tego pokaże się angielska nazwa).
 **Dodajesz nowy język?** Dopisz go do `I18N.langs` i każdego wpisu w `i18n.js`, do `LANGS`, `TX`, `SHORT`, `SLUGS_BY` w `seo.py`, do przełącznika w `index.html` i do `sed` w `update.yml`.
 
+## 10c. Strony pojedynczych zespołów (SEO)
+
+`scripts/teams.py` (wywoływany z `seo.generate`) generuje przy każdym buildzie statyczne strony klubów i reprezentacji:
+`teams/<slug>.html`, `es/equipos/`, `pt/equipes/`, `pl/druzyny/` (ok. 240 zespołów x 4 języki, git-ignorowane jak reszta wygenerowanych stron).
+Dostają je: 30 najlepszych zespołów każdej ligi, 40 najlepszych klubów rankingu UEFA i 50 najlepszych reprezentacji (liczby w `SELECT`).
+Strona ma aktualny Elo i miejsce, rekord wszech czasów, bilans, wykres (inline SVG), 10 ostatnich meczów, tabelę sezon po sezonie, miejsce
+w innych rankingach i sąsiadów z tabeli. Nazwy zespołów w tabelach rankingów statycznych linkują do tych stron, a wszystkie adresy są w `sitemap.xml`.
+Chcesz dodać więcej zespołów? Zwiększ liczby w `SELECT`. Test: `tests/test_teams.py`.
+
 ## 11. Co w razie wątpliwości
 
 Opisz problem w Claude Code razem z linkiem do czerwonego przebiegu lub issue – wszystkie skrypty mają testy
