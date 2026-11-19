@@ -6,23 +6,18 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Live pages
+      - name: Live ranking pages
         run: |
           B=https://enterdesign.github.io/footballelo
-          for p in "" es/ pt/ pl/ rankings/ rankings/premier-league/ rankings/champions-league/ rankings/world-cup/ es/rankings/ ; do
-            code=$(curl -s -o /tmp/p.html -w '%{http_code}' "$B/$p")
-            echo "== /$p  HTTP $code  title: $(grep -o '<title>[^<]*' /tmp/p.html | head -1 | sed 's/<title>//')"
+          curl -s $B/sitemap.xml -o /tmp/s.xml
+          echo "sitemap urls: $(grep -o '<loc>' /tmp/s.xml | wc -l)"
+          bad=0
+          for u in $(grep -o '<loc>[^<]*' /tmp/s.xml | sed 's/<loc>//'); do
+            code=$(curl -s -o /tmp/p.html -w '%{http_code}' "$u")
+            t=$(grep -o '<title>[^<]*' /tmp/p.html | head -1 | sed 's/<title>//')
+            c=$(grep -c 'rel="canonical"' /tmp/p.html)
+            [ "$code" != 200 ] && bad=$((bad+1))
+            echo "$code | ${#t} | canon=$c | ${u#$B} | $t"
           done
-          echo "== sitemap"
-          curl -s -o /tmp/s.xml -w 'HTTP %{http_code}\n' $B/sitemap.xml
-          echo "urls: $(grep -c '<loc>' /tmp/s.xml)"; head -c 400 /tmp/s.xml; echo
-          echo "== robots"
-          curl -s -w '\nHTTP %{http_code}\n' $B/robots.txt | head -8
-      - name: Google site query
-        run: |
-          for q in "site:enterdesign.github.io/footballelo" ; do
-            echo "== $q"
-            curl -s -m 20 -A 'Mozilla/5.0' "https://www.google.com/search?q=$(python3 -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1]))" "$q")&num=20&hl=en" -o /tmp/g.html -w 'HTTP %{http_code}\n'
-            grep -o 'enterdesign.github.io/footballelo[^"&<]*' /tmp/g.html | sort -u | head -30
-            grep -o -i 'unusual traffic\|enablejs\|consent.google' /tmp/g.html | sort -u
-          done
+          echo "non-200: $bad"
+          echo "robots.txt: $(curl -s -o /dev/null -w '%{http_code}' $B/robots.txt)"
