@@ -6,18 +6,16 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Live ranking pages
+      - name: Sitemap as a crawler sees it
         run: |
-          B=https://enterdesign.github.io/footballelo
-          curl -s $B/sitemap.xml -o /tmp/s.xml
-          echo "sitemap urls: $(grep -o '<loc>' /tmp/s.xml | wc -l)"
-          bad=0
-          for u in $(grep -o '<loc>[^<]*' /tmp/s.xml | sed 's/<loc>//'); do
-            code=$(curl -s -o /tmp/p.html -w '%{http_code}' "$u")
-            t=$(grep -o '<title>[^<]*' /tmp/p.html | head -1 | sed 's/<title>//')
-            c=$(grep -c 'rel="canonical"' /tmp/p.html)
-            [ "$code" != 200 ] && bad=$((bad+1))
-            echo "$code | ${#t} | canon=$c | ${u#$B} | $t"
-          done
-          echo "non-200: $bad"
-          echo "robots.txt: $(curl -s -o /dev/null -w '%{http_code}' $B/robots.txt)"
+          U=https://enterdesign.github.io/footballelo/sitemap.xml
+          GB='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+          echo "--- GET with Googlebot UA, following redirects"
+          curl -sSL -A "$GB" -D - -o /tmp/g.xml -w 'final=%{url_effective} http=%{http_code} size=%{size_download} redirects=%{num_redirects} time=%{time_total}\n' $U | grep -i -E '^(HTTP|content-type|content-length|content-encoding|cache-control|last-modified|location|x-robots|final)'
+          echo "--- HEAD"
+          curl -sSI -A "$GB" $U | grep -i -E '^(HTTP|content-type|content-length|x-robots)'
+          echo "--- same bytes as plain GET: $(curl -s $U | md5sum | cut -c1-8) vs $(md5sum < /tmp/g.xml | cut -c1-8)"
+          echo "--- xmllint"; sudo apt-get -qq install -y libxml2-utils >/dev/null 2>&1; xmllint --noout /tmp/g.xml && echo valid-xml
+          echo "--- head of file (hex)"; head -c 60 /tmp/g.xml | xxd | head -4
+          echo "--- host variants"
+          for h in http://enterdesign.github.io/footballelo/sitemap.xml https://enterdesign.github.io/footballelo/sitemap.xml/ https://enterdesign.github.io/sitemap.xml; do echo "$h -> $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' $h)"; done
