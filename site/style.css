@@ -41,8 +41,8 @@ button,select,input{font:inherit;color:inherit}
 /* the board on the home page: top of five rankings as a scoreboard */
 #home-board{position:relative;z-index:2;max-width:860px;margin:-56px auto 0;padding:0 16px}
 .board{background:var(--panel);border:1px solid var(--bezel);box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px var(--bezel);padding:20px 24px 12px}
-.chan{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:8px}
-.chan button{background:transparent;border:1px solid var(--bezel);padding:3px 13px;font:600 18px var(--display);color:var(--mute);cursor:pointer}
+.chan{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;margin-bottom:8px}
+.chan button{background:transparent;border:1px solid var(--bezel);padding:4px 4px;font:600 17px var(--display);color:var(--mute);cursor:pointer;text-align:center;line-height:1.15}
 .chan button:hover{border-color:var(--led);color:var(--ink)}
 .chan button[aria-pressed="true"]{background:var(--led);border-color:var(--led);color:var(--on-accent)}
 .brow{display:grid;grid-template-columns:34px 46px minmax(0,1fr) auto;gap:14px;align-items:center;padding:10px 0;border-top:1px solid var(--rule);cursor:pointer}
@@ -154,6 +154,7 @@ footer{max-width:960px;margin:0 auto;padding:6px 16px 44px;text-align:center}
   .match{grid-template-columns:32px minmax(0,1fr) 78px minmax(0,1fr) 32px}.match .ph,.match .d{display:none}
   .hero-stats>span>div,.hero-stats>div{padding:10px 16px 14px}.stat-val{font-size:32px}
   .brow{grid-template-columns:28px 40px minmax(0,1fr) auto;gap:10px}.brow .nm{font-size:22px}.brow .e{font-size:34px}.brow .r{font-size:22px}
+  .chan{grid-auto-flow:row;grid-template-columns:repeat(3,minmax(0,1fr))}
   .board{padding:16px 14px 10px}.section{font-size:26px;gap:12px}.home-card{min-height:230px}
   #lang{gap:10px;font-size:17px}
 }

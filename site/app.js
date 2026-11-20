@@ -259,7 +259,7 @@ function countUp(root) {
 function drawBoard(animate) {
   const keys = BOARD_KEYS.filter(k => cache[k]); if (!keys.length) return;
   if (!keys.includes(boardKey)) boardKey = keys[0];
-  const c = COMPS[boardKey], d = cache[boardKey], name = k => esc(COMPS[k].short || COMPS[k].eyebrow);
+  const c = COMPS[boardKey], d = cache[boardKey], name = k => esc((COMPS[k].short || COMPS[k].eyebrow).replace(/^(UEFA|FIFA)\s+/, ""));
   $("home-board").innerHTML = `<div class="board"><div class="chan" role="group">${keys.map(k => `<button type="button" data-b="${k}" aria-pressed="${k === boardKey}">${name(k)}</button>`).join("")}</div>
     ${topTeams(d, 5).map((t, i) => `<div class="brow" data-go="${boardKey}/stats/${encodeURIComponent(t.name)}">${led(i + 1, "r")}${iconIn(c, t)}<span class="nm">${esc(tnc(t, c))}</span>${led(t.elo, "e")}</div>`).join("")}
     <div class="bfoot"><span>${d.matches.length.toLocaleString(LANG)} ${L("matches_n")}</span><a href="#${boardKey}">${L("board_open")} ${name(boardKey)}</a></div></div>`;
