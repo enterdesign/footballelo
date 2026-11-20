@@ -157,11 +157,13 @@ def head(lang, title, desc, url, alts, css, ld):
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <style>main{{max-width:960px;margin:0 auto;padding:22px 16px 60px}}table.seo{{width:100%;border-collapse:collapse;font:400 15px var(--body)}}
-table.seo th{{text-align:left;font:600 14px var(--display);color:var(--mute);border-bottom:1px solid var(--ink);padding:6px 8px}}
-table.seo td{{padding:6px 8px;border-bottom:1px solid var(--rule)}}.open{{display:inline-block;margin:12px 0 18px;padding:8px 16px;background:var(--ink);color:#fff;font:600 16px var(--display)}}</style>
+table.seo th{{text-align:left;font:600 15px var(--display);color:var(--mute);border-bottom:1px solid var(--rule2);padding:6px 8px}}
+table.seo td{{padding:6px 8px;border-bottom:1px solid var(--rule)}}.open{{display:inline-block;margin:12px 0 18px;padding:8px 16px;background:var(--accent);color:var(--on-accent,#fff);font:700 18px var(--display)}}</style>
 </head>
 """
 
@@ -255,6 +257,7 @@ def shell(index_html, lang):
         (r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{home_url(lang)}">'),
         (r'"inLanguage":"en"', f'"inLanguage":"{lang}"'),
         (r'href="style.css"', 'href="../style.css"'),
+        (r'href="style.classic.css"', 'href="../style.classic.css"'),
         (r"url\('img/home.jpg'\)", "url('../img/home.jpg')"),
         (r'<div class="eyebrow">Football</div>', f'<div class="eyebrow">{e(t["eyebrow"])}</div>'),
         (r'(<div class="subtitle">)World Cup[^<]*(</div>)', lambda m: m.group(1) + e(subtitle) + m.group(2)),

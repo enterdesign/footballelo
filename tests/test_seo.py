@@ -84,6 +84,15 @@ class Seo(unittest.TestCase):
         for marker in ("github_pat_", "ghp_", "ghs_"):
             self.assertNotIn(marker, page)
 
+    def test_both_looks_are_linked_and_language_shells_point_to_them(self):
+        index = (Path(__file__).resolve().parent.parent / "site" / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="style.css" id="css-new"', index)
+        self.assertIn('href="style.classic.css" id="css-classic" media="not all"', index)
+        for lang in seo.LANGS[1:]:
+            h = seo.shell(index, lang)
+            self.assertIn('href="../style.css" id="css-new"', h)
+            self.assertIn('href="../style.classic.css" id="css-classic"', h)
+
 
 if __name__ == "__main__":
     unittest.main()
