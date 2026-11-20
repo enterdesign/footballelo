@@ -281,6 +281,18 @@ Strona ma aktualny Elo i miejsce, rekord wszech czasów, bilans, wykres (inline 
 w innych rankingach i sąsiadów z tabeli. Nazwy zespołów w tabelach rankingów statycznych linkują do tych stron, a wszystkie adresy są w `sitemap.xml`.
 Chcesz dodać więcej zespołów? Zwiększ liczby w `SELECT`. Test: `tests/test_teams.py`.
 
+## 10d. Dwa wyglądy strony: tablica wyników (domyślny) i klasyczny
+
+`site/style.css` to wygląd „tablica wyników” (ciemne tło, bursztynowe cyfry LED w czcionce Doto, wszystko wyśrodkowane na stronie głównej,
+kafle rankingów podświetlają się po najechaniu). Poprzedni wygląd „gazetowy” jest w `site/style.classic.css` i działa na tym samym kodzie
+(`app.js`, ten sam HTML): nowe elementy (tablica liderów na górze, cyfry LED, lider w kaflu) są w klasycznym wyglądzie ukryte.
+- Przełącznik: przycisk w stopce („Classic look” / „Scoreboard look”), wybór zapisuje się w przeglądarce (`localStorage`, klucz `elo.look`).
+  Wejście z `?look=classic` w adresie też włącza klasyczny wygląd.
+- Powrót do klasycznego wyglądu dla wszystkich: w `site/index.html` zamień kolejność dwóch `<link>` (albo skopiuj `style.classic.css` jako `style.css`)
+  i usuń `<div id="home-board">`; najprościej `git revert` scalenia PR z nowym wyglądem.
+- Kolory wykresów (Chart.js) czytane są ze zmiennych CSS `--chart-*`, więc oba wyglądy mają własne.
+- Statyczne strony SEO (rankingi, zespoły) używają zawsze nowego wyglądu (`style.css`).
+
 ## 11. Co w razie wątpliwości
 
 Opisz problem w Claude Code razem z linkiem do czerwonego przebiegu lub issue – wszystkie skrypty mają testy
