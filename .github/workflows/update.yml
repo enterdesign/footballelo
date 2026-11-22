@@ -2,10 +2,12 @@ name: Update & deploy
 
 on:
   schedule:
-    # every 3 hours (UTC 00:17, 03:17, ...). GitHub starts scheduled runs late under load - since 31 Oct by 5-6 hours -
-    # and sometimes drops them, so several runs a day make sure one lands in the morning, after the sources
-    # publish yesterday's results (about 00:20 UTC)
-    - cron: "17 */3 * * *"
+    # GitHub starts scheduled runs late under load and drops most of them: the 3-hourly schedule below produced only 3-4 runs a day
+    # (e.g. 21 Nov: 10:58, 19:12, then 01:16), so Saturday's Bundesliga results came in 4-8 hours late. More schedules = more chances.
+    - cron: "17 */3 * * *"               # every 3 hours (the morning run picks up yesterday's results, published about 00:20 UTC)
+    - cron: "41 * * * *"                 # hourly
+    - cron: "7,27,47 13-23 * * 5,6,0"    # match days (Fri-Sun afternoon and evening, UTC): every 20 minutes
+    - cron: "7,27,47 17-23 * * 1-4"      # weekday evenings (cups, Ekstraklasa, Premier League): every 20 minutes
   workflow_dispatch:            # manual "Run workflow" button
   push:
     branches: [main]

@@ -248,6 +248,11 @@ GitHub uruchamia zaplanowane przebiegi z opóźnieniem, a przy dużym obciążen
 
 ---
 
+**Mecze wchodzą z opóźnieniem kilku godzin (np. sobotnie mecze Bundesligi dopiero wieczorem).** To nie błąd parsera: GitHub opóźnia i gubi
+zaplanowane uruchomienia (przy harmonogramie co 3 godziny wychodziły 3-4 uruchomienia na dobę). Dlatego w `update.yml` jest kilka harmonogramów:
+co 3 godziny, co godzinę oraz co 20 minut w piątek-niedzielę po południu i wieczorem oraz w wieczory tygodnia (UTC). Aktualizację można też wymusić
+ręcznie (strona `update.html` albo „Run workflow”). Sprawdź daty uruchomień: `gh api 'repos/enterdesign/footballelo/actions/workflows/update.yml/runs?per_page=20' --jq '.workflow_runs[] | "\(.created_at) \(.event)"'`.
+
 ## 10. Lista „Recently added matches” na stronie głównej
 
 Na dole strony głównej jest rozwijana lista meczów, które każdy przebieg dodał w porównaniu z poprzednim (ostatnie 30 dni, najwyżej 400 meczów).
