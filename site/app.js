@@ -156,12 +156,18 @@ async function recentHtml() {
   let batches = [];
   try { batches = (await (await fetch(`${ROOT}data/recent.json?v=${encodeURIComponent(window.buildId)}`)).json()).batches || []; } catch (e) { return ""; }
   const n = batches.reduce((a, b) => a + b.matches.length, 0);
-  const body = batches.slice(0, 12).map(b => {
-    const by = new Map();
-    b.matches.forEach(m => { if (COMPS[m.c]) by.set(m.c, [...(by.get(m.c) || []), m]); });
-    return `<h4>${fmtTime(b.at)} · ${b.matches.length} ${matchWord(b.matches.length)}</h4>` + [...by].map(([c, ms]) =>
-      `<div class="rc"><a href="#${c}/history">${esc(COMPS[c].short || COMPS[c].eyebrow)}</a></div>` + ms.map(m =>
-        `<div class="rm"><span>${esc(m.a)}</span><b>${esc(m.s)}</b><span>${esc(m.b)}</span><i>${esc(m.d || m.p)}</i></div>`).join("")).join("");
+  // grouped by the day the matches were added (viewer's time), then by competition: a match day that arrived in several builds stays together
+  const loc = I18N.locale[LANG], days = new Map();
+  batches.forEach(b => {
+    const at = new Date(b.at), day = at.toLocaleDateString(loc, {day: "numeric", month: "short", year: "numeric"}), time = at.toLocaleTimeString(loc, {hour: "2-digit", minute: "2-digit"});
+    const d = days.get(day) || new Map(); days.set(day, d);
+    b.matches.forEach(m => { if (COMPS[m.c]) d.set(m.c, [...(d.get(m.c) || []), {...m, t: time}]); });
+  });
+  const body = [...days].slice(0, 10).map(([day, by]) => {
+    const n = [...by.values()].reduce((a, ms) => a + ms.length, 0);
+    return `<h4>${esc(day)} · ${n} ${matchWord(n)}</h4>` + [...by].map(([c, ms]) =>
+      `<div class="rc"><a href="#${c}/history">${esc(COMPS[c].short || COMPS[c].eyebrow)}</a> (${ms.length})</div>` + ms.map(m =>
+        `<div class="rm"><span>${esc(m.a)}</span><b>${esc(m.s)}</b><span>${esc(m.b)}</span><i>${esc(m.d || m.t)}</i></div>`).join("")).join("");
   }).join("");
   return `<details class="recent"><summary>${L("recent")}${n ? ` (${n})` : ""}</summary>${body || `<p class="sub">${L("recent_none")}</p>`}</details>`;
 }
