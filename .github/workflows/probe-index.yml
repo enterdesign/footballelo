@@ -2,22 +2,20 @@ name: probe-index
 on:
   push:
     branches: [probe-seriea]
+    paths: ['.github/workflows/probe-index.yml']
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Team pages and sitemap
+      - name: Live recent.json
         run: |
           B=https://enterdesign.github.io/footballelo
-          curl -s $B/sitemap.xml -o /tmp/s.xml
-          echo "sitemap urls: $(grep -o '<loc>' /tmp/s.xml | wc -l)"
-          for p in teams/real-madrid.html teams/brazil.html es/equipos/brazil.html pt/equipes/real-madrid.html pl/druzyny/germany.html teams/arsenal.html; do
-            code=$(curl -s -o /tmp/p.html -w '%{http_code}' "$B/$p")
-            echo "$code | $p | $(grep -o '<title>[^<]*' /tmp/p.html | sed 's/<title>//')"
-          done
-          echo "ranking page links to teams: $(curl -s $B/rankings/premier-league.html | grep -c 'href="../teams/')"
-          bad=0; n=0
-          for u in $(grep -o '<loc>[^<]*' /tmp/s.xml | sed 's/<loc>//' | grep -E '/(teams|equipos|equipes|druzyny)/'); do
-            c=$(curl -s -o /dev/null -w '%{http_code}' "$u"); n=$((n+1)); [ "$c" != 200 ] && { bad=$((bad+1)); echo "non-200 $c $u"; }
-          done
-          echo "team urls checked: $n, non-200: $bad"
+          curl -s "$B/data/meta.json" ; echo
+          curl -s "$B/data/recent.json" -o /tmp/r.json -w 'recent.json HTTP %{http_code} size %{size_download}\n'
+          python3 - <<'PY'
+          import json
+          r = json.load(open("/tmp/r.json"))
+          for b in r["batches"][:4]:
+              bl = [(m["a"], m["s"], m["b"]) for m in b["matches"] if m["c"] == "bundesliga"]
+              print(b["at"], len(b["matches"]), "bundesliga:", bl)
+          PY
