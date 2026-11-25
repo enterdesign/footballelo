@@ -286,17 +286,20 @@ Strona ma aktualny Elo i miejsce, rekord wszech czasów, bilans, wykres (inline 
 w innych rankingach i sąsiadów z tabeli. Nazwy zespołów w tabelach rankingów statycznych linkują do tych stron, a wszystkie adresy są w `sitemap.xml`.
 Chcesz dodać więcej zespołów? Zwiększ liczby w `SELECT`. Test: `tests/test_teams.py`.
 
-## 10d. Dwa wyglądy strony: tablica wyników (domyślny) i klasyczny
+## 10d. Dwa wyglądy strony: jasny „Apple” (domyślny) i klasyczny
 
-`site/style.css` to wygląd „tablica wyników” (ciemne tło, bursztynowe cyfry LED w czcionce Doto, wszystko wyśrodkowane na stronie głównej,
-kafle rankingów podświetlają się po najechaniu). Poprzedni wygląd „gazetowy” jest w `site/style.classic.css` i działa na tym samym kodzie
-(`app.js`, ten sam HTML): nowe elementy (tablica liderów na górze, cyfry LED, lider w kaflu) są w klasycznym wyglądzie ukryte.
-- Przełącznik: przycisk w stopce („Classic look” / „Scoreboard look”), wybór zapisuje się w przeglądarce (`localStorage`, klucz `elo.look`).
-  Wejście z `?look=classic` w adresie też włącza klasyczny wygląd.
-- Powrót do klasycznego wyglądu dla wszystkich: w `site/index.html` zamień kolejność dwóch `<link>` (albo skopiuj `style.classic.css` jako `style.css`)
-  i usuń `<div id="home-board">`; najprościej `git revert` scalenia PR z nowym wyglądem.
+`site/style.css` to wygląd w stylu Apple: jasne tło, systemowa czcionka, jeden niebieski akcent, białe karty, półprzezroczysty pasek u góry, ciemny
+tryb automatycznie wg systemu, sprężynowe animacje (wyłączane przez `prefers-reduced-motion`). Pasek w tabeli rankingu pokazuje odległość od 1600
+(niebieski w prawo, pomarańczowy w lewo). Ikony to oficjalne Phosphor (inline sprite na początku `site/index.html`, `<use href="#i-nazwa">`).
+Poprzedni wygląd „gazetowy” jest w `site/style.classic.css` i działa na tym samym kodzie (`app.js`, ten sam HTML): nowe elementy
+(wyszukiwarka, przełącznik grup, ikony, paski, marka u góry) są w klasycznym wyglądzie ukryte.
+- Przełącznik: przycisk w stopce („Classic look” / „Aspecto clásico”...), wybór zapisuje się w przeglądarce (`localStorage`, klucz `elo.look`).
+  Wejście z `?look=classic` w adresie też włącza klasyczny wygląd (i ładuje czcionki Barlow, których nowy wygląd nie potrzebuje).
+- Powrót do klasycznego wyglądu dla wszystkich: w `site/index.html` zamień kolejność dwóch `<link>` (albo skopiuj `style.classic.css` jako `style.css`);
+  najprościej `git revert` scalenia PR z nowym wyglądem. Wcześniejszy wygląd „tablica wyników” (LED) jest tylko w historii Gita.
 - Kolory wykresów (Chart.js) czytane są ze zmiennych CSS `--chart-*`, więc oba wyglądy mają własne.
-- Statyczne strony SEO (rankingi, zespoły) używają zawsze nowego wyglądu (`style.css`).
+- Statyczne strony SEO (rankingi, zespoły) używają zawsze nowego wyglądu (`style.css`) i czcionki systemowej.
+- Dodanie ikony: weź plik z `@phosphor-icons/core` (npm), wklej zawartość `<svg>` jako `<symbol id="i-nazwa" viewBox="0 0 256 256">` do sprite'a.
 
 ## 11. Co w razie wątpliwości
 

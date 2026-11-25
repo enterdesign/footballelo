@@ -106,8 +106,8 @@ footer{max-width:960px;margin:0 auto;padding:0 16px 40px;text-align:right}
 #update-link{font:16px var(--body);color:transparent;margin-right:6px}#update-link:hover{color:var(--mute)}
 @media(max-width:640px){.title{font-size:46px}.row{grid-template-columns:26px 38px minmax(0,1fr) 58px 66px;gap:6px}.ico{width:38px;height:30px}.row .mcount{display:none}
 .match{grid-template-columns:30px minmax(0,1fr) 74px minmax(0,1fr) 30px}.match .ph,.match .d{display:none}.hero-stats{gap:20px}}
-/* The new look adds these; the classic look does not show them */
-.lead,#home-board,.led i{display:none}
-.led{display:inline;font:inherit}.led b{font-weight:inherit;color:inherit;text-shadow:none}
+/* The new look adds these elements; the classic look does not show them */
+.lead,#brand,#home-search,#home-seg,.dv,.nm2,.legend,.bar-note,.ic{display:none!important}
+.grp{display:contents}.tbl{display:block}#tabs-inner{display:contents}
 :root{--chart-tick:#6b675e;--chart-grid:#e3ded0;--chart-a:#b3261e;--chart-b:#1f4e79;--chart-legend:#4d4a43}
 #look{font:600 13px var(--display);color:var(--mute);background:none;border:1px solid var(--rule2);padding:3px 10px;cursor:pointer}#look:hover{color:var(--accent);border-color:var(--accent)}
