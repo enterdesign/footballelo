@@ -66,12 +66,13 @@ if (LANG !== "en") {
 // Display name of a team: national teams get their name in the language of the page; routes and search keep the English one.
 const tn = t => (LANG !== "en" && C && C.flags ? I18N.country[LANG][t.name] || t.name : t.name);
 const TABS = ["ranking", "history", "stats", "compare", "about"];
+const TAB_ICON = {ranking: "list-numbers", history: "clock-counter-clockwise", stats: "chart-line-up", compare: "arrows-left-right", about: "info"};
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
 const cache = {};
 const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-// LED digits: the number with a dim ghost of the unlit dots behind it (the classic look shows plain text)
-const led = (v, cls = "") => { const s = String(v); return `<span class="led ${cls}"><i aria-hidden="true">${s.replace(/[0-9]/g, "8")}</i><b data-v="${esc(s)}">${esc(s)}</b></span>`; };
+// Phosphor icons come from the inline sprite in index.html (the classic look hides them)
+const ic = name => `<svg class="ic" aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const fmtTime = iso => new Date(iso).toLocaleString(I18N.locale[LANG], {day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"});
 let D, C, T, route = {comp: "", tab: "ranking", team: ""};
 
@@ -146,8 +147,8 @@ async function render() {
   $("eyebrow").textContent = C.eyebrow;
   $("subtitle").textContent = `${D.periods[0]} – ${D.last}` + (window.meta && window.meta.synced ? ` · ${L("data_checked")} ${fmtTime(window.meta.synced)}` : "");
   $("stats").innerHTML = [[D.periods.length, C.period], [D.matches.length.toLocaleString(LANG), L("matches_label")], [D.teams.length, C.noun]]
-    .map(([v, l]) => `<div><div class="stat-val">${led(v)}</div><div class="stat-label">${l}</div></div>`).join("");
-  $("tabs").innerHTML = TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${L("tab_" + t)}</a>`).join("");
+    .map(([v, l]) => `<div><div class="stat-val">${v}</div><div class="stat-label">${l}</div></div>`).join("");
+  $("tabs").innerHTML = `<div id="tabs-inner">${TABS.map(t => `<a class="tab${t === route.tab ? " on" : ""}" href="#${route.comp}/${t}">${ic(TAB_ICON[t])}<span>${L("tab_" + t)}</span></a>`).join("")}</div>`;
   document.title = L("doc_title", C.eyebrow);
   ({ranking, history, stats, compare, about})[route.tab]();
 }
@@ -217,20 +218,35 @@ const tile = (k, group) => {
     <a class="home-card" href="#${k}" style="--c1:${c.c1};--c2:${c.c2}">${art(d, c)}<div class="eyebrow">${c.short || c.eyebrow}</div>
       <h2>${L("elo_ranking")}</h2><div class="subtitle">${d.periods.length} ${c.periodN || c.period.toLowerCase()} · ${d.matches.length.toLocaleString(LANG)} ${L("matches_n")} · ${d.teams.length} ${c.nounN || c.noun.toLowerCase()}</div>
       <div class="subtitle">${L("through")} ${esc(d.last)}${c.live ? " · " + esc(c.live) : ""}</div>${leadHtml(d, c)}</a>
-    <button class="star" data-a="star" aria-pressed="${fav}" title="${L(fav ? "fav_remove" : "fav_add")}" aria-label="${L(fav ? "fav_remove" : "fav_add")}">${fav ? "★" : "☆"}</button>
+    <button class="star" data-a="star" aria-pressed="${fav}" title="${L(fav ? "fav_remove" : "fav_add")}" aria-label="${L(fav ? "fav_remove" : "fav_add")}"><span class="gl">${fav ? "★" : "☆"}</span>${ic(fav ? "star-fill" : "star")}</button>
     <span class="mv"><button data-a="mv" data-d="-1" title="${L("move_up")}" aria-label="${L("move_up")}">↑</button><button data-a="mv" data-d="1" title="${L("move_down")}" aria-label="${L("move_down")}">↓</button></span></div>`;
 };
+let group = "intl";
+try { const g = localStorage.getItem("elo.group"); if (GROUPS.includes(g)) group = g; } catch (e) { /* default group */ }
+function moveThumb(seg) {                              // the segmented control's thumb slides on a spring (see --spring)
+  const on = seg && seg.querySelector('[aria-pressed="true"]'), th = seg && seg.querySelector(".thumb"); if (!on || !th || !on.offsetWidth) return;
+  th.style.width = on.offsetWidth + "px"; th.style.transform = `translateX(${on.offsetLeft}px)`;
+}
 function drawCards() {
   const fav = favKeys(), sec = (title, group, keys) => `<h3 class="section">${title}</h3><div class="cards" data-g="${group}">${keys.map(k => tile(k, group)).join("")}</div>`;
   const root = $("home-cards");
   root.className = editing ? "editing" : "";
   root.innerHTML = `<div class="layout-bar">${editing ? `<span class="hint">${L("layout_hint")}</span>` : ""}
-      <button data-a="reset"${editing ? "" : " hidden"}>${L("reset_layout")}</button><button data-a="edit" class="${editing ? "on" : ""}">${L(editing ? "done" : "customize")}</button></div>`
-    + (fav.length ? sec("★ " + L("fav_section"), "fav", fav) : "") + GROUPS.map(g => sec(L(SEC_KEY[g]), g, shown(g))).join("");
+      <button data-a="reset"${editing ? "" : " hidden"}>${L("reset_layout")}</button><button data-a="edit" class="${editing ? "on" : ""}">${L(editing ? "done" : "customize")}</button></div>
+    <div id="home-seg" class="seg" role="group"><span class="thumb"></span>${GROUPS.map(g => `<button type="button" data-seg="${g}" aria-pressed="${g === group}">${L(SEC_KEY[g])}</button>`).join("")}</div>`
+    + (fav.length ? `<section class="grp">${sec(`<span class="gl">★ </span>${ic("star-fill")} ` + L("fav_section"), "fav", fav)}</section>` : "")
+    + GROUPS.map(g => `<section class="grp" data-grp="${g}"${g === group ? "" : " data-off"}>${sec(L(SEC_KEY[g]), g, shown(g))}</section>`).join("");
+  requestAnimationFrame(() => moveThumb($("home-seg")));
 }
 function wireHome() {
   const root = $("home-cards");
   root.onclick = e => {
+    const seg = e.target.closest("button[data-seg]");
+    if (seg) {                                          // switch the visible group without redrawing, so the thumb can slide
+      group = seg.dataset.seg; try { localStorage.setItem("elo.group", group); } catch (x) { /* kept for this visit */ }
+      root.querySelectorAll("#home-seg button").forEach(b => b.setAttribute("aria-pressed", b.dataset.seg === group));
+      root.querySelectorAll(".grp[data-grp]").forEach(g => g.toggleAttribute("data-off", g.dataset.grp !== group)); moveThumb($("home-seg")); return;
+    }
     const btn = e.target.closest("button[data-a]"); if (!btn) return;
     const t = btn.closest(".tile"), a = btn.dataset.a;
     if (a === "edit") editing = !editing;
@@ -245,38 +261,47 @@ function wireHome() {
   root.ondrop = e => { const t = e.target.closest && e.target.closest(".tile"); if (dragged && t && t !== dragged && t.dataset.g === dragged.dataset.g) { e.preventDefault(); moveTile(dragged.dataset.g, dragged.dataset.k, t.dataset.k); dragged = null; drawCards(); } };
   root.ondragend = () => { dragged = null; root.querySelectorAll(".dragging,.over").forEach(x => x.classList.remove("dragging", "over")); };
 }
-// ── scoreboard on the home page: the top five of a few rankings ───────────────
-const BOARD_KEYS = ["wc", "ucl", "spain", "italy", "pl"];
-let boardKey = "ucl";
+// ── search: a club, a nation or a ranking, over every ranking that is loaded ───────────────
 const tnc = (t, c) => (LANG !== "en" && c.flags ? I18N.country[LANG][t.name] || t.name : t.name);
 const topTeams = (d, n) => d.teams.slice().sort((a, b) => b.elo - a.elo).slice(0, n);
-const iconIn = (c, t) => { const keep = C; C = c; try { return icon(t); } finally { C = keep; } };
-const leadHtml = (d, c) => { const t = topTeams(d, 1)[0]; return t ? `<div class="lead"><span>${esc(tnc(t, c))}</span>${led(t.elo)}</div>` : ""; };
-// the one moment of motion: ratings run up from the 1600 every team starts with
-function countUp(root) {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  root.querySelectorAll(".led b[data-v]").forEach((el, i) => {
-    const to = +el.dataset.v; if (!to || to < 1000) return;
-    const t0 = performance.now() + i * 70, dur = 900; el.textContent = 1600;
-    const step = now => { const p = Math.min(Math.max((now - t0) / dur, 0), 1); el.textContent = Math.round(1600 + (to - 1600) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); };
-    requestAnimationFrame(step);
-  });
-}
-function drawBoard(animate) {
-  const keys = BOARD_KEYS.filter(k => cache[k]); if (!keys.length) return;
-  if (!keys.includes(boardKey)) boardKey = keys[0];
-  const c = COMPS[boardKey], d = cache[boardKey], name = k => esc((COMPS[k].short || COMPS[k].eyebrow).replace(/^(UEFA|FIFA)\s+/, ""));
-  $("home-board").innerHTML = `<div class="board"><div class="chan" role="group">${keys.map(k => `<button type="button" data-b="${k}" aria-pressed="${k === boardKey}">${name(k)}</button>`).join("")}</div>
-    ${topTeams(d, 5).map((t, i) => `<div class="brow" data-go="${boardKey}/stats/${encodeURIComponent(t.name)}">${led(i + 1, "r")}${iconIn(c, t)}<span class="nm">${esc(tnc(t, c))}</span>${led(t.elo, "e")}</div>`).join("")}
-    <div class="bfoot"><span>${d.matches.length.toLocaleString(LANG)} ${L("matches_n")}</span><a href="#${boardKey}">${L("board_open")} ${name(boardKey)}</a></div></div>`;
-  if (animate) countUp($("home-board"));
+const iconIn = (c, t, size) => { const keep = C; C = c; try { return icon(t, size); } finally { C = keep; } };
+const leadHtml = (d, c) => { const t = topTeams(d, 1)[0]; return t ? `<div class="lead"><span>${esc(tnc(t, c))}</span><b>${t.elo}</b></div>` : ""; };
+const fold = x => String(x).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+function wireSearch() {
+  const box = $("home-search");
+  box.innerHTML = `<div class="field">${ic("magnifying-glass")}<input id="hs" type="search" placeholder="${esc(L("search_ph"))}" aria-label="${esc(L("search_ph"))}" autocomplete="off"><button class="clear" id="hsx" type="button" aria-label="${esc(L("clear"))}">${ic("x-circle-fill")}</button></div><div class="results" id="hsr" role="listbox"></div>`;
+  const q = $("hs"), res = $("hsr"); let hits = [], sel = 0;
+  const find = v => {
+    const out = [], best = new Map();
+    Object.keys(COMPS).forEach(k => { const c = COMPS[k], n = c.short || c.eyebrow; if (fold(n).includes(v) || fold(c.eyebrow).includes(v)) out.push({kind: "r", k, name: n, sub: L("elo_ranking"), val: cache[k] ? topTeams(cache[k], 1)[0].elo : ""}); });
+    Object.keys(COMPS).forEach(k => { const d = cache[k], c = COMPS[k]; if (!d) return;
+      d.teams.forEach(t => { if (![t.name, tn2(t, c), ...(t.aliases || [])].some(n => fold(n).includes(v))) return;
+        const b = best.get(t.name); if (!b || t.matches > b.t.matches) best.set(t.name, {t, k, c}); }); });
+    best.forEach(({t, k, c}) => out.push({kind: "t", k, t, c, name: tnc(t, c), sub: c.short || c.eyebrow, val: t.elo}));
+    return out.sort((a, b) => (a.kind === "r" ? 0 : 1) - (b.kind === "r" ? 0 : 1) || (fold(a.name).startsWith(v) ? 0 : 1) - (fold(b.name).startsWith(v) ? 0 : 1) || b.val - a.val).slice(0, 8);
+  };
+  const tn2 = (t, c) => tnc(t, c);
+  const draw = () => {
+    const v = fold(q.value.trim()); $("hsx").style.display = v ? "block" : "none";
+    if (!v) { res.classList.remove("on"); return; }
+    hits = find(v); sel = 0;
+    res.innerHTML = hits.length ? hits.map((h, i) => `<div class="res${i === sel ? " sel" : ""}" role="option" data-i="${i}">${h.kind === "t" ? iconIn(h.c, h.t, "sm") : `<span class="ico sm">${ic("list-numbers")}</span>`}<span class="t"><b>${esc(h.name)}</b><small>${esc(h.sub)}</small></span><span class="r">${h.val}</span></div>`).join("") : `<div class="none">${L("search_none")}</div>`;
+    res.classList.add("on");
+  };
+  const go = h => { if (h) location.hash = h.kind === "r" ? `#${h.k}` : `#${h.k}/stats/${encodeURIComponent(h.t.name)}`; };
+  q.oninput = draw; q.onfocus = draw;
+  q.onkeydown = e => {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (!hits.length) return; sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + hits.length) % hits.length; res.querySelectorAll(".res").forEach((el, i) => el.classList.toggle("sel", i === sel)); }
+    else if (e.key === "Enter") go(hits[sel]); else if (e.key === "Escape") { q.value = ""; draw(); }
+  };
+  res.onmousedown = e => { const r = e.target.closest(".res"); if (r) go(hits[+r.dataset.i]); };
+  $("hsx").onclick = () => { q.value = ""; draw(); q.focus(); };
+  q.onblur = () => setTimeout(() => res.classList.remove("on"), 120);
 }
 async function renderHome() {
   document.title = L("home_title");
   await Promise.all(Object.keys(COMPS).map(load));
-  drawCards(); wireHome(); drawBoard(true);
-  $("home-board").onclick = e => { const b = e.target.closest("[data-b]"), r = e.target.closest("[data-go]");
-    if (b) { boardKey = b.dataset.b; drawBoard(true); } else if (r) location.hash = "#" + r.dataset.go; };
+  drawCards(); wireHome(); wireSearch();
   const m = window.meta || {};
   const names = Object.values(COMPS).filter(c => c.live).map(c => esc(c.short || c.eyebrow)).join(", ");
   $("home-status").innerHTML = L("home_status", names, esc(cache.wc ? cache.wc.last : ""), esc(cache.euro ? cache.euro.last : ""), esc(cache.copa ? cache.copa.last : ""),
@@ -292,8 +317,9 @@ function ranking() {
   const groups = new Map();
   if (!eras) D.teams.forEach((t, i) => groups.set(C.group(t, i), C.groupLabel(t, i)));
   const state = {g: D.default_era || "", q: ""};
-  $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="${L("search")}" autocomplete="off"></div>
-    <div class="chips" id="chips"></div><div class="row head"><span>${L("pos")}</span><span></span><span>${C.noun1 || C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="r" id="dhead"></span><span class="r mcount">${L("games")}</span></div><div id="rows"></div>`;
+  $("view").innerHTML = `<div class="controls"><input id="q" class="input" placeholder="${L("search")}" autocomplete="off"><div class="legend"><span><i class="a"></i>${L("above_1600")}</span><span><i class="b"></i>${L("below_1600")}</span></div></div>
+    <div class="chips" id="chips"></div><div class="tbl"><div class="row head"><span>${L("pos")}</span><span></span><span>${C.noun1 || C.noun.slice(0, -1)}</span><span class="r">ELO</span><span class="dv" id="axis"></span><span class="r" id="dhead"></span><span class="r mcount">${L("games")}</span></div><div id="rows"></div></div>
+    <p class="bar-note">${L("bar_note")}</p>`;
   const draw = () => {
     const era = eras && eras.find(x => x.id === state.g);
     const v = era || {elo: D.teams.map(t => t.elo), matches: D.teams.map(t => t.matches), delta: D.delta, last: D.last};
@@ -307,13 +333,17 @@ function ranking() {
     if (era) list = list.filter(i => v.matches[i] > 0).sort((a, b) => v.elo[b] - v.elo[a] || a - b);
     const rank = new Map(list.map((i, r) => [i, r + 1]));            // position within the current leaderboard
     if (!eras && state.g) list = list.filter(i => C.group(D.teams[i], i) === state.g);
+    // the bars show the distance from 1600; the scale follows the whole leaderboard, not the search
+    const span = Math.max(100, Math.ceil(Math.max(...list.map(i => Math.abs(v.elo[i] - 1600))) / 50) * 50);
+    $("axis").innerHTML = `<span>${1600 - span}</span><span>1600</span><span>${1600 + span}</span>`;
     const q = state.q.toLowerCase();
     if (q) list = list.filter(i => [D.teams[i].name, tn(D.teams[i]), ...(D.teams[i].aliases || [])].some(n => n.toLowerCase().includes(q)));
     $("rows").innerHTML = list.map(i => { const t = D.teams[i], dl = v.delta[i], e = v.elo[i], r = rank.get(i);
       return `<div class="row" data-t="${i}"><span class="pos${r <= 3 ? " top" : ""}">${r}</span>${icon(t)}
         <div><div class="name">${esc(tn(t))}</div><div class="sub">${esc(C.sub || C.groupLabel(t, i))}${t.note ? " · " + esc(t.note) : ""}</div></div>
         <span class="elo">${e}</span>
-        <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}">${dl > 0 ? "+" + dl : dl || "–"}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
+        <span class="dv" role="img" aria-label="${e - 1600 >= 0 ? "+" : ""}${e - 1600}"><i class="${e >= 1600 ? "up" : "dn"}" style="width:${Math.min(50, Math.abs(e - 1600) / span * 50).toFixed(2)}%"></i></span>
+        <span class="delta ${dl > 0 ? "up" : dl < 0 ? "down" : "flat"}"><span class="gl">${dl > 0 ? "+" + dl : dl || "–"}</span>${dl > 0 ? ic("arrow-up") : dl < 0 ? ic("arrow-down") : ic("minus")}${dl ? `<span class="nm2">${Math.abs(dl)}</span>` : ""}</span><span class="mcount">${v.matches[i]}</span></div>`; }).join("");
   };
   $("chips").onclick = e => { if (e.target.dataset.g !== undefined) { state.g = e.target.dataset.g; draw(); } };
   $("rows").onclick = e => { const r = e.target.closest(".row"); if (r) location.hash = `#${route.comp}/stats/${encodeURIComponent(D.teams[r.dataset.t].name)}`; };
@@ -353,7 +383,7 @@ let chart;
 function drawChart(canvas, series) {
   if (chart) chart.destroy();
   if (typeof Chart === "undefined") { canvas.replaceWith(Object.assign(document.createElement("p"), {className: "sub", textContent: L("chart_failed")})); return; }
-  Chart.defaults.font.family = "Barlow, system-ui, sans-serif";
+  Chart.defaults.font.family = cssv("--body") || "system-ui, sans-serif";
   const tick = cssv("--chart-tick"), grid = cssv("--chart-grid");
   chart = new Chart(canvas, {type: "line", data: {labels: D.periods, datasets: series.map(s => ({label: s.label, data: D.periods.map(p => s.map[p] ?? null),
     borderColor: s.color, backgroundColor: s.color, spanGaps: true, tension: .25, pointRadius: 2, borderWidth: 2}))},

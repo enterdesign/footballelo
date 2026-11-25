@@ -157,8 +157,6 @@ def head(lang, title, desc, url, alts, css, ld):
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:url" content="{url}">
 <meta name="twitter:card" content="summary">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 <style>main{{max-width:960px;margin:0 auto;padding:22px 16px 60px}}table.seo{{width:100%;border-collapse:collapse;font:400 15px var(--body)}}
