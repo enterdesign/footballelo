@@ -7,15 +7,23 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Live recent.json
+      - name: New sitemaps and hub pages
         run: |
           B=https://enterdesign.github.io/footballelo
-          curl -s "$B/data/meta.json" ; echo
-          curl -s "$B/data/recent.json" -o /tmp/r.json -w 'recent.json HTTP %{http_code} size %{size_download}\n'
-          python3 - <<'PY'
-          import json
-          r = json.load(open("/tmp/r.json"))
-          for b in r["batches"][:4]:
-              bl = [(m["a"], m["s"], m["b"]) for m in b["matches"] if m["c"] == "bundesliga"]
-              print(b["at"], len(b["matches"]), "bundesliga:", bl)
-          PY
+          GB='Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+          for f in sitemap.xml sitemap-index.xml sitemap-pages.xml sitemap-teams.xml; do
+            curl -s -A "$GB" -o /tmp/s.xml -w "$f HTTP %{http_code} %{content_type} " "$B/$f"
+            echo "locs=$(grep -o '<loc>' /tmp/s.xml | wc -l)"
+          done
+          curl -s "$B/sitemap-index.xml" | head -c 500; echo
+          for p in teams/ es/equipos/ pt/equipes/ pl/druzyny/; do
+            code=$(curl -s -o /tmp/h.html -w '%{http_code}' "$B/$p")
+            echo "$code | $p | $(grep -o '<title>[^<]*' /tmp/h.html | sed 's/<title>//') | links: $(grep -o '<li><a' /tmp/h.html | wc -l)"
+          done
+          echo "home links to the hub: $(curl -s $B/ | grep -c 'href=\"teams/\"')"
+          echo "es home links to the hub: $(curl -s $B/es/ | grep -c 'href=\"equipos/\"')"
+          bad=0; n=0
+          for u in $(curl -s $B/sitemap-teams.xml | grep -o '<loc>[^<]*' | sed 's/<loc>//' | awk 'NR%12==1'); do
+            c=$(curl -s -o /dev/null -w '%{http_code}' "$u"); n=$((n+1)); [ "$c" != 200 ] && { bad=$((bad+1)); echo "non-200 $c $u"; }
+          done
+          echo "sampled team urls: $n, non-200: $bad"
