@@ -51,9 +51,30 @@ class Teams(unittest.TestCase):
             self.assertTrue((Path(tmp) / "teams" / "a-b.html").exists())
             self.assertTrue((Path(tmp) / "es" / "equipos" / "a-b.html").exists())
             self.assertEqual(links["pl"]["A & B"], "../druzyny/a-b.html")
-            self.assertEqual(len(urls), 2 * len(seo.LANGS))
+            self.assertEqual(len(urls), 3 * len(seo.LANGS))                          # two teams and the hub page, in every language
             self.assertIn('href="../teams/a-b.html">A &amp; B</a>', seo.page("pl", DATA, "en", links["en"]))
             self.assertIn("teams/a-b.html", seo.sitemap(urls))
+
+    def test_hub_page_lists_every_team_and_links_to_rankings(self):
+        h = teams.hub_page("en", self.ctx)
+        self.assertIn("<title>All teams: football ELO ratings</title>", h)
+        self.assertIn('<a href="a-b.html">A &amp; B</a>', h)
+        self.assertIn('href="../rankings/premier-league.html"', h)
+        for lang in seo.LANGS:
+            self.assertIn(f'hreflang="{lang}" href="{teams.hub_url(lang)}"', h)
+        self.assertEqual(teams.hub_url("pl"), "https://enterdesign.github.io/footballelo/pl/druzyny/")
+
+    def test_sitemaps_are_split_and_indexed(self):
+        import xml.etree.ElementTree as ET
+        with tempfile.TemporaryDirectory() as tmp:
+            links, urls = teams.generate(tmp, {"pl": DATA})
+            seo.write_sitemaps(Path(tmp), urls)
+            ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+            count = lambda f, tag: len(ET.parse(Path(tmp) / f).getroot().findall(f"{ns}{tag}/{ns}loc"))
+            self.assertEqual(count("sitemap-pages.xml", "url"), len(seo.LANGS) * (1 + len(seo.SLUGS)))
+            self.assertEqual(count("sitemap-teams.xml", "url"), len(urls))
+            self.assertEqual(count("sitemap.xml", "url"), count("sitemap-pages.xml", "url") + len(urls))
+            self.assertEqual(count("sitemap-index.xml", "sitemap"), 2)
 
 
 if __name__ == "__main__":
