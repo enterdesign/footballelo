@@ -159,7 +159,7 @@ def head(lang, title, desc, url, alts, css, ld):
 <meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="{css}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<style>main{{max-width:960px;margin:0 auto;padding:22px 16px 60px}}table.seo{{width:100%;border-collapse:collapse;font:400 15px var(--body)}}
+<style>main{{max-width:960px;margin:0 auto;padding:calc(76px + env(safe-area-inset-top,0px)) 16px 60px}}table.seo{{width:100%;border-collapse:collapse;font:400 15px var(--body)}}
 table.seo th{{text-align:left;font:600 15px var(--display);color:var(--mute);border-bottom:1px solid var(--rule2);padding:6px 8px}}
 table.seo td{{padding:6px 8px;border-bottom:1px solid var(--rule)}}.open{{display:inline-block;margin:12px 0 18px;padding:8px 16px;background:var(--accent);color:var(--on-accent,#fff);font:700 18px var(--display)}}</style>
 </head>
@@ -205,11 +205,14 @@ def page(key, d, lang="en", team_links=None):
         f"<tr><td>{i}</td><td>{name_cell(x['name'])}</td><td>{e(x.get('country') or x.get('label') or '')}</td>"
         f"<td>{x['elo']}</td><td>{x['matches']}</td></tr>" for i, x in enumerate(d["teams"][:TOP], 1))
     nav = " · ".join(f'<a href="{slugs[k]}.html">{e(nav_names[k])}</a>' for k in slugs if k != key)
+    if team_links:
+        nav += f' · <a href="../{_hub_dir(lang)}/">{e(_hub_nav(lang))}</a>'
     ld = {"@context": "https://schema.org", "@type": "ItemList", "name": title, "url": url, "inLanguage": lang,
           "itemListElement": [{"@type": "ListItem", "position": i, "name": f"{x['name']} ({x['elo']})"}
                               for i, x in enumerate(d["teams"][:20], 1)]}
     region = t["region"] if key in NATIONS else t["country"]
     return head(lang, full_title, desc, url, alternates(key), css, ld) + f"""<body>
+<a id="brand" href="../">Football <span>ELO</span></a>
 <main>
 <p class="eyebrow"><a href="../">{t["all"]}</a> · {switch}</p>
 <h1 class="title" style="font-size:44px">{e(title)}</h1>
@@ -236,6 +239,16 @@ def lang_nav(lang):
     return f'<nav id="lang" aria-label="Language">{links}</nav>'
 
 
+def _hub_dir(lang):
+    import teams                                             # lazy: teams.py imports this module
+    return teams.DIRS[lang]
+
+
+def _hub_nav(lang):
+    import teams
+    return teams.HUB[lang]["nav"]
+
+
 def shell(index_html, lang):
     """The copy of the interactive app for one language: the English index.html with translated metadata, static texts
     and links, loading the same app.js, i18n.js and data (window.LANG / window.ROOT select the interface language)."""
@@ -243,7 +256,8 @@ def shell(index_html, lang):
     h = index_html
     others = " · ".join(f'<a href="{"../" if l == "en" else "../" + l + "/"}" hreflang="{l}" lang="{l}">{TX[l]["name"]}</a>' for l in LANGS if l != lang)
     nav = (f'<nav id="seo-links" aria-label="{e(t["aria"])}" style="max-width:960px;margin:0 auto;padding:0 16px 10px;font:400 13px var(--body);color:var(--mute)">Rankings: '
-           + " · ".join(f'<a href="rankings/{SLUGS_BY[lang][k]}.html">{e(SHORT[lang][k])}</a>' for k in SLUGS_BY[lang]) + f" · {others}</nav>")
+           + " · ".join(f'<a href="rankings/{SLUGS_BY[lang][k]}.html">{e(SHORT[lang][k])}</a>' for k in SLUGS_BY[lang])
+           + f' · <a href="{_hub_dir(lang)}/">{e(_hub_nav(lang))}</a> · {others}</nav>')
     subtitle = " · ".join(SHORT[lang][k].split(" (")[0] for k in ("wc", "euro", "copa", "nl", "ucl", "el", "conf", "uefa", "pl", "ekstraklasa", "bundesliga", "spain", "france", "italy"))
     reps = [
         (r'<html lang="en">', f'<html lang="{lang}">'),
@@ -279,6 +293,23 @@ def sitemap(extra=()):
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>\n'
 
 
+def sitemap_index(names):
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    body = "".join(f"<sitemap><loc>{BASE}{n}</loc><lastmod>{day}</lastmod></sitemap>" for n in names)
+    return f'<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</sitemapindex>\n'
+
+
+def write_sitemaps(site, team_urls):
+    """sitemap.xml (everything), plus the same URLs split in two files and an index of them: a fresh URL to submit when Search Console
+    keeps a failed fetch of the first one."""
+    day = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    (site / "sitemap.xml").write_text(sitemap(team_urls), encoding="utf-8")
+    (site / "sitemap-pages.xml").write_text(sitemap(), encoding="utf-8")
+    body = "".join(f"<url><loc>{u}</loc><lastmod>{day}</lastmod></url>" for u in team_urls)
+    (site / "sitemap-teams.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{body}</urlset>\n', encoding="utf-8")
+    (site / "sitemap-index.xml").write_text(sitemap_index(["sitemap-pages.xml", "sitemap-teams.xml"]), encoding="utf-8")
+
+
 def generate(site):
     site = Path(site)
     for l in LANGS:
@@ -296,4 +327,4 @@ def generate(site):
     if index.exists():
         for l in LANGS[1:]:
             (site / l / "index.html").write_text(shell(index.read_text(encoding="utf-8"), l), encoding="utf-8")
-    (site / "sitemap.xml").write_text(sitemap(team_urls), encoding="utf-8")
+    write_sitemaps(site, team_urls)

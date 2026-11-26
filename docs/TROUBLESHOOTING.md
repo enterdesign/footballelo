@@ -286,6 +286,12 @@ Strona ma aktualny Elo i miejsce, rekord wszech czasów, bilans, wykres (inline 
 w innych rankingach i sąsiadów z tabeli. Nazwy zespołów w tabelach rankingów statycznych linkują do tych stron, a wszystkie adresy są w `sitemap.xml`.
 Chcesz dodać więcej zespołów? Zwiększ liczby w `SELECT`. Test: `tests/test_teams.py`.
 
+**Strony zespołów i mapy strony.** Lista wszystkich zespołów (z linkami do każdej strony) jest pod `teams/`, `es/equipos/`, `pt/equipes/`, `pl/druzyny/` i jest podlinkowana
+ze strony głównej, z rankingów i ze stron zespołów, więc Google może do nich dojść samymi linkami. Poza `sitemap.xml` (wszystko) buildy tworzą też
+`sitemap-pages.xml` (rankingi), `sitemap-teams.xml` (zespoły) i `sitemap-index.xml` (spis obu). Jeśli Search Console zablokuje się na „Couldn't fetch” dla jednego
+adresu, wyślij inny z nich (usuń stary wpis: trzy kropki obok mapy, „Remove sitemap”). W polu mapy wpisuje się samą nazwę pliku, np. `sitemap-index.xml`.
+Sprawdzenie, czy Google w ogóle pobiera plik: „Inspekcja adresu URL” z pełnym adresem mapy, potem „Przetestuj aktywny adres URL”.
+
 ## 10d. Dwa wyglądy strony: jasny „Apple” (domyślny) i klasyczny
 
 `site/style.css` to wygląd w stylu Apple: jasne tło, systemowa czcionka, jeden niebieski akcent, białe karty, półprzezroczysty pasek u góry, ciemny

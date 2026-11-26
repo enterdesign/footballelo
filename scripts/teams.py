@@ -66,6 +66,67 @@ TT = {
 }
 
 
+HUB = {
+    "en": {"nav": "All teams", "title": "All teams: football ELO ratings", "h1": "All teams",
+           "desc": "Football ELO ratings of {n} clubs and national teams: the current rating, rank and full history of every team, grouped by ranking.",
+           "intro": "Every team below has its own page with the current ELO rating, rank, all-time high, a rating chart, the latest matches and a season-by-season table."},
+    "es": {"nav": "Todos los equipos", "title": "Todos los equipos: Elo de fútbol", "h1": "Todos los equipos",
+           "desc": "Elo de fútbol de {n} clubes y selecciones: puntuación actual, puesto e historial completo de cada equipo, agrupados por ranking.",
+           "intro": "Cada equipo tiene su página con la puntuación Elo actual, el puesto, el máximo histórico, un gráfico, los últimos partidos y una tabla temporada a temporada."},
+    "pt": {"nav": "Todas as equipes", "title": "Todas as equipes: Elo do futebol", "h1": "Todas as equipes",
+           "desc": "Elo do futebol de {n} clubes e seleções: pontuação atual, posição e histórico completo de cada equipe, agrupados por ranking.",
+           "intro": "Cada equipe tem a sua página com a pontuação Elo atual, a posição, o máximo histórico, um gráfico, os últimos jogos e uma tabela temporada a temporada."},
+    "pl": {"nav": "Wszystkie zespoły", "title": "Wszystkie zespoły: Elo piłki nożnej", "h1": "Wszystkie zespoły",
+           "desc": "Elo piłki nożnej {n} klubów i reprezentacji: obecna punktacja, miejsce i pełna historia każdego zespołu, pogrupowane według rankingów.",
+           "intro": "Każdy zespół ma własną stronę z obecną punktacją Elo, miejscem, rekordem wszech czasów, wykresem, ostatnimi meczami i tabelą sezon po sezonie."},
+}
+
+
+def hub_url(lang):
+    return f"{seo.BASE}{DIRS[lang]}/" if lang == "en" else f"{seo.BASE}{lang}/{DIRS[lang]}/"
+
+
+def dname(name, lang, ctx):
+    """Name of a team in a language: national teams are translated, clubs keep their name."""
+    return ctx["names"].get(lang, {}).get(name, name) if lang != "en" and name in ctx["nation_names"] else name
+
+
+def hub_page(lang, ctx):
+    """One crawlable list of every team page, grouped by ranking: a path for search engines (and people) to all of them."""
+    h, t = HUB[lang], TT[lang]
+    datas, ents = ctx["datas"], ctx["ents"]
+    by = {}
+    for ent in ents.values():
+        by.setdefault(ent["main"], []).append(ent)
+    secs = ""
+    for key in seo.SLUGS:
+        if key not in by:
+            continue
+        rows = sorted(by[key], key=lambda x: -datas[key]["teams"][x["places"][key]]["elo"])
+        lis = "".join(f'<li><a href="{x["slug"]}.html">{e(dname(x["name"], lang, ctx))}</a></li>' for x in rows)
+        secs += (f'<h2 style="font:700 20px var(--display);margin:24px 0 8px"><a href="../rankings/{seo.SLUGS_BY[lang][key]}.html">{e(ctx["rnames"][lang][key])}</a></h2>'
+                 f'<ul class="hub">{lis}</ul>')
+    url = hub_url(lang)
+    alts = [(l, hub_url(l)) for l in seo.LANGS] + [("x-default", hub_url("en"))]
+    css = "../style.css" if lang == "en" else "../../style.css"
+    desc = h["desc"].format(n=len(ents))
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": h["title"], "url": url, "inLanguage": lang, "description": desc}
+    switch = " · ".join(f'<a href="{hub_url(l)}" hreflang="{l}" lang="{l}">{seo.TX[l]["name"]}</a>' for l in seo.LANGS if l != lang)
+    return seo.head(lang, h["title"], desc, url, alts, css, ld) + f"""<body>
+<a id="brand" href="../">Football <span>ELO</span></a>
+<style>ul.hub{{list-style:none;columns:220px;column-gap:24px;padding:0}}ul.hub li{{padding:3px 0;break-inside:avoid}}ul.hub a:hover,h2 a:hover{{color:var(--accent)}}</style>
+<main>
+<p class="eyebrow"><a href="../">{t["all"]}</a> · {switch}</p>
+<h1 class="title" style="font-size:44px">{e(h["h1"])}</h1>
+<p>{e(desc)}</p>
+<p>{e(h["intro"])}</p>
+{secs}
+</main>
+</body>
+</html>
+"""
+
+
 def slugify(name):
     s = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
@@ -205,8 +266,9 @@ def page(ent, lang, ctx):
     th = lambda *c: "<tr>" + "".join(f"<th>{x}</th>" for x in c) + "</tr>"
     h2 = 'style="font:700 20px var(--display);margin:24px 0 6px"'
     return seo.head(lang, title, desc, url, alts, css, ld) + f"""<body>
+<a id="brand" href="../">Football <span>ELO</span></a>
 <main>
-<p class="eyebrow"><a href="../">{t["all"]}</a> · <a href="../rankings/{seo.SLUGS_BY[lang][key]}.html">{e(rname)}</a> · {switch}</p>
+<p class="eyebrow"><a href="../">{t["all"]}</a> · <a href="../rankings/{seo.SLUGS_BY[lang][key]}.html">{e(rname)}</a> · <a href="./">{e(HUB[lang]["nav"])}</a> · {switch}</p>
 <h1 class="title" style="font-size:44px">{e(t["h1"].format(name=name))}</h1>
 <p>{t["lead"].format(**fe)}</p>
 <a class="open" href="{comp_url}">{e(t["open"].format(name=name))}</a>
@@ -246,4 +308,6 @@ def generate(site, datas):
             (out / f"{ent['slug']}.html").write_text(page(ent, lang, ctx), encoding="utf-8")
             links[lang][ent["name"]] = f"../{DIRS[lang]}/{ent['slug']}.html"
             urls.append(team_url(ent["slug"], lang))
+        (out / "index.html").write_text(hub_page(lang, ctx), encoding="utf-8")
+        urls.append(hub_url(lang))
     return links, urls
